@@ -1069,6 +1069,85 @@ img, svg { display: block; }
 }
 
 
+/* ---------- 9d. INICIO · ¿Por qué Sof? ---------- */
+.porque {
+  padding-block: 40px 130px;
+}
+.porque-titulo {
+  margin-bottom: 3rem;
+  font-size: clamp(2.6rem, 7vw, 4.6rem);
+  font-weight: 800;
+  text-align: center;
+}
+.porque-titulo em {
+  font-size: 1.35em;
+  color: var(--accent);
+}
+
+.razones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.4rem 1.8rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.razon {
+  position: relative;
+  padding-top: 1.2rem;
+  border-top: 2px solid var(--fg);
+}
+/* Retraso escalonado al aparecer */
+.razon:nth-child(2) { transition-delay: .1s; }
+.razon:nth-child(3) { transition-delay: .2s; }
+.razon:nth-child(4) { transition-delay: .3s; }
+
+.razon-estrella {
+  position: absolute;
+  top: 1rem;
+  right: 0;
+  width: 26px;
+  height: 26px;
+  fill: var(--rosa);
+  transition: rotate .6s ease, scale .6s ease;
+}
+.razon:hover .razon-estrella { rotate: 180deg; scale: 1.25; }
+
+.razon-num {
+  display: block;
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--accent-2);
+}
+.razon h3 {
+  margin: .5rem 0 .6rem;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.razon p { color: var(--suave); font-size: 1rem; }
+
+/* Espacio reservado para testimonios */
+.testimonios {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .4rem;
+  margin-top: 4rem;
+  padding: 2rem 1.4rem;
+  border: 1.5px dashed var(--linea);
+  border-radius: 10px;
+  text-align: center;
+}
+.testimonios .etiqueta-mini { margin-bottom: 0; }
+.testimonios-texto {
+  font-size: clamp(1.6rem, 3.6vw, 2.2rem);
+  line-height: 1.2;
+  color: var(--suave);
+}
+
+
 /* ---------- 10. Página temporal "Muy pronto" ---------- */
 .pronto-caja {
   min-height: 100svh;
