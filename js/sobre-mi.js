@@ -36,4 +36,33 @@
     carnet.addEventListener('pointerup', soltar);
     carnet.addEventListener('pointercancel', soltar);
   }
+
+
+  /* ---------- 2. Teclado de herramientas ---------- */
+  const teclado = document.querySelector('.teclado');
+  if (teclado) {
+    const teclas = teclado.querySelectorAll('.tecla');
+    const pista = document.getElementById('teclado-pista');
+    const pistaInicial = pista.textContent;
+
+    const mostrarPista = (tecla) => { pista.textContent = tecla.dataset.pista; };
+    const quitarPista = () => { pista.textContent = pistaInicial; };
+
+    teclas.forEach((tecla) => {
+      tecla.addEventListener('mouseenter', () => mostrarPista(tecla));
+      tecla.addEventListener('focus', () => mostrarPista(tecla));
+      tecla.addEventListener('mouseleave', quitarPista);
+      tecla.addEventListener('blur', quitarPista);
+    });
+
+    // Los números del 1 al 7 hunden la tecla y muestran para qué la uso
+    document.addEventListener('keydown', (ev) => {
+      if (ev.ctrlKey || ev.metaKey || ev.altKey || /input|textarea/i.test(ev.target.tagName)) return;
+      const tecla = teclado.querySelector(`[data-tecla="${ev.key}"]`);
+      if (!tecla) return;
+      tecla.classList.add('presionada');
+      mostrarPista(tecla);
+      setTimeout(() => tecla.classList.remove('presionada'), 180);
+    });
+  }
 })();

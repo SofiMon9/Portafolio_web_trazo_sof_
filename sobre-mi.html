@@ -241,7 +241,50 @@
 
       <hr class="separador">
 
-      <!-- 2. Herramientas (próximo paso) -->
+      <!-- 2. Herramientas: teclado de 7 teclas
+           Cada tecla lleva a los proyectos donde se usa ese programa (pendiente confirmar cuáles).
+           data-pista = el texto que aparece debajo al pasar el cursor. -->
+      <div class="herramientas contenedor">
+        <h2 class="seccion-titulo aparece">Herramientas</h2>
+        <p class="seccion-sub script aparece">así le doy forma a las ideas</p>
+
+        <div class="teclado aparece" role="group" aria-label="Teclado de herramientas">
+          <a class="tecla tecla-crema" href="proyectos.html#lo-grafico" data-tecla="1"
+             data-pista="Illustrator · logos, identidades e ilustración (Provet, Boticaria, Lo grotesco)">
+            <span class="tecla-num">1</span><b>Ai</b><small>Illustrator</small>
+          </a>
+          <a class="tecla tecla-rosa" href="proyectos.html#lo-grafico" data-tecla="2"
+             data-pista="Photoshop · retoque, montajes y piezas para redes">
+            <span class="tecla-num">2</span><b>Ps</b><small>Photoshop</small>
+          </a>
+          <a class="tecla tecla-vino" href="proyectos.html#en-camara" data-tecla="3"
+             data-pista="Lightroom · revelado y color de mis fotografías">
+            <span class="tecla-num">3</span><b>Lr</b><small>Lightroom</small>
+          </a>
+          <a class="tecla tecla-arena" href="proyectos.html#lo-grafico" data-tecla="4"
+             data-pista="InDesign · manuales de marca y diseño editorial">
+            <span class="tecla-num">4</span><b>Id</b><small>InDesign</small>
+          </a>
+          <a class="tecla tecla-vino" href="proyectos.html#en-set" data-tecla="5"
+             data-pista="Premiere · edición de video, reels y cortos">
+            <span class="tecla-num">5</span><b>Pr</b><small>Premiere</small>
+          </a>
+          <a class="tecla tecla-rosa" href="proyectos.html#digital" data-tecla="6"
+             data-pista="After Effects · animación y motion graphics">
+            <span class="tecla-num">6</span><b>Ae</b><small>After Effects</small>
+          </a>
+          <a class="tecla tecla-crema tecla-enter" href="proyectos.html" data-tecla="7"
+             data-pista="Ver todos los proyectos">
+            <span class="tecla-num">7</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 5v7H6M10 8l-4 4 4 4"/></svg>
+            <small>Ver todo</small>
+          </a>
+        </div>
+
+        <p class="teclado-pista" id="teclado-pista" aria-live="polite">Toca una tecla (o usa los números del 1 al 7) para ver dónde la uso.</p>
+      </div>
+
+      <hr class="separador">
 
       <!-- 3. Más sobre mí (próximo paso) -->
 

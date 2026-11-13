@@ -191,6 +191,97 @@
 }
 
 
+/* ---------- 2. Herramientas (teclado) ---------- */
+.herramientas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 80px 90px;
+}
+
+/* La base del teclado */
+.teclado {
+  display: grid;
+  grid-template-columns: repeat(4, clamp(64px, 12vw, 112px));
+  gap: clamp(8px, 1.4vw, 14px);
+  margin-top: 2.4rem;
+  padding: clamp(12px, 2vw, 20px);
+  padding-bottom: clamp(18px, 2.6vw, 26px);
+  border-radius: 24px;
+  background: #2E0911;
+  box-shadow: 0 0 0 1px var(--linea), 0 30px 50px -24px rgba(0, 0, 0, .6);
+}
+
+/* Cada tecla (tiene "grosor" con la sombra de abajo) */
+.tecla {
+  --cara: var(--crema);
+  --texto: var(--vino-oscuro);
+  --lado: #CBB9AE;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .1rem;
+  aspect-ratio: 1;
+  border-radius: 14px;
+  background: var(--cara);
+  color: var(--texto);
+  text-decoration: none;
+  box-shadow: 0 7px 0 var(--lado);
+  transform: translateY(0);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.tecla-crema { --cara: var(--crema);     --texto: var(--vino-oscuro); --lado: #CBB9AE; }
+.tecla-rosa  { --cara: var(--rosa);      --texto: var(--vino-oscuro); --lado: #B98581; }
+.tecla-vino  { --cara: var(--vino);      --texto: var(--rosa);        --lado: #3A0F1E; }
+.tecla-arena { --cara: var(--arena);     --texto: var(--vino-oscuro); --lado: #A9928A; }
+
+/* La tecla "Ver todo" ocupa dos espacios */
+.tecla-enter { grid-column: span 2; aspect-ratio: auto; }
+.tecla-enter svg {
+  width: clamp(26px, 4vw, 40px);
+  height: clamp(26px, 4vw, 40px);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tecla b {
+  font-size: clamp(1.3rem, 3vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1;
+}
+.tecla small {
+  font-size: clamp(.58rem, 1.1vw, .75rem);
+  font-weight: 500;
+  opacity: .8;
+}
+.tecla-num {
+  position: absolute;
+  top: 7px;
+  left: 9px;
+  font-size: .68rem;
+  font-weight: 600;
+  opacity: .55;
+}
+
+/* Tecla hundida (al pasar, al tocar o con los números 1–7) */
+.tecla:hover { transform: translateY(2px); box-shadow: 0 5px 0 var(--lado); }
+.tecla:active,
+.tecla.presionada { transform: translateY(7px); box-shadow: 0 0 0 var(--lado); }
+
+.teclado-pista {
+  min-height: 3em;
+  max-width: 32rem;
+  margin-top: 1.6rem;
+  text-align: center;
+  color: var(--suave);
+}
+
+
 /* ---------- Movimiento reducido ---------- */
 @media (prefers-reduced-motion: reduce) {
   .carnet { animation: none; }
