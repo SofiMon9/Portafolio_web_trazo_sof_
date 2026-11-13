@@ -132,6 +132,50 @@
     (document.fonts ? document.fonts.ready : Promise.resolve()).then(llenarCintas);
   }
 
+  /* ---------- 4b. INICIO · Manifiesto que se ilumina palabra por palabra ---------- */
+  const manifiesto = document.querySelector('[data-manifiesto]');
+  if (manifiesto) {
+    // Envuelve cada palabra en <span class="palabra"> (también las que están dentro de <em>)
+    const recorrido = document.createTreeWalker(manifiesto, NodeFilter.SHOW_TEXT);
+    const textos = [];
+    while (recorrido.nextNode()) textos.push(recorrido.currentNode);
+    textos.forEach((nodo) => {
+      const trozo = document.createDocumentFragment();
+      nodo.textContent.split(/(\s+)/).forEach((parte) => {
+        if (!parte) return;
+        if (/^\s+$/.test(parte)) {
+          trozo.appendChild(document.createTextNode(' '));
+        } else {
+          const span = document.createElement('span');
+          span.className = 'palabra';
+          span.textContent = parte;
+          trozo.appendChild(span);
+        }
+      });
+      nodo.replaceWith(trozo);
+    });
+
+    const palabras = manifiesto.querySelectorAll('.palabra');
+    let pendiente = false;
+    const iluminar = () => {
+      pendiente = false;
+      const caja = manifiesto.getBoundingClientRect();
+      const alto = window.innerHeight;
+      // Empieza cuando el texto entra por abajo y termina cuando llega a la mitad de la pantalla
+      const inicio = alto * 0.85;
+      const fin = alto * 0.45;
+      const avance = (inicio - caja.top) / (caja.height + inicio - fin);
+      const cuantas = Math.round(Math.min(Math.max(avance, 0), 1) * palabras.length);
+      palabras.forEach((p, i) => p.classList.toggle('encendida', i < cuantas));
+    };
+    const pedirIluminar = () => {
+      if (!pendiente) { pendiente = true; requestAnimationFrame(iluminar); }
+    };
+    window.addEventListener('scroll', pedirIluminar, { passive: true });
+    window.addEventListener('resize', pedirIluminar);
+    iluminar();
+  }
+
   // Si ya pasaste por una página distinta a la entrada, la entrada no vuelve a salir sola
   if (pagina !== 'entrada') guardar('sof-intro-visto', '1');
 

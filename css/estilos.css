@@ -123,6 +123,7 @@ img, svg { display: block; }
   position: relative;
   min-height: 100svh;
   overflow: hidden;
+  overflow: clip; /* recorta sin romper los elementos que se quedan quietos (sticky) */
   background: var(--fondo-vista);
   background-attachment: fixed;
 }
@@ -995,6 +996,79 @@ img, svg { display: block; }
 .enlace-suave:hover { color: var(--accent); }
 
 
+/* ---------- 9c. INICIO · Bienvenidx + manifiesto ---------- */
+.bienvenidx {
+  display: grid;
+  grid-template-columns: 1fr 1.9fr;
+  gap: 3rem;
+  align-items: start;
+  padding-block: 60px 130px;
+}
+
+/* El título se queda quieto mientras se lee el manifiesto */
+.bienvenidx-cabeza {
+  position: sticky;
+  top: 110px;
+}
+.etiqueta-mini {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: .8rem;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+}
+.etiqueta-mini svg { width: 14px; height: 14px; fill: currentColor; }
+
+.bienvenidx-titulo {
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  font-weight: 800;
+  line-height: 1;
+}
+.bienvenidx-titulo .script {
+  display: block;
+  margin-top: .1em;
+  font-size: .8em;
+  color: var(--accent);
+}
+
+.manifiesto {
+  font-size: clamp(1.45rem, 3vw, 2.3rem);
+  font-weight: 500;
+  line-height: 1.38;
+}
+.manifiesto em {
+  font-size: 1.3em;
+  line-height: 1;
+  color: var(--accent);
+}
+
+/* Palabras apagadas que se encienden al bajar */
+.js .manifiesto .palabra {
+  opacity: .16;
+  transition: opacity .35s ease;
+}
+.js .manifiesto .palabra.encendida { opacity: 1; }
+
+.manifiesto-firma {
+  margin-top: 1.4rem;
+  text-align: right;
+  font-size: 3rem;
+  color: var(--accent-2);
+}
+
+@media (max-width: 760px) {
+  .bienvenidx {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+  .bienvenidx-cabeza { position: static; }
+}
+
+
 /* ---------- 10. Página temporal "Muy pronto" ---------- */
 .pronto-caja {
   min-height: 100svh;
@@ -1052,5 +1126,6 @@ img, svg { display: block; }
     transition: none !important;
   }
   .js .aparece { opacity: 1; transform: none; }
+  .js .manifiesto .palabra { opacity: 1; }
   .js .estante:not(.cae) .libro { opacity: 1; }
 }
