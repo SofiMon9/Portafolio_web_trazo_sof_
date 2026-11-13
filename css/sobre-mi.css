@@ -191,94 +191,278 @@
 }
 
 
-/* ---------- 2. Herramientas (teclado) ---------- */
+/* ---------- 2. Herramientas (teclado, detalle y programas) ---------- */
 .herramientas {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-block: 80px 90px;
+  padding-block: 70px 100px;
+  text-align: center;
+}
+.herr-titulo {
+  font-size: clamp(3.4rem, 12vw, 8.5rem);
+  font-weight: 800;
+  line-height: .95;
+  color: var(--accent);
+}
+.herr-sub {
+  max-width: 30rem;
+  margin-top: 1rem;
+  font-size: .98rem;
+  color: var(--suave);
+}
+.herr-sub-script {
+  margin-top: .3rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--accent);
 }
 
-/* La base del teclado */
+/* La base del teclado: un poco inclinada, se endereza al pasar el cursor */
 .teclado {
   display: grid;
-  grid-template-columns: repeat(4, clamp(64px, 12vw, 112px));
-  gap: clamp(8px, 1.4vw, 14px);
-  margin-top: 2.4rem;
-  padding: clamp(12px, 2vw, 20px);
-  padding-bottom: clamp(18px, 2.6vw, 26px);
-  border-radius: 24px;
-  background: #2E0911;
-  box-shadow: 0 0 0 1px var(--linea), 0 30px 50px -24px rgba(0, 0, 0, .6);
+  grid-template-columns: repeat(4, clamp(66px, 11.5vw, 104px));
+  gap: clamp(8px, 1.3vw, 12px);
+  margin-top: 2.6rem;
+  padding: clamp(10px, 1.6vw, 16px);
+  border-radius: 26px;
+  background: var(--arena);
+  box-shadow: 0 12px 0 #B09A8F, 0 36px 50px -20px rgba(0, 0, 0, .55);
+  rotate: -3deg;
+  transition: rotate .6s cubic-bezier(.3, 1.4, .5, 1);
 }
+.teclado:hover { rotate: 0deg; }
 
-/* Cada tecla (tiene "grosor" con la sombra de abajo) */
+/* Cada tecla tiene "grosor" con la sombra de abajo */
 .tecla {
-  --cara: var(--crema);
+  --cara: var(--rosa);
   --texto: var(--vino-oscuro);
-  --lado: #CBB9AE;
+  --lado: #BE8C88;
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: .1rem;
-  aspect-ratio: 1;
-  border-radius: 14px;
+  align-items: flex-start;
+  justify-content: space-between;
+  aspect-ratio: 1 / .95;
+  padding: clamp(8px, 1.2vw, 12px) clamp(9px, 1.3vw, 13px);
+  border: none;
+  border-radius: 12px;
   background: var(--cara);
   color: var(--texto);
-  text-decoration: none;
-  box-shadow: 0 7px 0 var(--lado);
-  transform: translateY(0);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 6px 0 var(--lado);
   transition: transform .12s ease, box-shadow .12s ease;
 }
-.tecla-crema { --cara: var(--crema);     --texto: var(--vino-oscuro); --lado: #CBB9AE; }
-.tecla-rosa  { --cara: var(--rosa);      --texto: var(--vino-oscuro); --lado: #B98581; }
-.tecla-vino  { --cara: var(--vino);      --texto: var(--rosa);        --lado: #3A0F1E; }
-.tecla-arena { --cara: var(--arena);     --texto: var(--vino-oscuro); --lado: #A9928A; }
+.tecla-rosa      { --cara: var(--rosa);      --texto: var(--vino-oscuro); --lado: #BE8C88; }
+.tecla-blanca    { --cara: var(--blanco);    --texto: var(--vino);        --lado: #D3C6BD; }
+.tecla-vino      { --cara: var(--vino);      --texto: var(--crema);       --lado: #3A0F1E; }
+.tecla-terracota { --cara: var(--terracota); --texto: var(--crema);       --lado: #8C4E3B; }
 
-/* La tecla "Ver todo" ocupa dos espacios */
-.tecla-enter { grid-column: span 2; aspect-ratio: auto; }
-.tecla-enter svg {
-  width: clamp(26px, 4vw, 40px);
-  height: clamp(26px, 4vw, 40px);
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
+.tecla-ancha { grid-column: span 2; aspect-ratio: auto; }
 .tecla b {
-  font-size: clamp(1.3rem, 3vw, 2.2rem);
+  font-size: clamp(1.3rem, 3vw, 2rem);
   font-weight: 800;
   line-height: 1;
 }
 .tecla small {
-  font-size: clamp(.58rem, 1.1vw, .75rem);
-  font-weight: 500;
-  opacity: .8;
+  font-size: clamp(.58rem, 1vw, .72rem);
+  font-weight: 600;
 }
 .tecla-num {
   position: absolute;
   top: 7px;
-  left: 9px;
-  font-size: .68rem;
-  font-weight: 600;
-  opacity: .55;
+  right: 9px;
+  font-size: .62rem;
+  opacity: .6;
+}
+.tecla-icono {
+  width: clamp(20px, 3vw, 28px);
+  height: clamp(20px, 3vw, 28px);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
 }
 
-/* Tecla hundida (al pasar, al tocar o con los números 1–7) */
-.tecla:hover { transform: translateY(2px); box-shadow: 0 5px 0 var(--lado); }
+/* Tecla hundida: al pasar, al tocarla o con los números 1–7 */
+.tecla:hover { transform: translateY(2px); box-shadow: 0 4px 0 var(--lado); }
 .tecla:active,
-.tecla.presionada { transform: translateY(7px); box-shadow: 0 0 0 var(--lado); }
+.tecla.presionada { transform: translateY(6px); box-shadow: 0 0 0 var(--lado); }
+/* Tecla elegida: borde oscuro */
+.tecla[aria-pressed="true"] { outline: 2px solid var(--vino-oscuro); outline-offset: -2px; }
 
-.teclado-pista {
-  min-height: 3em;
-  max-width: 32rem;
-  margin-top: 1.6rem;
+/* Detalle + programas */
+.herr-detalle {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 22px;
+  align-items: start;
+  width: min(980px, 100%);
+  margin-top: 3.4rem;
+  text-align: left;
+}
+
+.herr-panel {
+  position: relative;
+  padding: 2rem 1.8rem;
+  border: 1px solid rgba(247, 239, 233, .16);
+  border-radius: 22px;
+  background: var(--vino);
+  color: var(--crema);
   text-align: center;
-  color: var(--suave);
+}
+/* Al cambiar de tecla, el texto se desvanece y vuelve */
+.herr-panel > :not(.herr-chispa) { transition: opacity .25s ease, translate .25s ease; }
+.herr-panel.cambiando > :not(.herr-chispa) { opacity: 0; translate: 0 8px; }
+
+.herr-nombre {
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  font-weight: 800;
+}
+.herr-nombre .script {
+  margin-left: .3em;
+  font-size: .62em;
+  font-weight: 400;
+  color: var(--rosa);
+}
+.herr-desc {
+  max-width: 26rem;
+  margin: .8rem auto 0;
+  font-size: .98rem;
+}
+.herr-aparece {
+  margin-top: 1.2rem;
+  font-size: .82rem;
+  font-weight: 600;
+  opacity: .7;
+}
+.herr-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .4rem;
+  margin: .6rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.herr-chips a {
+  display: inline-block;
+  padding: .4em 1em;
+  border: 1.3px solid var(--crema);
+  border-radius: 999px;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--crema);
+  text-decoration: none;
+  transition: background-color .25s ease, color .25s ease;
+}
+.herr-chips a:hover { background: var(--crema); color: var(--vino); }
+.herr-chispa {
+  position: absolute;
+  bottom: -14px;
+  left: -16px;
+  width: 30px;
+  height: 30px;
+  fill: var(--terracota);
+  opacity: .7;
+  animation: girar 12s linear infinite;
+}
+
+/* Tarjeta de programas */
+.programas {
+  padding: 1.8rem 1.6rem;
+  border: 1px solid rgba(247, 239, 233, .16);
+  border-radius: 22px;
+  background: var(--vino);
+  color: var(--crema);
+}
+.programas-titulo {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.programas-lista {
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.programa {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+.programa-icono {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--rosa);
+  color: var(--vino-oscuro);
+  font-size: .82rem;
+  font-weight: 800;
+}
+.programa-fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .6rem;
+  font-size: .95rem;
+}
+.programa-dato {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+.puntos { display: flex; gap: 3px; }
+.puntos i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--crema);
+  opacity: .28;
+  transition: opacity .3s ease;
+}
+.programas.visible .puntos i.lleno { opacity: 1; }
+.porcentaje {
+  min-width: 2.6em;
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--rosa);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.programa-barra {
+  height: 8px;
+  margin-top: .35rem;
+  border-radius: 999px;
+  background: rgba(247, 239, 233, .14);
+  overflow: hidden;
+}
+/* La barra se llena cuando la tarjeta aparece */
+.programa-barra span {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--terracota), var(--rosa));
+  transition: width 1.4s cubic-bezier(.2, .8, .2, 1);
+}
+.programas.visible .programa-barra span { width: var(--nivel); }
+.programa:nth-child(2) .programa-barra span { transition-delay: .1s; }
+.programa:nth-child(3) .programa-barra span { transition-delay: .2s; }
+.programa:nth-child(4) .programa-barra span { transition-delay: .3s; }
+.programa:nth-child(5) .programa-barra span { transition-delay: .4s; }
+.programa:nth-child(6) .programa-barra span { transition-delay: .5s; }
+
+@media (max-width: 820px) {
+  .herr-detalle { grid-template-columns: 1fr; }
 }
 
 

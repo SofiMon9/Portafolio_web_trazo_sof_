@@ -241,47 +241,101 @@
 
       <hr class="separador">
 
-      <!-- 2. Herramientas: teclado de 7 teclas
-           Cada tecla lleva a los proyectos donde se usa ese programa (pendiente confirmar cuáles).
-           data-pista = el texto que aparece debajo al pasar el cursor. -->
+      <!-- 2. Herramientas: teclado de 7 teclas + detalle + programas
+           Lo que dice cada tecla (frase, descripción y proyectos) está en js/sobre-mi.js -->
       <div class="herramientas contenedor">
-        <h2 class="seccion-titulo aparece">Herramientas</h2>
-        <p class="seccion-sub script aparece">así le doy forma a las ideas</p>
+        <h2 class="herr-titulo aparece">Herramientas</h2>
+        <p class="herr-sub aparece">Presiona las teclas para ver cada programa y cómo lo aplico en mi trabajo.</p>
+        <p class="herr-sub-script script aparece">o usa del 1 al 7 en tu teclado</p>
 
         <div class="teclado aparece" role="group" aria-label="Teclado de herramientas">
-          <a class="tecla tecla-crema" href="proyectos.html#lo-grafico" data-tecla="1"
-             data-pista="Illustrator · logos, identidades e ilustración (Provet, Boticaria, Lo grotesco)">
-            <span class="tecla-num">1</span><b>Ai</b><small>Illustrator</small>
-          </a>
-          <a class="tecla tecla-rosa" href="proyectos.html#lo-grafico" data-tecla="2"
-             data-pista="Photoshop · retoque, montajes y piezas para redes">
-            <span class="tecla-num">2</span><b>Ps</b><small>Photoshop</small>
-          </a>
-          <a class="tecla tecla-vino" href="proyectos.html#en-camara" data-tecla="3"
-             data-pista="Lightroom · revelado y color de mis fotografías">
-            <span class="tecla-num">3</span><b>Lr</b><small>Lightroom</small>
-          </a>
-          <a class="tecla tecla-arena" href="proyectos.html#lo-grafico" data-tecla="4"
-             data-pista="InDesign · manuales de marca y diseño editorial">
-            <span class="tecla-num">4</span><b>Id</b><small>InDesign</small>
-          </a>
-          <a class="tecla tecla-vino" href="proyectos.html#en-set" data-tecla="5"
-             data-pista="Premiere · edición de video, reels y cortos">
-            <span class="tecla-num">5</span><b>Pr</b><small>Premiere</small>
-          </a>
-          <a class="tecla tecla-rosa" href="proyectos.html#digital" data-tecla="6"
-             data-pista="After Effects · animación y motion graphics">
-            <span class="tecla-num">6</span><b>Ae</b><small>After Effects</small>
-          </a>
-          <a class="tecla tecla-crema tecla-enter" href="proyectos.html" data-tecla="7"
-             data-pista="Ver todos los proyectos">
-            <span class="tecla-num">7</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 5v7H6M10 8l-4 4 4 4"/></svg>
-            <small>Ver todo</small>
-          </a>
+          <button class="tecla tecla-rosa" type="button" data-tecla="1" aria-pressed="true">
+            <b>Ai</b><small>Illustrator</small><span class="tecla-num">1</span>
+          </button>
+          <button class="tecla tecla-blanca" type="button" data-tecla="2" aria-pressed="false">
+            <b>Ps</b><small>Photoshop</small><span class="tecla-num">2</span>
+          </button>
+          <button class="tecla tecla-vino" type="button" data-tecla="3" aria-pressed="false">
+            <b>Lr</b><small>Lightroom</small><span class="tecla-num">3</span>
+          </button>
+          <button class="tecla tecla-terracota" type="button" data-tecla="4" aria-pressed="false">
+            <b>VS</b><small>VS Code</small><span class="tecla-num">4</span>
+          </button>
+          <button class="tecla tecla-terracota" type="button" data-tecla="5" aria-pressed="false">
+            <b>Fg</b><small>Figma</small><span class="tecla-num">5</span>
+          </button>
+          <button class="tecla tecla-rosa" type="button" data-tecla="6" aria-pressed="false">
+            <b>Cc</b><small>CapCut</small><span class="tecla-num">6</span>
+          </button>
+          <button class="tecla tecla-vino tecla-ancha" type="button" data-tecla="7" aria-pressed="false">
+            <svg class="tecla-icono" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/></svg>
+            <small>Fotografía</small><span class="tecla-num">7</span>
+          </button>
         </div>
 
-        <p class="teclado-pista" id="teclado-pista" aria-live="polite">Toca una tecla (o usa los números del 1 al 7) para ver dónde la uso.</p>
+        <div class="herr-detalle">
+          <!-- Detalle de la tecla elegida (empieza con Illustrator) -->
+          <article class="herr-panel aparece" aria-live="polite">
+            <h3 class="herr-nombre"><span data-h="nombre">Illustrator</span> <span class="script" data-h="frase">todos los días</span></h3>
+            <p class="herr-desc" data-h="desc">Logos, isotipos e ilustración. Aquí nacen los sistemas de marca, de la primera línea al manual.</p>
+            <p class="herr-aparece">Aparece en</p>
+            <ul class="herr-chips" data-h="chips">
+              <li><a href="proyectos.html#provet">Provet · Marca</a></li>
+              <li><a href="proyectos.html#boticaria">Boticaria</a></li>
+              <li><a href="proyectos.html#lo-grotesco">La estética de lo grotesco</a></li>
+            </ul>
+            <svg class="herr-chispa" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,0 13.72,7.84 20.49,3.51 16.16,10.28 24,12 16.16,13.72 20.49,20.49 13.72,16.16 12,24 10.28,16.16 3.51,20.49 7.84,13.72 0,12 7.84,10.28 3.51,3.51 10.28,7.84"/></svg>
+          </article>
+
+          <!-- Programas: cambia el número de data-nivel para ajustar tu porcentaje de comodidad -->
+          <article class="programas aparece">
+            <h3 class="programas-titulo">Programas</h3>
+            <ul class="programas-lista">
+              <li class="programa" data-nivel="95">
+                <span class="programa-icono">Ps</span>
+                <div class="programa-info">
+                  <div class="programa-fila"><span>Photoshop</span><span class="programa-dato"><span class="puntos" aria-hidden="true"></span><span class="porcentaje">95%</span></span></div>
+                  <div class="programa-barra"><span></span></div>
+                </div>
+              </li>
+              <li class="programa" data-nivel="95">
+                <span class="programa-icono">Ai</span>
+                <div class="programa-info">
+                  <div class="programa-fila"><span>Illustrator</span><span class="programa-dato"><span class="puntos" aria-hidden="true"></span><span class="porcentaje">95%</span></span></div>
+                  <div class="programa-barra"><span></span></div>
+                </div>
+              </li>
+              <li class="programa" data-nivel="80">
+                <span class="programa-icono">Cc</span>
+                <div class="programa-info">
+                  <div class="programa-fila"><span>CapCut</span><span class="programa-dato"><span class="puntos" aria-hidden="true"></span><span class="porcentaje">80%</span></span></div>
+                  <div class="programa-barra"><span></span></div>
+                </div>
+              </li>
+              <li class="programa" data-nivel="60">
+                <span class="programa-icono">Fg</span>
+                <div class="programa-info">
+                  <div class="programa-fila"><span>Figma</span><span class="programa-dato"><span class="puntos" aria-hidden="true"></span><span class="porcentaje">60%</span></span></div>
+                  <div class="programa-barra"><span></span></div>
+                </div>
+              </li>
+              <li class="programa" data-nivel="60">
+                <span class="programa-icono">Lr</span>
+                <div class="programa-info">
+                  <div class="programa-fila"><span>Lightroom</span><span class="programa-dato"><span class="puntos" aria-hidden="true"></span><span class="porcentaje">60%</span></span></div>
+                  <div class="programa-barra"><span></span></div>
+                </div>
+              </li>
+              <li class="programa" data-nivel="60">
+                <span class="programa-icono">VS</span>
+                <div class="programa-info">
+                  <div class="programa-fila"><span>VS Code</span><span class="programa-dato"><span class="puntos" aria-hidden="true"></span><span class="porcentaje">60%</span></span></div>
+                  <div class="programa-barra"><span></span></div>
+                </div>
+              </li>
+            </ul>
+          </article>
+        </div>
       </div>
 
       <hr class="separador">
