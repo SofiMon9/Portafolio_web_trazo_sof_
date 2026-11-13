@@ -48,7 +48,7 @@
     </nav>
 
     <div class="barra-acciones">
-      <a class="nav-cta" href="planes.html" aria-current="page">¡Trabajemos!</a>
+      <a class="nav-cta" href="planes.html">¡Trabajemos!</a>
       <button class="lo-que-hago" type="button" aria-expanded="false" aria-controls="mega">Lo que hago</button>
 
       <!-- Interruptor tipo píldora: sol a la izquierda (claro), luna a la derecha (oscuro) -->
@@ -72,54 +72,126 @@
   </header>
 
   <!-- ============ MENÚ GRANDE: LO QUE HAGO ============ -->
-  <div class="mega" id="mega" role="dialog" aria-modal="true" aria-label="Lo que hago" hidden>
-    <button class="mega-cerrar" type="button" aria-label="Cerrar menú">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
-    </button>
+  <!-- Se abre con "Lo que hago", "Menú" y "¿Qué necesitas?". Igual en todas las páginas internas. -->
+  <div class="mega" id="mega" aria-label="Lo que hago" hidden>
+    <div class="mega-contenido">
 
-    <div class="mega-contenido contenedor">
-      <!-- Páginas -->
-      <nav class="mega-paginas" aria-label="Páginas">
-        <a href="inicio.html">Inicio</a>
-        <a href="sobre-mi.html">Sobre mí</a>
-        <a href="proyectos.html">Proyectos</a>
-        <a href="planes.html">Planes</a>
-      </nav>
+      <div class="mega-cabeza">
+        <p class="mega-etiqueta"><b>000</b> Lo que hago</p>
+        <p class="mega-lema script">elige tu plan y escríbeme</p>
+      </div>
 
-      <!-- Mundos -->
-      <div class="mega-mundos">
-        <h2 class="mega-titulo">Lo que <em class="script">hago</em></h2>
+      <div class="mundos">
 
-        <article class="mundo">
-          <svg class="mundo-estrella" aria-hidden="true"><use href="#estrella"/></svg>
-          <h3>Marca</h3>
-          <p>Logo, identidad visual, manual de marca, papelería y empaques.</p>
-          <div class="mundo-botones">
-            <a class="mundo-ver" href="marca.html">Ver mundo</a>
-            <a class="mundo-adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20me%20interesa%20el%20plan%20de%20Marca." target="_blank" rel="noopener">Adquirir</a>
-          </div>
+        <!-- Mundo 01 · Marca -->
+        <article class="mundo mundo-marca">
+          <p class="mundo-para">Mundo 01 · Para marcas nuevas y emprendimientos</p>
+          <h2 class="mundo-titulo">MARCA <span class="script">y piezas</span></h2>
+          <ol class="mundo-planes">
+            <li class="plan">
+              <span class="plan-num">01</span>
+              <div class="plan-texto"><h3>Identidad simple</h3><p>Logo, paleta y tipografías · 3 entregables</p></div>
+              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Identidad%20simple%20(Marca%20y%20piezas)." target="_blank" rel="noopener">Adquirir</a>
+            </li>
+            <li class="plan">
+              <span class="plan-num">02</span>
+              <div class="plan-texto"><h3>Manual de marca</h3><p>Reglas de uso de tu marca · 8 entregables</p></div>
+              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Manual%20de%20marca%20(Marca%20y%20piezas)." target="_blank" rel="noopener">Adquirir</a>
+            </li>
+            <li class="plan">
+              <span class="plan-num">03</span>
+              <div class="plan-texto"><h3>Identidad completa</h3><p>Todo lo anterior + papelería y lanzamiento</p></div>
+              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Identidad%20completa%20(Marca%20y%20piezas)." target="_blank" rel="noopener">Adquirir</a>
+            </li>
+          </ol>
+          <p class="mundo-miralo">Míralo en</p>
+          <ul class="chips">
+            <li><a href="proyectos.html#provet">Provet</a></li>
+            <li><a href="proyectos.html#boticaria">Boticaria</a></li>
+            <li><a href="proyectos.html#museos">Museos y galerías</a></li>
+            <li><a href="proyectos.html#lo-grotesco">Lo grotesco</a></li>
+          </ul>
+          <a class="mundo-ver" href="marca.html">Ver el mundo de marca <span aria-hidden="true">✶</span></a>
         </article>
 
-        <article class="mundo">
-          <svg class="mundo-estrella" aria-hidden="true"><use href="#estrella"/></svg>
-          <h3>Redes</h3>
-          <p>Contenido para feed e historias, plantillas, parrilla y estilo visual.</p>
-          <div class="mundo-botones">
-            <a class="mundo-ver" href="redes.html">Ver mundo</a>
-            <a class="mundo-adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20me%20interesa%20el%20plan%20de%20Redes." target="_blank" rel="noopener">Adquirir</a>
-          </div>
+        <!-- Mundo 02 · Redes -->
+        <article class="mundo mundo-redes">
+          <p class="mundo-para">Mundo 02 · Para negocios, servicios y creadores</p>
+          <h2 class="mundo-titulo">REDES <span class="script">sociales</span></h2>
+          <ol class="mundo-planes">
+            <li class="plan">
+              <span class="plan-num">01</span>
+              <div class="plan-texto"><h3>Posts e historias</h3><p>Piezas que enseñan, conectan y venden</p></div>
+              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Posts%20e%20historias%20(Redes%20sociales)." target="_blank" rel="noopener">Adquirir</a>
+            </li>
+            <li class="plan">
+              <span class="plan-num">02</span>
+              <div class="plan-texto"><h3>Reels y video</h3><p>Edición con ritmo y con tu estética</p></div>
+              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Reels%20y%20video%20(Redes%20sociales)." target="_blank" rel="noopener">Adquirir</a>
+            </li>
+            <li class="plan">
+              <span class="plan-num">03</span>
+              <div class="plan-texto"><h3>Fotografía</h3><p>Producto y retrato, con edición de color</p></div>
+              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Fotograf%C3%ADa%20(Redes%20sociales)." target="_blank" rel="noopener">Adquirir</a>
+            </li>
+          </ol>
+          <p class="mundo-miralo">Míralo en</p>
+          <ul class="chips">
+            <li><a href="proyectos.html#provet-redes">Provet · redes</a></li>
+          </ul>
+          <a class="mundo-ver" href="redes.html">Ver el mundo de redes <span aria-hidden="true">✶</span></a>
         </article>
 
-        <article class="mundo">
-          <svg class="mundo-estrella" aria-hidden="true"><use href="#estrella"/></svg>
-          <h3>Dirección de arte</h3>
-          <p>Concepto, moodboard, sets, fotografía y video.</p>
-          <div class="mundo-botones">
-            <a class="mundo-ver" href="direccion-arte.html">Ver mundo</a>
-            <a class="mundo-adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20me%20interesa%20el%20plan%20de%20Direcci%C3%B3n%20de%20arte." target="_blank" rel="noopener">Adquirir</a>
-          </div>
+        <!-- Mundo 03 · Dirección de arte -->
+        <article class="mundo mundo-arte">
+          <p class="mundo-para">Mundo 03 · Para videoclips, comerciales y cortos</p>
+          <h2 class="mundo-titulo">DIRECCIÓN <span class="script">de arte</span></h2>
+          <ol class="mundo-planes">
+            <li class="plan">
+              <span class="plan-num">01</span>
+              <div class="plan-texto"><h3>Concepto visual</h3><p>Referencias, paleta y propuesta para tu pieza</p></div>
+              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Concepto%20visual%20(Direcci%C3%B3n%20de%20arte)." target="_blank" rel="noopener">Adquirir</a>
+            </li>
+            <li class="plan">
+              <span class="plan-num">02</span>
+              <div class="plan-texto"><h3>Ambientación</h3><p>Escenografía y utilería para cada escena</p></div>
+              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Ambientaci%C3%B3n%20(Direcci%C3%B3n%20de%20arte)." target="_blank" rel="noopener">Adquirir</a>
+            </li>
+            <li class="plan">
+              <span class="plan-num">03</span>
+              <div class="plan-texto"><h3>Arte en el set</h3><p>Asistencia de arte y producción en rodaje</p></div>
+              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Arte%20en%20el%20set%20(Direcci%C3%B3n%20de%20arte)." target="_blank" rel="noopener">Adquirir</a>
+            </li>
+          </ol>
+          <p class="mundo-miralo">Míralo en</p>
+          <ul class="chips">
+            <li><a href="proyectos.html#casualidad">Casualidad</a></li>
+            <li><a href="proyectos.html#servicarga">Servicarga</a></li>
+          </ul>
+          <a class="mundo-ver" href="direccion-arte.html">Ver el mundo de arte <span aria-hidden="true">✶</span></a>
         </article>
       </div>
+
+      <div class="mega-pie">
+        <nav class="mega-paginas" aria-label="Páginas">
+          <a href="inicio.html">Inicio</a>
+          <a href="sobre-mi.html">Sobre mí</a>
+          <a href="proyectos.html">Proyectos</a>
+          <a href="planes.html">¡Trabajemos!</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+
+        <aside class="asesoria">
+          <p class="asesoria-titulo script">¿no sabes por dónde empezar?</p>
+          <p class="asesoria-texto">Agenda una asesoría de 2 horas y decidimos juntos el siguiente paso de tu marca.</p>
+          <div class="asesoria-botones">
+            <a class="btn-rosa" href="planes.html#asesoria">Ver asesoría</a>
+            <a class="btn-borde" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20agendar%20una%20asesor%C3%ADa." target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+          <p class="asesoria-hora">Pereira · <span data-hora>--:--</span></p>
+        </aside>
+      </div>
+
     </div>
   </div>
 
@@ -140,6 +212,31 @@
     </section>
 
   </main>
+
+  <!-- ============ PIE DE PÁGINA (igual en todas las páginas) ============ -->
+  <footer class="pie" id="contacto">
+    <h2 class="pie-titulo">Trabajemos <span class="script">Juntos</span></h2>
+
+    <div class="pie-columnas">
+      <div class="pie-col">
+        <h3>Escríbeme</h3>
+        <!-- El correo se copia al tocarlo -->
+        <button class="copiar" type="button" data-copiar="somonjara2005@gmail.com">somonjara2005@gmail.com</button>
+        <span class="copiar-aviso" aria-live="polite"></span>
+        <a href="https://wa.me/573225374248" target="_blank" rel="noopener">WhatsApp · 3225374248</a>
+      </div>
+      <div class="pie-col">
+        <h3>Redes</h3>
+        <a href="https://www.instagram.com/_nthlky_/" target="_blank" rel="noopener">Instagram · @_nthlky_</a>
+      </div>
+      <div class="pie-col">
+        <h3>Estudio</h3>
+        <p>Pereira, Colombia</p>
+      </div>
+    </div>
+
+    <p class="pie-legal">© 2026 Sofía Moncada - Arte desde el alma y corazón</p>
+  </footer>
 
   <!-- Transición entre páginas: 4 franjas de color -->
   <div class="franjas" aria-hidden="true">

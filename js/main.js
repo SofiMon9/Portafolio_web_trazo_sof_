@@ -46,16 +46,23 @@
   const mega = document.getElementById('mega');
   if (mega) {
     const abridores = document.querySelectorAll('[aria-controls="mega"]');
-    const btnCerrar = mega.querySelector('.mega-cerrar');
     let quienAbrio = null;
+
+    // Hora actual en Pereira (abajo, en el recuadro de asesoría)
+    const hora = mega.querySelector('[data-hora]');
+    const formatoHora = new Intl.DateTimeFormat('es-CO', { hour: 'numeric', minute: '2-digit', timeZone: 'America/Bogota' });
+    const ponerHora = () => { if (hora) hora.textContent = formatoHora.format(new Date()); };
+    ponerHora();
+    setInterval(ponerHora, 30000);
 
     const abrirMega = (boton) => {
       quienAbrio = boton;
+      ponerHora();
       mega.hidden = false;
+      mega.scrollTop = 0;
       requestAnimationFrame(() => mega.classList.add('abierto'));
       abridores.forEach((b) => b.setAttribute('aria-expanded', 'true'));
       document.body.style.overflow = 'hidden';
-      btnCerrar.focus();
     };
     const cerrarMega = () => {
       if (mega.hidden) return;
@@ -63,11 +70,15 @@
       abridores.forEach((b) => b.setAttribute('aria-expanded', 'false'));
       document.body.style.overflow = '';
       espera(350).then(() => { if (!mega.classList.contains('abierto')) mega.hidden = true; });
-      if (quienAbrio) quienAbrio.focus();
+      if (quienAbrio && quienAbrio.closest('.barra')) quienAbrio.focus({ preventScroll: true });
     };
 
     abridores.forEach((b) => b.addEventListener('click', () => (mega.hidden ? abrirMega(b) : cerrarMega())));
-    btnCerrar.addEventListener('click', cerrarMega);
+    // Al tocar un enlace de la misma pestaña (ej. "Contacto"), el menú se cierra
+    mega.addEventListener('click', (ev) => {
+      const enlace = ev.target.closest('a');
+      if (enlace && enlace.target !== '_blank') cerrarMega();
+    });
     document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') cerrarMega(); });
   }
 
