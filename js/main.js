@@ -96,6 +96,28 @@
   // Ya se puede animar: los detalles que esperan su animación solo se esconden desde aquí
   raiz.classList.add('observando');
 
+  // Respaldo: al bajar, revisa qué bloques ya están en pantalla y los muestra,
+  // por si el navegador no avisó (así ninguna sección se queda vacía).
+  let revisando = false;
+  const revisarAparece = () => {
+    revisando = false;
+    const alto = window.innerHeight;
+    document.querySelectorAll('.aparece:not(.visible)').forEach((el) => {
+      const caja = el.getBoundingClientRect();
+      if (caja.top < alto * 0.92 && caja.bottom > 0) {
+        el.classList.add('visible');
+        observadorAparece.unobserve(el);
+      }
+    });
+  };
+  const pedirRevision = () => {
+    if (!revisando) { revisando = true; setTimeout(revisarAparece, 60); }
+  };
+  window.addEventListener('scroll', pedirRevision, { passive: true });
+  window.addEventListener('resize', pedirRevision);
+  window.addEventListener('load', pedirRevision);
+  setTimeout(pedirRevision, 600);
+
 
   /* ---------- 3. ENTRADA · Estante de libros ---------- */
   const estante = document.querySelector('.estante');

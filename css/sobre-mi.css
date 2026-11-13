@@ -524,8 +524,8 @@
   margin-top: 1.2rem;
   rotate: 8deg;
 }
-/* Las carpetas siempre se ven; solo el giro se anima */
-.js .fd.aparece { opacity: 1; transform: none; }
+/* Esta sección siempre se ve completa; las animaciones solo giran, mueven o agrandan (nunca esconden) */
+.js .mas .aparece { opacity: 1; transform: none; }
 .observando .fd-exp:not(.visible)   { rotate: -14deg; }
 .observando .fd-areas:not(.visible) { rotate: 18deg; }
 .fd:hover { rotate: 0deg; translate: 0 -6px; transition-delay: 0s; }
@@ -590,7 +590,7 @@
   transform-origin: top;
   transition: transform 1.2s ease .5s;
 }
-.observando .fd-exp:not(.visible) .ftl::before { transform: scaleY(0); }
+.observando .fd-exp:not(.visible) .ftl::before { transform: scaleY(.15); }
 .ftl li {
   display: grid;
   grid-template-columns: 7.2rem 18px 1fr;
@@ -612,7 +612,7 @@
   background: var(--terracota);
   transition: scale .35s cubic-bezier(.3, 1.6, .4, 1);
 }
-.observando .fd-exp:not(.visible) .ftl i { scale: 0; }
+.observando .fd-exp:not(.visible) .ftl i { scale: .35; }
 .fd-exp.visible .ftl li:nth-child(1) i { transition-delay: .7s; }
 .fd-exp.visible .ftl li:nth-child(2) i { transition-delay: .95s; }
 .fd-exp.visible .ftl li:nth-child(3) i { transition-delay: 1.2s; }
@@ -649,9 +649,9 @@
   font-size: clamp(1.05rem, 1.6vw, 1.25rem);
   font-weight: 700;
   color: var(--vino);
-  transition: translate .35s cubic-bezier(.3, 1.6, .4, 1), opacity .5s ease var(--retraso);
+  transition: translate .6s cubic-bezier(.3, 1.6, .4, 1) var(--retraso);
 }
-.observando .fd-areas:not(.visible) .fareas li { opacity: 0; }
+.observando .fd-areas:not(.visible) .fareas li { translate: -18px 0; }
 .fareas li:nth-child(2) { margin-left: -.4rem; --retraso: .1s; }
 .fareas li:nth-child(3) { margin-left: -.8rem; --retraso: .2s; }
 .fareas li:nth-child(4) { margin-left: -1.2rem; --retraso: .3s; }
@@ -662,7 +662,7 @@
   fill: var(--vino);
   transition: rotate .6s cubic-bezier(.3, 1.6, .4, 1);
 }
-.fareas li:hover { translate: 8px 0; }
+.fareas li:hover { translate: 8px 0; transition-delay: 0s; }
 .fareas li:hover svg { rotate: 90deg; }
 .fareas .script {
   margin-right: .02em;
