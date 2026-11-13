@@ -108,7 +108,13 @@
       vistaPronto.querySelector('[data-nombre]').textContent = NOMBRES[id] || id.replace(/-/g, ' ');
     }
 
-    vistas.forEach((v) => { v.hidden = v !== vista; });
+    vistas.forEach((v) => {
+      v.hidden = v !== vista;
+      v.classList.remove('activa');
+    });
+    // Reinicia las animaciones de entrada de la página (ej. letras de TRAZO)
+    void vista.offsetWidth;
+    vista.classList.add('activa');
 
     if (id === 'intro') {
       document.title = 'Trazo · Bienvenidx al archivo de SOF';
