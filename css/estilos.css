@@ -25,6 +25,8 @@
   --barra-bg: rgba(255, 251, 247, .78);
   --sombra: 0 14px 30px -14px rgba(61, 12, 21, .45);
   --deco: var(--terracota);
+  --switch-bg: var(--arena);
+  --fondo-vista: radial-gradient(ellipse at 50% 35%, var(--blanco) 0%, var(--crema) 85%);
 
   /* Tipografías */
   --font: 'Jost', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -46,6 +48,8 @@
     --barra-bg: rgba(61, 12, 21, .78);
     --sombra: 0 14px 30px -14px rgba(0, 0, 0, .7);
     --deco: var(--rosa);
+    --switch-bg: #6E3446;
+    --fondo-vista: radial-gradient(ellipse at 50% 35%, var(--vino) 0%, var(--vino-oscuro) 90%);
     color-scheme: dark;
   }
 }
@@ -62,6 +66,8 @@
   --barra-bg: rgba(61, 12, 21, .78);
   --sombra: 0 14px 30px -14px rgba(0, 0, 0, .7);
   --deco: var(--rosa);
+  --switch-bg: #6E3446;
+  --fondo-vista: radial-gradient(ellipse at 50% 35%, var(--vino) 0%, var(--vino-oscuro) 90%);
   color-scheme: dark;
 }
 
@@ -107,7 +113,13 @@ img, svg { display: block; }
   border-radius: 4px;
 }
 
-.vista { position: relative; min-height: 100svh; overflow: hidden; }
+.vista {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--fondo-vista);
+  background-attachment: fixed;
+}
 .vista[hidden] { display: none; }
 
 .boton {
@@ -132,45 +144,56 @@ img, svg { display: block; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 16px;
+  padding: 18px clamp(16px, 5vw, 44px);
+  background: transparent;
+  transition: background-color .3s ease, padding .3s ease;
+}
+/* Al bajar, la barra toma fondo para que se lea encima del contenido */
+.barra.con-fondo {
+  padding-block: 10px;
   background: var(--barra-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--linea);
 }
 
-.logo {
-  font-family: var(--script);
-  font-size: 2.1rem;
-  line-height: 1;
-  color: var(--accent);
+.marca-nombre {
+  font-size: .95rem;
+  font-weight: 300;
+  color: var(--fg);
   text-decoration: none;
 }
 
-/* Interruptor sol / luna */
+/* Interruptor tipo píldora */
 .tema {
+  position: relative;
+  width: 76px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: var(--switch-bg);
+  cursor: pointer;
+  transition: background-color .3s ease;
+}
+.perilla {
+  position: absolute;
+  top: 5px;
+  left: 5px;
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
-  border: 1px solid var(--linea);
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background: transparent;
-  color: var(--fg);
-  cursor: pointer;
-  transition: transform .4s ease, border-color .3s ease;
+  background: var(--rosa);
+  color: var(--vino);
+  transition: transform .4s cubic-bezier(.3, 1.4, .5, 1);
 }
-.tema:hover { transform: rotate(25deg); border-color: var(--accent-2); }
-.tema svg {
-  width: 20px;
-  height: 20px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-}
-.tema[data-modo="dark"] .ico-luna,
-.tema[data-modo="light"] .ico-sol { display: none; }
+.tema[data-modo="dark"] .perilla { transform: translateX(36px); }
+.perilla svg { width: 18px; height: 18px; }
+.ico-sol { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.ico-luna { fill: currentColor; }
+.tema[data-modo="dark"] .ico-sol,
+.tema[data-modo="light"] .ico-luna { display: none; }
 
 
 /* ---------- 4. Fondo decorativo (.deco) ---------- */
@@ -239,30 +262,26 @@ img, svg { display: block; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-weight: 300;
+  color: var(--fg);
 }
 .premisa-titulo .linea-1 {
-  font-size: clamp(1.6rem, 4.5vw, 2.8rem);
-  letter-spacing: .02em;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.1;
 }
 .premisa-titulo .linea-2 {
-  font-size: clamp(4.6rem, 15vw, 10rem);
-  line-height: .95;
-  color: var(--accent);
-  margin-block: -.05em .1em;
-}
-.premisa-titulo .linea-3 {
-  font-size: clamp(1.6rem, 4.5vw, 2.8rem);
-}
-.premisa-titulo strong {
-  font-weight: 700;
-  letter-spacing: .14em;
-  color: var(--accent-2);
+  font-size: clamp(5.5rem, 17vw, 10rem);
+  font-weight: 800;
+  line-height: .9;
+  letter-spacing: .01em;
 }
 
 .premisa-texto {
-  max-width: 34rem;
-  color: var(--suave);
+  max-width: 40rem;
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--fg);
+  opacity: .92;
 }
 
 .bajar {
@@ -335,7 +354,7 @@ img, svg { display: block; }
 .tarjeta h2 {
   margin: .3rem 0 .6rem;
   font-size: 1.05rem;
-  font-weight: 600;
+  font-weight: 800;
   letter-spacing: .18em;
   text-transform: uppercase;
 }
@@ -353,7 +372,7 @@ img, svg { display: block; }
 
 .estante-titulo {
   font-size: clamp(2.2rem, 6vw, 3.6rem);
-  font-weight: 300;
+  font-weight: 800;
   text-align: center;
 }
 .estante-titulo em {
@@ -428,8 +447,7 @@ img, svg { display: block; }
   letter-spacing: .1em;
 }
 .libro-titulo {
-  writing-mode: vertical-rl;
-  rotate: 180deg;
+  writing-mode: vertical-rl; /* se lee de arriba hacia abajo */
   font-size: calc(15px * var(--escala));
   font-weight: 600;
   letter-spacing: .16em;
@@ -509,7 +527,7 @@ img, svg { display: block; }
 .pronto-script { font-size: clamp(2.6rem, 8vw, 4rem); color: var(--accent-2); line-height: 1; }
 .pronto-caja h1 {
   font-size: clamp(2rem, 6vw, 3.4rem);
-  font-weight: 600;
+  font-weight: 800;
   letter-spacing: .08em;
   text-transform: uppercase;
 }

@@ -9,7 +9,7 @@
   <!-- Tipografías: Jost (textos) y Pinyon Script (cursiva) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&family=Pinyon+Script&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/estilos.css">
 
@@ -34,18 +34,19 @@
 
   <!-- ============ BARRA SUPERIOR ============ -->
   <header class="barra">
-    <a class="logo" href="#inicio" aria-label="Trazo, ir al inicio">Trazo</a>
+    <a class="marca-nombre" href="#inicio">Sofía Moncada - Portafolio 2026</a>
 
-    <button class="tema" id="btnTema" type="button" aria-label="Cambiar tema">
-      <!-- Sol: se ve en modo oscuro -->
-      <svg class="ico-sol" viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="12" cy="12" r="4.5"/>
-        <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/>
-      </svg>
-      <!-- Luna: se ve en modo claro -->
-      <svg class="ico-luna" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/>
-      </svg>
+    <!-- Interruptor tipo píldora: sol a la izquierda (claro), luna a la derecha (oscuro) -->
+    <button class="tema" id="btnTema" type="button" role="switch" aria-label="Modo oscuro">
+      <span class="perilla">
+        <svg class="ico-sol" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.5"/>
+          <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/>
+        </svg>
+        <svg class="ico-luna" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/>
+        </svg>
+      </span>
     </button>
   </header>
 
@@ -66,17 +67,16 @@
 
       <!-- Premisa -->
       <div class="premisa contenedor">
-        <p class="etiqueta aparece">Archivo n.º 01 · Pereira, Colombia</p>
+        <p class="etiqueta aparece">Pereira, Colombia</p>
 
         <h1 id="intro-titulo" class="premisa-titulo aparece">
-          <span class="linea-1">Bienvenidx al</span>
-          <span class="linea-2 script">archivo</span>
-          <span class="linea-3">de <strong>SOF</strong></span>
+          <span class="linea-1 script">Bienvenidxs al archivo de</span>
+          <span class="linea-2">SOF</span>
         </h1>
 
         <p class="premisa-texto aparece">
-          Aquí guardo lo que hago desde el alma y el corazón: marcas, redes y dirección de arte.
-          Elige un libro del estante y te llevo a ese mundo.
+          Soy diseñadora crossmedia en Pereira, Colombia. Aquí podrás ver mi portafolio,
+          el contenido y los sets que he creado y también cómo podemos trabajar juntos.
         </p>
 
         <a class="bajar aparece" href="#estante" data-scroll>

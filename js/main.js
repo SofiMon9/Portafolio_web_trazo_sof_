@@ -24,8 +24,14 @@
   function pintarBotonTema() {
     const tema = temaActual();
     btnTema.dataset.modo = tema;
-    btnTema.setAttribute('aria-label', tema === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+    btnTema.setAttribute('aria-checked', tema === 'dark' ? 'true' : 'false');
   }
+
+  // La barra toma fondo al bajar
+  const barra = document.querySelector('.barra');
+  const revisarBarra = () => barra.classList.toggle('con-fondo', window.scrollY > 20);
+  window.addEventListener('scroll', revisarBarra, { passive: true });
+  revisarBarra();
 
   btnTema.addEventListener('click', () => {
     const nuevo = temaActual() === 'dark' ? 'light' : 'dark';
