@@ -427,6 +427,74 @@
 }
 
 
+/* ---------- 4. Cómo trabajo (muestras de color en escalera) ---------- */
+.como {
+  padding-block: 90px 130px;
+}
+.pasos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(12px, 2vw, 24px);
+  align-items: start;
+  margin: 3rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+/* Cada paso baja un poco más que el anterior */
+.paso-2 { margin-top: 40px; transition-delay: .1s; }
+.paso-3 { margin-top: 80px; transition-delay: .2s; }
+.paso-4 { margin-top: 120px; transition-delay: .3s; }
+
+.paso {
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--paper);
+  box-shadow: 0 0 0 1px var(--linea), var(--sombra);
+  transition: opacity .8s ease, transform .5s cubic-bezier(.3, 1.4, .5, 1);
+}
+.js .paso.aparece.visible:hover { transform: translateY(-8px) rotate(-1.5deg); }
+
+/* Bloque de color de cada muestra */
+.paso-color {
+  display: block;
+  aspect-ratio: 1 / .8;
+}
+.paso-1 .paso-color { background: var(--vino); }
+.paso-2 .paso-color { background: var(--blanco); }
+.paso-3 .paso-color { background: var(--crema); }
+.paso-4 .paso-color { background: var(--terracota); }
+
+.paso-info { padding: 1rem 1.1rem 1.3rem; }
+.paso-info small {
+  font-size: .78rem;
+  font-weight: 500;
+  color: var(--suave);
+}
+.paso-info h3 {
+  margin-top: .1rem;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.paso-info p {
+  margin-top: .5rem;
+  font-size: .9rem;
+  line-height: 1.5;
+  color: var(--suave);
+}
+
+@media (max-width: 820px) {
+  .pasos { grid-template-columns: repeat(2, 1fr); }
+  .paso-2, .paso-4 { margin-top: 40px; }
+  .paso-3 { margin-top: 0; }
+}
+@media (max-width: 460px) {
+  .pasos { grid-template-columns: 1fr; }
+  .paso-2, .paso-3, .paso-4 { margin-top: 0; }
+}
+
+
 /* ---------- Movimiento reducido ---------- */
 @media (prefers-reduced-motion: reduce) {
   .carnet { animation: none; }
