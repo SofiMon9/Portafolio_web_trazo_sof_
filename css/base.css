@@ -1,264 +1,126 @@
 /* =========================================================
    TRAZO · Portafolio de Sofía Moncada
-   base.css · lo usan TODAS las páginas: colores, tipografías, botones,
-   fondo decorativo, aparición al bajar, transición y movimiento reducido
+   base.css · TODAS las páginas: colores, letras, botones, secciones, interruptor de tema, formas de fondo y movimiento reducido
+   (estilos tomados del portafolio original: trazo-portafolio/css/estilos.css)
    ========================================================= */
 
-/* ---------- 1. Colores y tipografías ---------- */
-:root {
-  /* Paleta de marca (no cambian) */
-  --vino: #5C1A30;
-  --vino-oscuro: #3D0C15;
-  --crema: #F7EFE9;
-  --blanco: #FFFBF7;
-  --rosa: #E8B4B0;
-  --terracota: #B96B52;
-  --arena: #D9C4B8;
-
-  /* Colores que cambian con el tema (modo claro) */
-  --bg: var(--blanco);
-  --fg: var(--vino-oscuro);
-  --suave: rgba(61, 12, 21, .68);
-  --accent: var(--vino);
-  --accent-2: var(--terracota);
-  --paper: var(--crema);
-  --linea: rgba(61, 12, 21, .14);
-  --barra-bg: rgba(255, 251, 247, .78);
-  --sombra: 0 14px 30px -14px rgba(61, 12, 21, .45);
-  --deco: var(--terracota);
-  --switch-bg: var(--arena);
-  --raya-1: var(--crema);
-  --raya-2: var(--blanco);
-  --fondo-vista: radial-gradient(ellipse at 50% 35%, var(--blanco) 0%, var(--crema) 85%);
-
-  /* Tipografías */
-  --font: 'Jost', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --script: 'Pinyon Script', cursive;
-
-  color-scheme: light;
+/* Trazo · Sofía Moncada — estilos del portafolio
+   Colores y tipografías en :root (tema claro) y en los bloques de modo oscuro.
+   Las secciones se fueron agregando por versiones (v5…v12); cada bloque está marcado con un comentario. */
+:root{
+  --vino:#5C1A30;--vino-osc:#3D0C15;--crema:#F7EFE9;--blanco:#FFFBF7;--rosa:#E8B4B0;--terra:#B96B52;--arena:#D9C4B8;
+  --bg:#FFFBF7;--fg:#3D0C15;--fg-soft:#6d3a44;--accent:#B96B52;--nav-bg:rgba(255,251,247,.84);--panel:#F7EFE9;
+  --paper:#F7EFE9;--on-paper:#3D0C15;--on-paper-soft:#6d3a44;
+  --line:rgba(61,12,21,.16);--line-p:rgba(61,12,21,.18);
+  --stripe-a:#FFFBF7;--stripe-b:#F6E3DE;--grid:rgba(185,107,82,.14);
+  --sans:"Jost","Futura","Century Gothic","Avenir Next",system-ui,sans-serif;
+  --script:"Pinyon Script","Snell Roundhand","Apple Chancery",cursive;
+  color-scheme:light;box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 }
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#3D0C15;--fg:#F7EFE9;--fg-soft:#e2c9c4;--accent:#E8B4B0;--nav-bg:rgba(61,12,21,.82);--panel:rgba(92,26,48,.55);--paper:#4a1426;--on-paper:#F7EFE9;--on-paper-soft:#e2c9c4;--line:rgba(247,239,233,.16);--line-p:rgba(247,239,233,.18);--stripe-a:#3D0C15;--stripe-b:#47111f;--grid:rgba(232,180,176,.1);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#3D0C15;--fg:#F7EFE9;--fg-soft:#e2c9c4;--accent:#E8B4B0;--nav-bg:rgba(61,12,21,.82);--panel:rgba(92,26,48,.55);--paper:#4a1426;--on-paper:#F7EFE9;--on-paper-soft:#e2c9c4;--line:rgba(247,239,233,.16);--line-p:rgba(247,239,233,.18);--stripe-a:#3D0C15;--stripe-b:#47111f;--grid:rgba(232,180,176,.1);color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 90px)}
+body{background:var(--bg);color:var(--fg);transition:background-color .5s,color .5s;font-family:var(--sans);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:70;background:var(--bg)}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:96;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input,textarea{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1240px,100% - 2.5rem);margin-inline:auto}
+main{overflow-x:clip;min-height:70vh}
+.skip{position:absolute;left:-999px;top:0}
+.skip:focus{left:1rem;top:1rem;z-index:100;background:var(--rosa);color:var(--vino-osc);padding:.6rem 1rem;border-radius:999px}
 
-/* Modo oscuro: si el sistema lo pide y Sofía no eligió "claro" */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: var(--vino-oscuro);
-    --fg: var(--crema);
-    --suave: rgba(247, 239, 233, .72);
-    --accent: var(--rosa);
-    --accent-2: var(--terracota);
-    --paper: #4E1524;
-    --linea: rgba(247, 239, 233, .16);
-    --barra-bg: rgba(61, 12, 21, .78);
-    --sombra: 0 14px 30px -14px rgba(0, 0, 0, .7);
-    --deco: var(--rosa);
-    --switch-bg: #6E3446;
-    --raya-1: var(--vino);
-    --raya-2: #4B1322;
-    --fondo-vista: radial-gradient(ellipse at 50% 35%, var(--vino) 0%, var(--vino-oscuro) 90%);
-    color-scheme: dark;
-  }
+/* tipo y etiquetas */
+.display{font-weight:800;text-transform:uppercase;line-height:.92;letter-spacing:.01em}
+.script{font-family:var(--script);font-weight:400;line-height:1;letter-spacing:0;text-transform:none}
+.h-xl{font-size:clamp(3rem,9vw,8rem)}
+.h-l{font-size:clamp(2.4rem,6vw,4.8rem)}
+.h-m{font-size:clamp(1.9rem,3.6vw,2.8rem)}
+.st{font-weight:700;letter-spacing:-.01em;line-height:1;font-size:clamp(2.6rem,6.4vw,5.6rem)}
+.st .script{font-size:1.18em;color:var(--accent);margin-left:.06em;display:inline-block;transform:translateY(.06em)}
+
+.lede{font-size:clamp(1.1rem,1.6vw,1.3rem);max-width:48ch}
+.muted{opacity:.75}
+.lbl{display:flex;align-items:baseline;gap:.8rem;font-size:.92rem;margin-bottom:1.6rem}
+.lbl b{font-weight:600;font-variant-numeric:tabular-nums;color:var(--accent)}
+.lbl span{opacity:.8}
+.fig{font-size:.85rem;opacity:.7;margin-top:.8rem;font-style:italic}
+.fig b{font-style:normal;font-weight:600}
+.hr{border:0;border-top:1px solid var(--line)}
+.paper .hr{border-color:var(--line-p)}
+
+/* botones / chips */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:.95rem 1.6rem;border-radius:999px;font-weight:600;font-size:1rem;text-decoration:none;letter-spacing:.02em;transition:transform .35s cubic-bezier(.3,1.6,.5,1),background .25s,color .25s;white-space:nowrap}
+.btn:hover{transform:translateY(-3px) rotate(-1.5deg)}
+.b-rosa{background:var(--rosa);color:var(--vino-osc)}
+.b-line{border:1.5px solid currentColor}
+.b-vino{background:var(--vino);color:var(--crema)}
+.row-btns{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem}
+.chip{border:1.5px solid currentColor;border-radius:999px;padding:.28rem .9rem;font-size:.93rem;white-space:nowrap}
+
+/* vistas */
+[data-view]{display:none}
+[data-view].on{display:block;animation:viewin .7s cubic-bezier(.2,.8,.2,1)}
+@keyframes viewin{from{opacity:0;transform:translateY(24px)}}
+.pad{padding:clamp(4.5rem,9vw,7.5rem) 0}
+.top{padding-top:calc(env(safe-area-inset-top,0px) + 8.5rem)}
+.paper{background:var(--paper);color:var(--on-paper)}
+
+/* cinta */
+.ribbon{background:var(--rosa);color:var(--vino-osc);overflow:hidden;transform:rotate(-1.6deg);margin:0 -1rem;box-shadow:0 10px 24px rgba(0,0,0,.25)}
+.ribbon .track{display:flex;width:max-content;animation:slide 30s linear infinite;padding:.8rem 0}
+.ribbon span{font-weight:600;font-size:clamp(1.05rem,2vw,1.4rem);white-space:nowrap;padding-inline:1.2rem;display:flex;gap:2.4rem;align-items:center;letter-spacing:.02em}
+.ribbon span::after{content:"✶";color:var(--terra)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .hero h1 .w>span{transform:none}.rv{opacity:1;translate:0 0}.manif .w{opacity:1}
 }
+/* ===== v5: tema, intro con premisa, inicio centrado ===== */
+@keyframes spin{to{transform:rotate(360deg)}}
+.theme{width:62px;height:34px;border-radius:999px;background:var(--line);position:relative;flex:none}
+.theme .knob{position:absolute;top:4px;left:4px;width:26px;height:26px;border-radius:50%;background:var(--terra);color:var(--blanco);display:grid;place-items:center;transition:transform .45s cubic-bezier(.3,1.6,.4,1),background .4s}
+.theme svg{width:15px;height:15px;fill:currentColor;grid-area:1/1;transition:opacity .3s,transform .45s}
+.theme .moon{opacity:0;transform:rotate(-90deg)}
+.theme[aria-checked="true"] .knob{transform:translateX(28px);background:var(--rosa);color:var(--vino-osc)}
+.theme[aria-checked="true"] .sun{opacity:0;transform:rotate(90deg)}
+.theme[aria-checked="true"] .moon{opacity:1;transform:none}
 
-/* Modo oscuro elegido con el interruptor */
-:root[data-theme="dark"] {
-  --bg: var(--vino-oscuro);
-  --fg: var(--crema);
-  --suave: rgba(247, 239, 233, .72);
-  --accent: var(--rosa);
-  --accent-2: var(--terracota);
-  --paper: #4E1524;
-  --linea: rgba(247, 239, 233, .16);
-  --barra-bg: rgba(61, 12, 21, .78);
-  --sombra: 0 14px 30px -14px rgba(0, 0, 0, .7);
-  --deco: var(--rosa);
-  --switch-bg: #6E3446;
-  --raya-1: var(--vino);
-  --raya-2: #4B1322;
-  --fondo-vista: radial-gradient(ellipse at 50% 35%, var(--vino) 0%, var(--vino-oscuro) 90%);
-  color-scheme: dark;
-}
+/* tarjetas claras con borde en ambos temas */
+.wcard.w2,.bk2,.c-exp,.b-desc,.b-pal,.pk2,.expect li{box-shadow:inset 0 0 0 1.5px var(--line)}
+.form{background:var(--bg);color:var(--fg);box-shadow:inset 0 0 0 1.5px var(--line)}
+.opts button{border-color:var(--fg)!important}
+.step,.inc article{background:var(--bg)}
 
+.center{text-align:center}
+.center .lbl{justify-content:center}
+.center .lede{margin-inline:auto}
+:root{--btn-bg:#5C1A30;--btn-fg:#F7EFE9}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--btn-bg:#E8B4B0;--btn-fg:#3D0C15}}
+:root[data-theme="dark"]{--btn-bg:#E8B4B0;--btn-fg:#3D0C15}
+.b-vino{background:var(--btn-bg);color:var(--btn-fg)}
 
-/* ---------- 2. Base ---------- */
-*, *::before, *::after { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--fg);
-  font-family: var(--font);
-  font-size: 1.0625rem;
-  line-height: 1.6;
-  overflow-x: clip;
-  transition: background-color .4s ease, color .4s ease;
-  -webkit-font-smoothing: antialiased;
-}
-
-h1, h2, h3 { margin: 0; line-height: 1.1; font-weight: 600; }
-p { margin: 0; }
-a { color: inherit; }
-img, svg { display: block; }
-
-.script {
-  font-family: var(--script);
-  font-weight: 400;
-  font-style: normal;
-}
-
-.contenedor {
-  width: 100%;
-  max-width: 1100px;
-  margin-inline: auto;
-  padding-inline: 16px;
-}
-
-:focus-visible {
-  outline: 2px solid var(--accent-2);
-  outline-offset: 4px;
-  border-radius: 4px;
-}
-
-.vista {
-  position: relative;
-  min-height: 100svh;
-  overflow: hidden;
-  overflow: clip; /* recorta sin romper los elementos que se quedan quietos (sticky) */
-  background: var(--fondo-vista);
-  background-attachment: fixed;
-}
-.vista[hidden] { display: none; }
-
-.boton {
-  display: inline-block;
-  padding: .8em 1.6em;
-  border-radius: 999px;
-  background: var(--accent);
-  color: var(--bg);
-  font-weight: 500;
-  letter-spacing: .04em;
-  text-decoration: none;
-  transition: transform .25s ease;
-}
-.boton:hover { transform: translateY(-2px); }
-
-
-
-/* Botones rosa y con borde (Inicio, Sobre mí, menú…) */
-.btn-rosa,
-.btn-borde {
-  padding: .8em 1.6em;
-  border-radius: 999px;
-  font-size: .95rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition: transform .25s ease;
-}
-.btn-rosa { background: var(--rosa); color: var(--vino-oscuro); }
-.btn-borde { border: 1.5px solid var(--fg); color: var(--fg); }
-.btn-rosa:hover,
-.btn-borde:hover { transform: translateY(-2px); }
-
-
-/* ---------- 4. Fondo decorativo (.deco) ---------- */
-.deco {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-.deco-estrella {
-  position: absolute;
-  fill: var(--deco);
-  opacity: .14;
-  animation: girar 40s linear infinite;
-}
-.deco-estrella.e1 { width: 90px;  height: 90px;  top: 12%; left: 6%; }
-.deco-estrella.e2 { width: 46px;  height: 46px;  top: 30%; right: 9%; animation-duration: 28s; animation-direction: reverse; }
-.deco-estrella.e3 { width: 130px; height: 130px; top: 62%; right: -30px; animation-duration: 55s; }
-.deco-estrella.e4 { width: 38px;  height: 38px;  top: 84%; left: 12%; animation-duration: 24s; }
-
-.deco-circulo {
-  position: absolute;
-  border-radius: 50%;
-  border: 1.5px solid var(--deco);
-  opacity: .12;
-}
-.deco-circulo.c1 { width: 320px; height: 320px; top: -90px; right: -110px; }
-.deco-circulo.c2 { width: 200px; height: 200px; top: 48%; left: -90px; }
-
-.vista > *:not(.deco) { position: relative; z-index: 1; }
-
-@keyframes girar { to { rotate: 360deg; } }
-
-
-/* ---------- 5. Aparición al hacer scroll ---------- */
-.js .aparece {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity .8s ease, transform .8s cubic-bezier(.2, .7, .2, 1);
-}
-.js .aparece.visible { opacity: 1; transform: none; }
-
-
-/* ---------- 10. Transición entre páginas (4 franjas) ---------- */
-.franjas {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  pointer-events: none;
-}
-.franjas span {
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform .5s cubic-bezier(.7, 0, .3, 1);
-}
-.franjas span:nth-child(1) { background: var(--vino); }
-.franjas span:nth-child(2) { background: var(--terracota); transition-delay: 70ms; }
-.franjas span:nth-child(3) { background: var(--rosa);      transition-delay: 140ms; }
-.franjas span:nth-child(4) { background: var(--arena);     transition-delay: 210ms; }
-
-.franjas.entra { pointer-events: auto; }
-.franjas.entra span { transform: scaleY(1); }
-.franjas.sale span  { transform: scaleY(0); transform-origin: bottom; }
-
-/* Al llegar de otra página, la pantalla empieza tapada por las franjas */
-.cortina .franjas { pointer-events: auto; }
-.cortina .franjas span { transform: scaleY(1); transition: none; }
-
-
-/* ---------- 11. Movimiento reducido (general) ---------- */
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-  .js .aparece { opacity: 1; transform: none; }
-}
-
-
-/* ---------- 12. Espacio para imagen (todas las páginas) ----------
-   <span class="espacio-img" data-src="img/carpeta/archivo.jpg" data-alt="descripción">…</span>
-   Si el archivo existe en esa ruta, la imagen aparece sola; si no, se ve este recuadro marcado. */
-.espacio-img {
-  position: relative;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  border: 1.5px dashed currentColor;
-  color: inherit;
-  text-align: center;
-  font-size: .62rem;
-  font-weight: 600;
-  letter-spacing: .12em;
-  line-height: 1.5;
-  text-transform: uppercase;
-}
-.espacio-img > span { padding: .6rem; opacity: .75; }
-.espacio-img small { display: block; font-weight: 400; letter-spacing: .02em; text-transform: none; opacity: .85; }
-.espacio-img.con-imagen { border: none; }
-.espacio-img.con-imagen img { width: 100%; height: 100%; object-fit: cover; }
+.buy-btn{align-self:flex-start;margin-top:.8rem;background:var(--btn-bg);color:var(--btn-fg);border-radius:999px;padding:.55rem 1.1rem;font-weight:600;font-size:.92rem;transition:transform .3s cubic-bezier(.3,1.6,.4,1)}
+.buy-btn:hover{transform:translateY(-3px) rotate(-1.5deg)}
+.pk .buy-btn{background:var(--vino-osc);color:var(--crema)}
+.pk3 .buy-btn,.pk4 .buy-btn{background:var(--blanco);color:var(--vino-osc)}
+main .lbl,.contact .lbl{display:none}
+/* formas y estrellas de fondo */
+main section,main .stn{position:relative}
+.deco{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.deco svg{position:absolute;width:var(--s);color:var(--dc);opacity:var(--o);animation:dfl var(--dur) ease-in-out infinite alternate;animation-delay:var(--dl)}
+.deco svg.sp{animation:dsp var(--dur) linear infinite}
+@keyframes dfl{to{translate:0 -18px;rotate:var(--rr)}}
+@keyframes dsp{to{rotate:360deg}}
+main section>.wrap,main .stn>.wrap,main section>*:not(.deco){position:relative;z-index:1}
+.hero>.star8{position:absolute}
+.xr>*{z-index:auto}
+@media (prefers-reduced-motion:reduce){.deco svg{animation:none}}
+@media (max-width:860px){.mas-title .script{margin-left:0}}

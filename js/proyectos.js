@@ -1,155 +1,107 @@
 /* =========================================================
    TRAZO · Proyectos ("Todo el archivo")
-   proyectos.js · solo para proyectos.html
+   proyectos.js · solo proyectos.html
    ========================================================= */
-(() => {
+(function () {
   'use strict';
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const movimientoReducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-
-  /* ---------- 1. Pestañas fijas: se marca el área que estás viendo ---------- */
-  const pestanas = [...document.querySelectorAll('.pestana')];
-  const areas = pestanas.map((p) => document.querySelector(p.getAttribute('href'))).filter(Boolean);
-
-  const marcarPestana = (id) => {
-    pestanas.forEach((p) => {
-      const activa = p.getAttribute('href') === `#${id}`;
-      p.setAttribute('aria-current', activa ? 'true' : 'false');
-      if (activa) {
-        // en celular, la fila de pestañas se desliza para mostrar la marcada
-        const fila = p.parentElement;
-        fila.scrollTo({ left: p.offsetLeft - fila.clientWidth / 2 + p.offsetWidth / 2, behavior: movimientoReducido ? 'auto' : 'smooth' });
-      }
+  /* ---------- Mesa de trabajo: capas que resaltan cada parte ---------- */
+  const wsEl = document.getElementById('ws');
+  if (wsEl) {
+    document.querySelectorAll('.layers li').forEach((li) => {
+      const on = () => {
+        wsEl.dataset.hl = li.dataset.hl;
+        document.querySelectorAll('.layers li').forEach((x) => x.classList.toggle('on', x === li));
+      };
+      li.addEventListener('pointerenter', on);
+      li.addEventListener('click', on);
+      li.addEventListener('pointerleave', () => { delete wsEl.dataset.hl; li.classList.remove('on'); });
     });
-  };
-
-  const observadorAreas = new IntersectionObserver((entradas) => {
-    entradas.forEach((e) => { if (e.isIntersecting) marcarPestana(e.target.id); });
-  }, { rootMargin: '-45% 0px -50% 0px' });
-  areas.forEach((a) => observadorAreas.observe(a));
-
-
-  /* ---------- 2. En lo gráfico: capas y mesas de trabajo ---------- */
-  const ventanaAi = document.querySelector('.ai');
-  if (ventanaAi) {
-    const capas = ventanaAi.querySelectorAll('.ai-capas button');
-    const miniaturas = ventanaAi.querySelectorAll('.ai-miniaturas button');
-    const mesas = ventanaAi.querySelectorAll('.mesa');
-
-    // Al pasar el cursor por una capa, se selecciona esa parte en las marcas
-    const elegirCapa = (capa) => {
-      ventanaAi.dataset.capa = capa || '';
-      capas.forEach((c) => c.classList.toggle('activa', c.dataset.capa === capa));
-    };
-    capas.forEach((c) => {
-      c.addEventListener('mouseenter', () => elegirCapa(c.dataset.capa));
-      c.addEventListener('focus', () => elegirCapa(c.dataset.capa));
-      c.addEventListener('click', () => elegirCapa(ventanaAi.dataset.capa === c.dataset.capa ? '' : c.dataset.capa));
-    });
-    ventanaAi.querySelector('.ai-capas').addEventListener('mouseleave', () => elegirCapa(''));
-
-    // Las miniaturas eligen una mesa de trabajo
-    const elegirMesa = (num) => {
-      mesas.forEach((m) => m.classList.toggle('elegida', m.dataset.mesa === num));
-      miniaturas.forEach((b) => b.setAttribute('aria-pressed', b.dataset.mesa === num ? 'true' : 'false'));
-    };
-    miniaturas.forEach((b) => {
-      b.addEventListener('mouseenter', () => elegirMesa(b.dataset.mesa));
-      b.addEventListener('click', () => elegirMesa(b.dataset.mesa));
-    });
-    ventanaAi.querySelector('.ai-miniaturas').addEventListener('mouseleave', () => elegirMesa(''));
   }
 
 
-  /* ---------- 3. En cámara: fotos y panel de revelado ---------- */
-  // Ajustes de ejemplo de cada foto (pendiente: poner los reales).
-  // Exposición va de -5 a 5; los demás de -100 a 100.
-  // "histograma": 20 alturas (de 0 a 100) para las barras.
-  const REVELADO = {
-    'producto-01': {
-      titulo: 'Producto 01 · ajustes de ejemplo',
-      temperatura: 12, exposicion: 0.4, contraste: 15, sombras: 20, saturacion: 6,
-      histograma: [6, 10, 14, 18, 26, 34, 44, 56, 66, 74, 80, 84, 82, 76, 64, 50, 38, 26, 14, 8],
-    },
-    'retrato-01': {
-      titulo: 'Retrato 01 · ajustes de ejemplo',
-      temperatura: -8, exposicion: 0.15, contraste: -10, sombras: 35, saturacion: -14,
-      histograma: [8, 14, 24, 40, 58, 74, 82, 76, 66, 56, 50, 46, 42, 38, 34, 28, 22, 18, 12, 8],
-    },
-    'set-01': {
-      titulo: 'Set 01 · ajustes de ejemplo',
-      temperatura: 22, exposicion: -0.3, contraste: 28, sombras: -12, saturacion: -20,
-      histograma: [30, 46, 58, 64, 60, 52, 44, 38, 34, 30, 28, 26, 26, 28, 30, 34, 30, 22, 14, 8],
-    },
-  };
-
-  const panelLr = document.querySelector('.lr');
-  const polaroids = document.querySelectorAll('.polaroid');
-  if (panelLr) {
-    const histograma = panelLr.querySelector('.lr-histograma');
-    for (let i = 0; i < 20; i++) histograma.appendChild(document.createElement('i'));
-    const barras = histograma.querySelectorAll('i');
-    const signo = (v) => (v > 0 ? '+' : '');
-
-    const revelar = (id) => {
-      const d = REVELADO[id];
-      if (!d) return;
-      polaroids.forEach((p) => p.setAttribute('aria-pressed', p.dataset.foto === id ? 'true' : 'false'));
-      panelLr.querySelector('[data-lr="titulo"]').textContent = d.titulo;
-      barras.forEach((b, i) => b.style.setProperty('--h', `${d.histograma[i]}%`));
-      panelLr.querySelectorAll('.lr-ajuste').forEach((fila) => {
-        const clave = fila.dataset.ajuste;
-        const v = d[clave];
-        const posicion = clave === 'exposicion' ? 50 + (v / 5) * 50 : 50 + v / 2;
-        fila.querySelector('i').style.setProperty('--v', `${posicion}%`);
-        fila.querySelector('output').textContent = clave === 'exposicion' ? `${signo(v)}${v.toFixed(2)}` : `${signo(v)}${v}`;
-      });
+  /* ---------- Pestañas fijas: saltan a cada estación y se marcan al bajar ---------- */
+  const tabs = document.getElementById('ptabs');
+  if (tabs) {
+    const btns = [...tabs.querySelectorAll('button')];
+    const st = (t) => document.querySelector(`.stn[data-cat="${t}"]`);
+    const irA = (el) => {
+      const y = el.getBoundingClientRect().top + scrollY - 150;
+      window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
     };
-
-    polaroids.forEach((p) => {
-      p.addEventListener('mouseenter', () => revelar(p.dataset.foto));
-      p.addEventListener('focus', () => revelar(p.dataset.foto));
-      p.addEventListener('click', () => revelar(p.dataset.foto));
+    tabs.addEventListener('click', (e) => {
+      const b = e.target.closest('button');
+      if (!b) return;
+      const el = st(b.dataset.t);
+      if (el) irA(el);
     });
-    revelar('retrato-01');
-  }
-
-
-  /* ---------- 4. En el set: código de tiempo que corre en cada monitor ---------- */
-  const codigos = [...document.querySelectorAll('.timecode')].map((el) => ({
-    el,
-    desde: Number(el.dataset.desde) || 0, // segundos con los que empieza
-  }));
-  if (codigos.length) {
-    const inicio = performance.now();
-    const dos = (n) => String(n).padStart(2, '0');
-    const correr = (ahora) => {
-      const segundosPasados = (ahora - inicio) / 1000;
-      codigos.forEach(({ el, desde }) => {
-        const cuadros = Math.floor((desde + segundosPasados) * 24);
-        const f = cuadros % 24;
-        const s = Math.floor(cuadros / 24) % 60;
-        const m = Math.floor(cuadros / 1440) % 60;
-        const h = Math.floor(cuadros / 86400);
-        el.textContent = `${dos(h)}:${dos(m)}:${dos(s)}:${dos(f)}`;
-      });
-      requestAnimationFrame(correr);
+    const mark = () => {
+      let cur = btns[0];
+      btns.forEach((b) => { const el = st(b.dataset.t); if (el && el.getBoundingClientRect().top < innerHeight * 0.45) cur = b; });
+      btns.forEach((b) => b.setAttribute('aria-current', b === cur));
+      tabs.scrollLeft = cur.offsetLeft - tabs.clientWidth / 2 + cur.clientWidth / 2;
     };
-    if (!movimientoReducido) requestAnimationFrame(correr);
-  }
+    addEventListener('scroll', mark, { passive: true });
+    mark();
 
-
-  /* ---------- 5. Llegar señalando un área o un proyecto (proyectos.html#nombre) ---------- */
-  const irAlHash = () => {
+    // Llegar señalando una estación: proyectos.html#en-camara
     const id = decodeURIComponent(location.hash.slice(1));
-    if (!id || areas.some((a) => a.id === id)) return; // las áreas ya funcionan como anclas
-    const elemento = document.querySelector(`[data-proyecto="${CSS.escape(id)}"]`);
-    if (!elemento) return;
-    elemento.scrollIntoView({ block: 'center', behavior: movimientoReducido ? 'auto' : 'smooth' });
-    elemento.classList.add('destacado');
-    setTimeout(() => elemento.classList.remove('destacado'), 3300);
-  };
-  irAlHash();
-  window.addEventListener('hashchange', irAlHash);
+    const destino = id && document.getElementById(id);
+    if (destino && destino.classList.contains('stn')) setTimeout(() => irA(destino), 500);
+  }
+
+
+  /* ---------- Monitores de set: código de tiempo que corre ---------- */
+  const tcs = [...document.querySelectorAll('.tc')];
+  if (tcs.length) {
+    const t0 = performance.now();
+    const fmt = (ms, o) => {
+      const f = Math.floor(ms / 1000 * 24) + o * 24 * 37;
+      const fr = f % 24, s = Math.floor(f / 24) % 60, m = Math.floor(f / 1440) % 60, h = Math.floor(f / 86400);
+      return [h, m, s, fr].map((n) => String(n).padStart(2, '0')).join(':');
+    };
+    if (reduce) tcs.forEach((t) => { t.textContent = fmt(0, +t.dataset.tc); });
+    else (function loop(t) { tcs.forEach((e) => { e.textContent = fmt(t - t0, +e.dataset.tc); }); requestAnimationFrame(loop); })(t0);
+  }
+
+
+  /* ---------- Cuarto oscuro: fotos colgadas + panel de revelado ---------- */
+  // Fotos de ejemplo (pendiente: fotos reales y sus ajustes reales)
+  const pr = document.getElementById('prints');
+  if (pr) {
+    const PH = [
+      { n: 'Producto 01', k: 'Producto', a: '#D9C4B8', b: '#B96B52', r: -4, s: [12, 0.35, 18, 22, -6], h: [2, 4, 7, 12, 18, 26, 34, 40, 44, 42, 36, 30, 26, 22, 18, 14, 10, 8, 6, 4] },
+      { n: 'Retrato 01', k: 'Retrato', a: '#E8B4B0', b: '#5C1A30', r: 3, s: [-8, 0.15, -10, 35, -14], h: [4, 8, 14, 22, 30, 36, 38, 36, 32, 28, 24, 22, 20, 18, 16, 14, 12, 10, 6, 3] },
+      { n: 'Set 01', k: 'Set', a: '#B96B52', b: '#1a0408', r: -2, s: [20, -0.40, 26, -12, 10], h: [20, 30, 38, 40, 36, 30, 24, 20, 16, 14, 12, 10, 10, 8, 8, 6, 6, 5, 4, 3] },
+    ];
+    const SL = [
+      ['Temperatura', '#4a7bbf', '#e2b45a', -30, 30, (v) => (v > 0 ? '+' : '') + v],
+      ['Exposición', '#222', '#eee', -1, 1, (v) => (v > 0 ? '+' : '') + v.toFixed(2)],
+      ['Contraste', '#555', '#ddd', -40, 40, (v) => (v > 0 ? '+' : '') + v],
+      ['Sombras', '#222', '#888', -40, 40, (v) => (v > 0 ? '+' : '') + v],
+      ['Saturación', '#888', '#d0465a', -40, 40, (v) => (v > 0 ? '+' : '') + v],
+    ];
+    pr.innerHTML = PH.map((p, i) => `<button type="button" class="print" data-i="${i}" style="--r:${p.r}deg;--dl:${-i * 0.9}s" aria-label="${p.n}: ver ajustes de revelado"><span class="pin" aria-hidden="true"></span><span class="pic" style="--a:${p.a};--b:${p.b}"><span><span class="script">${p.k.toLowerCase()}</span>espacio para tu foto</span></span><span class="lb">${p.n}</span></button>`).join('');
+    const histo = document.getElementById('histo');
+    histo.innerHTML = Array(20).fill('<i></i>').join('');
+    const sliders = document.getElementById('sliders');
+    sliders.innerHTML = SL.map((s) => `<div class="sl"><span>${s[0]}</span><span class="tr" style="--l:${s[1]};--r2:${s[2]}"><span class="kn"></span></span><output>0</output></div>`).join('');
+    const show = (i) => {
+      const p = PH[i];
+      document.getElementById('lrName').textContent = p.n + ' · ajustes de ejemplo';
+      pr.querySelectorAll('.print').forEach((b, j) => b.classList.toggle('on', j === i));
+      [...histo.children].forEach((b, j) => { b.style.height = (p.h[j] / 44 * 100) + '%'; });
+      [...sliders.children].forEach((row, j) => {
+        const s = SL[j], v = p.s[j];
+        row.querySelector('.kn').style.left = ((v - s[3]) / (s[4] - s[3]) * 100) + '%';
+        row.querySelector('output').textContent = s[5](v);
+      });
+    };
+    pr.addEventListener('pointerover', (e) => { const b = e.target.closest('.print'); if (b) show(+b.dataset.i); });
+    pr.addEventListener('focusin', (e) => { const b = e.target.closest('.print'); if (b) show(+b.dataset.i); });
+    pr.addEventListener('click', (e) => { const b = e.target.closest('.print'); if (b) show(+b.dataset.i); });
+    show(0);
+  }
 })();

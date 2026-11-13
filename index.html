@@ -1,206 +1,66 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Trazo · Bienvenidx al archivo de SOF</title>
-  <meta name="description" content="Portafolio de Sofía Moncada Jaramillo, diseñadora crossmedia en Pereira, Colombia. Arte desde el alma y corazón.">
-
-  <!-- Tipografías: Jost (textos) y Pinyon Script (cursiva) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&family=Pinyon+Script&display=swap" rel="stylesheet">
-
-  <!-- Estilos: generales (todas las páginas) + los propios de esta página -->
-  <link rel="stylesheet" href="css/base.css?v=20261113">
-  <link rel="stylesheet" href="css/barra-menu.css?v=20261113">
-  <link rel="stylesheet" href="css/pie.css?v=20261113">
-  <link rel="stylesheet" href="css/entrada.css?v=20261113">
-
-  <!-- Antes de pintar: tema guardado, cortina de llegada y salto de la entrada -->
-  <script>
-    (function () {
-      var r = document.documentElement;
-      try {
-        var t = localStorage.getItem('sof-theme');
-        if (t) r.dataset.theme = t;
-
-        // La entrada solo aparece la primera vez. Si ya la viste y llegas de afuera,
-        // pasa directo al inicio. Para verla igual: index.html?entrada
-        var vista = localStorage.getItem('sof-intro-visto');
-        var desdeElSitio = document.referrer.indexOf(location.origin) === 0;
-        if (vista && !desdeElSitio && location.search.indexOf('entrada') < 0) {
-          location.replace('inicio.html');
-          return;
-        }
-
-        if (sessionStorage.getItem('sof-cortina')) {
-          r.classList.add('cortina');
-          sessionStorage.removeItem('sof-cortina');
-        }
-      } catch (e) {}
-    })();
-  </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trazo · Sofía Moncada</title>
+<meta name="description" content="Sofía Moncada, diseñadora crossmedia en Pereira, Colombia. Identidad de marca, contenido para redes y dirección de arte.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&family=Pinyon+Script&display=swap" rel="stylesheet">
+<!-- Estilos: generales (todas las páginas) + los propios de esta página -->
+<link rel="stylesheet" href="css/base.css?v=20261113c">
+<link rel="stylesheet" href="css/barra-menu.css?v=20261113c">
+<link rel="stylesheet" href="css/pie.css?v=20261113c">
+<link rel="stylesheet" href="css/entrada.css?v=20261113c">
+<!-- La entrada sale una vez por visita; para verla otra vez: index.html?entrada -->
+<script>(function(){try{if(sessionStorage.getItem('sof-intro')==='1'&&location.search.indexOf('entrada')<0)location.replace('inicio.html')}catch(e){}})();</script>
+<!-- Antes de pintar: tema guardado y franjas de llegada desde otra página -->
+<script>
+(function(){var r=document.documentElement;try{var t=localStorage.getItem('sof-theme');if(t==='dark'||t==='light')r.dataset.theme=t;if(sessionStorage.getItem('sof-wipe')){r.classList.add('llegando');sessionStorage.removeItem('sof-wipe')}}catch(e){}})();
+</script>
 </head>
 <body data-pagina="entrada">
+<a class="skip" href="#" id="skip">Saltar al contenido</a>
 
-  <!-- Dibujos reutilizables (estrella de 4 puntas) -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <symbol id="estrella" viewBox="0 0 24 24">
-      <path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z"/>
-    </symbol>
-  </svg>
-
-  <!-- ============ BARRA SUPERIOR ============ -->
-  <header class="barra">
-    <a class="marca-nombre" href="inicio.html">Sofía Moncada - Portafolio 2026</a>
-
-    <!-- Interruptor tipo píldora: sol a la izquierda (claro), luna a la derecha (oscuro) -->
-    <button class="tema" id="btnTema" type="button" role="switch" aria-label="Modo oscuro">
-      <span class="perilla">
-        <svg class="ico-sol" viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="12" r="4.5"/>
-          <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/>
-        </svg>
-        <svg class="ico-luna" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/>
-        </svg>
-      </span>
-    </button>
-  </header>
-
-  <main>
-
-    <!-- ============ ENTRADA (INTRO) ============ -->
-    <section class="vista intro" aria-labelledby="intro-titulo">
-
-      <!-- Fondo decorativo con baja opacidad -->
-      <div class="deco" aria-hidden="true">
-        <svg class="deco-estrella e1"><use href="#estrella"/></svg>
-        <svg class="deco-estrella e2"><use href="#estrella"/></svg>
-        <svg class="deco-estrella e3"><use href="#estrella"/></svg>
-        <svg class="deco-estrella e4"><use href="#estrella"/></svg>
-        <span class="deco-circulo c1"></span>
-        <span class="deco-circulo c2"></span>
+<!-- ============ ENTRADA (INTRO) ============ -->
+<!-- Sale la primera vez de cada visita. Para verla de nuevo: index.html?entrada -->
+<div class="intro ready" id="intro">
+  <div class="top-meta"><span class="m">Sofía Moncada · Portafolio 2026</span><span class="m hide-s">4.8143° N · 75.6946° W</span><button class="theme" role="switch" aria-checked="false" aria-label="Modo oscuro"><span class="knob" aria-hidden="true"><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></g></svg><svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></span></button></div>
+  <div class="choose">
+    <section class="premise">
+      <p class="script k">bienvenidx al archivo de</p>
+      <h1>Sof</h1>
+      <p class="pp">Soy diseñadora crossmedia en Pereira, Colombia. Aquí podrás ver mi portafolio, el contenido y los sets que he creado, y también cómo podemos trabajar juntos.</p>
+      <ul class="expect">
+        <li style="--r:-4deg;--y:0px"><i>1</i><b>Proyectos reales</b><span>Marcas, redes y procesos audiovisuales.</span></li>
+        <li style="--r:3deg;--y:-26px"><i>2</i><b>Mis servicios</b><span>Los planes, qué incluyen y cómo trabajo contigo.</span></li>
+        <li style="--r:-1.5deg;--y:34px"><i>3</i><b>Un camino directo</b><span>Cuéntame qué necesitas y habla conmigo.</span></li>
+      </ul>
+      <div class="down">
+        <button class="btn b-vino" id="toBooks">Elegir un libro</button>
+        <span class="muted">o desliza hacia abajo</span>
+        <span class="cue" aria-hidden="true"></span>
       </div>
-
-      <!-- Premisa -->
-      <div class="premisa contenedor">
-        <p class="etiqueta aparece">Pereira, Colombia</p>
-
-        <h1 id="intro-titulo" class="premisa-titulo aparece">
-          <span class="linea-1 script">Bienvenidxs al archivo de</span>
-          <span class="linea-2">SOF</span>
-        </h1>
-
-        <p class="premisa-texto aparece">
-          Soy diseñadora crossmedia en Pereira, Colombia. Aquí podrás ver mi portafolio,
-          el contenido y los sets que he creado y también cómo podemos trabajar juntos.
-        </p>
-
-        <a class="bajar aparece" href="#estante" data-scroll>
-          Baja al estante
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15M5 12l7 7 7-7"/></svg>
-        </a>
-      </div>
-
-      <!-- Tres tarjetas -->
-      <div class="tarjetas contenedor">
-        <article class="tarjeta aparece">
-          <span class="tarjeta-num script">uno</span>
-          <h2>Quién</h2>
-          <p>Soy Sofía Moncada, diseñadora crossmedia de Pereira. Hago arte desde el alma y el corazón.</p>
-        </article>
-        <article class="tarjeta aparece">
-          <span class="tarjeta-num script">dos</span>
-          <h2>Qué guardo</h2>
-          <p>Marcas, contenido para redes y dirección de arte: piezas gráficas, análogas, digitales, en cámara y en set.</p>
-        </article>
-        <article class="tarjeta aparece">
-          <span class="tarjeta-num script">tres</span>
-          <h2>Cómo se lee</h2>
-          <p>Cada libro del estante abre un mundo. Elige el que buscas o míralo todo desde el inicio.</p>
-        </article>
-      </div>
-
-      <!-- Estante de libros -->
-      <div class="estante-zona contenedor" id="estante">
-        <h2 class="estante-titulo aparece">¿Qué <em class="script">buscas</em>?</h2>
-
-        <div class="estante-mueble">
-          <span class="nota script" aria-hidden="true">¡toca uno!</span>
-
-          <nav class="estante" aria-label="Elige un mundo">
-            <a class="libro" href="sobre-mi.html" style="--i:0; --h:265; --c:var(--vino); --t:var(--crema)"
-               data-pista="Sobre mí · quién soy, mis herramientas y cómo trabajo.">
-              <span class="libro-num">01</span>
-              <span class="libro-titulo">Sobre mí</span>
-              <svg class="libro-icono" aria-hidden="true"><use href="#estrella"/></svg>
-            </a>
-
-            <a class="libro" href="proyectos.html" style="--i:1; --h:300; --c:var(--rosa); --t:var(--vino-oscuro)"
-               data-pista="Proyectos · lo gráfico, análogo, digital, en cámara y en set.">
-              <span class="libro-num">02</span>
-              <span class="libro-titulo">Proyectos</span>
-              <svg class="libro-icono" aria-hidden="true"><use href="#estrella"/></svg>
-            </a>
-
-            <a class="libro" href="planes.html" style="--i:2; --h:280; --c:var(--terracota); --t:var(--crema)"
-               data-pista="Trabajemos · planes y un brief para empezar juntxs.">
-              <span class="libro-num">03</span>
-              <span class="libro-titulo">Trabajemos</span>
-              <svg class="libro-icono" aria-hidden="true"><use href="#estrella"/></svg>
-            </a>
-
-            <a class="libro libro-inclinado" href="inicio.html" style="--i:3; --h:230; --c:var(--arena); --t:var(--vino)"
-               data-pista="Ver todo · empieza por el inicio y recorre el archivo completo.">
-              <span class="libro-num">04</span>
-              <span class="libro-titulo">Ver todo</span>
-              <svg class="libro-icono" aria-hidden="true"><use href="#estrella"/></svg>
-            </a>
-          </nav>
-
-          <div class="tabla" aria-hidden="true"></div>
-        </div>
-
-        <p class="pista" id="pista" aria-live="polite">Pasa el cursor por un libro para ver qué guarda.</p>
-      </div>
-
-      <p class="firma script">Sof</p>
     </section>
-
-  </main>
-
-  <!-- ============ PIE DE PÁGINA (igual en todas las páginas) ============ -->
-  <footer class="pie" id="contacto">
-    <h2 class="pie-titulo">Trabajemos <span class="script">Juntos</span></h2>
-
-    <div class="pie-columnas">
-      <div class="pie-col">
-        <h3>Escríbeme</h3>
-        <!-- El correo se copia al tocarlo -->
-        <button class="copiar" type="button" data-copiar="somonjara2005@gmail.com">somonjara2005@gmail.com</button>
-        <span class="copiar-aviso" aria-live="polite"></span>
-        <a href="https://wa.me/573225374248" target="_blank" rel="noopener">WhatsApp · 3225374248</a>
-      </div>
-      <div class="pie-col">
-        <h3>Redes</h3>
-        <a href="https://www.instagram.com/_nthlky_/" target="_blank" rel="noopener">Instagram · @_nthlky_</a>
-      </div>
-      <div class="pie-col">
-        <h3>Estudio</h3>
-        <p>Pereira, Colombia</p>
-      </div>
-    </div>
-
-    <p class="pie-legal">© 2026 Sofía Moncada - Arte desde el alma y corazón</p>
-  </footer>
-
-  <!-- Transición entre páginas: 4 franjas de color -->
-  <div class="franjas" aria-hidden="true">
-    <span></span><span></span><span></span><span></span>
+    <section class="pick" id="pick">
+      <h2>¿Qué <span class="script">buscas?</span></h2>
+      <p class="sub">Selecciona un libro para ir directo a lo que necesitas.</p>
+      <nav class="shelf" aria-label="Elige un camino">
+        <a class="book bk1" style="--d:0" href="sobre-mi.html" data-pick><span class="ico">01</span>Sobre mí<small>quién soy</small></a>
+        <a class="book bk2" style="--d:1" href="proyectos.html" data-pick><span class="ico">02</span><span class="script">Proyectos</span><small>archivo</small></a>
+        <a class="book bk3" style="--d:2" href="planes.html" data-pick><span class="ico">03</span>Trabajemos<small>planes</small></a>
+        <a class="book bk4" style="--d:3" href="inicio.html" data-pick><span class="ico">✶</span>Ver todo<small>2026</small></a>
+      </nav>
+      <a class="just" href="inicio.html" data-pick><span class="script">sin afán</span> Soy curiosx, solo quiero observar</a>
+    </section>
   </div>
+  <button class="skipi" id="skipi">Saltar intro</button>
+</div>
+<main id="main" tabindex="-1"></main>
 
-  <script src="js/main.js?v=20261113"></script>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="js/main.js?v=20261113c"></script>
+<script src="js/entrada.js?v=20261113c"></script>
 </body>
 </html>

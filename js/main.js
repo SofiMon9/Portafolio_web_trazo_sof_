@@ -1,302 +1,211 @@
 /* =========================================================
    TRAZO · Portafolio de Sofía Moncada
-   main.js · lo usan todas las páginas
+   main.js · lo usan TODAS las páginas (adaptado del main.js original)
    ========================================================= */
-(() => {
+(function () {
   'use strict';
 
-  const raiz = document.documentElement;
-  raiz.classList.add('js');
-
-  const pagina = document.body.dataset.pagina; // "entrada", "inicio", "sobre-mi"...
-  const movimientoReducido = matchMedia('(prefers-reduced-motion: reduce)');
-  const espera = (ms) => new Promise((r) => setTimeout(r, movimientoReducido.matches ? 0 : ms));
-
-  // Guardar y leer en el navegador sin que falle si está bloqueado
-  const guardar = (clave, valor) => { try { localStorage.setItem(clave, valor); } catch (e) {} };
+  const root = document.documentElement;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const pagina = document.body.dataset.pagina || '';
 
 
-  /* ---------- 1. Tema claro / oscuro ---------- */
-  const btnTema = document.getElementById('btnTema');
-  const sistemaOscuro = matchMedia('(prefers-color-scheme: dark)');
-  const temaActual = () => raiz.dataset.theme || (sistemaOscuro.matches ? 'dark' : 'light');
-
-  function pintarBotonTema() {
-    const tema = temaActual();
-    btnTema.dataset.modo = tema;
-    btnTema.setAttribute('aria-checked', tema === 'dark' ? 'true' : 'false');
+  /* ---------- Interruptor de tema (claro / oscuro) ---------- */
+  const sysDark = () => matchMedia('(prefers-color-scheme: dark)').matches;
+  const isDark = () => (root.dataset.theme ? root.dataset.theme === 'dark' : sysDark());
+  function syncSwitch() {
+    document.querySelectorAll('.theme').forEach((b) => {
+      b.setAttribute('aria-checked', isDark());
+      b.setAttribute('aria-label', isDark() ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+    });
   }
+  syncSwitch();
+  document.querySelectorAll('.theme').forEach((b) => b.addEventListener('click', () => {
+    const next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('sof-theme', next); } catch (_) {}
+    syncSwitch();
+  }));
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncSwitch);
 
-  btnTema.addEventListener('click', () => {
-    const nuevo = temaActual() === 'dark' ? 'light' : 'dark';
-    raiz.dataset.theme = nuevo;
-    guardar('sof-theme', nuevo);
-    pintarBotonTema();
+
+  /* ---------- Aviso pequeño abajo (toast) ---------- */
+  const toast = document.getElementById('toast');
+  let tt;
+  function say(m) {
+    if (!toast) return;
+    toast.textContent = m;
+    toast.classList.add('show');
+    clearTimeout(tt);
+    tt = setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+  window.TRAZO_say = say;
+  async function copy(t, m) {
+    try { await navigator.clipboard.writeText(t); say(m); } catch (_) { say(t); }
+  }
+  const btnCopy = document.getElementById('copy');
+  if (btnCopy) btnCopy.onclick = () => copy('somonjara2005@gmail.com', 'Correo copiado');
+  document.addEventListener('click', (e) => {
+    const s = e.target.closest('[data-hex]');
+    if (s) copy(s.dataset.hex, 'Color ' + s.dataset.hex + ' copiado');
   });
-  sistemaOscuro.addEventListener('change', pintarBotonTema);
-  pintarBotonTema();
+  const skip = document.getElementById('skip');
+  if (skip) skip.onclick = (e) => { e.preventDefault(); document.getElementById('main').focus(); };
 
-  // La barra toma fondo al bajar
-  const barra = document.querySelector('.barra');
-  const revisarBarra = () => barra.classList.toggle('con-fondo', window.scrollY > 20);
-  window.addEventListener('scroll', revisarBarra, { passive: true });
-  revisarBarra();
 
-  // Menú grande "Lo que hago": lo abren "Lo que hago", "Menú" y cualquier botón con aria-controls="mega"
+  /* ---------- Menú grande "Lo que hago" ---------- */
+  const nav = document.getElementById('nav');
+  const mb = document.querySelector('.menu-btn');
   const mega = document.getElementById('mega');
-  if (mega) {
-    const abridores = document.querySelectorAll('[aria-controls="mega"]');
-    let quienAbrio = null;
-
-    // Hora actual en Pereira (abajo, en el recuadro de asesoría)
-    const hora = mega.querySelector('[data-hora]');
-    const formatoHora = new Intl.DateTimeFormat('es-CO', { hour: 'numeric', minute: '2-digit', timeZone: 'America/Bogota' });
-    const ponerHora = () => { if (hora) hora.textContent = formatoHora.format(new Date()); };
-    ponerHora();
-    setInterval(ponerHora, 30000);
-
-    const abrirMega = (boton) => {
-      quienAbrio = boton;
-      ponerHora();
-      mega.hidden = false;
-      mega.scrollTop = 0;
-      requestAnimationFrame(() => mega.classList.add('abierto'));
-      abridores.forEach((b) => b.setAttribute('aria-expanded', 'true'));
-      document.body.style.overflow = 'hidden';
-    };
-    const cerrarMega = () => {
-      if (mega.hidden) return;
-      mega.classList.remove('abierto');
-      abridores.forEach((b) => b.setAttribute('aria-expanded', 'false'));
-      document.body.style.overflow = '';
-      espera(350).then(() => { if (!mega.classList.contains('abierto')) mega.hidden = true; });
-      if (quienAbrio && quienAbrio.closest('.barra')) quienAbrio.focus({ preventScroll: true });
-    };
-
-    abridores.forEach((b) => b.addEventListener('click', () => (mega.hidden ? abrirMega(b) : cerrarMega())));
-    // Al tocar un enlace de la misma pestaña (ej. "Contacto"), el menú se cierra
-    mega.addEventListener('click', (ev) => {
-      const enlace = ev.target.closest('a');
-      if (enlace && enlace.target !== '_blank') cerrarMega();
-    });
-    document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') cerrarMega(); });
+  function toggleMenu(o) {
+    if (!mega) return;
+    if (mb) mb.setAttribute('aria-expanded', o);
+    mega.classList.toggle('open', o);
+    document.body.style.overflow = o ? 'hidden' : '';
+    if (nav) nav.classList.remove('hide');
   }
+  if (mb) mb.onclick = () => toggleMenu(mb.getAttribute('aria-expanded') !== 'true');
+  const whatido = document.querySelector('.whatido');
+  if (whatido) whatido.addEventListener('click', () => toggleMenu(!mega.classList.contains('open')));
+  document.addEventListener('click', (e) => { if (e.target.closest('[data-menu]')) { e.preventDefault(); toggleMenu(true); } });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleMenu(false); });
+
+  // La barra se esconde al bajar y aparece al subir
+  let ly = scrollY;
+  addEventListener('scroll', () => {
+    const y = scrollY;
+    if (nav) nav.classList.toggle('hide', y > ly && y > 400 && !(mega && mega.classList.contains('open')));
+    ly = y;
+  }, { passive: true });
 
 
-  /* ---------- 2. Aparición de bloques al hacer scroll ---------- */
-  const observadorAparece = new IntersectionObserver((entradas) => {
-    entradas.forEach((e) => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observadorAparece.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.aparece').forEach((el) => observadorAparece.observe(el));
-  // Ya se puede animar: los detalles que esperan su animación solo se esconden desde aquí
-  raiz.classList.add('observando');
+  /* ---------- Reloj de Pereira ---------- */
+  function tick() {
+    try {
+      const t = new Intl.DateTimeFormat('es-CO', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Bogota' }).format(new Date());
+      document.querySelectorAll('[data-clock]').forEach((c) => { c.textContent = 'Pereira · ' + t; });
+    } catch (_) {}
+  }
+  tick();
+  setInterval(tick, 30000);
 
-  // Respaldo: al bajar, revisa qué bloques ya están en pantalla y los muestra,
-  // por si el navegador no avisó (así ninguna sección se queda vacía).
+
+  /* ---------- Adquirir: abre WhatsApp con el plan elegido ---------- */
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-buy]');
+    if (!b) return;
+    e.preventDefault();
+    const plan = b.dataset.buy, w = b.dataset.w;
+    const t = `Hola Sof, quiero adquirir el plan “${plan}”${w && w !== 'Planes' ? ' (' + w + ')' : ''}. ¿Me cuentas cómo empezamos?`;
+    say('Abriendo WhatsApp…');
+    window.open('https://wa.me/573225374248?text=' + encodeURIComponent(t), '_blank', 'noopener');
+  });
+
+
+  /* ---------- Bajar a una parte de la página (ej. Contacto) ---------- */
+  const scrollToAnchor = (k) => {
+    if (k === 'top') { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); return; }
+    const t = document.querySelector(`[data-anchor="${k}"]`);
+    if (t) t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+  };
+
+
+  /* ---------- Transición entre páginas: 4 franjas de color ---------- */
+  const wipe = [...document.querySelectorAll('.wipe span')];
+  let busy = false;
+  function go(href) {
+    if (reduce || busy || !wipe.length) { location.href = href; return; }
+    busy = true;
+    try { sessionStorage.setItem('sof-wipe', '1'); } catch (_) {}
+    const ins = wipe.map((s, i) => s.animate(
+      [{ transform: 'scaleX(0)', transformOrigin: 'left' }, { transform: 'scaleX(1)', transformOrigin: 'left' }],
+      { duration: 360, delay: i * 55, easing: 'cubic-bezier(.7,0,.3,1)', fill: 'forwards' }));
+    ins[ins.length - 1].finished.then(() => { location.href = href; });
+  }
+  // Al llegar desde otra página, las franjas se abren
+  if (root.classList.contains('llegando')) {
+    wipe.forEach((s, i) => s.animate(
+      [{ transform: 'scaleX(1)', transformOrigin: 'right' }, { transform: 'scaleX(0)', transformOrigin: 'right' }],
+      { duration: 420, delay: 80 + i * 55, easing: 'cubic-bezier(.7,0,.3,1)', fill: 'forwards' }));
+    setTimeout(() => root.classList.remove('llegando'), 60);
+  }
+  // Si vuelves con "atrás", la página no se queda tapada
+  addEventListener('pageshow', (e) => {
+    if (e.persisted) { wipe.forEach((s) => s.getAnimations().forEach((a) => a.cancel())); busy = false; }
+  });
+
+  document.addEventListener('click', (e) => {
+    const s = e.target.closest('[data-scroll]');
+    if (s) { e.preventDefault(); toggleMenu(false); scrollToAnchor(s.dataset.scroll); return; }
+    const a = e.target.closest('a[data-go]');
+    if (!a || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    e.preventDefault();
+    toggleMenu(false);
+    go(a.getAttribute('href'));
+  });
+
+
+  /* ---------- Aparición de bloques al bajar (.rv) ---------- */
+  const io = new IntersectionObserver((es) => es.forEach((en) => {
+    if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+  }), { threshold: 0.12 });
+  const observarRv = () => document.querySelectorAll('.rv:not(.in)').forEach((el) => io.observe(el));
+  observarRv();
+  window.TRAZO_observarRv = observarRv;
+  // Respaldo: al bajar, muestra los bloques que ya están en pantalla aunque el navegador no avise
   let revisando = false;
-  const revisarAparece = () => {
+  const revisar = () => {
     revisando = false;
-    const alto = window.innerHeight;
-    document.querySelectorAll('.aparece:not(.visible)').forEach((el) => {
-      const caja = el.getBoundingClientRect();
-      if (caja.top < alto * 0.92 && caja.bottom > 0) {
-        el.classList.add('visible');
-        observadorAparece.unobserve(el);
-      }
+    document.querySelectorAll('.rv:not(.in)').forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.top < innerHeight * 0.92 && r.bottom > 0) { el.classList.add('in'); io.unobserve(el); }
     });
   };
-  const pedirRevision = () => {
-    if (!revisando) { revisando = true; setTimeout(revisarAparece, 60); }
-  };
-  window.addEventListener('scroll', pedirRevision, { passive: true });
-  window.addEventListener('resize', pedirRevision);
-  window.addEventListener('load', pedirRevision);
-  setTimeout(pedirRevision, 600);
+  const pedir = () => { if (!revisando) { revisando = true; setTimeout(revisar, 60); } };
+  addEventListener('scroll', pedir, { passive: true });
+  addEventListener('resize', pedir);
+  addEventListener('load', pedir);
+  setTimeout(pedir, 600);
 
 
-  /* ---------- 3. ENTRADA · Estante de libros ---------- */
-  const estante = document.querySelector('.estante');
-  if (estante) {
-    const pista = document.getElementById('pista');
-    const pistaInicial = pista.textContent;
-
-    // Los libros caen cuando el estante aparece en pantalla
-    const observadorEstante = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) {
-        estante.classList.add('cae');
-        observadorEstante.disconnect();
-      }
-    }, { threshold: 0.3 });
-    observadorEstante.observe(estante);
-
-    // Texto de ayuda según el libro señalado
-    estante.querySelectorAll('.libro').forEach((libro) => {
-      const mostrarPista = () => { pista.textContent = libro.dataset.pista; };
-      const quitarPista = () => { pista.textContent = pistaInicial; };
-      libro.addEventListener('mouseenter', mostrarPista);
-      libro.addEventListener('focus', mostrarPista);
-      libro.addEventListener('mouseleave', quitarPista);
-      libro.addEventListener('blur', quitarPista);
-    });
-  }
-
-  /* ---------- 4. INICIO · Cintas cruzadas ---------- */
-  // Repite el texto de cada cinta hasta llenarla y luego lo duplica,
-  // así el movimiento da la vuelta sin que se note el corte.
-  const pistasCinta = document.querySelectorAll('.cinta-pista');
-  if (pistasCinta.length) {
-    const llenarCintas = () => {
-      pistasCinta.forEach((pista) => {
-        if (!pista.dataset.original) pista.dataset.original = pista.innerHTML;
-        const set = pista.dataset.original;
-        const ancho = pista.parentElement.offsetWidth;
-        pista.innerHTML = set;
-        let veces = 1;
-        while (pista.scrollWidth < ancho && veces < 30) {
-          pista.innerHTML += set;
-          veces++;
-        }
-        pista.innerHTML += pista.innerHTML;
-      });
-    };
-    (document.fonts ? document.fonts.ready : Promise.resolve()).then(llenarCintas);
-  }
-
-  /* ---------- 4b. INICIO · Manifiesto que se ilumina palabra por palabra ---------- */
-  const manifiesto = document.querySelector('[data-manifiesto]');
-  if (manifiesto) {
-    // Envuelve cada palabra en <span class="palabra"> (también las que están dentro de <em>)
-    const recorrido = document.createTreeWalker(manifiesto, NodeFilter.SHOW_TEXT);
-    const textos = [];
-    while (recorrido.nextNode()) textos.push(recorrido.currentNode);
-    textos.forEach((nodo) => {
-      const trozo = document.createDocumentFragment();
-      nodo.textContent.split(/(\s+)/).forEach((parte) => {
-        if (!parte) return;
-        if (/^\s+$/.test(parte)) {
-          trozo.appendChild(document.createTextNode(' '));
-        } else {
-          const span = document.createElement('span');
-          span.className = 'palabra';
-          span.textContent = parte;
-          trozo.appendChild(span);
-        }
-      });
-      nodo.replaceWith(trozo);
-    });
-
-    const palabras = manifiesto.querySelectorAll('.palabra');
-    let pendiente = false;
-    const iluminar = () => {
-      pendiente = false;
-      const caja = manifiesto.getBoundingClientRect();
-      const alto = window.innerHeight;
-      // Empieza cuando el texto entra por abajo y termina cuando llega a la mitad de la pantalla
-      const inicio = alto * 0.85;
-      const fin = alto * 0.45;
-      const avance = (inicio - caja.top) / (caja.height + inicio - fin);
-      const cuantas = Math.round(Math.min(Math.max(avance, 0), 1) * palabras.length);
-      palabras.forEach((p, i) => p.classList.toggle('encendida', i < cuantas));
-    };
-    const pedirIluminar = () => {
-      if (!pendiente) { pendiente = true; requestAnimationFrame(iluminar); }
-    };
-    window.addEventListener('scroll', pedirIluminar, { passive: true });
-    window.addEventListener('resize', pedirIluminar);
-    iluminar();
-  }
-
-  /* ---------- 4b-bis. Espacios para imagen ---------- */
-  // Si la imagen existe en la ruta de data-src, reemplaza el recuadro marcado por la imagen.
+  /* ---------- Espacios para imagen: si el archivo existe, aparece solo ---------- */
   document.querySelectorAll('.espacio-img[data-src]').forEach((espacio) => {
     const img = new Image();
-    img.onload = () => {
-      img.alt = espacio.dataset.alt || '';
-      img.draggable = false;
-      espacio.replaceChildren(img);
-      espacio.classList.add('con-imagen');
-    };
+    img.onload = () => { img.alt = espacio.dataset.alt || ''; espacio.replaceChildren(img); espacio.classList.add('con-imagen'); };
     img.src = espacio.dataset.src;
   });
 
-  /* ---------- 4c. Copiar el correo al tocarlo ---------- */
-  document.querySelectorAll('[data-copiar]').forEach((boton) => {
-    const aviso = boton.querySelector('.copiar-aviso');
-    boton.addEventListener('click', async () => {
-      const texto = boton.dataset.copiar;
-      try {
-        await navigator.clipboard.writeText(texto);
-        if (aviso) aviso.textContent = '¡Copiado!';
-        setTimeout(() => { if (aviso) aviso.textContent = ''; }, 2000);
-      } catch (e) {
-        // Si el navegador no deja copiar, abre el correo
-        location.href = `mailto:${texto}`;
+
+  /* ---------- Formas y estrellas de fondo con baja opacidad ---------- */
+  (function () {
+    const SH = [
+      '<path fill="currentColor" d="M50 0C54 36 64 46 100 50 64 54 54 64 50 100 46 64 36 54 0 50 36 46 46 36 50 0z"/>',
+      '<path fill="currentColor" d="M50 0l7 30 25-18-15 27 31 1-29 11 20 24-28-13-3 31-8-30-8 30-3-31-28 13 20-24L2 40l31-1L18 12l25 18z"/>',
+      '<circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="6" stroke-dasharray="10 10"/>',
+      '<path fill="currentColor" d="M50 8a42 42 0 1 0 0 84a30 30 0 1 1 0-84z"/>',
+      '<path fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" d="M5 60c15-30 30 30 45 0s30 30 45 0"/>',
+      '<path fill="currentColor" d="M50 14c9-16 34-8 26 12 20-2 26 24 6 30 12 16-6 36-22 24-6 20-32 14-30-6-20 4-30-22-12-30-14-14 4-38 22-26 0-6 4-10 10-4z"/>',
+      '<circle cx="50" cy="50" r="22" fill="currentColor"/>'];
+    const COL = ['var(--accent)', 'var(--rosa)', 'var(--terra)'];
+    let seed = 7;
+    const rnd = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+    document.querySelectorAll('main section:not(.hero), main .stn').forEach((sec) => {
+      if (sec.classList.contains('darkroom') || sec.querySelector(':scope > .deco')) return;
+      const d = document.createElement('div');
+      d.className = 'deco';
+      d.setAttribute('aria-hidden', 'true');
+      const n = 4 + Math.floor(rnd() * 3);
+      let h = '';
+      for (let i = 0; i < n; i++) {
+        const k = Math.floor(rnd() * SH.length), s = Math.round(28 + rnd() * 70), x = (i % 2 ? 60 : 2) + rnd() * 36, y = 4 + rnd() * 86,
+          o = (0.06 + rnd() * 0.07).toFixed(2), spin = (k < 2 && rnd() > 0.5);
+        h += `<svg viewBox="0 0 100 100" class="${spin ? 'sp' : ''}" style="left:${x.toFixed(1)}%;top:${y.toFixed(1)}%;--s:${s}px;--o:${o};--dc:${COL[Math.floor(rnd() * 3)]};--dur:${(spin ? 30 : 6) + Math.round(rnd() * 8)}s;--dl:${(-rnd() * 6).toFixed(1)}s;--rr:${Math.round(rnd() * 40 - 20)}deg">${SH[k]}</svg>`;
       }
+      d.innerHTML = h;
+      sec.prepend(d);
     });
-  });
+  })();
 
-  // Si ya pasaste por una página distinta a la entrada, la entrada no vuelve a salir sola
-  if (pagina !== 'entrada') guardar('sof-intro-visto', '1');
-
-
-  /* ---------- 5. Transición entre páginas (4 franjas) ---------- */
-  const franjas = document.querySelector('.franjas');
-  let saliendo = false;
-
-  document.addEventListener('click', (ev) => {
-    const enlace = ev.target.closest('a[href]');
-    if (!enlace) return;
-    const href = enlace.getAttribute('href');
-
-    // Enlaces dentro de la misma página (#algo): bajan suave
-    if (href.startsWith('#')) {
-      const destino = href.length > 1 && document.querySelector(href);
-      if (destino) {
-        ev.preventDefault();
-        destino.scrollIntoView({ behavior: movimientoReducido.matches ? 'auto' : 'smooth' });
-      }
-      return;
-    }
-
-    // Solo páginas del mismo sitio, abiertas en la misma pestaña
-    const url = new URL(enlace.href, location.href);
-    const nuevaPestana = enlace.target === '_blank' || ev.ctrlKey || ev.metaKey || ev.shiftKey || ev.button !== 0;
-    if (url.origin !== location.origin || nuevaPestana) return;
-
-    ev.preventDefault();
-    if (saliendo) return;
-    saliendo = true;
-
-    try { sessionStorage.setItem('sof-cortina', '1'); } catch (e) {}
-    franjas.classList.add('entra');
-    espera(750).then(() => { location.href = url.href; });
-  });
-
-  // Al llegar desde otra página: las franjas se abren
-  function abrirCortina() {
-    const llegoConCortina = raiz.classList.contains('cortina');
-    if (llegoConCortina) {
-      franjas.classList.add('sale');
-      requestAnimationFrame(() => requestAnimationFrame(() => raiz.classList.remove('cortina')));
-      espera(800).then(() => franjas.classList.remove('sale'));
-    }
-    // Arranca las animaciones de entrada (ej. letras de TRAZO) cuando ya se ve la página
-    espera(llegoConCortina ? 350 : 0).then(() => {
-      document.querySelectorAll('.vista').forEach((v) => v.classList.add('activa'));
-    });
-  }
-  abrirCortina();
-
-  // Si vuelves con el botón "atrás", la página no se queda tapada
-  window.addEventListener('pageshow', (ev) => {
-    if (ev.persisted) {
-      franjas.classList.remove('entra', 'sale');
-      saliendo = false;
-    }
-  });
+  // Ya pasaste por una página interna: la entrada no vuelve a salir sola en esta visita
+  if (pagina !== 'entrada') { try { sessionStorage.setItem('sof-intro', '1'); } catch (_) {} }
 })();

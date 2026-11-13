@@ -1,489 +1,196 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sobre mí · Trazo</title>
-  <meta name="description" content="Portafolio de Sofía Moncada Jaramillo, diseñadora crossmedia en Pereira, Colombia. Arte desde el alma y corazón.">
-
-  <!-- Tipografías: Jost (textos) y Pinyon Script (cursiva) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&family=Pinyon+Script&display=swap" rel="stylesheet">
-
-  <!-- Estilos: generales (todas las páginas) + los propios de esta página -->
-  <link rel="stylesheet" href="css/base.css?v=20261113">
-  <link rel="stylesheet" href="css/barra-menu.css?v=20261113">
-  <link rel="stylesheet" href="css/pie.css?v=20261113">
-  <link rel="stylesheet" href="css/sobre-mi.css?v=20261113">
-
-  <!-- Antes de pintar: tema guardado y cortina de llegada -->
-  <script>
-    (function () {
-      var r = document.documentElement;
-      try {
-        var t = localStorage.getItem('sof-theme');
-        if (t) r.dataset.theme = t;
-        if (sessionStorage.getItem('sof-cortina')) {
-          r.classList.add('cortina');
-          sessionStorage.removeItem('sof-cortina');
-        }
-      } catch (e) {}
-    })();
-  </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sobre mí · Sofía Moncada</title>
+<meta name="description" content="Sofía Moncada, diseñadora crossmedia en Pereira, Colombia. Identidad de marca, contenido para redes y dirección de arte.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&family=Pinyon+Script&display=swap" rel="stylesheet">
+<!-- Estilos: generales (todas las páginas) + los propios de esta página -->
+<link rel="stylesheet" href="css/base.css?v=20261113c">
+<link rel="stylesheet" href="css/barra-menu.css?v=20261113c">
+<link rel="stylesheet" href="css/pie.css?v=20261113c">
+<link rel="stylesheet" href="css/sobre-mi.css?v=20261113c">
+<!-- Antes de pintar: tema guardado y franjas de llegada desde otra página -->
+<script>
+(function(){var r=document.documentElement;try{var t=localStorage.getItem('sof-theme');if(t==='dark'||t==='light')r.dataset.theme=t;if(sessionStorage.getItem('sof-wipe')){r.classList.add('llegando');sessionStorage.removeItem('sof-wipe')}}catch(e){}})();
+</script>
 </head>
 <body data-pagina="sobre-mi">
+<a class="skip" href="#" id="skip">Saltar al contenido</a>
 
-  <!-- Dibujos reutilizables (estrella de 4 puntas) -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <symbol id="estrella" viewBox="0 0 24 24">
-      <path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z"/>
-    </symbol>
-  </svg>
+<!-- ============ BARRA PRINCIPAL ============ -->
+<header class="nav" id="nav">
+  <a class="logo" href="inicio.html" data-go aria-label="Trazo, inicio"><span class="script">Trazo</span></a>
+  <nav class="links" aria-label="Principal">
+    <a href="inicio.html" data-go>Inicio</a>
+    <a href="sobre-mi.html" data-go aria-current="page">Sobre mí</a>
+    <a href="proyectos.html" data-go>Proyectos</a>
+  </nav>
+  <a class="btn b-vino cta" href="planes.html" data-go>¡Trabajemos!</a>
+  <button class="whatido" aria-controls="mega">Lo que hago</button>
+  <button class="theme" role="switch" aria-checked="false" aria-label="Modo oscuro" title="Cambiar a modo claro u oscuro"><span class="knob" aria-hidden="true"><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></g></svg><svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></span></button>
+  <button class="menu-btn" aria-expanded="false" aria-controls="mega"><i></i>Menú</button>
+</header>
 
-  <!-- ============ BARRA SUPERIOR ============ -->
-  <header class="barra barra-principal">
-    <a class="logo script" href="inicio.html" aria-label="Trazo, inicio">Trazo</a>
-
-    <nav class="nav" aria-label="Principal">
-      <a class="nav-enlace" href="inicio.html">Inicio</a>
-      <a class="nav-enlace" href="sobre-mi.html" aria-current="page">Sobre mí</a>
-      <a class="nav-enlace" href="proyectos.html">Proyectos</a>
-    </nav>
-
-    <div class="barra-acciones">
-      <a class="nav-cta" href="planes.html">¡Trabajemos!</a>
-      <button class="lo-que-hago" type="button" aria-expanded="false" aria-controls="mega">Lo que hago</button>
-
-      <!-- Interruptor tipo píldora: sol a la izquierda (claro), luna a la derecha (oscuro) -->
-      <button class="tema" id="btnTema" type="button" role="switch" aria-label="Modo oscuro">
-        <span class="perilla">
-          <svg class="ico-sol" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="4.5"/>
-            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/>
-          </svg>
-          <svg class="ico-luna" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/>
-          </svg>
-        </span>
-      </button>
-
-      <!-- Botón de menú (solo en celular) -->
-      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mega">
-        <span class="menu-rayas" aria-hidden="true"><i></i><i></i></span>Menú
-      </button>
+<!-- ============ MENÚ GRANDE: LO QUE HAGO ============ -->
+<div class="mega" id="mega">
+  <div class="wrap">
+    <div class="mega-head"><div class="lbl"><b>000</b><span>Lo que hago</span></div><p class="script">elige tu plan y escríbeme</p></div>
+    <div class="mega-grid">
+      <div class="world w1">
+        <a class="wh" href="marca.html" data-go><span class="wn">Mundo 01 · Para marcas nuevas y emprendimientos</span><h3>Marca <span class="script">y piezas</span></h3></a>
+        <ul>
+          <li><a href="marca.html" data-go><span>01</span>Identidad simple<small>Logo, paleta y tipografías · 3 entregables</small></a><button class="buy" data-buy="Identidad simple" data-w="Marca">Adquirir</button></li>
+          <li><a href="marca.html" data-go><span>02</span>Manual de marca<small>Reglas de uso de tu marca · 8 entregables</small></a><button class="buy" data-buy="Manual de marca" data-w="Marca">Adquirir</button></li>
+          <li><a href="marca.html" data-go><span>03</span>Identidad completa<small>Todo lo anterior + papelería y lanzamiento</small></a><button class="buy" data-buy="Identidad completa" data-w="Marca">Adquirir</button></li>
+        </ul>
+        <div class="seen"><small>Míralo en</small><div class="mini"><a href="sala-de-espera.html?p=provet-marca" data-go>Provet</a><a href="sala-de-espera.html?p=boticaria" data-go>Boticaria</a><a href="sala-de-espera.html?p=museos" data-go>Museos y galerías</a><a href="sala-de-espera.html?p=grotesco" data-go>Lo grotesco</a></div></div>
+        <a class="go-plan" href="marca.html" data-go>Ver el mundo de marca</a>
+      </div>
+      <div class="world w2">
+        <a class="wh" href="redes.html" data-go><span class="wn">Mundo 02 · Para negocios, servicios y creadores</span><h3>Redes <span class="script">sociales</span></h3></a>
+        <ul>
+          <li><a href="redes.html" data-go><span>01</span>Posts e historias<small>Piezas que enseñan, conectan y venden</small></a><button class="buy" data-buy="Posts e historias" data-w="Redes">Adquirir</button></li>
+          <li><a href="redes.html" data-go><span>02</span>Reels y video<small>Edición con ritmo y con tu estética</small></a><button class="buy" data-buy="Reels y video" data-w="Redes">Adquirir</button></li>
+          <li><a href="redes.html" data-go><span>03</span>Fotografía<small>Producto y retrato, con edición de color</small></a><button class="buy" data-buy="Fotografía" data-w="Redes">Adquirir</button></li>
+        </ul>
+        <div class="seen"><small>Míralo en</small><div class="mini"><a href="sala-de-espera.html?p=provet-redes" data-go>Provet · redes</a></div></div>
+        <a class="go-plan" href="redes.html" data-go>Ver el mundo de redes</a>
+      </div>
+      <div class="world w3">
+        <a class="wh" href="direccion-arte.html" data-go><span class="wn">Mundo 03 · Para videoclips, comerciales y cortos</span><h3>Dirección <span class="script">de arte</span></h3></a>
+        <ul>
+          <li><a href="direccion-arte.html" data-go><span>01</span>Concepto visual<small>Referencias, paleta y propuesta para tu pieza</small></a><button class="buy" data-buy="Concepto visual" data-w="Dirección de arte">Adquirir</button></li>
+          <li><a href="direccion-arte.html" data-go><span>02</span>Ambientación<small>Escenografía y utilería para cada escena</small></a><button class="buy" data-buy="Ambientación" data-w="Dirección de arte">Adquirir</button></li>
+          <li><a href="direccion-arte.html" data-go><span>03</span>Arte en el set<small>Asistencia de arte y producción en rodaje</small></a><button class="buy" data-buy="Arte en el set" data-w="Dirección de arte">Adquirir</button></li>
+        </ul>
+        <div class="seen"><small>Míralo en</small><div class="mini"><a href="sala-de-espera.html?p=casualidad" data-go>Casualidad</a><a href="sala-de-espera.html?p=servicarga" data-go>Servicarga</a></div></div>
+        <a class="go-plan" href="direccion-arte.html" data-go>Ver el mundo de arte</a>
+      </div>
     </div>
-  </header>
-
-  <!-- ============ MENÚ GRANDE: LO QUE HAGO ============ -->
-  <!-- Se abre con "Lo que hago", "Menú" y "¿Qué necesitas?". Igual en todas las páginas internas. -->
-  <div class="mega" id="mega" aria-label="Lo que hago" hidden>
-    <div class="mega-contenido">
-
-      <div class="mega-cabeza">
-        <p class="mega-etiqueta"><b>000</b> Lo que hago</p>
-        <p class="mega-lema script">elige tu plan y escríbeme</p>
+    <div class="mega-more">
+      <nav aria-label="Más"><a href="inicio.html" data-go>Inicio</a><a href="sobre-mi.html" data-go>Sobre mí</a><a href="proyectos.html" data-go>Proyectos</a><a href="planes.html" data-go>¡Trabajemos!</a><button data-scroll="contacto">Contacto</button></nav>
+      <div class="mega-help">
+        <p class="script">¿no sabes por dónde empezar?</p>
+        <p>Agenda una asesoría de 2 horas y decidimos juntos el siguiente paso de tu marca.</p>
+        <div class="row-btns" style="margin-top:1rem"><a class="btn b-vino" href="planes.html#asesoria" data-go>Ver asesoría</a><a class="btn b-line" href="https://wa.me/573225374248" target="_blank" rel="noopener">WhatsApp</a></div>
+        <span class="clock" data-clock style="display:block;margin-top:1rem">Pereira</span>
       </div>
-
-      <div class="mundos">
-
-        <!-- Mundo 01 · Marca -->
-        <article class="mundo mundo-marca">
-          <p class="mundo-para">Mundo 01 · Para marcas nuevas y emprendimientos</p>
-          <h2 class="mundo-titulo">MARCA <span class="script">y piezas</span></h2>
-          <ol class="mundo-planes">
-            <li class="plan">
-              <span class="plan-num">01</span>
-              <div class="plan-texto"><h3>Identidad simple</h3><p>Logo, paleta y tipografías · 3 entregables</p></div>
-              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Identidad%20simple%20(Marca%20y%20piezas)." target="_blank" rel="noopener">Adquirir</a>
-            </li>
-            <li class="plan">
-              <span class="plan-num">02</span>
-              <div class="plan-texto"><h3>Manual de marca</h3><p>Reglas de uso de tu marca · 8 entregables</p></div>
-              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Manual%20de%20marca%20(Marca%20y%20piezas)." target="_blank" rel="noopener">Adquirir</a>
-            </li>
-            <li class="plan">
-              <span class="plan-num">03</span>
-              <div class="plan-texto"><h3>Identidad completa</h3><p>Todo lo anterior + papelería y lanzamiento</p></div>
-              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Identidad%20completa%20(Marca%20y%20piezas)." target="_blank" rel="noopener">Adquirir</a>
-            </li>
-          </ol>
-          <p class="mundo-miralo">Míralo en</p>
-          <ul class="chips">
-            <li><a href="proyectos.html#provet">Provet</a></li>
-            <li><a href="proyectos.html#boticaria">Boticaria</a></li>
-            <li><a href="proyectos.html#museos">Museos y galerías</a></li>
-            <li><a href="proyectos.html#lo-grotesco">Lo grotesco</a></li>
-          </ul>
-          <a class="mundo-ver" href="marca.html">Ver el mundo de marca <span aria-hidden="true">✶</span></a>
-        </article>
-
-        <!-- Mundo 02 · Redes -->
-        <article class="mundo mundo-redes">
-          <p class="mundo-para">Mundo 02 · Para negocios, servicios y creadores</p>
-          <h2 class="mundo-titulo">REDES <span class="script">sociales</span></h2>
-          <ol class="mundo-planes">
-            <li class="plan">
-              <span class="plan-num">01</span>
-              <div class="plan-texto"><h3>Posts e historias</h3><p>Piezas que enseñan, conectan y venden</p></div>
-              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Posts%20e%20historias%20(Redes%20sociales)." target="_blank" rel="noopener">Adquirir</a>
-            </li>
-            <li class="plan">
-              <span class="plan-num">02</span>
-              <div class="plan-texto"><h3>Reels y video</h3><p>Edición con ritmo y con tu estética</p></div>
-              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Reels%20y%20video%20(Redes%20sociales)." target="_blank" rel="noopener">Adquirir</a>
-            </li>
-            <li class="plan">
-              <span class="plan-num">03</span>
-              <div class="plan-texto"><h3>Fotografía</h3><p>Producto y retrato, con edición de color</p></div>
-              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Fotograf%C3%ADa%20(Redes%20sociales)." target="_blank" rel="noopener">Adquirir</a>
-            </li>
-          </ol>
-          <p class="mundo-miralo">Míralo en</p>
-          <ul class="chips">
-            <li><a href="proyectos.html#provet-redes">Provet · redes</a></li>
-          </ul>
-          <a class="mundo-ver" href="redes.html">Ver el mundo de redes <span aria-hidden="true">✶</span></a>
-        </article>
-
-        <!-- Mundo 03 · Dirección de arte -->
-        <article class="mundo mundo-arte">
-          <p class="mundo-para">Mundo 03 · Para videoclips, comerciales y cortos</p>
-          <h2 class="mundo-titulo">DIRECCIÓN <span class="script">de arte</span></h2>
-          <ol class="mundo-planes">
-            <li class="plan">
-              <span class="plan-num">01</span>
-              <div class="plan-texto"><h3>Concepto visual</h3><p>Referencias, paleta y propuesta para tu pieza</p></div>
-              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Concepto%20visual%20(Direcci%C3%B3n%20de%20arte)." target="_blank" rel="noopener">Adquirir</a>
-            </li>
-            <li class="plan">
-              <span class="plan-num">02</span>
-              <div class="plan-texto"><h3>Ambientación</h3><p>Escenografía y utilería para cada escena</p></div>
-              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Ambientaci%C3%B3n%20(Direcci%C3%B3n%20de%20arte)." target="_blank" rel="noopener">Adquirir</a>
-            </li>
-            <li class="plan">
-              <span class="plan-num">03</span>
-              <div class="plan-texto"><h3>Arte en el set</h3><p>Asistencia de arte y producción en rodaje</p></div>
-              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Arte%20en%20el%20set%20(Direcci%C3%B3n%20de%20arte)." target="_blank" rel="noopener">Adquirir</a>
-            </li>
-          </ol>
-          <p class="mundo-miralo">Míralo en</p>
-          <ul class="chips">
-            <li><a href="proyectos.html#casualidad">Casualidad</a></li>
-            <li><a href="proyectos.html#servicarga">Servicarga</a></li>
-          </ul>
-          <a class="mundo-ver" href="direccion-arte.html">Ver el mundo de arte <span aria-hidden="true">✶</span></a>
-        </article>
-      </div>
-
-      <div class="mega-pie">
-        <nav class="mega-paginas" aria-label="Páginas">
-          <a href="inicio.html">Inicio</a>
-          <a href="sobre-mi.html">Sobre mí</a>
-          <a href="proyectos.html">Proyectos</a>
-          <a href="planes.html">¡Trabajemos!</a>
-          <a href="#contacto">Contacto</a>
-        </nav>
-
-        <aside class="asesoria">
-          <p class="asesoria-titulo script">¿no sabes por dónde empezar?</p>
-          <p class="asesoria-texto">Agenda una asesoría de 2 horas y decidimos juntos el siguiente paso de tu marca.</p>
-          <div class="asesoria-botones">
-            <a class="btn-rosa" href="planes.html#asesoria">Ver asesoría</a>
-            <a class="btn-borde" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20agendar%20una%20asesor%C3%ADa." target="_blank" rel="noopener">WhatsApp</a>
-          </div>
-          <p class="asesoria-hora">Pereira · <span data-hora>--:--</span></p>
-        </aside>
-      </div>
-
     </div>
   </div>
+</div>
 
-  <main>
+<main id="main" tabindex="-1">
 
-    <!-- ============ SOBRE MÍ ============ -->
-    <section class="vista sobre" aria-labelledby="sobre-titulo">
-
-      <!-- 1. ¡Hola! soy Sof + carnet colgante -->
-      <div class="hola contenedor">
-
-        <!-- Carnet: se mece solo y se puede arrastrar -->
-        <div class="carnet-zona">
-          <div class="carnet" id="carnet">
-            <span class="carnet-cinta" aria-hidden="true"></span>
-            <span class="carnet-gancho" aria-hidden="true"></span>
-            <div class="carnet-tarjeta">
-              <span class="carnet-ranura" aria-hidden="true"></span>
-              <div class="carnet-foto">
-                <img src="img/foto_sof.jpeg" alt="Sofía Moncada con audífonos de set y gafas redondas" draggable="false">
-              </div>
-              <p class="carnet-nombre">Sofía Moncada Jaramillo</p>
-              <p class="carnet-cargo script">Diseñadora crossmedia</p>
-              <p class="carnet-dato">Pereira · Colombia · 2026</p>
-            </div>
-          </div>
-          <p class="carnet-pista" aria-hidden="true">¡arrástrame!</p>
-        </div>
-
-        <div class="hola-texto">
-          <h1 id="sobre-titulo" class="hola-titulo">¡HOLA! <span class="script">soy Sof</span></h1>
-          <p class="hola-parrafo">
-            Diseñadora crossmedia con experiencia en diseño gráfico y dirección de arte.
-            Uno piezas e identidades para contar el alma de las marcas: genero espacios,
-            creo conceptos y doy vida a ideas que conectan y narran, también en contenidos audiovisuales.
-            Disfruto aprender y colaborar con otras áreas para enfocar cada proyecto,
-            y cuido la organización y la buena experiencia en todo lo que hago.
-          </p>
-          <div class="hola-botones">
-            <a class="btn-rosa" href="proyectos.html">Mi trabajo</a>
-            <a class="btn-borde" href="#contacto">Escríbeme</a>
+  <!-- ============ 1. ¡HOLA! SOY SOF + CARNET COLGANTE (se mece y se arrastra) ============ -->
+  <section class="pad top">
+    <div class="wrap">
+      <div class="about-top">
+        <div class="lanyard" id="lanyard">
+          <div class="strap"></div>
+          <svg class="hook" viewBox="0 0 46 54" aria-hidden="true"><rect x="13" y="0" width="20" height="14" rx="3" fill="#D9C4B8"/><path d="M23 14 v8 M14 24 a9 9 0 1 0 18 0 v14 a9 9 0 0 1 -18 0z" stroke="#D9C4B8" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+          <div class="badge">
+            <div class="photo"><img src="img/foto_sof.jpeg" alt="Retrato de Sofía Moncada" draggable="false"></div>
+            <h3>Sofía Moncada Jaramillo</h3><p class="role">Diseñadora crossmedia</p><p>Pereira, Colombia · 09/2005</p>
           </div>
         </div>
-      </div>
-
-      <hr class="separador">
-
-      <!-- 2. Herramientas: teclado de 7 teclas + detalle + programas
-           Lo que dice cada tecla (frase, descripción y proyectos) está en js/sobre-mi.js -->
-      <div class="herramientas contenedor">
-        <h2 class="herr-titulo aparece">Herramientas</h2>
-        <p class="herr-sub aparece">Presiona las teclas para ver cada programa y cómo lo aplico en mi trabajo.</p>
-        <p class="herr-sub-script script aparece">o usa del 1 al 7 en tu teclado</p>
-
-        <div class="teclado aparece" role="group" aria-label="Teclado de herramientas">
-          <button class="tecla tecla-rosa" type="button" data-tecla="1" aria-pressed="true">
-            <b>Ai</b><small>Illustrator</small><span class="tecla-num">1</span>
-          </button>
-          <button class="tecla tecla-blanca" type="button" data-tecla="2" aria-pressed="false">
-            <b>Ps</b><small>Photoshop</small><span class="tecla-num">2</span>
-          </button>
-          <button class="tecla tecla-vino" type="button" data-tecla="3" aria-pressed="false">
-            <b>Lr</b><small>Lightroom</small><span class="tecla-num">3</span>
-          </button>
-          <button class="tecla tecla-terracota" type="button" data-tecla="4" aria-pressed="false">
-            <b>VS</b><small>VS Code</small><span class="tecla-num">4</span>
-          </button>
-          <button class="tecla tecla-terracota" type="button" data-tecla="5" aria-pressed="false">
-            <b>Fg</b><small>Figma</small><span class="tecla-num">5</span>
-          </button>
-          <button class="tecla tecla-rosa" type="button" data-tecla="6" aria-pressed="false">
-            <b>Cc</b><small>CapCut</small><span class="tecla-num">6</span>
-          </button>
-          <button class="tecla tecla-vino tecla-ancha" type="button" data-tecla="7" aria-pressed="false">
-            <svg class="tecla-icono" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/></svg>
-            <small>Fotografía</small><span class="tecla-num">7</span>
-          </button>
+        <div>
+          <h1 class="st" style="font-size:clamp(3.4rem,10vw,8rem)">¡Hola! <span class="script">soy Sof</span></h1>
+          <p style="margin-top:1.6rem;max-width:60ch;font-size:1.1rem">Diseñadora crossmedia con experiencia en diseño gráfico y dirección de arte. Creo piezas e identidades para resaltar el alma de las marcas, además genero espacios, creo conceptos y doy vida a ideas para generar conexión y narrativa en contenidos audiovisuales. Abierta al aprendizaje y a colaborar con otras áreas para reforzar los proyectos y mejorar mis habilidades, enfocada en la organización y en la buena experiencia de mis trabajos.</p>
+          <div class="row-btns"><a class="btn b-vino" href="proyectos.html" data-go>Mi trabajo</a><button class="btn b-line" data-scroll="contacto">Escríbeme</button></div>
         </div>
-
-        <div class="herr-detalle">
-          <!-- Detalle de la tecla elegida (empieza con Illustrator) -->
-          <article class="herr-panel aparece" aria-live="polite">
-            <h3 class="herr-nombre"><span data-h="nombre">Illustrator</span> <span class="script" data-h="frase">todos los días</span></h3>
-            <p class="herr-desc" data-h="desc">Logos, isotipos e ilustración. Aquí nacen los sistemas de marca, de la primera línea al manual.</p>
-            <p class="herr-aparece">Aparece en</p>
-            <ul class="herr-chips" data-h="chips">
-              <li><a href="proyectos.html#provet">Provet · Marca</a></li>
-              <li><a href="proyectos.html#boticaria">Boticaria</a></li>
-              <li><a href="proyectos.html#lo-grotesco">La estética de lo grotesco</a></li>
-            </ul>
-            <svg class="herr-chispa" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,0 13.72,7.84 20.49,3.51 16.16,10.28 24,12 16.16,13.72 20.49,20.49 13.72,16.16 12,24 10.28,16.16 3.51,20.49 7.84,13.72 0,12 7.84,10.28 3.51,3.51 10.28,7.84"/></svg>
-          </article>
-
-          <!-- Programas: cambia el número de data-nivel para ajustar tu porcentaje de comodidad -->
-          <article class="programas aparece">
-            <h3 class="programas-titulo">Programas</h3>
-            <ul class="programas-lista">
-              <li class="programa" data-nivel="95">
-                <span class="programa-icono">Ps</span>
-                <div class="programa-info">
-                  <div class="programa-fila"><span>Photoshop</span><span class="programa-dato"><span class="puntos" aria-hidden="true"></span><span class="porcentaje">95%</span></span></div>
-                  <div class="programa-barra"><span></span></div>
-                </div>
-              </li>
-              <li class="programa" data-nivel="95">
-                <span class="programa-icono">Ai</span>
-                <div class="programa-info">
-                  <div class="programa-fila"><span>Illustrator</span><span class="programa-dato"><span class="puntos" aria-hidden="true"></span><span class="porcentaje">95%</span></span></div>
-                  <div class="programa-barra"><span></span></div>
-                </div>
-              </li>
-              <li class="programa" data-nivel="80">
-                <span class="programa-icono">Cc</span>
-                <div class="programa-info">
-                  <div class="programa-fila"><span>CapCut</span><span class="programa-dato"><span class="puntos" aria-hidden="true"></span><span class="porcentaje">80%</span></span></div>
-                  <div class="programa-barra"><span></span></div>
-                </div>
-              </li>
-              <li class="programa" data-nivel="60">
-                <span class="programa-icono">Fg</span>
-                <div class="programa-info">
-                  <div class="programa-fila"><span>Figma</span><span class="programa-dato"><span class="puntos" aria-hidden="true"></span><span class="porcentaje">60%</span></span></div>
-                  <div class="programa-barra"><span></span></div>
-                </div>
-              </li>
-              <li class="programa" data-nivel="60">
-                <span class="programa-icono">Lr</span>
-                <div class="programa-info">
-                  <div class="programa-fila"><span>Lightroom</span><span class="programa-dato"><span class="puntos" aria-hidden="true"></span><span class="porcentaje">60%</span></span></div>
-                  <div class="programa-barra"><span></span></div>
-                </div>
-              </li>
-              <li class="programa" data-nivel="60">
-                <span class="programa-icono">VS</span>
-                <div class="programa-info">
-                  <div class="programa-fila"><span>VS Code</span><span class="programa-dato"><span class="puntos" aria-hidden="true"></span><span class="porcentaje">60%</span></span></div>
-                  <div class="programa-barra"><span></span></div>
-                </div>
-              </li>
-            </ul>
-          </article>
-        </div>
-      </div>
-
-      <hr class="separador">
-
-      <!-- 3. Más sobre mí: tarjetas tipo carpeta (Experiencia y Mis áreas), letrero y botón -->
-      <div class="mas" id="mas-sobre-mi">
-        <div class="mas-grid">
-          <h2 class="mas-title aparece"><span class="script">Más</span><b>sobre mí</b></h2>
-
-          <!-- Carpeta Experiencia -->
-          <article class="fd fd-exp aparece">
-            <span class="fd-tab"><span class="script">Experiencia</span></span>
-            <span class="fd-lip" aria-hidden="true"></span>
-            <div class="fd-body">
-              <ol class="ftl">
-                <li><time class="script">2025-2026</time><i aria-hidden="true"></i><div><b>InSign Visualmedia</b><small>Dirección de arte y asistente de producción</small></div></li>
-                <li><time class="script">2025</time><i aria-hidden="true"></i><div><b>Magazine “Nos fui pues mijo”</b><small>Producción ejecutiva</small></div></li>
-                <li><time class="script">2024</time><i aria-hidden="true"></i><div><b>Cortometraje “Donde la música muere”</b><small>Producción y asistente de arte</small></div></li>
-                <li><time class="script">2024</time><i aria-hidden="true"></i><div><b>Freelance</b><small>Diseño gráfico</small></div></li>
-              </ol>
-            </div>
-          </article>
-
-          <!-- Carpeta Mis áreas -->
-          <article class="fd fd-areas aparece">
-            <span class="fd-tab"><span class="script">Mis áreas</span></span>
-            <span class="fd-lip" aria-hidden="true"></span>
-            <div class="fd-body">
-              <ul class="fareas">
-                <li><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M50 0C53 22 62 27 100 30 62 33 53 38 50 60 47 38 38 33 0 30 38 27 47 22 50 0z"/></svg><span><span class="script">I</span>dentidad de marca</span></li>
-                <li><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M50 0C53 22 62 27 100 30 62 33 53 38 50 60 47 38 38 33 0 30 38 27 47 22 50 0z"/></svg><span><span class="script">D</span>iseño gráfico</span></li>
-                <li><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M50 0C53 22 62 27 100 30 62 33 53 38 50 60 47 38 38 33 0 30 38 27 47 22 50 0z"/></svg><span><span class="script">P</span>rocesos audiovisuales</span></li>
-                <li><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M50 0C53 22 62 27 100 30 62 33 53 38 50 60 47 38 38 33 0 30 38 27 47 22 50 0z"/></svg><span><span class="script">C</span>ontenido para redes</span></li>
-                <li><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M50 0C53 22 62 27 100 30 62 33 53 38 50 60 47 38 38 33 0 30 38 27 47 22 50 0z"/></svg><span><span class="script">D</span>iseño UI / UX</span></li>
-              </ul>
-            </div>
-          </article>
-
-          <!-- Letrero colgante + botón -->
-          <div class="mas-cta aparece">
-            <p class="hang"><i class="hl" aria-hidden="true"></i><i class="hr" aria-hidden="true"></i>¡Puedes conocer más de mi trabajo!</p>
-            <a class="ring-btn" href="proyectos.html"><span>Mi trabajo</span></a>
-          </div>
-        </div>
-      </div>
-
-      <hr class="separador">
-
-      <!-- 4. Cómo trabajo: cuatro pasos en zigzag, cada uno con su ilustración animada -->
-      <div class="como contenedor">
-        <h2 class="seccion-titulo aparece">Cómo <span class="script">trabajo</span></h2>
-        <p class="seccion-sub aparece">Cuatro pasos y en cada uno ves algo concreto para revisar y aprobar.</p>
-
-        <ol class="pasos">
-          <!-- Paso 01: las preguntas aparecen una a una -->
-          <li class="paso aparece">
-            <div class="paso-ilus ilus-preguntas" aria-hidden="true">
-              <span>¿quién eres?</span>
-              <span>¿a quién le hablas?</span>
-              <span>¿qué te hace distinto?</span>
-            </div>
-            <small class="paso-num">Paso 01</small>
-            <h3>Conocernos</h3>
-            <p>Una reunión para entender tu marca, tu público y lo que necesitas.</p>
-            <p class="paso-recibes">Recibes · Resumen de la reunión</p>
-          </li>
-
-          <!-- Paso 02: se van marcando los chulitos -->
-          <li class="paso aparece">
-            <ul class="paso-ilus ilus-lista" aria-hidden="true">
-              <li>Público <span>✓</span></li>
-              <li>Tono <span>✓</span></li>
-              <li>Concepto <span>✓</span></li>
-              <li>Alcance <span>✓</span></li>
-            </ul>
-            <small class="paso-num">Paso 02</small>
-            <h3>Propuesta</h3>
-            <p>Defino el concepto, el alcance y el plan que mejor te sirve.</p>
-            <p class="paso-recibes">Recibes · Propuesta y tiempos</p>
-          </li>
-
-          <!-- Paso 03: las barras de color crecen -->
-          <li class="paso aparece">
-            <div class="paso-ilus ilus-barras" aria-hidden="true">
-              <i style="--alto: 68%; --color: var(--vino)"></i>
-              <i style="--alto: 54%; --color: var(--terracota)"></i>
-              <i style="--alto: 88%; --color: var(--rosa)"></i>
-              <i style="--alto: 40%; --color: var(--blanco)"></i>
-              <i style="--alto: 68%; --color: var(--vino-oscuro)"></i>
-            </div>
-            <small class="paso-num">Paso 03</small>
-            <h3>Diseño</h3>
-            <p>Trabajo por etapas y te muestro avances para que opines a tiempo.</p>
-            <p class="paso-recibes">Recibes · Piezas para aprobar</p>
-          </li>
-
-          <!-- Paso 04: los archivos llegan uno a uno -->
-          <li class="paso aparece">
-            <ul class="paso-ilus ilus-archivos" aria-hidden="true">
-              <li>logo.svg <span>✓</span></li>
-              <li>manual.pdf <span>✓</span></li>
-              <li>piezas.zip <span>✓</span></li>
-            </ul>
-            <small class="paso-num">Paso 04</small>
-            <h3>Entrega</h3>
-            <p>Te entrego los archivos finales, listos para usar donde los necesites.</p>
-            <p class="paso-recibes">Recibes · Archivos finales</p>
-          </li>
-        </ol>
-      </div>
-
-    </section>
-
-  </main>
-
-  <!-- ============ PIE DE PÁGINA (igual en todas las páginas) ============ -->
-  <footer class="pie" id="contacto">
-    <h2 class="pie-titulo">Trabajemos <span class="script">Juntos</span></h2>
-
-    <div class="pie-columnas">
-      <div class="pie-col">
-        <h3>Escríbeme</h3>
-        <!-- El correo se copia al tocarlo -->
-        <button class="copiar" type="button" data-copiar="somonjara2005@gmail.com">somonjara2005@gmail.com</button>
-        <span class="copiar-aviso" aria-live="polite"></span>
-        <a href="https://wa.me/573225374248" target="_blank" rel="noopener">WhatsApp · 3225374248</a>
-      </div>
-      <div class="pie-col">
-        <h3>Redes</h3>
-        <a href="https://www.instagram.com/_nthlky_/" target="_blank" rel="noopener">Instagram · @_nthlky_</a>
-      </div>
-      <div class="pie-col">
-        <h3>Estudio</h3>
-        <p>Pereira, Colombia</p>
       </div>
     </div>
+  </section>
 
-    <p class="pie-legal">© 2026 Sofía Moncada - Arte desde el alma y corazón</p>
-  </footer>
+  <!-- ============ 2. HERRAMIENTAS (teclado de 7 teclas; números 1–7) ============ -->
+  <section class="pad center" data-anchor="herramientas" style="padding-top:2rem">
+    <div class="wrap">
+      <h2 class="kb-title">Herramientas</h2>
+      <div class="kb-sub"><p>Presiona las teclas para ver cada programa y cómo lo aplico en mi trabajo.</p><span class="script">o usa del 1 al 7 en tu teclado</span></div>
+      <div class="kb stack">
+        <div class="tray"><div class="keys" id="keys" role="group" aria-label="Programas"></div></div>
+        <div class="kpanel" id="kpanel" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Transición entre páginas: 4 franjas de color -->
-  <div class="franjas" aria-hidden="true">
-    <span></span><span></span><span></span><span></span>
+  <!-- ============ 3. MÁS SOBRE MÍ (carpetas) ============ -->
+  <section class="pad mas">
+    <div class="wrap mas-grid">
+      <h2 class="mas-title"><span class="script">Más</span><b>sobre mí</b></h2>
+      <article class="fd fd-exp">
+        <span class="fd-tab"><span class="script">Experiencia</span></span>
+        <span class="fd-lip" aria-hidden="true"></span>
+        <div class="fd-body">
+          <ol class="ftl">
+            <li><time class="script">2025-2026</time><i aria-hidden="true"></i><div><b>InSign Visualmedia</b><small>Dirección de arte y asistente de producción</small></div></li>
+            <li><time class="script">2025</time><i aria-hidden="true"></i><div><b>Magazine “Nos fui pues mijo”</b><small>Producción ejecutiva</small></div></li>
+            <li><time class="script">2024</time><i aria-hidden="true"></i><div><b>Cortometraje “Donde la música muere”</b><small>Producción y asistente de arte</small></div></li>
+            <li><time class="script">2024</time><i aria-hidden="true"></i><div><b>Freelance</b><small>Diseño gráfico</small></div></li>
+          </ol>
+        </div>
+      </article>
+      <article class="fd fd-areas">
+        <span class="fd-tab"><span class="script">Mis áreas</span></span>
+        <span class="fd-lip" aria-hidden="true"></span>
+        <div class="fd-body">
+          <ul class="fareas">
+            <li><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M50 0C53 22 62 27 100 30 62 33 53 38 50 60 47 38 38 33 0 30 38 27 47 22 50 0z"/></svg><span><span class="script">I</span>dentidad de marca</span></li>
+            <li><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M50 0C53 22 62 27 100 30 62 33 53 38 50 60 47 38 38 33 0 30 38 27 47 22 50 0z"/></svg><span><span class="script">D</span>iseño gráfico</span></li>
+            <li><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M50 0C53 22 62 27 100 30 62 33 53 38 50 60 47 38 38 33 0 30 38 27 47 22 50 0z"/></svg><span><span class="script">P</span>rocesos audiovisuales</span></li>
+            <li><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M50 0C53 22 62 27 100 30 62 33 53 38 50 60 47 38 38 33 0 30 38 27 47 22 50 0z"/></svg><span><span class="script">C</span>ontenido para redes</span></li>
+            <li><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M50 0C53 22 62 27 100 30 62 33 53 38 50 60 47 38 38 33 0 30 38 27 47 22 50 0z"/></svg><span><span class="script">D</span>iseño UI / UX</span></li>
+          </ul>
+        </div>
+      </article>
+      <div class="mas-cta">
+        <p class="hang"><i class="hl" aria-hidden="true"></i><i class="hr" aria-hidden="true"></i>¡Puedes conocer más de mi trabajo!</p>
+        <a class="ring-btn" href="proyectos.html" data-go><span>Mi trabajo</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. CÓMO TRABAJO (cuatro pasos en zigzag) ============ -->
+  <section class="pad center">
+    <div class="wrap">
+      <h2 class="st">Cómo <span class="script">trabajo</span></h2>
+      <p class="lede muted" style="margin:1.2rem auto 0">Cuatro pasos y en cada uno ves algo concreto para revisar y aprobar.</p>
+      <div class="zig-wrap">
+      <ol class="steps zig">
+        <li class="step rv"><div class="art a1"><p>¿quién eres?<br>¿a quién le hablas?<br>¿qué te hace distinto?</p></div><span class="when">Paso 01</span><h3>Conocernos</h3><p>Una reunión para entender tu marca, tu público y lo que necesitas.</p><span class="out">Recibes · Resumen de la reunión</span></li>
+        <li class="step rv"><div class="art a2"><div>Público <b>✓</b></div><div>Tono <b>✓</b></div><div>Concepto <b>✓</b></div><div>Alcance <b>✓</b></div></div><span class="when">Paso 02</span><h3>Propuesta</h3><p>Defino el concepto, el alcance y el plan que mejor te sirve.</p><span class="out">Recibes · Propuesta y tiempos</span></li>
+        <li class="step rv"><div class="art a3" aria-hidden="true"><i style="--h:70%;background:var(--vino)"></i><i style="--h:52%;background:var(--terra)"></i><i style="--h:84%;background:var(--rosa)"></i><i style="--h:40%;background:var(--crema)"></i><i style="--h:62%;background:var(--vino-osc)"></i></div><span class="when">Paso 03</span><h3>Diseño</h3><p>Trabajo por etapas y te muestro avances para que opines a tiempo.</p><span class="out">Recibes · Piezas para aprobar</span></li>
+        <li class="step rv"><div class="art a4"><span>logo.svg <b>✓</b></span><span>manual.pdf <b>✓</b></span><span>piezas.zip <b>✓</b></span></div><span class="when">Paso 04</span><h3>Entrega</h3><p>Te entrego los archivos finales, listos para usar donde los necesites.</p><span class="out">Recibes · Archivos finales</span></li>
+      </ol>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ CONTACTO (en todas las páginas) ============ -->
+<footer class="contact" id="contacto" data-anchor="contacto">
+  <div class="wrap">
+    <h2 class="st">Trabajemos <span class="script">juntos</span></h2>
+    <div class="cgrid">
+      <div><h4>Escríbeme</h4><button id="copy">somonjara2005@gmail.com</button><a href="https://wa.me/573225374248" target="_blank" rel="noopener">WhatsApp · 322 537 4248</a></div>
+      <div><h4>Redes</h4><a href="https://instagram.com/_nthlky_" target="_blank" rel="noopener">Instagram · @_nthlky_</a></div>
+      <div><h4>Estudio</h4><p>Pereira, Colombia</p></div>
+    </div>
+    <div class="cbase"><span>© 2026 Sofía Moncada · Arte desde el alma y corazón</span></div>
   </div>
+</footer>
 
-  <script src="js/main.js?v=20261113"></script>
-  <script src="js/sobre-mi.js?v=20261113"></script>
+<!-- Transición entre páginas: 4 franjas de color -->
+<div class="wipe" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/main.js?v=20261113c"></script>
+<script src="js/datos.js?v=20261113c"></script>
+<script src="js/sobre-mi.js?v=20261113c"></script>
 </body>
 </html>

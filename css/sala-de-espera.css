@@ -1,27 +1,60 @@
 /* =========================================================
    TRAZO · Sala de espera
-   sala-de-espera.css · solo para sala-de-espera.html
+   sala-de-espera.css · solo sala-de-espera.html
+   (usa los colores y estilos generales de base.css)
    ========================================================= */
 
-.espera-caja {
-  display: flex;
-  flex-direction: column;
+.espera-caja { min-height: 70vh; }
+.espera-grid {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: clamp(2rem, 6vw, 5rem);
   align-items: center;
-  min-height: 100svh;
-  padding-block: 120px 100px;
-  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Vista previa colgada como una foto que se mece */
+.espera-foto {
+  position: relative;
+  margin: 0;
+  padding: 14px 14px 52px;
+  background: var(--blanco);
+  color: var(--vino-osc);
+  box-shadow: 0 30px 50px -24px rgba(61, 12, 21, .6);
+  transform-origin: 50% -14px;
+  rotate: -3deg;
+  animation: sway 5s ease-in-out infinite;
+  --r: -3deg;
+}
+.espera-foto img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; filter: saturate(.85); }
+.espera-foto figcaption {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 10px;
+  font-size: 1.9rem;
+}
+.espera-foto .pin {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  width: 16px;
+  height: 36px;
+  margin-left: -8px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #c9a98f, #e6d2c2 50%, #b9967c);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, .4);
 }
 
 /* Reloj de pared con manecillas que giran */
 .reloj {
   position: relative;
-  width: 86px;
-  height: 86px;
+  width: 84px;
+  height: 84px;
+  margin-bottom: 1.2rem;
   border: 4px solid var(--fg);
   border-radius: 50%;
-  background:
-    radial-gradient(circle, transparent 60%, var(--linea) 61% 63%, transparent 64%),
-    var(--paper);
+  background: var(--paper);
 }
 .reloj-hora,
 .reloj-minuto {
@@ -32,8 +65,8 @@
   background: var(--fg);
   transform-origin: bottom center;
 }
-.reloj-hora   { width: 4px; height: 22px; margin-left: -2px; animation: girar 60s linear infinite; }
-.reloj-minuto { width: 3px; height: 32px; margin-left: -1.5px; background: var(--accent-2); animation: girar 5s linear infinite; }
+.reloj-hora   { width: 4px; height: 22px; margin-left: -2px; animation: spin 60s linear infinite; }
+.reloj-minuto { width: 3px; height: 32px; margin-left: -1.5px; background: var(--accent); animation: spin 5s linear infinite; }
 .reloj-centro {
   position: absolute;
   top: 50%;
@@ -45,27 +78,15 @@
   background: var(--fg);
 }
 
-.espera-etiqueta {
-  margin-top: 1.4rem;
-  font-size: .8rem;
-  font-weight: 600;
-  letter-spacing: .3em;
-  text-transform: uppercase;
-  color: var(--accent-2);
-}
-
 /* Ficha de turno (como un tiquete con perforación) */
 .ficha {
   display: grid;
   grid-template-columns: auto 1fr;
-  width: min(560px, 100%);
-  margin-top: 1.2rem;
-  border-radius: 18px;
+  margin-top: .8rem;
+  border-radius: 22px;
   background: var(--rosa);
-  color: var(--vino-oscuro);
-  text-align: left;
-  box-shadow: var(--sombra);
-  transform-origin: top center;
+  color: var(--vino-osc);
+  box-shadow: 0 22px 40px -22px rgba(61, 12, 21, .6);
   animation: llega-ficha 1s cubic-bezier(.3, 1.5, .5, 1) backwards .2s;
 }
 @keyframes llega-ficha { from { opacity: 0; rotate: -8deg; translate: 0 -30px; } }
@@ -74,37 +95,33 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.2rem 1.4rem;
+  padding: 1.4rem 1.6rem;
   border-right: 2px dashed rgba(61, 12, 21, .35);
 }
-.ficha-turno span { font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
-.ficha-turno b { font-size: 3rem; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
-.ficha-datos { padding: 1.2rem 1.4rem; }
-.ficha-datos small { font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; opacity: .75; }
-.ficha-datos h1 { margin-top: .2rem; font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 800; line-height: 1.1; }
-.ficha-datos p { margin-top: .3rem; font-size: .92rem; }
+.ficha-turno span { font-size: .78rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
+.ficha-turno b { font-size: 3.6rem; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.ficha-datos { padding: 1.4rem 1.6rem; }
+.ficha-datos small { font-size: .82rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; opacity: .75; }
+.ficha-datos h1 { margin-top: .2rem; font-size: clamp(2rem, 4.6vw, 3.2rem); font-weight: 800; line-height: 1; text-transform: uppercase; }
+.ficha-datos .script { font-size: 2rem; color: var(--vino); }
 
 .espera-mensaje {
-  max-width: 30rem;
+  max-width: 34rem;
   margin-top: 1.8rem;
-  color: var(--suave);
+  font-size: 1.15rem;
+  color: var(--fg-soft);
 }
-.espera-mensaje .script {
-  display: block;
-  font-size: 2rem;
-  line-height: 1.2;
-  color: var(--accent);
-}
+.espera-mensaje .script { display: block; font-size: 2.4rem; color: var(--accent); }
 
 /* Barra de carga que va y viene */
 .espera-carga {
   position: relative;
-  width: min(320px, 80%);
+  width: min(340px, 80%);
   height: 6px;
   margin-top: 1.4rem;
   overflow: hidden;
   border-radius: 999px;
-  background: var(--linea);
+  background: var(--line);
 }
 .espera-carga span {
   position: absolute;
@@ -112,24 +129,17 @@
   bottom: 0;
   width: 35%;
   border-radius: inherit;
-  background: linear-gradient(90deg, var(--terracota), var(--rosa));
+  background: linear-gradient(90deg, var(--terra), var(--rosa));
   animation: cargando 1.8s ease-in-out infinite;
 }
-@keyframes cargando {
-  0%   { left: -35%; }
-  100% { left: 100%; }
-}
+@keyframes cargando { 0% { left: -35%; } 100% { left: 100%; } }
 
-/* Sillas: una está ocupada por una estrella que se mece */
-.sillas {
-  display: flex;
-  gap: 14px;
-  margin-top: 2.4rem;
-}
+/* Sillas: una ocupada por una estrella impaciente */
+.sillas { display: flex; gap: 14px; margin-top: 2.4rem; }
 .silla {
   position: relative;
-  width: 46px;
-  height: 40px;
+  width: 50px;
+  height: 42px;
   border-radius: 10px 10px 4px 4px;
   background: var(--vino);
   box-shadow: inset 0 -12px 0 rgba(0, 0, 0, .18);
@@ -145,52 +155,35 @@
   opacity: .5;
 }
 .silla::before { left: 8px; }
-.silla::after  { right: 8px; }
-.silla-ocupada svg {
+.silla::after { right: 8px; }
+.silla.ocupada svg {
   position: absolute;
-  top: -22px;
+  top: -24px;
   left: 50%;
-  width: 30px;
-  height: 30px;
-  margin-left: -15px;
-  fill: var(--rosa);
+  width: 32px;
+  margin-left: -16px;
+  color: var(--rosa);
   animation: impaciente 2.4s ease-in-out infinite;
 }
 @keyframes impaciente {
   0%, 100% { translate: 0 0; rotate: 0deg; }
-  25%      { translate: 0 -6px; rotate: 20deg; }
-  50%      { translate: 0 0; rotate: 0deg; }
+  25% { translate: 0 -6px; rotate: 20deg; }
+  50% { translate: 0 0; rotate: 0deg; }
 }
 
-.espera-botones {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: .8rem;
-  margin-top: 2.8rem;
-}
-
-.espera-otros { margin-top: 2.4rem; }
+.espera .row-btns { margin-top: 2.6rem; }
+.espera-otros { margin-top: 2.2rem; }
 .espera-otros[hidden] { display: none; }
-.espera-otros p { font-size: .9rem; color: var(--suave); }
-.espera-chips {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: .4rem;
-  margin: .6rem 0 0;
-  padding: 0;
-  list-style: none;
+.espera-otros p { margin-bottom: .6rem; color: var(--fg-soft); }
+.espera-otros .chip { text-decoration: none; }
+.espera-otros .chip:hover { background: var(--fg); color: var(--bg); }
+
+@media (max-width: 860px) {
+  .espera-grid { grid-template-columns: 1fr; }
+  .espera-foto { max-width: 420px; }
 }
-.espera-chips a {
-  display: inline-block;
-  padding: .4em 1em;
-  border: 1.3px solid var(--fg);
-  border-radius: 999px;
-  font-size: .85rem;
-  font-weight: 600;
-  color: var(--fg);
-  text-decoration: none;
-  transition: background-color .25s ease, color .25s ease;
+@media (prefers-reduced-motion: reduce) {
+  .espera-foto, .silla.ocupada svg, .reloj span { animation: none; }
 }
-.espera-chips a:hover { background: var(--fg); color: var(--bg); }
+
+@keyframes sway{0%,100%{rotate:var(--r)}50%{rotate:calc(var(--r) * -1)}}

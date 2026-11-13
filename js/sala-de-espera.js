@@ -1,42 +1,38 @@
 /* =========================================================
    TRAZO · Sala de espera
-   sala-de-espera.js · solo para sala-de-espera.html
-   Lee el proyecto de la dirección (?p=provet) y llena la ficha.
+   sala-de-espera.js · solo sala-de-espera.html
+   Lee el proyecto de la dirección (?p=boticaria) y llena la ficha con js/datos.js
    ========================================================= */
-(() => {
+(function () {
   'use strict';
+  const { P, IMG, rutaProyecto } = window.TRAZO;
+  // Estación de Proyectos a la que vuelve cada categoría
+  const ESTACION = { 'Marca': 'lo-grafico', 'Editorial': 'analogo', 'Redes': 'digital', 'Dirección de arte': 'en-set' };
 
-  const PROYECTOS = window.PROYECTOS || {};
-  const SALAS = window.SALAS || {};
   const id = new URLSearchParams(location.search).get('p') || '';
-  const proyecto = PROYECTOS[id];
-  const campo = (nombre) => document.querySelector(`[data-e="${nombre}"]`);
+  const i = P.findIndex((x) => x.id === id);
+  if (i < 0) return; // sin proyecto: se queda el texto general
+  const p = P[i];
+  const campo = (n) => document.querySelector(`[data-e="${n}"]`);
 
-  if (!proyecto) return; // sin proyecto: se queda el texto general
+  campo('turno').textContent = String(i + 1).padStart(2, '0');
+  campo('cat').textContent = p.cat;
+  campo('nombre').textContent = p.title;
+  campo('sub').textContent = p.sub;
+  const img = campo('imagen');
+  img.src = IMG[p.img[0]];
+  img.alt = `${p.title}: ${p.sub}`;
+  campo('pie').textContent = p.title.toLowerCase();
+  const volver = `proyectos.html#${ESTACION[p.cat] || ''}`;
+  campo('volver').href = volver;
+  campo('volver-arriba').href = volver;
+  campo('whatsapp').href = 'https://wa.me/573225374248?text=' + encodeURIComponent(`Hola Sof, quiero saber más del proyecto ${p.title} (${p.sub}).`);
+  document.title = `${p.title} · Sala de espera · Sofía Moncada`;
 
-  const claves = Object.keys(PROYECTOS);
-  const turno = String(claves.indexOf(id) + 1).padStart(2, '0');
-
-  campo('turno').textContent = turno;
-  campo('sala').textContent = SALAS[proyecto.sala] || 'Proyectos';
-  campo('nombre').textContent = proyecto.nombre;
-  campo('detalle').textContent = `${proyecto.anio} · ${proyecto.rol}`;
-  campo('volver').href = `proyectos.html#${proyecto.sala}`;
-  campo('whatsapp').href = `https://wa.me/573225374248?text=${encodeURIComponent(`Hola Sof, quiero saber más del proyecto ${proyecto.nombre}.`)}`;
-  document.title = `${proyecto.nombre} · Sala de espera · Trazo`;
-
-  // Otros proyectos de la misma sala
-  const otros = claves.filter((k) => k !== id && PROYECTOS[k].sala === proyecto.sala);
+  // Otros proyectos de la misma categoría
+  const otros = P.filter((x) => x.id !== id && x.cat === p.cat);
   if (otros.length) {
-    const lista = campo('otros');
-    otros.forEach((k) => {
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = `sala-de-espera.html?p=${k}`;
-      a.textContent = PROYECTOS[k].nombre;
-      li.appendChild(a);
-      lista.appendChild(li);
-    });
+    campo('otros').innerHTML = otros.map((x) => `<a class="chip" href="${rutaProyecto(x.id)}" data-go>${x.title} · ${x.sub}</a>`).join('');
     campo('otros-caja').hidden = false;
   }
 })();

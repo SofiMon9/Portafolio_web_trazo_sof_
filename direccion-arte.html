@@ -1,252 +1,112 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dirección de arte · Trazo</title>
-  <meta name="description" content="Portafolio de Sofía Moncada Jaramillo, diseñadora crossmedia en Pereira, Colombia. Arte desde el alma y corazón.">
-
-  <!-- Tipografías: Jost (textos) y Pinyon Script (cursiva) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&family=Pinyon+Script&display=swap" rel="stylesheet">
-
-  <!-- Estilos: generales (todas las páginas) + los propios de esta página -->
-  <link rel="stylesheet" href="css/base.css?v=20261113">
-  <link rel="stylesheet" href="css/barra-menu.css?v=20261113">
-  <link rel="stylesheet" href="css/pie.css?v=20261113">
-  <link rel="stylesheet" href="css/pronto.css?v=20261113">
-
-  <!-- Antes de pintar: tema guardado y cortina de llegada -->
-  <script>
-    (function () {
-      var r = document.documentElement;
-      try {
-        var t = localStorage.getItem('sof-theme');
-        if (t) r.dataset.theme = t;
-        if (sessionStorage.getItem('sof-cortina')) {
-          r.classList.add('cortina');
-          sessionStorage.removeItem('sof-cortina');
-        }
-      } catch (e) {}
-    })();
-  </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dirección de arte · Sofía Moncada</title>
+<meta name="description" content="Sofía Moncada, diseñadora crossmedia en Pereira, Colombia. Identidad de marca, contenido para redes y dirección de arte.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&family=Pinyon+Script&display=swap" rel="stylesheet">
+<!-- Estilos: generales (todas las páginas) + los propios de esta página -->
+<link rel="stylesheet" href="css/base.css?v=20261113c">
+<link rel="stylesheet" href="css/barra-menu.css?v=20261113c">
+<link rel="stylesheet" href="css/pie.css?v=20261113c">
+<link rel="stylesheet" href="css/mundos.css?v=20261113c">
+<!-- Antes de pintar: tema guardado y franjas de llegada desde otra página -->
+<script>
+(function(){var r=document.documentElement;try{var t=localStorage.getItem('sof-theme');if(t==='dark'||t==='light')r.dataset.theme=t;if(sessionStorage.getItem('sof-wipe')){r.classList.add('llegando');sessionStorage.removeItem('sof-wipe')}}catch(e){}})();
+</script>
 </head>
-<body data-pagina="direccion-arte">
+<body data-pagina="direccion-arte" data-world="direccion-arte">
+<a class="skip" href="#" id="skip">Saltar al contenido</a>
 
-  <!-- Dibujos reutilizables (estrella de 4 puntas) -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <symbol id="estrella" viewBox="0 0 24 24">
-      <path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z"/>
-    </symbol>
-  </svg>
+<!-- ============ BARRA PRINCIPAL ============ -->
+<header class="nav" id="nav">
+  <a class="logo" href="inicio.html" data-go aria-label="Trazo, inicio"><span class="script">Trazo</span></a>
+  <nav class="links" aria-label="Principal">
+    <a href="inicio.html" data-go>Inicio</a>
+    <a href="sobre-mi.html" data-go>Sobre mí</a>
+    <a href="proyectos.html" data-go>Proyectos</a>
+  </nav>
+  <a class="btn b-vino cta" href="planes.html" data-go>¡Trabajemos!</a>
+  <button class="whatido" aria-controls="mega">Lo que hago</button>
+  <button class="theme" role="switch" aria-checked="false" aria-label="Modo oscuro" title="Cambiar a modo claro u oscuro"><span class="knob" aria-hidden="true"><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></g></svg><svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></span></button>
+  <button class="menu-btn" aria-expanded="false" aria-controls="mega"><i></i>Menú</button>
+</header>
 
-  <!-- ============ BARRA SUPERIOR ============ -->
-  <header class="barra barra-principal">
-    <a class="logo script" href="inicio.html" aria-label="Trazo, inicio">Trazo</a>
-
-    <nav class="nav" aria-label="Principal">
-      <a class="nav-enlace" href="inicio.html">Inicio</a>
-      <a class="nav-enlace" href="sobre-mi.html">Sobre mí</a>
-      <a class="nav-enlace" href="proyectos.html">Proyectos</a>
-    </nav>
-
-    <div class="barra-acciones">
-      <a class="nav-cta" href="planes.html">¡Trabajemos!</a>
-      <button class="lo-que-hago" type="button" aria-expanded="false" aria-controls="mega">Lo que hago</button>
-
-      <!-- Interruptor tipo píldora: sol a la izquierda (claro), luna a la derecha (oscuro) -->
-      <button class="tema" id="btnTema" type="button" role="switch" aria-label="Modo oscuro">
-        <span class="perilla">
-          <svg class="ico-sol" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="4.5"/>
-            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/>
-          </svg>
-          <svg class="ico-luna" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/>
-          </svg>
-        </span>
-      </button>
-
-      <!-- Botón de menú (solo en celular) -->
-      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mega">
-        <span class="menu-rayas" aria-hidden="true"><i></i><i></i></span>Menú
-      </button>
+<!-- ============ MENÚ GRANDE: LO QUE HAGO ============ -->
+<div class="mega" id="mega">
+  <div class="wrap">
+    <div class="mega-head"><div class="lbl"><b>000</b><span>Lo que hago</span></div><p class="script">elige tu plan y escríbeme</p></div>
+    <div class="mega-grid">
+      <div class="world w1">
+        <a class="wh" href="marca.html" data-go><span class="wn">Mundo 01 · Para marcas nuevas y emprendimientos</span><h3>Marca <span class="script">y piezas</span></h3></a>
+        <ul>
+          <li><a href="marca.html" data-go><span>01</span>Identidad simple<small>Logo, paleta y tipografías · 3 entregables</small></a><button class="buy" data-buy="Identidad simple" data-w="Marca">Adquirir</button></li>
+          <li><a href="marca.html" data-go><span>02</span>Manual de marca<small>Reglas de uso de tu marca · 8 entregables</small></a><button class="buy" data-buy="Manual de marca" data-w="Marca">Adquirir</button></li>
+          <li><a href="marca.html" data-go><span>03</span>Identidad completa<small>Todo lo anterior + papelería y lanzamiento</small></a><button class="buy" data-buy="Identidad completa" data-w="Marca">Adquirir</button></li>
+        </ul>
+        <div class="seen"><small>Míralo en</small><div class="mini"><a href="sala-de-espera.html?p=provet-marca" data-go>Provet</a><a href="sala-de-espera.html?p=boticaria" data-go>Boticaria</a><a href="sala-de-espera.html?p=museos" data-go>Museos y galerías</a><a href="sala-de-espera.html?p=grotesco" data-go>Lo grotesco</a></div></div>
+        <a class="go-plan" href="marca.html" data-go>Ver el mundo de marca</a>
+      </div>
+      <div class="world w2">
+        <a class="wh" href="redes.html" data-go><span class="wn">Mundo 02 · Para negocios, servicios y creadores</span><h3>Redes <span class="script">sociales</span></h3></a>
+        <ul>
+          <li><a href="redes.html" data-go><span>01</span>Posts e historias<small>Piezas que enseñan, conectan y venden</small></a><button class="buy" data-buy="Posts e historias" data-w="Redes">Adquirir</button></li>
+          <li><a href="redes.html" data-go><span>02</span>Reels y video<small>Edición con ritmo y con tu estética</small></a><button class="buy" data-buy="Reels y video" data-w="Redes">Adquirir</button></li>
+          <li><a href="redes.html" data-go><span>03</span>Fotografía<small>Producto y retrato, con edición de color</small></a><button class="buy" data-buy="Fotografía" data-w="Redes">Adquirir</button></li>
+        </ul>
+        <div class="seen"><small>Míralo en</small><div class="mini"><a href="sala-de-espera.html?p=provet-redes" data-go>Provet · redes</a></div></div>
+        <a class="go-plan" href="redes.html" data-go>Ver el mundo de redes</a>
+      </div>
+      <div class="world w3">
+        <a class="wh" href="direccion-arte.html" data-go><span class="wn">Mundo 03 · Para videoclips, comerciales y cortos</span><h3>Dirección <span class="script">de arte</span></h3></a>
+        <ul>
+          <li><a href="direccion-arte.html" data-go><span>01</span>Concepto visual<small>Referencias, paleta y propuesta para tu pieza</small></a><button class="buy" data-buy="Concepto visual" data-w="Dirección de arte">Adquirir</button></li>
+          <li><a href="direccion-arte.html" data-go><span>02</span>Ambientación<small>Escenografía y utilería para cada escena</small></a><button class="buy" data-buy="Ambientación" data-w="Dirección de arte">Adquirir</button></li>
+          <li><a href="direccion-arte.html" data-go><span>03</span>Arte en el set<small>Asistencia de arte y producción en rodaje</small></a><button class="buy" data-buy="Arte en el set" data-w="Dirección de arte">Adquirir</button></li>
+        </ul>
+        <div class="seen"><small>Míralo en</small><div class="mini"><a href="sala-de-espera.html?p=casualidad" data-go>Casualidad</a><a href="sala-de-espera.html?p=servicarga" data-go>Servicarga</a></div></div>
+        <a class="go-plan" href="direccion-arte.html" data-go>Ver el mundo de arte</a>
+      </div>
     </div>
-  </header>
-
-  <!-- ============ MENÚ GRANDE: LO QUE HAGO ============ -->
-  <!-- Se abre con "Lo que hago", "Menú" y "¿Qué necesitas?". Igual en todas las páginas internas. -->
-  <div class="mega" id="mega" aria-label="Lo que hago" hidden>
-    <div class="mega-contenido">
-
-      <div class="mega-cabeza">
-        <p class="mega-etiqueta"><b>000</b> Lo que hago</p>
-        <p class="mega-lema script">elige tu plan y escríbeme</p>
+    <div class="mega-more">
+      <nav aria-label="Más"><a href="inicio.html" data-go>Inicio</a><a href="sobre-mi.html" data-go>Sobre mí</a><a href="proyectos.html" data-go>Proyectos</a><a href="planes.html" data-go>¡Trabajemos!</a><button data-scroll="contacto">Contacto</button></nav>
+      <div class="mega-help">
+        <p class="script">¿no sabes por dónde empezar?</p>
+        <p>Agenda una asesoría de 2 horas y decidimos juntos el siguiente paso de tu marca.</p>
+        <div class="row-btns" style="margin-top:1rem"><a class="btn b-vino" href="planes.html#asesoria" data-go>Ver asesoría</a><a class="btn b-line" href="https://wa.me/573225374248" target="_blank" rel="noopener">WhatsApp</a></div>
+        <span class="clock" data-clock style="display:block;margin-top:1rem">Pereira</span>
       </div>
-
-      <div class="mundos">
-
-        <!-- Mundo 01 · Marca -->
-        <article class="mundo mundo-marca">
-          <p class="mundo-para">Mundo 01 · Para marcas nuevas y emprendimientos</p>
-          <h2 class="mundo-titulo">MARCA <span class="script">y piezas</span></h2>
-          <ol class="mundo-planes">
-            <li class="plan">
-              <span class="plan-num">01</span>
-              <div class="plan-texto"><h3>Identidad simple</h3><p>Logo, paleta y tipografías · 3 entregables</p></div>
-              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Identidad%20simple%20(Marca%20y%20piezas)." target="_blank" rel="noopener">Adquirir</a>
-            </li>
-            <li class="plan">
-              <span class="plan-num">02</span>
-              <div class="plan-texto"><h3>Manual de marca</h3><p>Reglas de uso de tu marca · 8 entregables</p></div>
-              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Manual%20de%20marca%20(Marca%20y%20piezas)." target="_blank" rel="noopener">Adquirir</a>
-            </li>
-            <li class="plan">
-              <span class="plan-num">03</span>
-              <div class="plan-texto"><h3>Identidad completa</h3><p>Todo lo anterior + papelería y lanzamiento</p></div>
-              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Identidad%20completa%20(Marca%20y%20piezas)." target="_blank" rel="noopener">Adquirir</a>
-            </li>
-          </ol>
-          <p class="mundo-miralo">Míralo en</p>
-          <ul class="chips">
-            <li><a href="proyectos.html#provet">Provet</a></li>
-            <li><a href="proyectos.html#boticaria">Boticaria</a></li>
-            <li><a href="proyectos.html#museos">Museos y galerías</a></li>
-            <li><a href="proyectos.html#lo-grotesco">Lo grotesco</a></li>
-          </ul>
-          <a class="mundo-ver" href="marca.html">Ver el mundo de marca <span aria-hidden="true">✶</span></a>
-        </article>
-
-        <!-- Mundo 02 · Redes -->
-        <article class="mundo mundo-redes">
-          <p class="mundo-para">Mundo 02 · Para negocios, servicios y creadores</p>
-          <h2 class="mundo-titulo">REDES <span class="script">sociales</span></h2>
-          <ol class="mundo-planes">
-            <li class="plan">
-              <span class="plan-num">01</span>
-              <div class="plan-texto"><h3>Posts e historias</h3><p>Piezas que enseñan, conectan y venden</p></div>
-              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Posts%20e%20historias%20(Redes%20sociales)." target="_blank" rel="noopener">Adquirir</a>
-            </li>
-            <li class="plan">
-              <span class="plan-num">02</span>
-              <div class="plan-texto"><h3>Reels y video</h3><p>Edición con ritmo y con tu estética</p></div>
-              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Reels%20y%20video%20(Redes%20sociales)." target="_blank" rel="noopener">Adquirir</a>
-            </li>
-            <li class="plan">
-              <span class="plan-num">03</span>
-              <div class="plan-texto"><h3>Fotografía</h3><p>Producto y retrato, con edición de color</p></div>
-              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Fotograf%C3%ADa%20(Redes%20sociales)." target="_blank" rel="noopener">Adquirir</a>
-            </li>
-          </ol>
-          <p class="mundo-miralo">Míralo en</p>
-          <ul class="chips">
-            <li><a href="proyectos.html#provet-redes">Provet · redes</a></li>
-          </ul>
-          <a class="mundo-ver" href="redes.html">Ver el mundo de redes <span aria-hidden="true">✶</span></a>
-        </article>
-
-        <!-- Mundo 03 · Dirección de arte -->
-        <article class="mundo mundo-arte">
-          <p class="mundo-para">Mundo 03 · Para videoclips, comerciales y cortos</p>
-          <h2 class="mundo-titulo">DIRECCIÓN <span class="script">de arte</span></h2>
-          <ol class="mundo-planes">
-            <li class="plan">
-              <span class="plan-num">01</span>
-              <div class="plan-texto"><h3>Concepto visual</h3><p>Referencias, paleta y propuesta para tu pieza</p></div>
-              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Concepto%20visual%20(Direcci%C3%B3n%20de%20arte)." target="_blank" rel="noopener">Adquirir</a>
-            </li>
-            <li class="plan">
-              <span class="plan-num">02</span>
-              <div class="plan-texto"><h3>Ambientación</h3><p>Escenografía y utilería para cada escena</p></div>
-              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Ambientaci%C3%B3n%20(Direcci%C3%B3n%20de%20arte)." target="_blank" rel="noopener">Adquirir</a>
-            </li>
-            <li class="plan">
-              <span class="plan-num">03</span>
-              <div class="plan-texto"><h3>Arte en el set</h3><p>Asistencia de arte y producción en rodaje</p></div>
-              <a class="adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20adquirir%20el%20plan%20Arte%20en%20el%20set%20(Direcci%C3%B3n%20de%20arte)." target="_blank" rel="noopener">Adquirir</a>
-            </li>
-          </ol>
-          <p class="mundo-miralo">Míralo en</p>
-          <ul class="chips">
-            <li><a href="proyectos.html#casualidad">Casualidad</a></li>
-            <li><a href="proyectos.html#servicarga">Servicarga</a></li>
-          </ul>
-          <a class="mundo-ver" href="direccion-arte.html">Ver el mundo de arte <span aria-hidden="true">✶</span></a>
-        </article>
-      </div>
-
-      <div class="mega-pie">
-        <nav class="mega-paginas" aria-label="Páginas">
-          <a href="inicio.html">Inicio</a>
-          <a href="sobre-mi.html">Sobre mí</a>
-          <a href="proyectos.html">Proyectos</a>
-          <a href="planes.html">¡Trabajemos!</a>
-          <a href="#contacto">Contacto</a>
-        </nav>
-
-        <aside class="asesoria">
-          <p class="asesoria-titulo script">¿no sabes por dónde empezar?</p>
-          <p class="asesoria-texto">Agenda una asesoría de 2 horas y decidimos juntos el siguiente paso de tu marca.</p>
-          <div class="asesoria-botones">
-            <a class="btn-rosa" href="planes.html#asesoria">Ver asesoría</a>
-            <a class="btn-borde" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20quiero%20agendar%20una%20asesor%C3%ADa." target="_blank" rel="noopener">WhatsApp</a>
-          </div>
-          <p class="asesoria-hora">Pereira · <span data-hora>--:--</span></p>
-        </aside>
-      </div>
-
     </div>
   </div>
+</div>
 
-  <main>
+<main id="main" tabindex="-1">
+  <!-- Esta página se arma sola con los datos de js/datos.js (mundo "direccion-arte") -->
+  <div class="wp" data-world="direccion-arte"></div>
+</main>
 
-    <!-- ============ DIRECCIóN DE ARTE (temporal: "Muy pronto") ============ -->
-    <section class="vista pronto" aria-labelledby="pronto-titulo">
-      <div class="deco" aria-hidden="true">
-        <svg class="deco-estrella e1"><use href="#estrella"/></svg>
-        <svg class="deco-estrella e3"><use href="#estrella"/></svg>
-      </div>
-      <div class="contenedor pronto-caja">
-        <p class="script pronto-script">Muy pronto</p>
-        <h1 id="pronto-titulo">Dirección de arte</h1>
-        <p>Esta página todavía la estamos construyendo.</p>
-        <a class="boton" href="index.html">Volver al estante</a>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ============ PIE DE PÁGINA (igual en todas las páginas) ============ -->
-  <footer class="pie" id="contacto">
-    <h2 class="pie-titulo">Trabajemos <span class="script">Juntos</span></h2>
-
-    <div class="pie-columnas">
-      <div class="pie-col">
-        <h3>Escríbeme</h3>
-        <!-- El correo se copia al tocarlo -->
-        <button class="copiar" type="button" data-copiar="somonjara2005@gmail.com">somonjara2005@gmail.com</button>
-        <span class="copiar-aviso" aria-live="polite"></span>
-        <a href="https://wa.me/573225374248" target="_blank" rel="noopener">WhatsApp · 3225374248</a>
-      </div>
-      <div class="pie-col">
-        <h3>Redes</h3>
-        <a href="https://www.instagram.com/_nthlky_/" target="_blank" rel="noopener">Instagram · @_nthlky_</a>
-      </div>
-      <div class="pie-col">
-        <h3>Estudio</h3>
-        <p>Pereira, Colombia</p>
-      </div>
+<!-- ============ CONTACTO (en todas las páginas) ============ -->
+<footer class="contact" id="contacto" data-anchor="contacto">
+  <div class="wrap">
+    <h2 class="st">Trabajemos <span class="script">juntos</span></h2>
+    <div class="cgrid">
+      <div><h4>Escríbeme</h4><button id="copy">somonjara2005@gmail.com</button><a href="https://wa.me/573225374248" target="_blank" rel="noopener">WhatsApp · 322 537 4248</a></div>
+      <div><h4>Redes</h4><a href="https://instagram.com/_nthlky_" target="_blank" rel="noopener">Instagram · @_nthlky_</a></div>
+      <div><h4>Estudio</h4><p>Pereira, Colombia</p></div>
     </div>
-
-    <p class="pie-legal">© 2026 Sofía Moncada - Arte desde el alma y corazón</p>
-  </footer>
-
-  <!-- Transición entre páginas: 4 franjas de color -->
-  <div class="franjas" aria-hidden="true">
-    <span></span><span></span><span></span><span></span>
+    <div class="cbase"><span>© 2026 Sofía Moncada · Arte desde el alma y corazón</span></div>
   </div>
+</footer>
 
-  <script src="js/main.js?v=20261113"></script>
+<!-- Transición entre páginas: 4 franjas de color -->
+<div class="wipe" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/main.js?v=20261113c"></script>
+<script src="js/datos.js?v=20261113c"></script>
+<script src="js/mundos.js?v=20261113c"></script>
 </body>
 </html>

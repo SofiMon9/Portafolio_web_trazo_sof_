@@ -1,85 +1,32 @@
 /* =========================================================
    TRAZO · Portafolio de Sofía Moncada
-   pie.css · pie de página "Trabajemos Juntos" (todas las páginas)
+   pie.css · TODAS las páginas: pie de contacto "Trabajemos juntos"
+   (estilos tomados del portafolio original: trazo-portafolio/css/estilos.css)
    ========================================================= */
 
-/* ---------- 9f. Pie de página "Trabajemos Juntos" (todas las páginas) ---------- */
-.pie {
-  margin-inline: clamp(0px, 3vw, 44px);
-  padding: clamp(3rem, 7vw, 4.5rem) clamp(16px, 5vw, 2rem) 2.2rem;
-  border-radius: 40px 40px 0 0;
-  background: #2E0911;
-  color: var(--crema);
-  text-align: center;
-  scroll-margin-top: 80px;
-}
-.pie-titulo {
-  max-width: 1000px;
-  margin-inline: auto;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--rosa) 60%, transparent);
-  font-size: clamp(2.2rem, 5vw, 3.2rem);
-  font-weight: 800;
-}
-.pie-titulo .script {
-  margin-left: .2em;
-  font-size: 1.05em;
-  font-weight: 400;
-  color: var(--rosa);
-}
+/* contacto (footer) */
+.contact{color:var(--crema);--line:rgba(247,239,233,.2);background:var(--vino);border-radius:40px 40px 0 0;margin-top:2rem;padding:clamp(4rem,8vw,6.5rem) 0 calc(2rem + env(safe-area-inset-bottom,0px))}
+.contact .st{font-size:clamp(3rem,9vw,7.6rem)}
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--line)}
+.cgrid h4{font-weight:600;font-size:.9rem;opacity:.7;margin-bottom:.8rem}
+.cgrid a,.cgrid button{display:block;font-size:clamp(1.05rem,1.8vw,1.3rem);text-decoration:none;margin-bottom:.35rem;text-align:left}
+.cgrid a:hover,.cgrid button:hover{color:var(--rosa)}
+.contact .st .script{color:var(--rosa)}
+.cgrid p{font-size:1.05rem}
+.cbase{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;margin-top:3rem;font-size:.9rem;opacity:.8}
+.cbase a{text-decoration:none}
+@media (max-width:760px){.cgrid{grid-template-columns:1fr}}
 
-.pie-columnas {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  max-width: 900px;
-  margin: 2.6rem auto 0;
-}
-.pie-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .9rem;
-}
-.pie-col h3 {
-  font-size: 1.05rem;
-  font-weight: 600;
-}
-.pie-col a,
-.pie-col p,
-.copiar {
-  padding: 0;
-  border: none;
-  background: none;
-  font: inherit;
-  font-size: .88rem;
-  color: var(--crema);
-  opacity: .85;
-  text-decoration: none;
-  cursor: pointer;
-  transition: color .25s ease, opacity .25s ease;
-}
-.pie-col p { cursor: default; }
-.pie-col a:hover,
-.copiar:hover { color: var(--rosa); opacity: 1; }
-.copiar-aviso {
-  min-height: 0;
-  margin-top: -.6rem;
-  font-size: .78rem;
-  font-weight: 600;
-  color: var(--rosa);
-}
-.copiar-aviso:empty { display: none; }
+.toast{position:fixed;left:50%;bottom:calc(1.4rem + env(safe-area-inset-bottom,0px));transform:translate(-50%,180%);visibility:hidden;background:var(--rosa);color:var(--vino-osc);padding:.8rem 1.3rem;border-radius:999px;font-weight:600;z-index:97;transition:transform .45s cubic-bezier(.3,1.5,.5,1),visibility .45s}
+.toast.show{transform:translate(-50%,0);visibility:visible}
+.rv{opacity:0;translate:0 36px;transition:opacity .8s,translate 1s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;translate:0 0}
 
-.pie-legal {
-  margin-top: 3rem;
-  font-size: .95rem;
-  font-weight: 500;
-  color: var(--terracota);
-}
+/* contacto centrado */
+.contact{text-align:center}
+.contact .lbl{justify-content:center}
+.cgrid{text-align:center}
+.cgrid a,.cgrid button{margin-inline:auto;text-align:center}
+.cbase{justify-content:center;gap:2rem}
 
-@media (max-width: 640px) {
-  .pie-columnas { grid-template-columns: 1fr; }
-}
-
-
+.contact .lbl b{color:var(--rosa)}
