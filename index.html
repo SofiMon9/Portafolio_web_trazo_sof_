@@ -13,17 +13,32 @@
 
   <link rel="stylesheet" href="css/estilos.css">
 
-  <!-- Aplica el tema guardado (claro/oscuro) antes de pintar la página, para que no parpadee -->
+  <!-- Antes de pintar: tema guardado, cortina de llegada y salto de la entrada -->
   <script>
     (function () {
+      var r = document.documentElement;
       try {
         var t = localStorage.getItem('sof-theme');
-        if (t) document.documentElement.dataset.theme = t;
+        if (t) r.dataset.theme = t;
+
+        // La entrada solo aparece la primera vez. Si ya la viste y llegas de afuera,
+        // pasa directo al inicio. Para verla igual: index.html?entrada
+        var vista = localStorage.getItem('sof-intro-visto');
+        var desdeElSitio = document.referrer.indexOf(location.origin) === 0;
+        if (vista && !desdeElSitio && location.search.indexOf('entrada') < 0) {
+          location.replace('inicio.html');
+          return;
+        }
+
+        if (sessionStorage.getItem('sof-cortina')) {
+          r.classList.add('cortina');
+          sessionStorage.removeItem('sof-cortina');
+        }
       } catch (e) {}
     })();
   </script>
 </head>
-<body>
+<body data-pagina="entrada">
 
   <!-- Dibujos reutilizables (estrella de 4 puntas) -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -34,7 +49,7 @@
 
   <!-- ============ BARRA SUPERIOR ============ -->
   <header class="barra">
-    <a class="marca-nombre" href="#inicio">Sofía Moncada - Portafolio 2026</a>
+    <a class="marca-nombre" href="inicio.html">Sofía Moncada - Portafolio 2026</a>
 
     <!-- Interruptor tipo píldora: sol a la izquierda (claro), luna a la derecha (oscuro) -->
     <button class="tema" id="btnTema" type="button" role="switch" aria-label="Modo oscuro">
@@ -53,7 +68,7 @@
   <main>
 
     <!-- ============ ENTRADA (INTRO) ============ -->
-    <section class="vista intro" data-vista="intro" aria-labelledby="intro-titulo">
+    <section class="vista intro" aria-labelledby="intro-titulo">
 
       <!-- Fondo decorativo con baja opacidad -->
       <div class="deco" aria-hidden="true">
@@ -112,28 +127,28 @@
           <span class="nota script" aria-hidden="true">¡toca uno!</span>
 
           <nav class="estante" aria-label="Elige un mundo">
-            <a class="libro" href="#sobre-mi" style="--i:0; --h:265; --c:var(--vino); --t:var(--crema)"
+            <a class="libro" href="sobre-mi.html" style="--i:0; --h:265; --c:var(--vino); --t:var(--crema)"
                data-pista="Sobre mí · quién soy, mis herramientas y cómo trabajo.">
               <span class="libro-num">01</span>
               <span class="libro-titulo">Sobre mí</span>
               <svg class="libro-icono" aria-hidden="true"><use href="#estrella"/></svg>
             </a>
 
-            <a class="libro" href="#archivo" style="--i:1; --h:300; --c:var(--rosa); --t:var(--vino-oscuro)"
+            <a class="libro" href="proyectos.html" style="--i:1; --h:300; --c:var(--rosa); --t:var(--vino-oscuro)"
                data-pista="Proyectos · lo gráfico, análogo, digital, en cámara y en set.">
               <span class="libro-num">02</span>
               <span class="libro-titulo">Proyectos</span>
               <svg class="libro-icono" aria-hidden="true"><use href="#estrella"/></svg>
             </a>
 
-            <a class="libro" href="#planes" style="--i:2; --h:280; --c:var(--terracota); --t:var(--crema)"
+            <a class="libro" href="planes.html" style="--i:2; --h:280; --c:var(--terracota); --t:var(--crema)"
                data-pista="Trabajemos · planes y un brief para empezar juntxs.">
               <span class="libro-num">03</span>
               <span class="libro-titulo">Trabajemos</span>
               <svg class="libro-icono" aria-hidden="true"><use href="#estrella"/></svg>
             </a>
 
-            <a class="libro libro-inclinado" href="#inicio" style="--i:3; --h:230; --c:var(--arena); --t:var(--vino)"
+            <a class="libro libro-inclinado" href="inicio.html" style="--i:3; --h:230; --c:var(--arena); --t:var(--vino)"
                data-pista="Ver todo · empieza por el inicio y recorre el archivo completo.">
               <span class="libro-num">04</span>
               <span class="libro-titulo">Ver todo</span>
@@ -148,50 +163,6 @@
       </div>
 
       <p class="firma script">Sof</p>
-    </section>
-
-    <!-- ============ INICIO ============ -->
-    <section class="vista inicio" data-vista="inicio" hidden aria-labelledby="inicio-titulo">
-
-      <!-- Portada: "Sof en TRAZO" -->
-      <div class="portada">
-        <div class="portada-rayas" aria-hidden="true"></div>
-
-        <div class="portada-centro">
-          <svg class="portada-estrella pe1" aria-hidden="true"><use href="#estrella"/></svg>
-          <svg class="portada-estrella pe2" aria-hidden="true"><use href="#estrella"/></svg>
-          <svg class="portada-estrella pe3" aria-hidden="true"><use href="#estrella"/></svg>
-
-          <h1 id="inicio-titulo" class="portada-titulo">
-            <span class="portada-sof script">Sof en</span>
-            <span class="trazo" aria-label="TRAZO">
-              <span class="trazo-letra" style="--i:0" aria-hidden="true">T</span>
-              <span class="trazo-letra" style="--i:1" aria-hidden="true">R</span>
-              <span class="trazo-letra" style="--i:2" aria-hidden="true">A</span>
-              <span class="trazo-letra" style="--i:3" aria-hidden="true">Z</span>
-              <span class="trazo-letra" style="--i:4" aria-hidden="true">O</span>
-            </span>
-          </h1>
-
-          <p class="portada-lema script">Arte desde el alma y corazón</p>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- ============ PÁGINA TEMPORAL ("Muy pronto") ============ -->
-    <!-- Se muestra para las páginas que todavía no están construidas -->
-    <section class="vista pronto" data-vista="pronto" hidden aria-labelledby="pronto-titulo">
-      <div class="deco" aria-hidden="true">
-        <svg class="deco-estrella e1"><use href="#estrella"/></svg>
-        <svg class="deco-estrella e3"><use href="#estrella"/></svg>
-      </div>
-      <div class="contenedor pronto-caja">
-        <p class="script pronto-script">Muy pronto</p>
-        <h1 id="pronto-titulo" data-nombre>Página</h1>
-        <p>Esta página todavía la estamos construyendo.</p>
-        <a class="boton" href="#intro">Volver al estante</a>
-      </div>
     </section>
 
   </main>

@@ -1,6 +1,6 @@
 /* =========================================================
    TRAZO · Portafolio de Sofía Moncada
-   main.js
+   main.js · lo usan todas las páginas
    ========================================================= */
 (() => {
   'use strict';
@@ -8,12 +8,12 @@
   const raiz = document.documentElement;
   raiz.classList.add('js');
 
+  const pagina = document.body.dataset.pagina; // "entrada", "inicio", "sobre-mi"...
   const movimientoReducido = matchMedia('(prefers-reduced-motion: reduce)');
   const espera = (ms) => new Promise((r) => setTimeout(r, movimientoReducido.matches ? 0 : ms));
 
   // Guardar y leer en el navegador sin que falle si está bloqueado
   const guardar = (clave, valor) => { try { localStorage.setItem(clave, valor); } catch (e) {} };
-  const leer = (clave) => { try { return localStorage.getItem(clave); } catch (e) { return null; } };
 
 
   /* ---------- 1. Tema claro / oscuro ---------- */
@@ -27,12 +27,6 @@
     btnTema.setAttribute('aria-checked', tema === 'dark' ? 'true' : 'false');
   }
 
-  // La barra toma fondo al bajar
-  const barra = document.querySelector('.barra');
-  const revisarBarra = () => barra.classList.toggle('con-fondo', window.scrollY > 20);
-  window.addEventListener('scroll', revisarBarra, { passive: true });
-  revisarBarra();
-
   btnTema.addEventListener('click', () => {
     const nuevo = temaActual() === 'dark' ? 'light' : 'dark';
     raiz.dataset.theme = nuevo;
@@ -41,6 +35,12 @@
   });
   sistemaOscuro.addEventListener('change', pintarBotonTema);
   pintarBotonTema();
+
+  // La barra toma fondo al bajar
+  const barra = document.querySelector('.barra');
+  const revisarBarra = () => barra.classList.toggle('con-fondo', window.scrollY > 20);
+  window.addEventListener('scroll', revisarBarra, { passive: true });
+  revisarBarra();
 
 
   /* ---------- 2. Aparición de bloques al hacer scroll ---------- */
@@ -55,121 +55,89 @@
   document.querySelectorAll('.aparece').forEach((el) => observadorAparece.observe(el));
 
 
-  /* ---------- 3. Estante de libros ---------- */
+  /* ---------- 3. ENTRADA · Estante de libros ---------- */
   const estante = document.querySelector('.estante');
-  const pista = document.getElementById('pista');
-  const pistaInicial = pista.textContent;
+  if (estante) {
+    const pista = document.getElementById('pista');
+    const pistaInicial = pista.textContent;
 
-  // Los libros caen cuando el estante aparece en pantalla
-  const observadorEstante = new IntersectionObserver(([e]) => {
-    if (e.isIntersecting) {
-      estante.classList.add('cae');
-      observadorEstante.unobserve(estante);
-    }
-  }, { threshold: 0.3 });
-
-  function prepararEstante() {
-    estante.classList.remove('cae');
+    // Los libros caen cuando el estante aparece en pantalla
+    const observadorEstante = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        estante.classList.add('cae');
+        observadorEstante.disconnect();
+      }
+    }, { threshold: 0.3 });
     observadorEstante.observe(estante);
-  }
 
-  // Texto de ayuda según el libro señalado
-  estante.querySelectorAll('.libro').forEach((libro) => {
-    const mostrarPista = () => { pista.textContent = libro.dataset.pista; };
-    const quitarPista = () => { pista.textContent = pistaInicial; };
-    libro.addEventListener('mouseenter', mostrarPista);
-    libro.addEventListener('focus', mostrarPista);
-    libro.addEventListener('mouseleave', quitarPista);
-    libro.addEventListener('blur', quitarPista);
-  });
-
-
-  /* ---------- 4. Vistas (páginas por #hash) ---------- */
-  const vistas = [...document.querySelectorAll('.vista')];
-  const vistaPronto = document.querySelector('[data-vista="pronto"]');
-
-  // Nombres bonitos de las páginas que aún no existen
-  const NOMBRES = {
-    'inicio': 'Inicio',
-    'sobre-mi': 'Sobre mí',
-    'archivo': 'Proyectos',
-    'marca': 'Marca',
-    'redes': 'Redes',
-    'direccion-arte': 'Dirección de arte',
-    'planes': 'Planes',
-  };
-
-  function mostrar(hash) {
-    const id = decodeURIComponent((hash || '').replace(/^#/, '')) || 'intro';
-    let vista = vistas.find((v) => v.dataset.vista === id && v !== vistaPronto);
-
-    if (!vista) {
-      vista = vistaPronto;
-      vistaPronto.querySelector('[data-nombre]').textContent = NOMBRES[id] || id.replace(/-/g, ' ');
-    }
-
-    vistas.forEach((v) => {
-      v.hidden = v !== vista;
-      v.classList.remove('activa');
+    // Texto de ayuda según el libro señalado
+    estante.querySelectorAll('.libro').forEach((libro) => {
+      const mostrarPista = () => { pista.textContent = libro.dataset.pista; };
+      const quitarPista = () => { pista.textContent = pistaInicial; };
+      libro.addEventListener('mouseenter', mostrarPista);
+      libro.addEventListener('focus', mostrarPista);
+      libro.addEventListener('mouseleave', quitarPista);
+      libro.addEventListener('blur', quitarPista);
     });
-    // Reinicia las animaciones de entrada de la página (ej. letras de TRAZO)
-    void vista.offsetWidth;
-    vista.classList.add('activa');
-
-    if (id === 'intro') {
-      document.title = 'Trazo · Bienvenidx al archivo de SOF';
-      prepararEstante();
-    } else {
-      guardar('sof-intro-visto', '1');
-      document.title = `${NOMBRES[id] || 'Trazo'} · Trazo`;
-    }
-
-    window.scrollTo({ top: 0, behavior: 'instant' });
   }
 
-  // Transición con las 4 franjas de color
+  // Si ya pasaste por una página distinta a la entrada, la entrada no vuelve a salir sola
+  if (pagina !== 'entrada') guardar('sof-intro-visto', '1');
+
+
+  /* ---------- 4. Transición entre páginas (4 franjas) ---------- */
   const franjas = document.querySelector('.franjas');
-  let enTransicion = false;
+  let saliendo = false;
 
-  async function transicion(cambio) {
-    if (enTransicion) return;
-    enTransicion = true;
-    franjas.classList.add('entra');
-    await espera(750);
-    cambio();
-    franjas.classList.add('sale');
-    await espera(750);
-    franjas.classList.remove('entra', 'sale');
-    enTransicion = false;
-  }
-
-  // Clics en enlaces internos (#...)
   document.addEventListener('click', (ev) => {
-    const enlace = ev.target.closest('a[href^="#"]');
+    const enlace = ev.target.closest('a[href]');
     if (!enlace) return;
-    const hash = enlace.getAttribute('href');
-    if (hash.length < 2) return;
+    const href = enlace.getAttribute('href');
 
-    // Enlaces que solo bajan dentro de la misma página
-    if (enlace.hasAttribute('data-scroll')) {
-      ev.preventDefault();
-      document.querySelector(hash)?.scrollIntoView({ behavior: movimientoReducido.matches ? 'auto' : 'smooth' });
+    // Enlaces dentro de la misma página (#algo): bajan suave
+    if (href.startsWith('#')) {
+      const destino = href.length > 1 && document.querySelector(href);
+      if (destino) {
+        ev.preventDefault();
+        destino.scrollIntoView({ behavior: movimientoReducido.matches ? 'auto' : 'smooth' });
+      }
       return;
     }
 
+    // Solo páginas del mismo sitio, abiertas en la misma pestaña
+    const url = new URL(enlace.href, location.href);
+    const nuevaPestana = enlace.target === '_blank' || ev.ctrlKey || ev.metaKey || ev.shiftKey || ev.button !== 0;
+    if (url.origin !== location.origin || nuevaPestana) return;
+
     ev.preventDefault();
-    if (hash === location.hash) return;
-    transicion(() => {
-      history.pushState(null, '', hash);
-      mostrar(hash);
-    });
+    if (saliendo) return;
+    saliendo = true;
+
+    try { sessionStorage.setItem('sof-cortina', '1'); } catch (e) {}
+    franjas.classList.add('entra');
+    espera(750).then(() => { location.href = url.href; });
   });
 
-  // Botones atrás / adelante del navegador
-  window.addEventListener('hashchange', () => transicion(() => mostrar(location.hash)));
+  // Al llegar desde otra página: las franjas se abren
+  function abrirCortina() {
+    const llegoConCortina = raiz.classList.contains('cortina');
+    if (llegoConCortina) {
+      franjas.classList.add('sale');
+      requestAnimationFrame(() => requestAnimationFrame(() => raiz.classList.remove('cortina')));
+      espera(800).then(() => franjas.classList.remove('sale'));
+    }
+    // Arranca las animaciones de entrada (ej. letras de TRAZO) cuando ya se ve la página
+    espera(llegoConCortina ? 350 : 0).then(() => {
+      document.querySelectorAll('.vista').forEach((v) => v.classList.add('activa'));
+    });
+  }
+  abrirCortina();
 
-  // Página inicial: la entrada solo aparece la primera vez
-  const inicial = location.hash || (leer('sof-intro-visto') ? '#inicio' : '#intro');
-  if (!location.hash) history.replaceState(null, '', inicial);
-  mostrar(inicial);
+  // Si vuelves con el botón "atrás", la página no se queda tapada
+  window.addEventListener('pageshow', (ev) => {
+    if (ev.persisted) {
+      franjas.classList.remove('entra', 'sale');
+      saliendo = false;
+    }
+  });
 })();

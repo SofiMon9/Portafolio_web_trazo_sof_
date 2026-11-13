@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inicio · Trazo</title>
+  <meta name="description" content="Portafolio de Sofía Moncada Jaramillo, diseñadora crossmedia en Pereira, Colombia. Arte desde el alma y corazón.">
+
+  <!-- Tipografías: Jost (textos) y Pinyon Script (cursiva) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/estilos.css">
+
+  <!-- Antes de pintar: tema guardado y cortina de llegada -->
+  <script>
+    (function () {
+      var r = document.documentElement;
+      try {
+        var t = localStorage.getItem('sof-theme');
+        if (t) r.dataset.theme = t;
+        if (sessionStorage.getItem('sof-cortina')) {
+          r.classList.add('cortina');
+          sessionStorage.removeItem('sof-cortina');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body data-pagina="inicio">
+
+  <!-- Dibujos reutilizables (estrella de 4 puntas) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="estrella" viewBox="0 0 24 24">
+      <path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z"/>
+    </symbol>
+  </svg>
+
+  <!-- ============ BARRA SUPERIOR ============ -->
+  <header class="barra">
+    <a class="marca-nombre" href="inicio.html">Sofía Moncada - Portafolio 2026</a>
+
+    <!-- Interruptor tipo píldora: sol a la izquierda (claro), luna a la derecha (oscuro) -->
+    <button class="tema" id="btnTema" type="button" role="switch" aria-label="Modo oscuro">
+      <span class="perilla">
+        <svg class="ico-sol" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.5"/>
+          <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/>
+        </svg>
+        <svg class="ico-luna" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/>
+        </svg>
+      </span>
+    </button>
+  </header>
+
+  <main>
+
+    <!-- ============ INICIO ============ -->
+    <section class="vista inicio" aria-labelledby="inicio-titulo">
+
+      <!-- 1. Portada: "Sof en TRAZO" -->
+      <div class="portada">
+        <div class="portada-rayas" aria-hidden="true"></div>
+
+        <div class="portada-centro">
+          <svg class="portada-estrella pe1" aria-hidden="true"><use href="#estrella"/></svg>
+          <svg class="portada-estrella pe2" aria-hidden="true"><use href="#estrella"/></svg>
+          <svg class="portada-estrella pe3" aria-hidden="true"><use href="#estrella"/></svg>
+
+          <h1 id="inicio-titulo" class="portada-titulo">
+            <span class="portada-sof script">Sof en</span>
+            <span class="trazo" aria-label="TRAZO">
+              <span class="trazo-letra" style="--i:0" aria-hidden="true">T</span>
+              <span class="trazo-letra" style="--i:1" aria-hidden="true">R</span>
+              <span class="trazo-letra" style="--i:2" aria-hidden="true">A</span>
+              <span class="trazo-letra" style="--i:3" aria-hidden="true">Z</span>
+              <span class="trazo-letra" style="--i:4" aria-hidden="true">O</span>
+            </span>
+          </h1>
+
+          <p class="portada-lema script">Arte desde el alma y corazón</p>
+        </div>
+      </div>
+
+      <!-- 2. Cintas cruzadas + "¿Quieres conocerme?" (próximo paso) -->
+      <!-- 3. Bienvenidx + manifiesto (próximo paso) -->
+      <!-- 4. ¿Por qué Sof? (próximo paso) -->
+      <!-- 5. ¿Listx...? (próximo paso) -->
+
+    </section>
+
+  </main>
+
+  <!-- Transición entre páginas: 4 franjas de color -->
+  <div class="franjas" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

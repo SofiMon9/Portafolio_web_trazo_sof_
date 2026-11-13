@@ -657,6 +657,10 @@ img, svg { display: block; }
 .franjas.entra span { transform: scaleY(1); }
 .franjas.sale span  { transform: scaleY(0); transform-origin: bottom; }
 
+/* Al llegar de otra página, la pantalla empieza tapada por las franjas */
+.cortina .franjas { pointer-events: auto; }
+.cortina .franjas span { transform: scaleY(1); transition: none; }
+
 
 /* ---------- 11. Movimiento reducido ---------- */
 @media (prefers-reduced-motion: reduce) {
