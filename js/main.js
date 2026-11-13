@@ -176,6 +176,22 @@
     iluminar();
   }
 
+  /* ---------- 4c. Copiar el correo al tocarlo ---------- */
+  document.querySelectorAll('[data-copiar]').forEach((boton) => {
+    const aviso = boton.querySelector('.copiar-aviso');
+    boton.addEventListener('click', async () => {
+      const texto = boton.dataset.copiar;
+      try {
+        await navigator.clipboard.writeText(texto);
+        if (aviso) aviso.textContent = '¡Copiado!';
+        setTimeout(() => { if (aviso) aviso.textContent = ''; }, 2000);
+      } catch (e) {
+        // Si el navegador no deja copiar, abre el correo
+        location.href = `mailto:${texto}`;
+      }
+    });
+  });
+
   // Si ya pasaste por una página distinta a la entrada, la entrada no vuelve a salir sola
   if (pagina !== 'entrada') guardar('sof-intro-visto', '1');
 

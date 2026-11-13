@@ -1148,6 +1148,135 @@ img, svg { display: block; }
 }
 
 
+/* ---------- 9e. INICIO · ¿Listx...? ---------- */
+.listx {
+  padding-bottom: 110px;
+}
+.listx-caja {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  padding: clamp(3rem, 8vw, 5.5rem) clamp(1.2rem, 5vw, 4rem);
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--vino);
+  color: var(--crema);
+  text-align: center;
+  box-shadow: 0 0 0 1px var(--linea), var(--sombra);
+}
+.listx-estrella {
+  position: absolute;
+  fill: var(--rosa);
+  opacity: .9;
+  animation: girar 12s linear infinite;
+}
+.listx-estrella.le1 { width: 54px; height: 54px; top: 12%; left: 7%; }
+.listx-estrella.le2 { width: 28px; height: 28px; bottom: 14%; right: 9%; fill: var(--terracota); animation-direction: reverse; animation-duration: 8s; }
+
+.listx-titulo {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-weight: 800;
+  line-height: 1.05;
+}
+.listx-titulo em {
+  font-size: 1.3em;
+  color: var(--rosa);
+}
+.listx-texto {
+  max-width: 30rem;
+  font-weight: 300;
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  opacity: .9;
+}
+.listx-botones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .9rem;
+  margin-top: .8rem;
+}
+.boton-claro,
+.boton-borde-claro {
+  padding: .85em 1.7em;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .25s ease, background-color .25s ease, color .25s ease;
+}
+.boton-claro {
+  border: 1.5px solid var(--crema);
+  background: var(--crema);
+  color: var(--vino);
+}
+.boton-borde-claro {
+  border: 1.5px solid var(--crema);
+  background: transparent;
+  color: var(--crema);
+}
+.boton-claro:hover { transform: translateY(-2px) rotate(-2deg); }
+.boton-borde-claro:hover { background: var(--crema); color: var(--vino); }
+
+
+/* ---------- 9f. Pie de página ---------- */
+.pie {
+  border-top: 1px solid var(--linea);
+  background: var(--bg);
+}
+.pie-caja {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1rem 2rem;
+  padding-block: 2.4rem;
+}
+.pie-firma {
+  font-size: 3.4rem;
+  line-height: 1;
+  color: var(--accent);
+}
+.pie-contacto {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: .6rem 1.6rem;
+}
+.pie-contacto a,
+.copiar {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--fg);
+  font: inherit;
+  font-size: .98rem;
+  text-decoration: none;
+  border-bottom: 1px solid var(--linea);
+  cursor: pointer;
+  transition: border-color .25s ease, color .25s ease;
+}
+.pie-contacto a:hover,
+.copiar:hover { color: var(--accent-2); border-color: currentColor; }
+.copiar-aviso {
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--accent-2);
+}
+.pie-legal {
+  grid-column: 1 / -1;
+  font-size: .82rem;
+  color: var(--suave);
+}
+
+@media (max-width: 640px) {
+  .pie-caja { grid-template-columns: 1fr; text-align: center; }
+  .pie-contacto { justify-content: center; }
+}
+
+
 /* ---------- 10. Página temporal "Muy pronto" ---------- */
 .pronto-caja {
   min-height: 100svh;
