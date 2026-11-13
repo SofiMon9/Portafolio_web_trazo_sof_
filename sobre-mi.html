@@ -342,60 +342,44 @@
 
       <hr class="separador">
 
-      <!-- 3. Más sobre mí: carpetas que se enderezan, línea de tiempo que se dibuja y estrellas que giran -->
-      <div class="mas contenedor">
+      <!-- 3. Más sobre mí: tarjetas tipo carpeta (Experiencia y Mis áreas), letrero y botón -->
+      <div class="mas">
+        <div class="mas-grid">
+          <h2 class="mas-title aparece"><span class="script">Más</span><b>sobre mí</b></h2>
 
-        <div class="mas-izquierda">
-          <!-- Carpeta de experiencia -->
-          <div class="carpeta carpeta-exp aparece">
-            <span class="carpeta-pestana script">Experiencia</span>
-            <ol class="linea-tiempo">
-              <li>
-                <span class="lt-anio script">2025-<br>2026</span>
-                <span class="lt-punto" aria-hidden="true"></span>
-                <div><h3>InSign Visualmedia</h3><p>Dirección de arte y asistente de producción</p></div>
-              </li>
-              <li>
-                <span class="lt-anio script">2025</span>
-                <span class="lt-punto" aria-hidden="true"></span>
-                <div><h3>Magazine “Nos fui pues mijo”</h3><p>Producción ejecutiva</p></div>
-              </li>
-              <li>
-                <span class="lt-anio script">2024</span>
-                <span class="lt-punto" aria-hidden="true"></span>
-                <div><h3>Cortometraje “Donde la música muere”</h3><p>Producción y asistente de arte</p></div>
-              </li>
-              <li>
-                <span class="lt-anio script">2024</span>
-                <span class="lt-punto" aria-hidden="true"></span>
-                <div><h3>Freelance</h3><p>Diseño gráfico</p></div>
-              </li>
-            </ol>
-          </div>
+          <!-- Carpeta Experiencia -->
+          <article class="fd fd-exp aparece">
+            <span class="fd-tab"><span class="script">Experiencia</span></span>
+            <span class="fd-lip" aria-hidden="true"></span>
+            <div class="fd-body">
+              <ol class="ftl">
+                <li><time class="script">2025-2026</time><i aria-hidden="true"></i><div><b>InSign Visualmedia</b><small>Dirección de arte y asistente de producción</small></div></li>
+                <li><time class="script">2025</time><i aria-hidden="true"></i><div><b>Magazine “Nos fui pues mijo”</b><small>Producción ejecutiva</small></div></li>
+                <li><time class="script">2024</time><i aria-hidden="true"></i><div><b>Cortometraje “Donde la música muere”</b><small>Producción y asistente de arte</small></div></li>
+                <li><time class="script">2024</time><i aria-hidden="true"></i><div><b>Freelance</b><small>Diseño gráfico</small></div></li>
+              </ol>
+            </div>
+          </article>
 
-          <!-- Cartel colgante + botón -->
-          <div class="cartel aparece">
-            <p>¡Puedes conocer más de mi trabajo!</p>
-          </div>
-          <a class="btn-rosa btn-anillo aparece" href="proyectos.html">Mi trabajo</a>
-        </div>
+          <!-- Carpeta Mis áreas -->
+          <article class="fd fd-areas aparece">
+            <span class="fd-tab"><span class="script">Mis áreas</span></span>
+            <span class="fd-lip" aria-hidden="true"></span>
+            <div class="fd-body">
+              <ul class="fareas">
+                <li><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M50 0C53 22 62 27 100 30 62 33 53 38 50 60 47 38 38 33 0 30 38 27 47 22 50 0z"/></svg><span><span class="script">I</span>dentidad de marca</span></li>
+                <li><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M50 0C53 22 62 27 100 30 62 33 53 38 50 60 47 38 38 33 0 30 38 27 47 22 50 0z"/></svg><span><span class="script">D</span>iseño gráfico</span></li>
+                <li><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M50 0C53 22 62 27 100 30 62 33 53 38 50 60 47 38 38 33 0 30 38 27 47 22 50 0z"/></svg><span><span class="script">P</span>rocesos audiovisuales</span></li>
+                <li><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M50 0C53 22 62 27 100 30 62 33 53 38 50 60 47 38 38 33 0 30 38 27 47 22 50 0z"/></svg><span><span class="script">C</span>ontenido para redes</span></li>
+                <li><svg viewBox="0 0 100 60" aria-hidden="true"><path d="M50 0C53 22 62 27 100 30 62 33 53 38 50 60 47 38 38 33 0 30 38 27 47 22 50 0z"/></svg><span><span class="script">D</span>iseño UI / UX</span></li>
+              </ul>
+            </div>
+          </article>
 
-        <div class="mas-derecha">
-          <h2 class="mas-titulo aparece">
-            <span class="script">Más</span> sobre mí
-            <svg class="mas-chispa" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,0 13.72,7.84 20.49,3.51 16.16,10.28 24,12 16.16,13.72 20.49,20.49 13.72,16.16 12,24 10.28,16.16 3.51,20.49 7.84,13.72 0,12 7.84,10.28 3.51,3.51 10.28,7.84"/></svg>
-          </h2>
-
-          <!-- Carpeta de áreas (la primera letra sale en cursiva) -->
-          <div class="carpeta carpeta-areas aparece">
-            <span class="carpeta-pestana script">Mis áreas</span>
-            <ul class="areas">
-              <li><svg aria-hidden="true"><use href="#estrella"/></svg><span>Identidad de marca</span></li>
-              <li><svg aria-hidden="true"><use href="#estrella"/></svg><span>Diseño gráfico</span></li>
-              <li><svg aria-hidden="true"><use href="#estrella"/></svg><span>Procesos audiovisuales</span></li>
-              <li><svg aria-hidden="true"><use href="#estrella"/></svg><span>Contenido para redes</span></li>
-              <li><svg aria-hidden="true"><use href="#estrella"/></svg><span>Diseño UI / UX</span></li>
-            </ul>
+          <!-- Letrero colgante + botón -->
+          <div class="mas-cta aparece">
+            <p class="hang"><i class="hl" aria-hidden="true"></i><i class="hr" aria-hidden="true"></i>¡Puedes conocer más de mi trabajo!</p>
+            <a class="ring-btn" href="proyectos.html"><span>Mi trabajo</span></a>
           </div>
         </div>
       </div>
