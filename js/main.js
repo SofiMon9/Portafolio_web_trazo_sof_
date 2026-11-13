@@ -42,18 +42,33 @@
   window.addEventListener('scroll', revisarBarra, { passive: true });
   revisarBarra();
 
-  // Menú en celular: abrir y cerrar
-  const btnMenu = document.getElementById('btnMenu');
-  if (btnMenu) {
-    const cambiarMenu = (abrir) => {
-      barra.classList.toggle('menu-abierto', abrir);
-      btnMenu.setAttribute('aria-expanded', abrir ? 'true' : 'false');
-      btnMenu.setAttribute('aria-label', abrir ? 'Cerrar menú' : 'Abrir menú');
-      document.body.style.overflow = abrir ? 'hidden' : '';
+  // Menú grande "Lo que hago": lo abren "Lo que hago", "Menú" y cualquier botón con aria-controls="mega"
+  const mega = document.getElementById('mega');
+  if (mega) {
+    const abridores = document.querySelectorAll('[aria-controls="mega"]');
+    const btnCerrar = mega.querySelector('.mega-cerrar');
+    let quienAbrio = null;
+
+    const abrirMega = (boton) => {
+      quienAbrio = boton;
+      mega.hidden = false;
+      requestAnimationFrame(() => mega.classList.add('abierto'));
+      abridores.forEach((b) => b.setAttribute('aria-expanded', 'true'));
+      document.body.style.overflow = 'hidden';
+      btnCerrar.focus();
     };
-    btnMenu.addEventListener('click', () => cambiarMenu(!barra.classList.contains('menu-abierto')));
-    document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') cambiarMenu(false); });
-    matchMedia('(min-width: 861px)').addEventListener('change', (ev) => { if (ev.matches) cambiarMenu(false); });
+    const cerrarMega = () => {
+      if (mega.hidden) return;
+      mega.classList.remove('abierto');
+      abridores.forEach((b) => b.setAttribute('aria-expanded', 'false'));
+      document.body.style.overflow = '';
+      espera(350).then(() => { if (!mega.classList.contains('abierto')) mega.hidden = true; });
+      if (quienAbrio) quienAbrio.focus();
+    };
+
+    abridores.forEach((b) => b.addEventListener('click', () => (mega.hidden ? abrirMega(b) : cerrarMega())));
+    btnCerrar.addEventListener('click', cerrarMega);
+    document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') cerrarMega(); });
   }
 
 

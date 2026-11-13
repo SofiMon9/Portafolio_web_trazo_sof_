@@ -38,18 +38,19 @@
   </svg>
 
   <!-- ============ BARRA SUPERIOR ============ -->
-  <header class="barra">
-    <a class="marca-nombre" href="inicio.html">Sofía Moncada<span class="nombre-extra"> - Portafolio 2026</span></a>
+  <header class="barra barra-principal">
+    <a class="logo script" href="inicio.html" aria-label="Trazo, inicio">Trazo</a>
 
-    <!-- Enlaces principales (en celular se abren con el botón de menú) -->
-    <nav class="nav" id="nav" aria-label="Principal">
+    <nav class="nav" aria-label="Principal">
       <a class="nav-enlace" href="inicio.html">Inicio</a>
       <a class="nav-enlace" href="sobre-mi.html">Sobre mí</a>
       <a class="nav-enlace" href="proyectos.html" aria-current="page">Proyectos</a>
-      <a class="nav-cta" href="planes.html">¡Trabajemos!</a>
     </nav>
 
     <div class="barra-acciones">
+      <a class="nav-cta" href="planes.html">¡Trabajemos!</a>
+      <button class="lo-que-hago" type="button" aria-expanded="false" aria-controls="mega">Lo que hago</button>
+
       <!-- Interruptor tipo píldora: sol a la izquierda (claro), luna a la derecha (oscuro) -->
       <button class="tema" id="btnTema" type="button" role="switch" aria-label="Modo oscuro">
         <span class="perilla">
@@ -64,11 +65,63 @@
       </button>
 
       <!-- Botón de menú (solo en celular) -->
-      <button class="menu-btn" id="btnMenu" type="button" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú">
-        <span></span><span></span>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mega">
+        <span class="menu-rayas" aria-hidden="true"><i></i><i></i></span>Menú
       </button>
     </div>
   </header>
+
+  <!-- ============ MENÚ GRANDE: LO QUE HAGO ============ -->
+  <div class="mega" id="mega" role="dialog" aria-modal="true" aria-label="Lo que hago" hidden>
+    <button class="mega-cerrar" type="button" aria-label="Cerrar menú">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+
+    <div class="mega-contenido contenedor">
+      <!-- Páginas -->
+      <nav class="mega-paginas" aria-label="Páginas">
+        <a href="inicio.html">Inicio</a>
+        <a href="sobre-mi.html">Sobre mí</a>
+        <a href="proyectos.html">Proyectos</a>
+        <a href="planes.html">Planes</a>
+      </nav>
+
+      <!-- Mundos -->
+      <div class="mega-mundos">
+        <h2 class="mega-titulo">Lo que <em class="script">hago</em></h2>
+
+        <article class="mundo">
+          <svg class="mundo-estrella" aria-hidden="true"><use href="#estrella"/></svg>
+          <h3>Marca</h3>
+          <p>Logo, identidad visual, manual de marca, papelería y empaques.</p>
+          <div class="mundo-botones">
+            <a class="mundo-ver" href="marca.html">Ver mundo</a>
+            <a class="mundo-adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20me%20interesa%20el%20plan%20de%20Marca." target="_blank" rel="noopener">Adquirir</a>
+          </div>
+        </article>
+
+        <article class="mundo">
+          <svg class="mundo-estrella" aria-hidden="true"><use href="#estrella"/></svg>
+          <h3>Redes</h3>
+          <p>Contenido para feed e historias, plantillas, parrilla y estilo visual.</p>
+          <div class="mundo-botones">
+            <a class="mundo-ver" href="redes.html">Ver mundo</a>
+            <a class="mundo-adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20me%20interesa%20el%20plan%20de%20Redes." target="_blank" rel="noopener">Adquirir</a>
+          </div>
+        </article>
+
+        <article class="mundo">
+          <svg class="mundo-estrella" aria-hidden="true"><use href="#estrella"/></svg>
+          <h3>Dirección de arte</h3>
+          <p>Concepto, moodboard, sets, fotografía y video.</p>
+          <div class="mundo-botones">
+            <a class="mundo-ver" href="direccion-arte.html">Ver mundo</a>
+            <a class="mundo-adquirir" href="https://wa.me/573225374248?text=Hola%20Sof%2C%20me%20interesa%20el%20plan%20de%20Direcci%C3%B3n%20de%20arte." target="_blank" rel="noopener">Adquirir</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
 
   <main>
 
