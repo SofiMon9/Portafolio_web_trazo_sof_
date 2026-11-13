@@ -207,7 +207,6 @@
         <div class="portada-centro">
           <svg class="portada-estrella pe1" aria-hidden="true"><use href="#estrella"/></svg>
           <svg class="portada-estrella pe2" aria-hidden="true"><use href="#estrella"/></svg>
-          <svg class="portada-estrella pe3" aria-hidden="true"><use href="#estrella"/></svg>
 
           <h1 id="inicio-titulo" class="portada-titulo">
             <span class="portada-sof script">Sof en</span>
@@ -221,64 +220,53 @@
           </h1>
 
           <p class="portada-lema script">Arte desde el alma y corazón</p>
-        </div>
-      </div>
+          <p class="portada-oficio">Diseñadora crossmedia · Pereira, Colombia</p>
 
-      <!-- 2. Cintas cruzadas + "¿Quieres conocerme?" -->
-      <div class="conocerme-zona">
-
-        <!-- Dos cintas cruzadas con texto en movimiento.
-             Escribe el texto una sola vez: el JavaScript lo repite para llenar la cinta. -->
-        <div class="cintas" aria-hidden="true">
-          <div class="cinta cinta-1">
-            <div class="cinta-pista">
-              <span>Diseño crossmedia</span><svg><use href="#estrella"/></svg>
-              <span>Marca</span><svg><use href="#estrella"/></svg>
-              <span>Redes</span><svg><use href="#estrella"/></svg>
-              <span>Dirección de arte</span><svg><use href="#estrella"/></svg>
-            </div>
-          </div>
-          <div class="cinta cinta-2">
-            <div class="cinta-pista">
-              <span class="script">Arte desde el alma y corazón</span><svg><use href="#estrella"/></svg>
-              <span>Pereira, Colombia</span><svg><use href="#estrella"/></svg>
-            </div>
-          </div>
-        </div>
-
-        <div class="conocerme contenedor">
-          <h2 class="conocerme-titulo aparece">¿Quieres <em class="script">conocerme</em>?</h2>
-          <p class="conocerme-texto aparece">
-            Más allá del portafolio hay una persona curiosa que dibuja, fotografía y arma sets.
-            Te cuento quién soy, con qué herramientas trabajo y cómo lo hago.
-          </p>
-          <div class="conocerme-botones aparece">
-            <a class="boton" href="sobre-mi.html">Conóceme</a>
-            <a class="enlace-suave" href="proyectos.html">o mira mis proyectos →</a>
+          <div class="portada-botones">
+            <a class="btn-rosa" href="proyectos.html">Ver mi trabajo</a>
+            <button class="btn-borde" type="button" aria-expanded="false" aria-controls="mega">¿Qué necesitas?</button>
           </div>
         </div>
       </div>
-      <!-- 3. Bienvenidx + manifiesto -->
+
+      <!-- 2. Cintas cruzadas
+           Escribe el texto una sola vez: el JavaScript lo repite para llenar la cinta. -->
+      <div class="cintas" aria-hidden="true">
+        <div class="cinta cinta-1">
+          <div class="cinta-pista">
+            <span>Diseño</span><span>Arte</span><span>Dirección</span><span>Creación</span>
+          </div>
+        </div>
+        <div class="cinta cinta-2">
+          <div class="cinta-pista">
+            <span>Diseño</span><span>Arte</span><span>Dirección</span><span>Creación</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Bienvenidx + manifiesto (cada palabra se ilumina al bajar; lo que va en <em> sale en cursiva) -->
       <div class="bienvenidx contenedor">
-        <div class="bienvenidx-cabeza aparece">
-          <p class="etiqueta-mini">
-            <svg aria-hidden="true"><use href="#estrella"/></svg> Manifiesto
-          </p>
-          <h2 class="bienvenidx-titulo">Bienvenidx <span class="script">a mi mundo</span></h2>
-        </div>
+        <h2 class="bienvenidx-titulo aparece">Bienvenidx a<br>mi portafolio</h2>
+        <p class="manifiesto" data-manifiesto>
+          Cada marca tiene un <em class="script">alma.</em><br>
+          Mi trabajo es que se note desde el primer vistazo.
+        </p>
+      </div>
 
-        <!-- Cada palabra se ilumina mientras bajas. Lo que va en <em> sale en cursiva. -->
-        <div class="manifiesto-caja">
-          <p class="manifiesto" data-manifiesto>
-            Creo en el diseño que se siente antes de entenderse. En las marcas con <em class="script">alma</em>,
-            en las fotos que cuentan algo y en los sets donde cada objeto está por una razón.
-            Me muevo entre el papel y la pantalla, entre lo análogo y lo digital,
-            para que lo que hagamos se vea como tú: <em class="script">honesto, cálido y con intención.</em>
-          </p>
-          <p class="manifiesto-firma script">Sof</p>
+      <!-- 4. ¿Quieres conocerme? -->
+      <div class="conocerme contenedor">
+        <h2 class="conocerme-titulo aparece">¿Quieres <em class="script">conocerme</em>?</h2>
+        <p class="conocerme-texto aparece">
+          Más allá del portafolio hay una persona curiosa que crea universos, trae a la vida diseños y arma sets.
+          Te cuento quién soy, con qué herramientas trabajo y cómo lo hago.
+        </p>
+        <div class="conocerme-botones aparece">
+          <a class="boton" href="sobre-mi.html">Conóceme</a>
+          <a class="enlace-suave" href="proyectos.html">o mira mis proyectos →</a>
         </div>
       </div>
-      <!-- 4. ¿Por qué Sof? -->
+
+      <!-- 5. ¿Por qué Sof? -->
       <div class="porque contenedor">
         <h2 class="porque-titulo aparece">¿Por qué <em class="script">Sof</em>?</h2>
 
@@ -317,7 +305,7 @@
           <p class="testimonios-texto script">Muy pronto, lo que dicen quienes han trabajado conmigo.</p>
         </aside>
       </div>
-      <!-- 5. ¿Listx...? -->
+      <!-- 6. ¿Listx...? -->
       <div class="listx contenedor">
         <div class="listx-caja aparece">
           <svg class="listx-estrella le1" aria-hidden="true"><use href="#estrella"/></svg>
