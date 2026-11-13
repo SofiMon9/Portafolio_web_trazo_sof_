@@ -93,6 +93,8 @@
     });
   }, { threshold: 0.15 });
   document.querySelectorAll('.aparece').forEach((el) => observadorAparece.observe(el));
+  // Ya se puede animar: los detalles que esperan su animación solo se esconden desde aquí
+  raiz.classList.add('observando');
 
 
   /* ---------- 3. ENTRADA · Estante de libros ---------- */
@@ -186,6 +188,19 @@
     window.addEventListener('resize', pedirIluminar);
     iluminar();
   }
+
+  /* ---------- 4b-bis. Espacios para imagen ---------- */
+  // Si la imagen existe en la ruta de data-src, reemplaza el recuadro marcado por la imagen.
+  document.querySelectorAll('.espacio-img[data-src]').forEach((espacio) => {
+    const img = new Image();
+    img.onload = () => {
+      img.alt = espacio.dataset.alt || '';
+      img.draggable = false;
+      espacio.replaceChildren(img);
+      espacio.classList.add('con-imagen');
+    };
+    img.src = espacio.dataset.src;
+  });
 
   /* ---------- 4c. Copiar el correo al tocarlo ---------- */
   document.querySelectorAll('[data-copiar]').forEach((boton) => {

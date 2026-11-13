@@ -1,206 +1,155 @@
 /* =========================================================
-   TRAZO · Proyectos
+   TRAZO · Proyectos ("Todo el archivo")
    proyectos.js · solo para proyectos.html
    ========================================================= */
 (() => {
   'use strict';
 
   const movimientoReducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // Cada sala puede decir qué hacer cuando la señalan desde otra página (proyectos.html#nombre)
-  const seleccionarEnSala = {};
 
 
-  /* ---------- 1. Pestañas: cambiar de sala ---------- */
+  /* ---------- 1. Pestañas fijas: se marca el área que estás viendo ---------- */
   const pestanas = [...document.querySelectorAll('.pestana')];
-  const salas = [...document.querySelectorAll('.sala')];
+  const areas = pestanas.map((p) => document.querySelector(p.getAttribute('href'))).filter(Boolean);
 
-  function abrirSala(nombre, { mover = false } = {}) {
-    const pestana = pestanas.find((p) => p.dataset.sala === nombre);
-    if (!pestana) return;
+  const marcarPestana = (id) => {
     pestanas.forEach((p) => {
-      const activa = p === pestana;
-      p.setAttribute('aria-selected', activa ? 'true' : 'false');
-      p.tabIndex = activa ? 0 : -1;
-    });
-    salas.forEach((s) => {
-      const activa = s.id === `sala-${nombre}`;
-      s.hidden = !activa;
-      s.classList.toggle('activa', activa);
+      const activa = p.getAttribute('href') === `#${id}`;
+      p.setAttribute('aria-current', activa ? 'true' : 'false');
       if (activa) {
-        s.classList.remove('entrando');
-        void s.offsetWidth; // reinicia la animación de entrada
-        s.classList.add('entrando');
+        // en celular, la fila de pestañas se desliza para mostrar la marcada
+        const fila = p.parentElement;
+        fila.scrollTo({ left: p.offsetLeft - fila.clientWidth / 2 + p.offsetWidth / 2, behavior: movimientoReducido ? 'auto' : 'smooth' });
       }
     });
-    // En celular, la fila de pestañas se desliza para mostrar la elegida (sin mover la página)
-    const fila = pestana.parentElement;
-    fila.scrollTo({ left: pestana.offsetLeft - fila.clientWidth / 2 + pestana.offsetWidth / 2, behavior: movimientoReducido ? 'auto' : 'smooth' });
-    history.replaceState(null, '', `#${nombre}`);
-    document.dispatchEvent(new CustomEvent('sala-abierta', { detail: nombre }));
-    if (mover) document.querySelector('.pestanas-zona').scrollIntoView({ behavior: movimientoReducido ? 'auto' : 'smooth' });
-  }
+  };
 
-  pestanas.forEach((p, i) => {
-    p.addEventListener('click', () => abrirSala(p.dataset.sala));
-    // Flechas izquierda/derecha para moverse entre pestañas
-    p.addEventListener('keydown', (ev) => {
-      if (ev.key !== 'ArrowRight' && ev.key !== 'ArrowLeft') return;
-      const siguiente = pestanas[(i + (ev.key === 'ArrowRight' ? 1 : -1) + pestanas.length) % pestanas.length];
-      siguiente.focus();
-      abrirSala(siguiente.dataset.sala);
+  const observadorAreas = new IntersectionObserver((entradas) => {
+    entradas.forEach((e) => { if (e.isIntersecting) marcarPestana(e.target.id); });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  areas.forEach((a) => observadorAreas.observe(a));
+
+
+  /* ---------- 2. En lo gráfico: capas y mesas de trabajo ---------- */
+  const ventanaAi = document.querySelector('.ai');
+  if (ventanaAi) {
+    const capas = ventanaAi.querySelectorAll('.ai-capas button');
+    const miniaturas = ventanaAi.querySelectorAll('.ai-miniaturas button');
+    const mesas = ventanaAi.querySelectorAll('.mesa');
+
+    // Al pasar el cursor por una capa, se selecciona esa parte en las marcas
+    const elegirCapa = (capa) => {
+      ventanaAi.dataset.capa = capa || '';
+      capas.forEach((c) => c.classList.toggle('activa', c.dataset.capa === capa));
+    };
+    capas.forEach((c) => {
+      c.addEventListener('mouseenter', () => elegirCapa(c.dataset.capa));
+      c.addEventListener('focus', () => elegirCapa(c.dataset.capa));
+      c.addEventListener('click', () => elegirCapa(ventanaAi.dataset.capa === c.dataset.capa ? '' : c.dataset.capa));
     });
-  });
+    ventanaAi.querySelector('.ai-capas').addEventListener('mouseleave', () => elegirCapa(''));
 
-
-  /* ---------- 2. Lo gráfico: piezas y capas (como en Illustrator) ---------- */
-  const piezas = document.querySelectorAll('.pieza');
-  const capas = document.querySelectorAll('.ai-lista button');
-  const abrirPieza = document.querySelector('.ai-abrir');
-
-  function seleccionarPieza(id) {
-    piezas.forEach((p) => p.classList.toggle('seleccionada', p.dataset.proyecto === id));
-    capas.forEach((c) => c.setAttribute('aria-pressed', c.dataset.capa === id ? 'true' : 'false'));
-    const pieza = [...piezas].find((p) => p.dataset.proyecto === id);
-    if (pieza && abrirPieza) {
-      abrirPieza.href = pieza.href;
-      abrirPieza.innerHTML = `Abrir <b>${pieza.querySelector('.pieza-nombre').textContent}</b> →`;
-    }
+    // Las miniaturas eligen una mesa de trabajo
+    const elegirMesa = (num) => {
+      mesas.forEach((m) => m.classList.toggle('elegida', m.dataset.mesa === num));
+      miniaturas.forEach((b) => b.setAttribute('aria-pressed', b.dataset.mesa === num ? 'true' : 'false'));
+    };
+    miniaturas.forEach((b) => {
+      b.addEventListener('mouseenter', () => elegirMesa(b.dataset.mesa));
+      b.addEventListener('click', () => elegirMesa(b.dataset.mesa));
+    });
+    ventanaAi.querySelector('.ai-miniaturas').addEventListener('mouseleave', () => elegirMesa(''));
   }
-  piezas.forEach((p) => {
-    p.addEventListener('mouseenter', () => seleccionarPieza(p.dataset.proyecto));
-    p.addEventListener('focus', () => seleccionarPieza(p.dataset.proyecto));
-  });
-  capas.forEach((c) => c.addEventListener('click', () => seleccionarPieza(c.dataset.capa)));
-  if (piezas.length) seleccionarPieza(piezas[0].dataset.proyecto);
-  seleccionarEnSala['lo-grafico'] = seleccionarPieza;
 
 
   /* ---------- 3. En cámara: fotos y panel de revelado ---------- */
-  // Ajustes de cada foto (pendiente: poner tus ajustes reales).
-  // Los valores van de -100 a 100 (exposición de -5 a 5).
+  // Ajustes de ejemplo de cada foto (pendiente: poner los reales).
+  // Exposición va de -5 a 5; los demás de -100 a 100.
+  // "histograma": 20 alturas (de 0 a 100) para las barras.
   const REVELADO = {
-    retrato:  { nombre: 'Retrato',  exposicion: 0.35,  contraste: 18,  temperatura: -12, saturacion: -20, grano: 25,
-                histograma: 'M0 60 C20 50 30 20 50 30 S80 10 100 25 S140 50 160 35 S190 45 200 60 Z' },
-    producto: { nombre: 'Producto', exposicion: 0.7,   contraste: 32,  temperatura: 15,  saturacion: 10,  grano: 5,
-                histograma: 'M0 60 C30 58 50 40 80 20 S120 5 140 15 S180 45 200 60 Z' },
-    ciudad:   { nombre: 'Ciudad',   exposicion: -0.4,  contraste: 45,  temperatura: 8,   saturacion: -35, grano: 40,
-                histograma: 'M0 60 C10 20 40 15 60 35 S100 55 130 30 S170 10 200 60 Z' },
+    'producto-01': {
+      titulo: 'Producto 01 · ajustes de ejemplo',
+      temperatura: 12, exposicion: 0.4, contraste: 15, sombras: 20, saturacion: 6,
+      histograma: [6, 10, 14, 18, 26, 34, 44, 56, 66, 74, 80, 84, 82, 76, 64, 50, 38, 26, 14, 8],
+    },
+    'retrato-01': {
+      titulo: 'Retrato 01 · ajustes de ejemplo',
+      temperatura: -8, exposicion: 0.15, contraste: -10, sombras: 35, saturacion: -14,
+      histograma: [8, 14, 24, 40, 58, 74, 82, 76, 66, 56, 50, 46, 42, 38, 34, 28, 22, 18, 12, 8],
+    },
+    'set-01': {
+      titulo: 'Set 01 · ajustes de ejemplo',
+      temperatura: 22, exposicion: -0.3, contraste: 28, sombras: -12, saturacion: -20,
+      histograma: [30, 46, 58, 64, 60, 52, 44, 38, 34, 30, 28, 26, 26, 28, 30, 34, 30, 22, 14, 8],
+    },
   };
-  const ROTULOS = { exposicion: (v) => (v > 0 ? '+' : '') + v.toFixed(2).replace('.', ','), otro: (v) => (v > 0 ? '+' : '') + v };
 
-  const fotos = document.querySelectorAll('.foto');
   const panelLr = document.querySelector('.lr');
+  const polaroids = document.querySelectorAll('.polaroid');
+  if (panelLr) {
+    const histograma = panelLr.querySelector('.lr-histograma');
+    for (let i = 0; i < 20; i++) histograma.appendChild(document.createElement('i'));
+    const barras = histograma.querySelectorAll('i');
+    const signo = (v) => (v > 0 ? '+' : '');
 
-  function revelar(id) {
-    const datos = REVELADO[id];
-    if (!datos || !panelLr) return;
-    fotos.forEach((f) => f.setAttribute('aria-pressed', f.dataset.foto === id ? 'true' : 'false'));
-    panelLr.querySelector('[data-lr="nombre"]').textContent = datos.nombre;
-    panelLr.querySelector('[data-lr="histograma"]').setAttribute('d', datos.histograma);
-    panelLr.querySelectorAll('.lr-ajuste').forEach((fila) => {
-      const clave = fila.dataset.ajuste;
-      const valor = datos[clave];
-      // posición del deslizador: 0 % a 100 %
-      const pos = clave === 'exposicion' ? 50 + (valor / 5) * 50 : 50 + valor / 2;
-      fila.querySelector('i').style.setProperty('--v', `${pos}%`);
-      fila.querySelector('output').textContent = clave === 'exposicion' ? ROTULOS.exposicion(valor) : ROTULOS.otro(valor);
+    const revelar = (id) => {
+      const d = REVELADO[id];
+      if (!d) return;
+      polaroids.forEach((p) => p.setAttribute('aria-pressed', p.dataset.foto === id ? 'true' : 'false'));
+      panelLr.querySelector('[data-lr="titulo"]').textContent = d.titulo;
+      barras.forEach((b, i) => b.style.setProperty('--h', `${d.histograma[i]}%`));
+      panelLr.querySelectorAll('.lr-ajuste').forEach((fila) => {
+        const clave = fila.dataset.ajuste;
+        const v = d[clave];
+        const posicion = clave === 'exposicion' ? 50 + (v / 5) * 50 : 50 + v / 2;
+        fila.querySelector('i').style.setProperty('--v', `${posicion}%`);
+        fila.querySelector('output').textContent = clave === 'exposicion' ? `${signo(v)}${v.toFixed(2)}` : `${signo(v)}${v}`;
+      });
+    };
+
+    polaroids.forEach((p) => {
+      p.addEventListener('mouseenter', () => revelar(p.dataset.foto));
+      p.addEventListener('focus', () => revelar(p.dataset.foto));
+      p.addEventListener('click', () => revelar(p.dataset.foto));
     });
-    panelLr.querySelector('.lr-abrir').href = `sala-de-espera.html?p=${id}`;
+    revelar('retrato-01');
   }
-  fotos.forEach((f) => f.addEventListener('click', () => revelar(f.dataset.foto)));
-  revelar('retrato');
-  seleccionarEnSala['en-camara'] = revelar;
 
 
-  /* ---------- 4. En set: monitor con código de tiempo y claqueta ---------- */
-  const pantalla = document.querySelector('.monitor-pantalla');
-  const claqueta = document.querySelector('.claqueta');
-  const tomas = document.querySelectorAll('.tomas button');
-  const verProyecto = document.querySelector('.set-ver');
-
-  if (pantalla && claqueta) {
-    const imagen = pantalla.querySelector('.monitor-imagen');
-    const sinSenal = pantalla.querySelector('.monitor-sin-senal');
-    const timecode = pantalla.querySelector('.timecode');
-    const dato = (sel) => claqueta.querySelector(`[data-c="${sel}"]`);
-
-    // Código de tiempo que corre a 24 cuadros por segundo
-    let inicioGrabacion = performance.now();
+  /* ---------- 4. En el set: código de tiempo que corre en cada monitor ---------- */
+  const codigos = [...document.querySelectorAll('.timecode')].map((el) => ({
+    el,
+    desde: Number(el.dataset.desde) || 0, // segundos con los que empieza
+  }));
+  if (codigos.length) {
+    const inicio = performance.now();
     const dos = (n) => String(n).padStart(2, '0');
     const correr = (ahora) => {
-      if (!document.getElementById('sala-en-set').hidden) {
-        const cuadros = Math.floor(((ahora - inicioGrabacion) / 1000) * 24);
+      const segundosPasados = (ahora - inicio) / 1000;
+      codigos.forEach(({ el, desde }) => {
+        const cuadros = Math.floor((desde + segundosPasados) * 24);
         const f = cuadros % 24;
         const s = Math.floor(cuadros / 24) % 60;
         const m = Math.floor(cuadros / 1440) % 60;
         const h = Math.floor(cuadros / 86400);
-        timecode.textContent = `${dos(h)}:${dos(m)}:${dos(s)}:${dos(f)}`;
-      }
+        el.textContent = `${dos(h)}:${dos(m)}:${dos(s)}:${dos(f)}`;
+      });
       requestAnimationFrame(correr);
     };
-    requestAnimationFrame(correr);
-
-    // La claqueta se abre y se cierra (¡clac!)
-    const clac = () => {
-      if (movimientoReducido) return;
-      claqueta.classList.remove('cerrada');
-      setTimeout(() => claqueta.classList.add('cerrada'), 260);
-    };
-
-    let numeroToma = 1;
-    function elegirToma(id) {
-      const boton = [...tomas].find((t) => t.dataset.toma === id);
-      if (!boton) return;
-      tomas.forEach((t) => t.setAttribute('aria-pressed', t === boton ? 'true' : 'false'));
-      const d = boton.dataset;
-      const escena = [...tomas].indexOf(boton) + 1;
-
-      clac();
-      pantalla.classList.remove('cambiando');
-      void pantalla.offsetWidth;
-      pantalla.classList.add('cambiando');
-      inicioGrabacion = performance.now();
-
-      // Proyectos sin imagen todavía muestran "Sin señal"
-      const sinImagen = 'sinSenal' in d;
-      sinSenal.hidden = !sinImagen;
-      imagen.hidden = sinImagen;
-      if (!sinImagen) {
-        imagen.style.setProperty('--c1', d.c1);
-        imagen.style.setProperty('--c2', d.c2);
-        imagen.querySelector('[data-m="titulo"]').textContent = d.titulo;
-        imagen.querySelector('[data-m="tipo"]').textContent = d.tipo;
-      }
-      dato('titulo').textContent = d.titulo;
-      dato('escena').textContent = dos(escena);
-      dato('toma').textContent = dos(numeroToma++);
-      dato('anio').textContent = d.anio;
-      dato('rol').textContent = d.rol;
-      if (verProyecto) verProyecto.href = `sala-de-espera.html?p=${id}`;
-    }
-    tomas.forEach((t) => t.addEventListener('click', () => elegirToma(t.dataset.toma)));
-    seleccionarEnSala['en-set'] = elegirToma;
-
-    // Al entrar a la sala, la claqueta se cierra
-    document.addEventListener('sala-abierta', (ev) => { if (ev.detail === 'en-set') clac(); });
+    if (!movimientoReducido) requestAnimationFrame(correr);
   }
 
 
-  /* ---------- 5. Llegar señalando una sala o un proyecto (proyectos.html#nombre) ---------- */
-  function irAlHash() {
+  /* ---------- 5. Llegar señalando un área o un proyecto (proyectos.html#nombre) ---------- */
+  const irAlHash = () => {
     const id = decodeURIComponent(location.hash.slice(1));
-    if (!id) { abrirSala('lo-grafico'); return; }
-    if (pestanas.some((p) => p.dataset.sala === id)) { abrirSala(id, { mover: true }); return; }
-
-    // Si es un proyecto, abre la sala donde está y lo señala
-    const elemento = document.querySelector(`.sala [data-proyecto="${CSS.escape(id)}"]`);
-    if (!elemento) { abrirSala('lo-grafico'); return; }
-    const sala = elemento.closest('.sala').id.replace('sala-', '');
-    abrirSala(sala, { mover: true });
-    if (seleccionarEnSala[sala]) seleccionarEnSala[sala](id);
+    if (!id || areas.some((a) => a.id === id)) return; // las áreas ya funcionan como anclas
+    const elemento = document.querySelector(`[data-proyecto="${CSS.escape(id)}"]`);
+    if (!elemento) return;
+    elemento.scrollIntoView({ block: 'center', behavior: movimientoReducido ? 'auto' : 'smooth' });
     elemento.classList.add('destacado');
     setTimeout(() => elemento.classList.remove('destacado'), 3300);
-  }
+  };
   irAlHash();
   window.addEventListener('hashchange', irAlHash);
 })();

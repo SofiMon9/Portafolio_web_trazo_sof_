@@ -201,244 +201,348 @@
 
   <main>
 
-    <!-- ============ PROYECTOS ============ -->
-    <!-- Cada proyecto lleva a su sala de espera: sala-de-espera.html?p=<nombre-del-proyecto>
-         (los nombres y datos de cada proyecto están en js/proyectos-datos.js) -->
+    <!-- ============ PROYECTOS: TODO EL ARCHIVO ============ -->
+    <!-- Cada proyecto lleva a su sala de espera: sala-de-espera.html?p=<proyecto> (datos en js/proyectos-datos.js).
+         Espacios de imagen: pon el archivo con el nombre indicado en img/proyectos/ y aparece solo. -->
     <section class="vista proyectos" aria-labelledby="proy-titulo">
 
       <header class="proy-cabeza contenedor">
-        <p class="proy-etiqueta"><svg aria-hidden="true"><use href="#estrella"/></svg> El archivo</p>
-        <h1 id="proy-titulo" class="proy-titulo">Proyectos <span class="script">por salas</span></h1>
-        <p class="proy-sub">Cinco salas, cinco formas de trabajar. Elige una pestaña y entra.</p>
+        <h1 id="proy-titulo" class="proy-titulo aparece">Todo el <span class="script">archivo</span></h1>
+        <p class="proy-sub aparece">Marcas, piezas, contenidos y sets: cada mundo se muestra en su propia área de trabajo.</p>
       </header>
 
-      <!-- Pestañas fijas -->
+      <!-- Pestañas fijas: llevan a cada área y se marcan solas al bajar -->
       <div class="pestanas-zona">
-        <div class="pestanas" role="tablist" aria-label="Salas del archivo">
-          <button class="pestana" role="tab" id="tab-lo-grafico" aria-controls="sala-lo-grafico" aria-selected="true" data-sala="lo-grafico"><span>01</span>Lo gráfico</button>
-          <button class="pestana" role="tab" id="tab-analogo" aria-controls="sala-analogo" aria-selected="false" tabindex="-1" data-sala="analogo"><span>02</span>Análogo</button>
-          <button class="pestana" role="tab" id="tab-digital" aria-controls="sala-digital" aria-selected="false" tabindex="-1" data-sala="digital"><span>03</span>Digital</button>
-          <button class="pestana" role="tab" id="tab-en-camara" aria-controls="sala-en-camara" aria-selected="false" tabindex="-1" data-sala="en-camara"><span>04</span>En cámara</button>
-          <button class="pestana" role="tab" id="tab-en-set" aria-controls="sala-en-set" aria-selected="false" tabindex="-1" data-sala="en-set"><span>05</span>En set</button>
-        </div>
+        <nav class="pestanas" aria-label="Áreas del archivo">
+          <a class="pestana" href="#lo-grafico" aria-current="true">Lo gráfico</a>
+          <a class="pestana" href="#analogo">Análogo</a>
+          <a class="pestana" href="#digital">Digital</a>
+          <a class="pestana" href="#en-camara">En cámara</a>
+          <a class="pestana" href="#en-set">En set</a>
+        </nav>
       </div>
 
-      <div class="salas">
 
-        <!-- ===== 01 · LO GRÁFICO: mesa de trabajo tipo Illustrator (selección y capas) ===== -->
-        <section class="sala" id="sala-lo-grafico" role="tabpanel" aria-labelledby="tab-lo-grafico">
-          <p class="sala-intro">Marcas, identidades e ilustración. <span class="script">Toca una capa o una pieza.</span></p>
+      <!-- ===== 01 · EN LO GRÁFICO: mesa de trabajo tipo Illustrator (selección y capas) ===== -->
+      <section class="area area-grafico" id="lo-grafico" aria-labelledby="t-grafico">
+        <div class="area-cabeza-lado contenedor-ancho">
+          <div>
+            <p class="area-etiqueta aparece">[Identidades · Marca]</p>
+            <h2 id="t-grafico" class="area-titulo aparece">En lo <span class="script">gráfico.</span></h2>
+          </div>
+          <p class="area-nota aparece">Identidades construidas desde el primer trazo hasta los manuales: llevar la marca de la idea a la realidad. Pasa el cursor por las capas para ver de qué está hecha cada marca.</p>
+        </div>
 
-          <div class="ai-ventana">
-            <div class="ai-barra" aria-hidden="true">
-              <span class="ai-puntos"><i></i><i></i><i></i></span>
-              <span class="ai-archivo">lo-grafico.ai @ 100 % (RGB / Vista previa)</span>
+        <div class="ai contenedor-ancho aparece" data-capa="">
+          <div class="ai-menu" aria-hidden="true">
+            <b>▸ Sof</b><span>Archivo</span><span>Edición</span><span>Objeto</span><span>Texto</span><span>Seleccionar</span><span>Efecto</span><span>Ver</span>
+            <span class="ai-espacio">Espacio de trabajo: identidades</span>
+          </div>
+          <div class="ai-pestana" aria-hidden="true">identidades_sof.ai @ 66%</div>
+
+          <div class="ai-cuerpo">
+            <div class="ai-herramientas" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="lleno"><path d="M6 3l12 9-6 1-3 6z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M7 5h10M12 5v14"/></svg>
+              <svg viewBox="0 0 24 24"><rect x="5" y="6" width="14" height="12" rx="1"/></svg>
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M5 19L19 5"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M9 9h6v6H9z"/></svg>
             </div>
 
-            <div class="ai-cuerpo">
-              <!-- Herramientas (decorativas) -->
-              <div class="ai-herramientas" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M6 3l12 9-6 1-3 6z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 3l5 9-5 9-5-9z M12 12v9"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M5 5h14M12 5v14"/></svg>
-                <svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="1"/></svg>
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M8 13V6a1.5 1.5 0 013 0v5V4.5a1.5 1.5 0 013 0V11V6a1.5 1.5 0 013 0v8a6 6 0 01-6 6h-1a6 6 0 01-5-3l-2-4a1.5 1.5 0 012.5-1.5z"/></svg>
-              </div>
+            <div class="ai-lienzo">
+              <span class="ai-regla" aria-hidden="true"></span>
+              <div class="ai-mesas">
 
-              <!-- Mesa de trabajo con las piezas -->
-              <div class="ai-mesa">
-                <div class="ai-artboard">
-                  <span class="ai-artboard-nombre" aria-hidden="true">Mesa de trabajo 1</span>
+                <a class="mesa" data-mesa="1" data-proyecto="provet" href="sala-de-espera.html?p=provet" style="--i: 0">
+                  <span class="mesa-rotulo">01 · Identidad</span>
+                  <span class="mesa-papel">
+                    <span class="m-logo"><span class="espacio-img" data-src="img/proyectos/provet-logo.png" data-alt="Logo de Provet"><span>Logo<small>provet-logo.png</small></span></span></span>
+                    <span class="m-paleta"><i style="--c: #D8D2CA"></i><i style="--c: #BDB6AD"></i><i style="--c: #2F4A6B"></i><i style="--c: #1C2F48"></i></span>
+                    <span class="m-nombre">Provet</span>
+                    <span class="m-usos">Concepto · Manual · Uniformes</span>
+                  </span>
+                </a>
 
-                  <a class="pieza" data-proyecto="provet" href="sala-de-espera.html?p=provet" style="--x: 6%; --y: 9%; --w: 40%; --r: -4deg; --c: var(--rosa); --t: var(--vino); --i: 0">
-                    <span class="pieza-arte"><b>PROVET</b><small>identidad visual</small></span>
-                    <span class="pieza-nombre">Provet · Marca</span>
-                    <span class="manijas" aria-hidden="true"></span>
-                  </a>
-                  <a class="pieza" data-proyecto="boticaria" href="sala-de-espera.html?p=boticaria" style="--x: 54%; --y: 6%; --w: 38%; --r: 3deg; --c: var(--vino); --t: var(--rosa); --i: 1">
-                    <span class="pieza-arte"><b class="script">Boticaria</b><small>marca y etiquetas</small></span>
-                    <span class="pieza-nombre">Boticaria</span>
-                    <span class="manijas" aria-hidden="true"></span>
-                  </a>
-                  <a class="pieza" data-proyecto="museos" href="sala-de-espera.html?p=museos" style="--x: 10%; --y: 55%; --w: 36%; --r: 2deg; --c: var(--arena); --t: var(--vino-oscuro); --i: 2">
-                    <span class="pieza-arte"><b>MUSEOS</b><small>y galerías</small></span>
-                    <span class="pieza-nombre">Museos y galerías</span>
-                    <span class="manijas" aria-hidden="true"></span>
-                  </a>
-                  <a class="pieza" data-proyecto="lo-grotesco" href="sala-de-espera.html?p=lo-grotesco" style="--x: 52%; --y: 52%; --w: 40%; --r: -3deg; --c: var(--terracota); --t: var(--crema); --i: 3">
-                    <span class="pieza-arte"><b>Lo grotesco</b><small>la estética de</small></span>
-                    <span class="pieza-nombre">La estética de lo grotesco</span>
-                    <span class="manijas" aria-hidden="true"></span>
-                  </a>
+                <a class="mesa" data-mesa="2" data-proyecto="boticaria" href="sala-de-espera.html?p=boticaria" style="--i: 1">
+                  <span class="mesa-rotulo">02 · Identidad</span>
+                  <span class="mesa-papel">
+                    <span class="m-logo"><span class="espacio-img" data-src="img/proyectos/boticaria-logo.png" data-alt="Logo de Boticaria"><span>Logo<small>boticaria-logo.png</small></span></span></span>
+                    <span class="m-paleta"><i style="--c: #E9B824"></i><i style="--c: #C79A2A"></i><i style="--c: #6B3460"></i><i style="--c: #4A2142"></i></span>
+                    <span class="m-nombre">Boticaria</span>
+                    <span class="m-usos">Concepto · Isotipo · Paleta</span>
+                  </span>
+                </a>
+
+                <div class="mesa mesa-libre" data-mesa="3" style="--i: 2">
+                  <span class="mesa-rotulo">03 · En maquetación</span>
+                  <span class="mesa-papel">
+                    <span class="m-logo m-x" aria-hidden="true"></span>
+                    <span class="m-paleta m-paleta-libre" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                    <span class="m-nombre">Tu marca</span>
+                    <span class="m-usos">Emprendimiento · Café · Moda</span>
+                  </span>
+                </div>
+
+                <div class="mesa mesa-libre" data-mesa="4" style="--i: 3">
+                  <span class="mesa-rotulo">04 · En maquetación</span>
+                  <span class="mesa-papel">
+                    <span class="m-logo m-x" aria-hidden="true"></span>
+                    <span class="m-paleta m-paleta-libre" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                    <span class="m-nombre">Próxima marca</span>
+                    <span class="m-usos">Salud · Belleza · Cultura</span>
+                  </span>
                 </div>
               </div>
-
-              <!-- Panel de capas -->
-              <aside class="ai-capas" aria-label="Capas">
-                <p class="ai-capas-titulo">Capas</p>
-                <ul class="ai-lista">
-                  <li><button type="button" data-capa="provet" aria-pressed="true"><i style="--c: var(--rosa)"></i>Provet · Marca</button></li>
-                  <li><button type="button" data-capa="boticaria" aria-pressed="false"><i style="--c: var(--vino)"></i>Boticaria</button></li>
-                  <li><button type="button" data-capa="museos" aria-pressed="false"><i style="--c: var(--arena)"></i>Museos y galerías</button></li>
-                  <li><button type="button" data-capa="lo-grotesco" aria-pressed="false"><i style="--c: var(--terracota)"></i>La estética de lo grotesco</button></li>
-                </ul>
-                <a class="ai-abrir" href="sala-de-espera.html?p=provet">Abrir <b>Provet · Marca</b> →</a>
-              </aside>
             </div>
-          </div>
-        </section>
 
-        <!-- ===== 02 · ANÁLOGO: pruebas de impresión ===== -->
-        <section class="sala" id="sala-analogo" role="tabpanel" aria-labelledby="tab-analogo" hidden>
-          <p class="sala-intro">Papel, tinta y textura. <span class="script">Recién salidas de la imprenta.</span></p>
-
-          <div class="imprenta">
-            <div class="imprenta-boca" aria-hidden="true"><span></span></div>
-            <div class="pruebas">
-              <a class="prueba" data-proyecto="magazine" href="sala-de-espera.html?p=magazine" style="--r: -3deg; --c: var(--vino); --t: var(--rosa); --i: 0">
-                <span class="prueba-arte"><b>Nos fui<br>pues mijo</b><small>magazine</small></span>
-                <span class="prueba-barra" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
-                <span class="prueba-pie">Prueba 01 · Magazine “Nos fui pues mijo”</span>
-                <span class="sello" aria-hidden="true">Aprobado</span>
-              </a>
-              <a class="prueba" data-proyecto="lo-grotesco" href="sala-de-espera.html?p=lo-grotesco" style="--r: 2deg; --c: var(--terracota); --t: var(--crema); --i: 1">
-                <span class="prueba-arte"><b>Lo<br>grotesco</b><small>ilustración</small></span>
-                <span class="prueba-barra" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
-                <span class="prueba-pie">Prueba 02 · La estética de lo grotesco</span>
-                <span class="sello" aria-hidden="true">Aprobado</span>
-              </a>
-              <a class="prueba" data-proyecto="boticaria" href="sala-de-espera.html?p=boticaria" style="--r: -1.5deg; --c: var(--rosa); --t: var(--vino); --i: 2">
-                <span class="prueba-arte"><b class="script">Boticaria</b><small>etiquetas</small></span>
-                <span class="prueba-barra" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
-                <span class="prueba-pie">Prueba 03 · Boticaria</span>
-                <span class="sello" aria-hidden="true">Aprobado</span>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <!-- ===== 03 · DIGITAL: piezas verticales ===== -->
-        <section class="sala" id="sala-digital" role="tabpanel" aria-labelledby="tab-digital" hidden>
-          <p class="sala-intro">Redes, pantallas y web. <span class="script">Piezas para ver en vertical.</span></p>
-
-          <div class="verticales">
-            <a class="vertical" data-proyecto="provet-redes" href="sala-de-espera.html?p=provet-redes" style="--c1: var(--rosa); --c2: var(--terracota); --t: var(--vino-oscuro); --i: 0">
-              <span class="historias" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span class="vertical-perfil" aria-hidden="true"><i></i><b>provet</b> · hace 2 h</span>
-              <span class="vertical-arte"><b>Posts,<br>historias<br>y reels</b></span>
-              <span class="vertical-pie">Provet · Redes<small>Contenido para redes</small></span>
-            </a>
-            <a class="vertical" data-proyecto="trazo" href="sala-de-espera.html?p=trazo" style="--c1: var(--vino); --c2: var(--vino-oscuro); --t: var(--crema); --i: 1">
-              <span class="historias" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span class="vertical-perfil" aria-hidden="true"><i></i><b>trazo</b> · en vivo</span>
-              <span class="vertical-arte"><b class="script">Trazo</b><small>portafolio web</small></span>
-              <span class="vertical-pie">Trazo · Portafolio web<small>Figma + VS Code</small></span>
-            </a>
-            <div class="vertical vertical-pronto" style="--i: 2">
-              <span class="vertical-arte"><b class="script">pronto</b><small>nueva pieza en camino</small></span>
-            </div>
-          </div>
-        </section>
-
-        <!-- ===== 04 · EN CÁMARA: cuarto oscuro (fotos que se mecen + panel tipo Lightroom) ===== -->
-        <!-- Pendiente: fotos reales y sus ajustes de revelado (los ajustes están en js/proyectos.js) -->
-        <section class="sala" id="sala-en-camara" role="tabpanel" aria-labelledby="tab-en-camara" hidden>
-          <p class="sala-intro">Retrato, producto y calle. <span class="script">Revelando con luz roja.</span></p>
-
-          <div class="cuarto">
-            <div class="cuarto-fotos">
-              <span class="cuerda" aria-hidden="true"></span>
-              <div class="tendedero">
-                <button class="foto" type="button" data-foto="retrato" data-proyecto="retrato" aria-pressed="true" style="--r: -4deg; --dur: 4.2s; --c1: #6A2440; --c2: #2E0911">
-                  <span class="pinza" aria-hidden="true"></span>
-                  <span class="foto-imagen"><small>foto pendiente</small></span>
-                  <span class="foto-nombre">Retrato</span>
-                </button>
-                <button class="foto" type="button" data-foto="producto" data-proyecto="producto" aria-pressed="false" style="--r: 3deg; --dur: 5s; --c1: #B96B52; --c2: #5C1A30">
-                  <span class="pinza" aria-hidden="true"></span>
-                  <span class="foto-imagen"><small>foto pendiente</small></span>
-                  <span class="foto-nombre">Producto</span>
-                </button>
-                <button class="foto" type="button" data-foto="ciudad" data-proyecto="ciudad" aria-pressed="false" style="--r: -2deg; --dur: 4.6s; --c1: #D9C4B8; --c2: #6A2440">
-                  <span class="pinza" aria-hidden="true"></span>
-                  <span class="foto-imagen"><small>foto pendiente</small></span>
-                  <span class="foto-nombre">Ciudad</span>
-                </button>
+            <aside class="ai-panel">
+              <p class="ai-panel-titulo">Mesas de trabajo</p>
+              <div class="ai-miniaturas">
+                <button type="button" data-mesa="1" style="--c: #2F4A6B" aria-pressed="false">01</button>
+                <button type="button" data-mesa="2" style="--c: #6B3460" aria-pressed="false">02</button>
+                <button type="button" data-mesa="3" class="libre" aria-pressed="false">03</button>
+                <button type="button" data-mesa="4" class="libre" aria-pressed="false">04</button>
               </div>
-            </div>
-
-            <!-- Panel de revelado tipo Lightroom -->
-            <aside class="lr" aria-live="polite">
-              <p class="lr-titulo">Revelado <span data-lr="nombre">Retrato</span></p>
-              <svg class="lr-histograma" viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true">
-                <path data-lr="histograma" d="M0 60 C20 50 30 20 50 30 S80 10 100 25 S140 50 160 35 S190 45 200 60 Z"/>
-              </svg>
-              <div class="lr-ajustes">
-                <div class="lr-ajuste" data-ajuste="exposicion"><span>Exposición</span><span class="lr-riel"><i></i></span><output>0</output></div>
-                <div class="lr-ajuste" data-ajuste="contraste"><span>Contraste</span><span class="lr-riel"><i></i></span><output>0</output></div>
-                <div class="lr-ajuste" data-ajuste="temperatura"><span>Temperatura</span><span class="lr-riel lr-riel-temp"><i></i></span><output>0</output></div>
-                <div class="lr-ajuste" data-ajuste="saturacion"><span>Saturación</span><span class="lr-riel"><i></i></span><output>0</output></div>
-                <div class="lr-ajuste" data-ajuste="grano"><span>Grano</span><span class="lr-riel"><i></i></span><output>0</output></div>
-              </div>
-              <a class="lr-abrir" href="sala-de-espera.html?p=retrato">Ver la serie →</a>
+              <p class="ai-panel-titulo">Capas</p>
+              <ul class="ai-capas">
+                <li><button type="button" data-capa="logo"><i style="--c: var(--rosa)"></i>Logotipo</button></li>
+                <li><button type="button" data-capa="paleta"><i style="--c: var(--terracota)"></i>Paleta de color</button></li>
+                <li><button type="button" data-capa="tipo"><i style="--c: var(--arena)"></i>Tipografía</button></li>
+                <li><button type="button" data-capa="usos"><i style="--c: #8E4A6A"></i>Aplicaciones</button></li>
+              </ul>
             </aside>
           </div>
-        </section>
 
-        <!-- ===== 05 · EN SET: monitor con REC y código de tiempo + claqueta ===== -->
-        <section class="sala" id="sala-en-set" role="tabpanel" aria-labelledby="tab-en-set" hidden>
-          <p class="sala-intro">Videoclips, comerciales y cortos. <span class="script">¡Silencio, se graba!</span></p>
+          <div class="ai-estado" aria-hidden="true"><span>2 marcas · 2 mesas libres</span><span>66%</span></div>
+        </div>
+      </section>
 
-          <div class="set">
-            <div class="monitor">
-              <div class="monitor-pantalla">
-                <div class="monitor-imagen" data-m="imagen" style="--c1: #6A2440; --c2: #B96B52">
-                  <b data-m="titulo">Casualidad</b>
-                  <small data-m="tipo">Videoclip</small>
-                </div>
-                <!-- Se muestra cuando el proyecto aún no tiene imagen -->
-                <div class="monitor-sin-senal" hidden><b>Sin señal</b><small>imagen pendiente</small></div>
-                <span class="monitor-guias" aria-hidden="true"></span>
-                <span class="rec" aria-hidden="true"><i></i>REC</span>
-                <span class="timecode" aria-hidden="true">00:00:00:00</span>
-                <span class="monitor-datos" aria-hidden="true">4K · 24 fps · ISO 800</span>
-              </div>
-              <span class="monitor-base" aria-hidden="true"></span>
-            </div>
 
-            <div class="set-lado">
-              <div class="claqueta">
-                <span class="claqueta-palo" aria-hidden="true"></span>
-                <div class="claqueta-cuerpo">
-                  <div class="cl-fila"><span>Producción</span><b data-c="titulo">Casualidad</b></div>
-                  <div class="cl-fila cl-tres">
-                    <div><span>Escena</span><b data-c="escena">01</b></div>
-                    <div><span>Toma</span><b data-c="toma">01</b></div>
-                    <div><span>Año</span><b data-c="anio">2025</b></div>
-                  </div>
-                  <div class="cl-fila"><span>Rol de Sof</span><b data-c="rol">Dirección de arte</b></div>
-                </div>
-              </div>
+      <!-- ===== 02 · LO ANÁLOGO: pruebas de impresión sobre el tapete de corte ===== -->
+      <section class="area area-analogo" id="analogo" aria-labelledby="t-analogo">
+        <div class="area-dos contenedor-ancho">
+          <div class="area-texto">
+            <p class="area-etiqueta aparece">[Impresos · Editorial]</p>
+            <h2 id="t-analogo" class="area-titulo aparece">Lo <span class="script">análogo.</span></h2>
+            <p class="area-parrafo aparece">Diseños pensados para el impreso: márgenes, tamaños y colores listos para salir de la pantalla.</p>
+            <ol class="lista-proy aparece">
+              <li><a data-proyecto="museos" href="sala-de-espera.html?p=museos"><span>01</span><span><b>Museos y galerías de Pereira</b><small>Folleto interactivo</small></span></a></li>
+              <li><a data-proyecto="lo-grotesco" href="sala-de-espera.html?p=lo-grotesco"><span>02</span><span><b>La estética de lo grotesco</b><small>Portada de libro</small></span></a></li>
+            </ol>
+            <ul class="chips-herr aparece" aria-label="Programas usados">
+              <li>InDesign</li><li>Illustrator</li><li>Photoshop</li>
+            </ul>
+          </div>
 
-              <ol class="tomas" aria-label="Proyectos en set">
-                <li><button type="button" data-toma="casualidad" data-proyecto="casualidad" aria-pressed="true"
-                  data-titulo="Casualidad" data-tipo="Videoclip" data-anio="2025" data-rol="Dirección de arte" data-c1="#6A2440" data-c2="#B96B52">
-                  <span>Escena 01</span>Casualidad</button></li>
-                <li><button type="button" data-toma="servicarga" data-proyecto="servicarga" aria-pressed="false"
-                  data-titulo="Servicarga" data-tipo="Comercial" data-anio="2025" data-rol="Dirección de arte" data-c1="#B96B52" data-c2="#3D0C15">
-                  <span>Escena 02</span>Servicarga</button></li>
-                <li><button type="button" data-toma="donde-la-musica-muere" data-proyecto="donde-la-musica-muere" aria-pressed="false"
-                  data-titulo="Donde la música muere" data-tipo="Cortometraje" data-anio="2024" data-rol="Producción y asistente de arte" data-sin-senal>
-                  <span>Escena 03</span>Donde la música muere</button></li>
-              </ol>
+          <div class="tapete aparece">
+            <span class="tapete-rollo" aria-hidden="true"></span>
+            <a class="pliego pliego-ancho" href="sala-de-espera.html?p=museos" aria-label="Museos y galerías de Pereira">
+              <span class="espacio-img" data-src="img/proyectos/museos-folleto.jpg" data-alt="Folleto de Museos y galerías de Pereira"><span>Folleto abierto<small>museos-folleto.jpg</small></span></span>
+              <span class="pliego-pie"><span>museos_pereira.indd · pliego 01 · 2025</span><span class="cmyk" aria-hidden="true"><i></i><i></i><i></i><i></i></span></span>
+            </a>
+            <a class="pliego pliego-alto" href="sala-de-espera.html?p=lo-grotesco" aria-label="La estética de lo grotesco">
+              <span class="espacio-img" data-src="img/proyectos/grotesco-portada.jpg" data-alt="Portada de La estética de lo grotesco"><span>Portada<small>grotesco-portada.jpg</small></span></span>
+              <span class="pliego-pie"><span>grotesco_portada.ai · prueba 02</span><span class="cmyk" aria-hidden="true"><i></i><i></i><i></i><i></i></span></span>
+            </a>
+          </div>
+        </div>
+      </section>
 
-              <a class="btn-rosa set-ver" href="sala-de-espera.html?p=casualidad">Ver proyecto</a>
+
+      <!-- ===== 03 · EN DIGITAL: piezas verticales ===== -->
+      <section class="area area-digital" id="digital" aria-labelledby="t-digital">
+        <div class="area-dos area-dos-digital contenedor-ancho">
+          <div class="area-texto">
+            <p class="area-etiqueta aparece">[Redes · Contenido]</p>
+            <h2 id="t-digital" class="area-titulo area-titulo-apilado aparece">En <span class="script">digital.</span></h2>
+            <p class="area-parrafo aparece">Contenido que enseña y conecta: diseño de posts, historias y edición de reels para marcas que navegan en las plataformas y quieren crear vínculos reales con su público.</p>
+            <a class="enlace-flecha aparece" href="redes.html">Ver el mundo en redes ↗</a>
+          </div>
+
+          <div class="verticales">
+            <a class="vertical aparece" data-proyecto="provet-redes" href="sala-de-espera.html?p=provet-redes" style="--fondo: var(--rosa)">
+              <span class="espacio-img" data-src="img/proyectos/provet-historia-01.jpg" data-alt="Historia de Provet"><span>Historia 9:16<small>provet-historia-01.jpg</small></span></span>
+              <span class="vertical-avatar" aria-hidden="true"></span>
+              <span class="vertical-pie"><b>Provet</b><small>Veterinaria · Historia 01</small></span>
+            </a>
+            <a class="vertical vertical-centro aparece" data-proyecto="provet-redes" href="sala-de-espera.html?p=provet-redes" style="--fondo: var(--terracota)">
+              <span class="espacio-img" data-src="img/proyectos/provet-reel-02.jpg" data-alt="Reel de Provet"><span>Reel 9:16<small>provet-reel-02.jpg</small></span></span>
+              <span class="vertical-avatar" aria-hidden="true"></span>
+              <span class="vertical-pie"><b>Provet</b><small>Veterinaria · Reel 02</small></span>
+            </a>
+            <a class="vertical aparece" data-proyecto="provet-redes" href="sala-de-espera.html?p=provet-redes" style="--fondo: var(--rosa)">
+              <span class="espacio-img" data-src="img/proyectos/provet-historia-03.jpg" data-alt="Historia de Provet"><span>Historia 9:16<small>provet-historia-03.jpg</small></span></span>
+              <span class="vertical-avatar" aria-hidden="true"></span>
+              <span class="vertical-pie"><b>Provet</b><small>Veterinaria · Historia 03</small></span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===== 04 · EN CÁMARA: cuarto oscuro (fotos que se mecen + panel tipo Lightroom) ===== -->
+      <!-- Pendiente: fotos reales y sus ajustes reales (los ajustes están en js/proyectos.js) -->
+      <section class="area area-camara" id="en-camara" aria-labelledby="t-camara">
+        <div class="area-cabeza-centro contenedor">
+          <p class="area-etiqueta aparece">[Fotografía · Revelado]</p>
+          <h2 id="t-camara" class="area-titulo aparece">En <span class="script">cámara.</span></h2>
+          <p class="area-parrafo aparece">Producto, retrato y fotos de set, reveladas y editadas en Lightroom. Pasa el cursor por una foto para ver cómo se ajustó.</p>
+        </div>
+
+        <div class="tendedero contenedor-ancho">
+          <svg class="cuerda" viewBox="0 0 1000 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 8 Q500 46 1000 8"/></svg>
+          <div class="polaroids">
+            <button class="polaroid" type="button" data-foto="producto-01" style="--r: -6deg; --dur: 4.4s; --baja: 4px; --c1: #D9A890; --c2: #B96B52">
+              <span class="pinza" aria-hidden="true"></span>
+              <span class="espacio-img polaroid-img" data-src="img/proyectos/foto-producto-01.jpg" data-alt="Foto de producto"><span><em class="script">producto</em>Espacio para tu foto<small>foto-producto-01.jpg</small></span></span>
+              <span class="polaroid-pie script">Producto 01</span>
+            </button>
+            <button class="polaroid" type="button" data-foto="retrato-01" style="--r: 3deg; --dur: 5s; --baja: 30px; --c1: #D48E98; --c2: #6A2440" aria-pressed="true">
+              <span class="pinza" aria-hidden="true"></span>
+              <span class="espacio-img polaroid-img" data-src="img/proyectos/foto-retrato-01.jpg" data-alt="Retrato"><span><em class="script">retrato</em>Espacio para tu foto<small>foto-retrato-01.jpg</small></span></span>
+              <span class="polaroid-pie script">Retrato 01</span>
+            </button>
+            <button class="polaroid" type="button" data-foto="set-01" style="--r: -2deg; --dur: 4.7s; --baja: 8px; --c1: #B96B52; --c2: #2E0911">
+              <span class="pinza" aria-hidden="true"></span>
+              <span class="espacio-img polaroid-img" data-src="img/proyectos/foto-set-01.jpg" data-alt="Foto de set"><span><em class="script">set</em>Espacio para tu foto<small>foto-set-01.jpg</small></span></span>
+              <span class="polaroid-pie script">Set 01</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Panel tipo Lightroom -->
+        <div class="lr contenedor-angosto aparece" aria-live="polite">
+          <div class="lr-cabeza">
+            <b>Revelar</b>
+            <span data-lr="titulo">Retrato 01 · ajustes de ejemplo</span>
+            <span class="lr-marca">Lightroom</span>
+          </div>
+          <div class="lr-cuerpo">
+            <div class="lr-histograma" aria-hidden="true"></div>
+            <div class="lr-ajustes">
+              <div class="lr-ajuste" data-ajuste="temperatura"><span>Temperatura</span><span class="lr-riel riel-temp"><i></i></span><output>0</output></div>
+              <div class="lr-ajuste" data-ajuste="exposicion"><span>Exposición</span><span class="lr-riel"><i></i></span><output>0</output></div>
+              <div class="lr-ajuste" data-ajuste="contraste"><span>Contraste</span><span class="lr-riel"><i></i></span><output>0</output></div>
+              <div class="lr-ajuste" data-ajuste="sombras"><span>Sombras</span><span class="lr-riel"><i></i></span><output>0</output></div>
+              <div class="lr-ajuste" data-ajuste="saturacion"><span>Saturación</span><span class="lr-riel riel-sat"><i></i></span><output>0</output></div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-      </div>
+
+      <!-- ===== 05 · EN EL SET: monitores con REC y código de tiempo + claquetas que se cierran ===== -->
+      <section class="area area-set" id="en-set" aria-labelledby="t-set">
+        <div class="area-cabeza-centro contenedor">
+          <p class="area-etiqueta aparece">[Dirección de arte · Set]</p>
+          <h2 id="t-set" class="area-titulo aparece">En el <span class="script">set.</span></h2>
+          <p class="area-parrafo aparece">Espacios que cuentan la historia frente a la cámara: concepto, ambientación y utilería para videoclips, comerciales y cortos.</p>
+        </div>
+
+        <div class="escenas contenedor-ancho">
+
+          <!-- Escena 01 · Casualidad -->
+          <article class="escena" data-proyecto="casualidad">
+            <div class="monitor aparece">
+              <div class="monitor-pantalla">
+                <span class="espacio-img monitor-img" data-src="img/proyectos/casualidad.jpg" data-alt="Fotograma de Casualidad"><span>Fotograma del videoclip<small>casualidad.jpg</small></span></span>
+                <span class="mon-arriba" aria-hidden="true"><span class="rec"><i></i>REC</span><span>A-CAM</span><span class="timecode" data-desde="194">00:03:14:14</span></span>
+                <span class="mon-esquinas" aria-hidden="true"></span>
+                <span class="mon-abajo" aria-hidden="true"><span>24 FPS · 1/48 · ISO 800</span><span>2.39:1</span><span class="bateria"></span></span>
+              </div>
+              <div class="monitor-marco" aria-hidden="true"><span class="mon-luces"><i></i><i></i></span><span>Monitor de set</span></div>
+              <span class="monitor-pie" aria-hidden="true"></span>
+            </div>
+            <div class="escena-info">
+              <div class="claqueta aparece">
+                <span class="claqueta-palo" aria-hidden="true"></span>
+                <div class="claqueta-tabla">
+                  <div class="cq cq-ancha"><span>Prod.</span><b>Casualidad</b></div>
+                  <div class="cq"><span>Escena</span><b>01</b></div>
+                  <div class="cq"><span>Toma</span><b>03</b></div>
+                  <div class="cq"><span>Director</span><b>Felipe Argüello</b></div>
+                  <div class="cq"><span>Dir. de arte</span><b>Sofía Moncada</b></div>
+                  <div class="cq"><span>Productora</span><b>InSign Visualmedia</b></div>
+                  <div class="cq"><span>Fecha</span><b>2025</b></div>
+                </div>
+              </div>
+              <p class="escena-etiqueta">[Videoclip · Leo Méndez]</p>
+              <p class="escena-texto">Escenarios distintos para cada momento de la canción y la emoción que se vive.</p>
+              <p class="escena-tags">Ambientación · Escenografía · Utilería</p>
+              <a class="enlace-flecha" href="sala-de-espera.html?p=casualidad">Ver proyecto ↗</a>
+            </div>
+          </article>
+
+          <!-- Escena 02 · Servicarga (pendiente: fotogramas de mejor calidad) -->
+          <article class="escena escena-invertida" data-proyecto="servicarga">
+            <div class="monitor aparece">
+              <div class="monitor-pantalla">
+                <span class="espacio-img monitor-img" data-src="img/proyectos/servicarga.jpg" data-alt="Fotograma del comercial de Servicarga"><span>Fotograma del comercial<small>servicarga.jpg</small></span></span>
+                <span class="mon-arriba" aria-hidden="true"><span class="rec"><i></i>REC</span><span>A-CAM</span><span class="timecode" data-desde="111">00:01:51:14</span></span>
+                <span class="mon-esquinas" aria-hidden="true"></span>
+                <span class="mon-abajo" aria-hidden="true"><span>24 FPS · 1/48 · ISO 800</span><span>2.39:1</span><span class="bateria"></span></span>
+              </div>
+              <div class="monitor-marco" aria-hidden="true"><span class="mon-luces"><i></i><i></i></span><span>Monitor de set</span></div>
+              <span class="monitor-pie" aria-hidden="true"></span>
+            </div>
+            <div class="escena-info">
+              <div class="claqueta aparece">
+                <span class="claqueta-palo" aria-hidden="true"></span>
+                <div class="claqueta-tabla">
+                  <div class="cq cq-ancha"><span>Prod.</span><b>Servicarga</b></div>
+                  <div class="cq"><span>Escena</span><b>02</b></div>
+                  <div class="cq"><span>Toma</span><b>01</b></div>
+                  <div class="cq"><span>Formato</span><b>Comercial</b></div>
+                  <div class="cq"><span>Dir. de arte</span><b>Sofía Moncada</b></div>
+                  <div class="cq"><span>Productora</span><b>InSign Visualmedia</b></div>
+                  <div class="cq"><span>Fecha</span><b>2026</b></div>
+                </div>
+              </div>
+              <p class="escena-etiqueta">[Comercial · Servicarga]</p>
+              <p class="escena-texto">Una casa cercana y familiar para contar cómo acortar las distancias con los pequeños detalles.</p>
+              <p class="escena-tags">Dirección de arte · Ambientación</p>
+              <a class="enlace-flecha" href="sala-de-espera.html?p=servicarga">Ver proyecto ↗</a>
+            </div>
+          </article>
+
+          <!-- Escena 03 · Donde la música muere (pendiente: fotograma; mientras tanto "Sin señal") -->
+          <article class="escena" data-proyecto="donde-la-musica-muere">
+            <div class="monitor aparece">
+              <div class="monitor-pantalla">
+                <span class="espacio-img monitor-img sin-senal" data-src="img/proyectos/donde-la-musica-muere.jpg" data-alt="Fotograma de Donde la música muere">
+                  <span class="barras" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                  <span class="sin-senal-caja"><b>Sin señal</b><small>espacio para el fotograma del corto · donde-la-musica-muere.jpg</small></span>
+                </span>
+                <span class="mon-arriba" aria-hidden="true"><span class="rec"><i></i>REC</span><span>A-CAM</span><span class="timecode" data-desde="208">00:03:28:14</span></span>
+                <span class="mon-esquinas" aria-hidden="true"></span>
+                <span class="mon-abajo" aria-hidden="true"><span>24 FPS · 1/48 · ISO 800</span><span>2.39:1</span><span class="bateria"></span></span>
+              </div>
+              <div class="monitor-marco" aria-hidden="true"><span class="mon-luces"><i></i><i></i></span><span>Monitor de set</span></div>
+              <span class="monitor-pie" aria-hidden="true"></span>
+            </div>
+            <div class="escena-info">
+              <div class="claqueta aparece">
+                <span class="claqueta-palo" aria-hidden="true"></span>
+                <div class="claqueta-tabla">
+                  <div class="cq cq-ancha"><span>Prod.</span><b>Donde la música muere</b></div>
+                  <div class="cq"><span>Escena</span><b>03</b></div>
+                  <div class="cq"><span>Toma</span><b>—</b></div>
+                  <div class="cq"><span>Formato</span><b>Cortometraje</b></div>
+                  <div class="cq"><span>Dir. de arte</span><b>Sofía Moncada</b></div>
+                  <div class="cq"><span>Fecha</span><b>2024</b></div>
+                  <div class="cq"><span></span><b></b></div>
+                </div>
+              </div>
+              <p class="escena-etiqueta">[Cortometraje]</p>
+              <p class="escena-texto">Volviendo a una historia de Andrés Caicedo en la Cali salsera.</p>
+              <p class="escena-tags">Producción · Asistencia de arte</p>
+              <a class="enlace-flecha" href="sala-de-espera.html?p=donde-la-musica-muere">Ver proyecto ↗</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
     </section>
 
   </main>
