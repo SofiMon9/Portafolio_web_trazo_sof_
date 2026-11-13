@@ -1,0 +1,26 @@
+/* =========================================================
+   TRAZO · Portafolio de Sofía Moncada
+   pronto.css · páginas temporales "Muy pronto"
+   ========================================================= */
+
+/* ---------- 10. Página temporal "Muy pronto" ---------- */
+.pronto-caja {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding-top: 80px;
+  text-align: center;
+}
+.pronto-script { font-size: clamp(2.6rem, 8vw, 4rem); color: var(--accent-2); line-height: 1; }
+.pronto-caja h1 {
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.pronto-caja p:not(.script) { color: var(--suave); margin-bottom: 1rem; }
+
+

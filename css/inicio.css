@@ -1,0 +1,400 @@
+/* =========================================================
+   TRAZO · Portafolio de Sofía Moncada
+   inicio.css · solo para inicio.html
+   ========================================================= */
+
+/* ---------- 9. INICIO · Portada "Sof en TRAZO" ---------- */
+.portada {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  padding: 110px 16px 70px;
+  overflow: hidden;
+}
+
+/* Rayas verticales anchas que se mueven despacio */
+.portada-rayas {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg,
+    var(--raya-1) 0 64px,
+    var(--raya-2) 64px 128px);
+  animation: rayas 9s linear infinite;
+}
+/* Se desvanecen abajo, hacia las cintas */
+.portada-rayas::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 55%, var(--bg) 100%);
+}
+@keyframes rayas { to { background-position: 128px 0; } }
+
+.portada-centro {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.portada-titulo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--fg);
+}
+.portada-sof {
+  position: relative;
+  z-index: 1;
+  margin-bottom: -.32em;
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  line-height: 1;
+}
+
+/* TRAZO: cada letra sube desde abajo */
+.trazo {
+  display: flex;
+  font-size: clamp(5rem, 18vw, 11rem);
+  font-weight: 800;
+  line-height: .95;
+  letter-spacing: .01em;
+}
+.trazo-letra { display: inline-block; }
+.vista.activa .trazo-letra {
+  animation: subir 1s cubic-bezier(.2, .8, .2, 1) backwards;
+  animation-delay: calc(200ms + var(--i) * 90ms);
+}
+@keyframes subir {
+  /* la letra sube y se va descubriendo, como si saliera de una ranura */
+  from { translate: 0 100%; clip-path: inset(-20% -10% 100% -10%); }
+  to   { translate: 0 0;    clip-path: inset(-20% -10% -20% -10%); }
+}
+
+.portada-lema {
+  margin-top: .2rem;
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  color: var(--fg);
+}
+.portada-oficio {
+  margin-top: 1rem;
+  font-size: clamp(.8rem, 1.6vw, .98rem);
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+.portada-botones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .8rem;
+  margin-top: 1.8rem;
+}
+.portada-botones .btn-borde {
+  background: transparent;
+  font: inherit;
+  font-size: .95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.vista.activa .portada-lema,
+.vista.activa .portada-oficio,
+.vista.activa .portada-botones {
+  animation: aparecer 1s ease 900ms backwards;
+}
+.vista.activa .portada-botones { animation-delay: 1.1s; }
+@keyframes aparecer { from { opacity: 0; translate: 0 12px; } }
+
+/* Estrellas que giran cerca del título */
+.portada-estrella {
+  position: absolute;
+  fill: var(--rosa);
+  animation: girar 14s linear infinite;
+}
+.portada-estrella.pe1 { width: clamp(26px, 4vw, 44px); height: clamp(26px, 4vw, 44px); top: 2%; right: -8%; }
+.portada-estrella.pe2 { width: clamp(16px, 2.4vw, 24px); height: clamp(16px, 2.4vw, 24px); top: 42%; left: -8%; fill: var(--terracota); animation-duration: 9s; animation-direction: reverse; }
+
+
+/* ---------- 9b. INICIO · Cintas cruzadas ---------- */
+.cintas {
+  position: relative;
+  height: clamp(170px, 22vw, 250px);
+}
+.cinta {
+  position: absolute;
+  top: 50%;
+  left: -10vw;
+  width: 120vw;
+  padding-block: clamp(.55rem, 1.2vw, .85rem);
+  overflow: hidden;
+  color: var(--vino-oscuro);
+  box-shadow: var(--sombra);
+}
+.cinta-1 {
+  background: var(--rosa);
+  transform: translateY(-50%) rotate(6deg);
+  z-index: 2;
+}
+.cinta-2 {
+  background: #F1CFCA;
+  transform: translateY(-50%) rotate(-4deg);
+}
+
+/* El texto se desliza sin parar (una cinta hacia cada lado) */
+.cinta-pista {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: deslizar 30s linear infinite;
+}
+.cinta-2 .cinta-pista {
+  animation-direction: reverse;
+  animation-duration: 36s;
+}
+/* Espacio a la derecha de cada palabra (no "gap", para que el bucle quede exacto) */
+.cinta-pista > * { margin-right: clamp(3rem, 8vw, 6.5rem); }
+.cinta-pista span {
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-weight: 500;
+  white-space: nowrap;
+}
+@keyframes deslizar { to { transform: translateX(-50%); } }
+
+
+/* ---------- 9c. INICIO · Bienvenidx + manifiesto ---------- */
+.bienvenidx {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 90px 120px;
+  text-align: center;
+}
+.bienvenidx-titulo {
+  font-size: clamp(2.4rem, 6.4vw, 4.6rem);
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.manifiesto {
+  max-width: 54rem;
+  margin-top: 1.8rem;
+  font-size: clamp(1.6rem, 3.6vw, 2.7rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+.manifiesto em {
+  font-size: 1.25em;
+  font-weight: 400;
+  line-height: 1;
+}
+
+/* Palabras apagadas que se encienden al bajar */
+.js .manifiesto .palabra {
+  opacity: .16;
+  transition: opacity .35s ease;
+}
+.js .manifiesto .palabra.encendida { opacity: 1; }
+
+
+/* ---------- 9c-bis. INICIO · ¿Quieres conocerme? ---------- */
+.conocerme {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  padding-block: 20px 130px;
+  text-align: center;
+}
+.conocerme-titulo {
+  font-size: clamp(2.4rem, 7vw, 4.4rem);
+  font-weight: 800;
+  line-height: 1.05;
+}
+.conocerme-titulo em {
+  font-size: 1.3em;
+  color: var(--accent);
+}
+.conocerme-texto {
+  max-width: 34rem;
+  font-weight: 300;
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  color: var(--suave);
+}
+.conocerme-botones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem 1.6rem;
+  margin-top: .6rem;
+}
+.enlace-suave {
+  font-weight: 500;
+  color: var(--accent-2);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+}
+.enlace-suave:hover { color: var(--accent); }
+
+
+/* ---------- 9d. INICIO · ¿Por qué Sof? ---------- */
+.porque {
+  padding-block: 40px 130px;
+}
+.porque-titulo {
+  margin-bottom: 3rem;
+  font-size: clamp(2.6rem, 7vw, 4.6rem);
+  font-weight: 800;
+  text-align: center;
+}
+.porque-titulo em {
+  font-size: 1.35em;
+  color: var(--accent);
+}
+
+.razones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.4rem 1.8rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.razon {
+  position: relative;
+  padding-top: 1.2rem;
+  border-top: 2px solid var(--fg);
+}
+/* Retraso escalonado al aparecer */
+.razon:nth-child(2) { transition-delay: .1s; }
+.razon:nth-child(3) { transition-delay: .2s; }
+.razon:nth-child(4) { transition-delay: .3s; }
+
+.razon-estrella {
+  position: absolute;
+  top: 1rem;
+  right: 0;
+  width: 26px;
+  height: 26px;
+  fill: var(--rosa);
+  transition: rotate .6s ease, scale .6s ease;
+}
+.razon:hover .razon-estrella { rotate: 180deg; scale: 1.25; }
+
+.razon-num {
+  display: block;
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--accent-2);
+}
+.razon h3 {
+  margin: .5rem 0 .6rem;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.razon p { color: var(--suave); font-size: 1rem; }
+
+/* Espacio reservado para testimonios */
+.testimonios {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .4rem;
+  margin-top: 4rem;
+  padding: 2rem 1.4rem;
+  border: 1.5px dashed var(--linea);
+  border-radius: 10px;
+  text-align: center;
+}
+.testimonios .etiqueta-mini { margin-bottom: 0; }
+.testimonios-texto {
+  font-size: clamp(1.6rem, 3.6vw, 2.2rem);
+  line-height: 1.2;
+  color: var(--suave);
+}
+
+
+/* ---------- 9e. INICIO · ¿Listx...? ---------- */
+.listx {
+  padding-bottom: 110px;
+}
+.listx-caja {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  padding: clamp(3rem, 8vw, 5.5rem) clamp(1.2rem, 5vw, 4rem);
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--vino);
+  color: var(--crema);
+  text-align: center;
+  box-shadow: 0 0 0 1px var(--linea), var(--sombra);
+}
+.listx-estrella {
+  position: absolute;
+  fill: var(--rosa);
+  opacity: .9;
+  animation: girar 12s linear infinite;
+}
+.listx-estrella.le1 { width: 54px; height: 54px; top: 12%; left: 7%; }
+.listx-estrella.le2 { width: 28px; height: 28px; bottom: 14%; right: 9%; fill: var(--terracota); animation-direction: reverse; animation-duration: 8s; }
+
+.listx-titulo {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-weight: 800;
+  line-height: 1.05;
+}
+.listx-titulo em {
+  font-size: 1.3em;
+  color: var(--rosa);
+}
+.listx-texto {
+  max-width: 30rem;
+  font-weight: 300;
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  opacity: .9;
+}
+.listx-botones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .9rem;
+  margin-top: .8rem;
+}
+.boton-claro,
+.boton-borde-claro {
+  padding: .85em 1.7em;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .25s ease, background-color .25s ease, color .25s ease;
+}
+.boton-claro {
+  border: 1.5px solid var(--crema);
+  background: var(--crema);
+  color: var(--vino);
+}
+.boton-borde-claro {
+  border: 1.5px solid var(--crema);
+  background: transparent;
+  color: var(--crema);
+}
+.boton-claro:hover { transform: translateY(-2px) rotate(-2deg); }
+.boton-borde-claro:hover { background: var(--crema); color: var(--vino); }
+
+
+/* ---------- Movimiento reducido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .js .manifiesto .palabra { opacity: 1; }
+}

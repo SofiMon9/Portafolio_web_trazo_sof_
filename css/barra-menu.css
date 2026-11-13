@@ -1,0 +1,409 @@
+/* =========================================================
+   TRAZO · Portafolio de Sofía Moncada
+   barra-menu.css · barra de arriba, interruptor claro/oscuro
+   y menú grande "Lo que hago" (todas las páginas)
+   ========================================================= */
+
+/* ---------- 3. Barra superior ---------- */
+.barra {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px clamp(16px, 5vw, 44px);
+  background: transparent;
+  transition: background-color .3s ease, padding .3s ease;
+}
+/* Al bajar, la barra toma fondo para que se lea encima del contenido */
+.barra.con-fondo {
+  padding-block: 10px;
+  background: var(--barra-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.marca-nombre {
+  font-size: .95rem;
+  font-weight: 300;
+  color: var(--fg);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* ----- Barra principal (páginas internas): píldora flotante ----- */
+.barra.barra-principal,
+.barra.barra-principal.con-fondo {
+  top: 12px;
+  left: 50%;
+  right: auto;
+  width: min(1240px, calc(100% - 32px));
+  translate: -50% 0;
+  padding: 7px 8px 7px clamp(16px, 2vw, 26px);
+  border: 1px solid var(--linea);
+  border-radius: 999px;
+  background: var(--barra-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.logo {
+  font-family: var(--script);
+  font-size: 2.1rem;
+  line-height: 1;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+/* Enlaces Inicio · Sobre mí · Proyectos */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  margin-inline: auto;
+}
+.nav-enlace {
+  padding: .5em 1em;
+  border-radius: 999px;
+  font-size: .95rem;
+  font-weight: 500;
+  color: var(--fg);
+  text-decoration: none;
+  transition: background-color .25s ease;
+}
+.nav-enlace:hover { background: var(--linea); }
+/* Página actual: resaltada en una píldora */
+.nav-enlace[aria-current="page"] {
+  background: var(--linea);
+  color: var(--suave);
+}
+
+.barra-acciones {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Botón "¡Trabajemos!" (rosa) */
+.nav-cta {
+  padding: .7em 1.3em;
+  border-radius: 999px;
+  background: var(--rosa);
+  color: var(--vino-oscuro);
+  font-size: .95rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform .25s ease;
+}
+.nav-cta:hover { transform: translateY(-2px) rotate(-2deg); }
+
+/* Botón "Lo que hago" (borde) */
+.lo-que-hago {
+  padding: .65em 1.2em;
+  border: 1.5px solid var(--fg);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--fg);
+  font: inherit;
+  font-size: .95rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color .25s ease, color .25s ease;
+}
+.lo-que-hago:hover,
+.lo-que-hago[aria-expanded="true"] {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+/* Interruptor un poco más pequeño dentro de la barra */
+.barra-principal .tema { width: 64px; height: 34px; }
+.barra-principal .perilla { top: 4px; left: 4px; width: 26px; height: 26px; }
+.barra-principal .tema[data-modo="dark"] .perilla { transform: translateX(30px); }
+.barra-principal .perilla svg { width: 15px; height: 15px; }
+
+/* Botón "Menú" (solo en celular) */
+.menu-btn {
+  display: none;
+  align-items: center;
+  gap: .5rem;
+  padding: .55em 1em;
+  border: 1.5px solid var(--fg);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--fg);
+  font: inherit;
+  font-size: .9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.menu-btn[aria-expanded="true"] { background: var(--fg); color: var(--bg); }
+.menu-rayas { display: grid; gap: 4px; width: 16px; }
+.menu-rayas i { height: 1.8px; border-radius: 2px; background: currentColor; }
+
+/* Celular y tablet: solo logo, interruptor y "Menú" */
+@media (max-width: 900px) {
+  .nav,
+  .nav-cta,
+  .lo-que-hago { display: none; }
+  .menu-btn { display: inline-flex; }
+}
+
+
+/* ----- Menú grande "Lo que hago" ----- */
+.mega {
+  position: fixed;
+  inset: 0;
+  z-index: 45; /* debajo de la barra, que sigue visible */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--bg);
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+.mega[hidden] { display: none; }
+.mega.abierto { opacity: 1; }
+
+.mega-contenido {
+  width: min(1240px, calc(100% - 32px));
+  margin-inline: auto;
+  padding-block: 100px 50px;
+}
+
+.mega-cabeza {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: .4rem 1rem;
+  margin-bottom: 1rem;
+}
+.mega-etiqueta {
+  font-size: .95rem;
+  font-weight: 500;
+}
+.mega-etiqueta b {
+  margin-right: .6rem;
+  font-weight: 700;
+  color: var(--rosa);
+}
+.mega-lema {
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  line-height: 1;
+  color: var(--rosa);
+}
+
+/* Las tres tarjetas de mundos */
+.mundos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.mundo {
+  display: flex;
+  flex-direction: column;
+  padding: 26px 24px 26px;
+  border-radius: 26px;
+  background: var(--mundo-bg);
+  color: var(--mundo-fg);
+  box-shadow: 0 0 0 1px var(--linea);
+  transition: transform .4s cubic-bezier(.3, 1.4, .5, 1);
+}
+.mundo:hover { transform: translateY(-4px); }
+.mundo-marca { --mundo-bg: var(--rosa);      --mundo-fg: var(--vino-oscuro); }
+.mundo-redes { --mundo-bg: var(--crema);     --mundo-fg: var(--vino-oscuro); }
+.mundo-arte  { --mundo-bg: var(--terracota); --mundo-fg: var(--crema); }
+
+.mundo-para {
+  font-size: .9rem;
+  opacity: .8;
+}
+.mundo-titulo {
+  margin: .5rem 0 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid currentColor;
+  font-size: clamp(2rem, 3.2vw, 2.7rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: .02em;
+}
+.mundo-titulo .script {
+  font-size: 1.05em;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.mundo-planes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.plan {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr auto;
+  align-items: center;
+  gap: .6rem;
+  padding-block: .9rem;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+}
+.plan-num {
+  align-self: start;
+  font-size: 1.05rem;
+}
+.plan-texto h3 {
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.plan-texto p {
+  margin-top: .25rem;
+  font-size: .88rem;
+  line-height: 1.45;
+  opacity: .8;
+}
+.adquirir {
+  padding: .45em 1em;
+  border: 1.3px solid currentColor;
+  border-radius: 999px;
+  font-size: .85rem;
+  font-weight: 700;
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color .25s ease, color .25s ease;
+}
+.adquirir:hover {
+  background: var(--mundo-fg);
+  color: var(--mundo-bg);
+}
+
+.mundo-miralo {
+  margin-top: 1.2rem;
+  font-size: .85rem;
+  opacity: .8;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: .5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.chips a {
+  display: inline-block;
+  padding: .35em .9em;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: .85rem;
+  color: inherit;
+  text-decoration: none;
+}
+.chips a:hover { background: var(--mundo-fg); color: var(--mundo-bg); }
+
+.mundo-ver {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 1.8rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+}
+.mundo-ver span { display: inline-block; transition: rotate .5s ease; }
+.mundo-ver:hover span { rotate: 180deg; }
+/* Subrayado del enlace "Ver el mundo" */
+.mundo-ver { background: linear-gradient(currentColor, currentColor) left bottom / 100% 1.5px no-repeat; padding-bottom: 2px; }
+
+/* Parte de abajo: páginas en grande + asesoría */
+.mega-pie {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 2.6rem;
+}
+.mega-paginas {
+  display: flex;
+  flex-direction: column;
+}
+.mega-paginas a {
+  font-size: clamp(2rem, 4vw, 2.7rem);
+  font-weight: 800;
+  line-height: 1.12;
+  text-transform: uppercase;
+  color: var(--fg);
+  text-decoration: none;
+  transition: color .25s ease, translate .25s ease;
+}
+.mega-paginas a:hover { color: var(--rosa); translate: 8px 0; }
+
+.asesoria {
+  max-width: 420px;
+  padding: 1.4rem 1.6rem;
+  border: 1px dashed var(--suave);
+  border-radius: 22px;
+}
+.asesoria-titulo {
+  font-size: 1.9rem;
+  line-height: 1.1;
+  color: var(--rosa);
+}
+.asesoria-texto {
+  margin-top: .3rem;
+  font-size: 1rem;
+}
+.asesoria-botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .7rem;
+  margin-top: 1rem;
+}
+.asesoria-hora {
+  margin-top: .9rem;
+  font-size: .85rem;
+  color: var(--suave);
+}
+
+@media (max-width: 980px) {
+  .mundos { grid-template-columns: 1fr; }
+}
+
+
+/* Interruptor tipo píldora */
+.tema {
+  position: relative;
+  width: 76px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: var(--switch-bg);
+  cursor: pointer;
+  transition: background-color .3s ease;
+}
+.perilla {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--rosa);
+  color: var(--vino);
+  transition: transform .4s cubic-bezier(.3, 1.4, .5, 1);
+}
+.tema[data-modo="dark"] .perilla { transform: translateX(36px); }
+.perilla svg { width: 18px; height: 18px; }
+.ico-sol { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.ico-luna { fill: currentColor; }
+.tema[data-modo="dark"] .ico-sol,
+.tema[data-modo="light"] .ico-luna { display: none; }
+
+

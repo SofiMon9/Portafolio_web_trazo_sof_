@@ -1,0 +1,241 @@
+/* =========================================================
+   TRAZO · Portafolio de Sofía Moncada
+   base.css · lo usan TODAS las páginas: colores, tipografías, botones,
+   fondo decorativo, aparición al bajar, transición y movimiento reducido
+   ========================================================= */
+
+/* ---------- 1. Colores y tipografías ---------- */
+:root {
+  /* Paleta de marca (no cambian) */
+  --vino: #5C1A30;
+  --vino-oscuro: #3D0C15;
+  --crema: #F7EFE9;
+  --blanco: #FFFBF7;
+  --rosa: #E8B4B0;
+  --terracota: #B96B52;
+  --arena: #D9C4B8;
+
+  /* Colores que cambian con el tema (modo claro) */
+  --bg: var(--blanco);
+  --fg: var(--vino-oscuro);
+  --suave: rgba(61, 12, 21, .68);
+  --accent: var(--vino);
+  --accent-2: var(--terracota);
+  --paper: var(--crema);
+  --linea: rgba(61, 12, 21, .14);
+  --barra-bg: rgba(255, 251, 247, .78);
+  --sombra: 0 14px 30px -14px rgba(61, 12, 21, .45);
+  --deco: var(--terracota);
+  --switch-bg: var(--arena);
+  --raya-1: var(--crema);
+  --raya-2: var(--blanco);
+  --fondo-vista: radial-gradient(ellipse at 50% 35%, var(--blanco) 0%, var(--crema) 85%);
+
+  /* Tipografías */
+  --font: 'Jost', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --script: 'Pinyon Script', cursive;
+
+  color-scheme: light;
+}
+
+/* Modo oscuro: si el sistema lo pide y Sofía no eligió "claro" */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: var(--vino-oscuro);
+    --fg: var(--crema);
+    --suave: rgba(247, 239, 233, .72);
+    --accent: var(--rosa);
+    --accent-2: var(--terracota);
+    --paper: #4E1524;
+    --linea: rgba(247, 239, 233, .16);
+    --barra-bg: rgba(61, 12, 21, .78);
+    --sombra: 0 14px 30px -14px rgba(0, 0, 0, .7);
+    --deco: var(--rosa);
+    --switch-bg: #6E3446;
+    --raya-1: var(--vino);
+    --raya-2: #4B1322;
+    --fondo-vista: radial-gradient(ellipse at 50% 35%, var(--vino) 0%, var(--vino-oscuro) 90%);
+    color-scheme: dark;
+  }
+}
+
+/* Modo oscuro elegido con el interruptor */
+:root[data-theme="dark"] {
+  --bg: var(--vino-oscuro);
+  --fg: var(--crema);
+  --suave: rgba(247, 239, 233, .72);
+  --accent: var(--rosa);
+  --accent-2: var(--terracota);
+  --paper: #4E1524;
+  --linea: rgba(247, 239, 233, .16);
+  --barra-bg: rgba(61, 12, 21, .78);
+  --sombra: 0 14px 30px -14px rgba(0, 0, 0, .7);
+  --deco: var(--rosa);
+  --switch-bg: #6E3446;
+  --raya-1: var(--vino);
+  --raya-2: #4B1322;
+  --fondo-vista: radial-gradient(ellipse at 50% 35%, var(--vino) 0%, var(--vino-oscuro) 90%);
+  color-scheme: dark;
+}
+
+
+/* ---------- 2. Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  overflow-x: clip;
+  transition: background-color .4s ease, color .4s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { margin: 0; line-height: 1.1; font-weight: 600; }
+p { margin: 0; }
+a { color: inherit; }
+img, svg { display: block; }
+
+.script {
+  font-family: var(--script);
+  font-weight: 400;
+  font-style: normal;
+}
+
+.contenedor {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.vista {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  overflow: clip; /* recorta sin romper los elementos que se quedan quietos (sticky) */
+  background: var(--fondo-vista);
+  background-attachment: fixed;
+}
+.vista[hidden] { display: none; }
+
+.boton {
+  display: inline-block;
+  padding: .8em 1.6em;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-decoration: none;
+  transition: transform .25s ease;
+}
+.boton:hover { transform: translateY(-2px); }
+
+
+
+/* Botones rosa y con borde (Inicio, Sobre mí, menú…) */
+.btn-rosa,
+.btn-borde {
+  padding: .8em 1.6em;
+  border-radius: 999px;
+  font-size: .95rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform .25s ease;
+}
+.btn-rosa { background: var(--rosa); color: var(--vino-oscuro); }
+.btn-borde { border: 1.5px solid var(--fg); color: var(--fg); }
+.btn-rosa:hover,
+.btn-borde:hover { transform: translateY(-2px); }
+
+
+/* ---------- 4. Fondo decorativo (.deco) ---------- */
+.deco {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.deco-estrella {
+  position: absolute;
+  fill: var(--deco);
+  opacity: .14;
+  animation: girar 40s linear infinite;
+}
+.deco-estrella.e1 { width: 90px;  height: 90px;  top: 12%; left: 6%; }
+.deco-estrella.e2 { width: 46px;  height: 46px;  top: 30%; right: 9%; animation-duration: 28s; animation-direction: reverse; }
+.deco-estrella.e3 { width: 130px; height: 130px; top: 62%; right: -30px; animation-duration: 55s; }
+.deco-estrella.e4 { width: 38px;  height: 38px;  top: 84%; left: 12%; animation-duration: 24s; }
+
+.deco-circulo {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid var(--deco);
+  opacity: .12;
+}
+.deco-circulo.c1 { width: 320px; height: 320px; top: -90px; right: -110px; }
+.deco-circulo.c2 { width: 200px; height: 200px; top: 48%; left: -90px; }
+
+.vista > *:not(.deco) { position: relative; z-index: 1; }
+
+@keyframes girar { to { rotate: 360deg; } }
+
+
+/* ---------- 5. Aparición al hacer scroll ---------- */
+.js .aparece {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .8s ease, transform .8s cubic-bezier(.2, .7, .2, 1);
+}
+.js .aparece.visible { opacity: 1; transform: none; }
+
+
+/* ---------- 10. Transición entre páginas (4 franjas) ---------- */
+.franjas {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  pointer-events: none;
+}
+.franjas span {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform .5s cubic-bezier(.7, 0, .3, 1);
+}
+.franjas span:nth-child(1) { background: var(--vino); }
+.franjas span:nth-child(2) { background: var(--terracota); transition-delay: 70ms; }
+.franjas span:nth-child(3) { background: var(--rosa);      transition-delay: 140ms; }
+.franjas span:nth-child(4) { background: var(--arena);     transition-delay: 210ms; }
+
+.franjas.entra { pointer-events: auto; }
+.franjas.entra span { transform: scaleY(1); }
+.franjas.sale span  { transform: scaleY(0); transform-origin: bottom; }
+
+/* Al llegar de otra página, la pantalla empieza tapada por las franjas */
+.cortina .franjas { pointer-events: auto; }
+.cortina .franjas span { transform: scaleY(1); transition: none; }
+
+
+/* ---------- 11. Movimiento reducido (general) ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .js .aparece { opacity: 1; transform: none; }
+}
