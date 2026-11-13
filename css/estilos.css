@@ -1,0 +1,552 @@
+/* =========================================================
+   TRAZO · Portafolio de Sofía Moncada
+   estilos.css
+   ========================================================= */
+
+/* ---------- 1. Colores y tipografías ---------- */
+:root {
+  /* Paleta de marca (no cambian) */
+  --vino: #5C1A30;
+  --vino-oscuro: #3D0C15;
+  --crema: #F7EFE9;
+  --blanco: #FFFBF7;
+  --rosa: #E8B4B0;
+  --terracota: #B96B52;
+  --arena: #D9C4B8;
+
+  /* Colores que cambian con el tema (modo claro) */
+  --bg: var(--blanco);
+  --fg: var(--vino-oscuro);
+  --suave: rgba(61, 12, 21, .68);
+  --accent: var(--vino);
+  --accent-2: var(--terracota);
+  --paper: var(--crema);
+  --linea: rgba(61, 12, 21, .14);
+  --barra-bg: rgba(255, 251, 247, .78);
+  --sombra: 0 14px 30px -14px rgba(61, 12, 21, .45);
+  --deco: var(--terracota);
+
+  /* Tipografías */
+  --font: 'Jost', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --script: 'Pinyon Script', cursive;
+
+  color-scheme: light;
+}
+
+/* Modo oscuro: si el sistema lo pide y Sofía no eligió "claro" */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: var(--vino-oscuro);
+    --fg: var(--crema);
+    --suave: rgba(247, 239, 233, .72);
+    --accent: var(--rosa);
+    --accent-2: var(--terracota);
+    --paper: #4E1524;
+    --linea: rgba(247, 239, 233, .16);
+    --barra-bg: rgba(61, 12, 21, .78);
+    --sombra: 0 14px 30px -14px rgba(0, 0, 0, .7);
+    --deco: var(--rosa);
+    color-scheme: dark;
+  }
+}
+
+/* Modo oscuro elegido con el interruptor */
+:root[data-theme="dark"] {
+  --bg: var(--vino-oscuro);
+  --fg: var(--crema);
+  --suave: rgba(247, 239, 233, .72);
+  --accent: var(--rosa);
+  --accent-2: var(--terracota);
+  --paper: #4E1524;
+  --linea: rgba(247, 239, 233, .16);
+  --barra-bg: rgba(61, 12, 21, .78);
+  --sombra: 0 14px 30px -14px rgba(0, 0, 0, .7);
+  --deco: var(--rosa);
+  color-scheme: dark;
+}
+
+
+/* ---------- 2. Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  overflow-x: clip;
+  transition: background-color .4s ease, color .4s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { margin: 0; line-height: 1.1; font-weight: 600; }
+p { margin: 0; }
+a { color: inherit; }
+img, svg { display: block; }
+
+.script {
+  font-family: var(--script);
+  font-weight: 400;
+  font-style: normal;
+}
+
+.contenedor {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.vista { position: relative; min-height: 100svh; overflow: hidden; }
+.vista[hidden] { display: none; }
+
+.boton {
+  display: inline-block;
+  padding: .8em 1.6em;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-decoration: none;
+  transition: transform .25s ease;
+}
+.boton:hover { transform: translateY(-2px); }
+
+
+/* ---------- 3. Barra superior ---------- */
+.barra {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--barra-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--linea);
+}
+
+.logo {
+  font-family: var(--script);
+  font-size: 2.1rem;
+  line-height: 1;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* Interruptor sol / luna */
+.tema {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--linea);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+  transition: transform .4s ease, border-color .3s ease;
+}
+.tema:hover { transform: rotate(25deg); border-color: var(--accent-2); }
+.tema svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+.tema[data-modo="dark"] .ico-luna,
+.tema[data-modo="light"] .ico-sol { display: none; }
+
+
+/* ---------- 4. Fondo decorativo (.deco) ---------- */
+.deco {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.deco-estrella {
+  position: absolute;
+  fill: var(--deco);
+  opacity: .14;
+  animation: girar 40s linear infinite;
+}
+.deco-estrella.e1 { width: 90px;  height: 90px;  top: 12%; left: 6%; }
+.deco-estrella.e2 { width: 46px;  height: 46px;  top: 30%; right: 9%; animation-duration: 28s; animation-direction: reverse; }
+.deco-estrella.e3 { width: 130px; height: 130px; top: 62%; right: -30px; animation-duration: 55s; }
+.deco-estrella.e4 { width: 38px;  height: 38px;  top: 84%; left: 12%; animation-duration: 24s; }
+
+.deco-circulo {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid var(--deco);
+  opacity: .12;
+}
+.deco-circulo.c1 { width: 320px; height: 320px; top: -90px; right: -110px; }
+.deco-circulo.c2 { width: 200px; height: 200px; top: 48%; left: -90px; }
+
+.vista > *:not(.deco) { position: relative; z-index: 1; }
+
+@keyframes girar { to { rotate: 360deg; } }
+
+
+/* ---------- 5. Aparición al hacer scroll ---------- */
+.js .aparece {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .8s ease, transform .8s cubic-bezier(.2, .7, .2, 1);
+}
+.js .aparece.visible { opacity: 1; transform: none; }
+
+
+/* ---------- 6. ENTRADA · Premisa ---------- */
+.premisa {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  padding-top: 90px;
+  padding-bottom: 40px;
+  text-align: center;
+}
+
+.etiqueta {
+  font-size: .78rem;
+  font-weight: 500;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--suave);
+}
+
+.premisa-titulo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 300;
+}
+.premisa-titulo .linea-1 {
+  font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+  letter-spacing: .02em;
+}
+.premisa-titulo .linea-2 {
+  font-size: clamp(4.6rem, 15vw, 10rem);
+  line-height: .95;
+  color: var(--accent);
+  margin-block: -.05em .1em;
+}
+.premisa-titulo .linea-3 {
+  font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+}
+.premisa-titulo strong {
+  font-weight: 700;
+  letter-spacing: .14em;
+  color: var(--accent-2);
+}
+
+.premisa-texto {
+  max-width: 34rem;
+  color: var(--suave);
+}
+
+.bajar {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .4rem;
+  margin-top: 1rem;
+  font-size: .8rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--accent);
+}
+.bajar svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: rebote 1.8s ease-in-out infinite;
+}
+@keyframes rebote { 50% { transform: translateY(6px); } }
+
+
+/* ---------- 7. ENTRADA · Tres tarjetas ---------- */
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2.4rem 1.6rem;
+  padding-block: 40px 90px;
+}
+
+.tarjeta {
+  position: relative;
+  padding: 2.2rem 1.6rem 1.8rem;
+  background: var(--paper);
+  border: 1px solid var(--linea);
+  border-radius: 6px;
+  box-shadow: var(--sombra);
+}
+/* Cinta de papel arriba de cada tarjeta */
+.tarjeta::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 86px;
+  height: 24px;
+  background: var(--rosa);
+  opacity: .75;
+  translate: -50% 0;
+  rotate: -3deg;
+}
+.tarjeta:nth-child(1) { rotate: -1.6deg; }
+.tarjeta:nth-child(2) { rotate: 1.2deg; }
+.tarjeta:nth-child(3) { rotate: -.6deg; }
+.tarjeta:nth-child(2)::before { background: var(--arena); rotate: 4deg; }
+.tarjeta:nth-child(3)::before { background: var(--terracota); opacity: .55; }
+
+.tarjeta-num {
+  display: block;
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--accent-2);
+}
+.tarjeta h2 {
+  margin: .3rem 0 .6rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.tarjeta p { color: var(--suave); font-size: 1rem; }
+
+
+/* ---------- 8. ENTRADA · Estante de libros ---------- */
+.estante-zona {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 40px 70px;
+  scroll-margin-top: 70px;
+}
+
+.estante-titulo {
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  font-weight: 300;
+  text-align: center;
+}
+.estante-titulo em {
+  font-size: 1.45em;
+  color: var(--accent);
+}
+
+.estante-mueble {
+  --escala: 1;
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  margin-top: 2.4rem;
+}
+
+.estante {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+  min-height: calc(320px * var(--escala));
+  padding-inline: 12px;
+}
+
+/* Cada libro (lomo) */
+.libro {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(84px * var(--escala));
+  height: calc(var(--h) * 1px * var(--escala));
+  padding: calc(16px * var(--escala)) 0;
+  background: var(--c);
+  color: var(--t);
+  border-radius: 4px 4px 2px 2px;
+  text-decoration: none;
+  box-shadow:
+    inset -7px 0 0 rgba(0, 0, 0, .12),
+    inset 3px 0 0 rgba(255, 255, 255, .18),
+    0 0 0 1px var(--linea),
+    var(--sombra);
+  transform: translateY(var(--y, 0)) rotate(var(--rot, 0deg));
+  transform-origin: bottom left;
+  transition: transform .4s cubic-bezier(.3, 1.5, .5, 1);
+}
+/* Bandas del lomo */
+.libro::before,
+.libro::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: currentColor;
+  opacity: .28;
+}
+.libro::before { top: 17%; }
+.libro::after  { bottom: 17%; }
+
+.libro:hover,
+.libro:focus-visible { --y: -18px; }
+
+.libro-inclinado { --rot: 7deg; margin-left: 4px; }
+.libro-inclinado:hover,
+.libro-inclinado:focus-visible { --rot: 2deg; }
+
+.libro-num {
+  font-size: calc(.75rem * var(--escala));
+  font-weight: 500;
+  letter-spacing: .1em;
+}
+.libro-titulo {
+  writing-mode: vertical-rl;
+  rotate: 180deg;
+  font-size: calc(15px * var(--escala));
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.libro-icono {
+  width: calc(16px * var(--escala));
+  height: calc(16px * var(--escala));
+  fill: currentColor;
+}
+
+/* Libros que caen al llegar al estante */
+.js .estante:not(.cae) .libro { opacity: 0; }
+.estante.cae .libro {
+  animation: caer .9s cubic-bezier(.3, 1.35, .5, 1) backwards;
+  animation-delay: calc(var(--i) * 130ms);
+}
+@keyframes caer {
+  from { translate: 0 -110vh; opacity: 0; }
+  30%  { opacity: 1; }
+  to   { translate: 0 0; }
+}
+
+/* Tabla del estante */
+.tabla {
+  height: 16px;
+  border-radius: 3px;
+  background: linear-gradient(var(--terracota), #9C5642);
+  box-shadow: 0 16px 26px -12px rgba(61, 12, 21, .55);
+}
+
+/* Nota "¡toca uno!" */
+.nota {
+  position: absolute;
+  top: 6%;
+  left: -6px;
+  font-size: 1.9rem;
+  color: var(--accent-2);
+  rotate: -12deg;
+}
+
+.pista {
+  min-height: 3.2em;
+  max-width: 30rem;
+  margin-top: 1.6rem;
+  text-align: center;
+  font-size: .98rem;
+  color: var(--suave);
+}
+
+.firma {
+  padding: 0 16px 40px;
+  text-align: center;
+  font-size: 3rem;
+  color: var(--accent);
+}
+
+/* Celulares: libros más pequeños */
+@media (max-width: 560px) {
+  .estante-mueble { --escala: .74; }
+  .nota { display: none; }
+}
+
+
+/* ---------- 9. Página temporal "Muy pronto" ---------- */
+.pronto-caja {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding-top: 80px;
+  text-align: center;
+}
+.pronto-script { font-size: clamp(2.6rem, 8vw, 4rem); color: var(--accent-2); line-height: 1; }
+.pronto-caja h1 {
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.pronto-caja p:not(.script) { color: var(--suave); margin-bottom: 1rem; }
+
+
+/* ---------- 10. Transición entre páginas (4 franjas) ---------- */
+.franjas {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  pointer-events: none;
+}
+.franjas span {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform .5s cubic-bezier(.7, 0, .3, 1);
+}
+.franjas span:nth-child(1) { background: var(--vino); }
+.franjas span:nth-child(2) { background: var(--terracota); transition-delay: 70ms; }
+.franjas span:nth-child(3) { background: var(--rosa);      transition-delay: 140ms; }
+.franjas span:nth-child(4) { background: var(--arena);     transition-delay: 210ms; }
+
+.franjas.entra { pointer-events: auto; }
+.franjas.entra span { transform: scaleY(1); }
+.franjas.sale span  { transform: scaleY(0); transform-origin: bottom; }
+
+
+/* ---------- 11. Movimiento reducido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .js .aparece { opacity: 1; transform: none; }
+  .js .estante:not(.cae) .libro { opacity: 1; }
+}

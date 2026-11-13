@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trazo · Bienvenidx al archivo de SOF</title>
+  <meta name="description" content="Portafolio de Sofía Moncada Jaramillo, diseñadora crossmedia en Pereira, Colombia. Arte desde el alma y corazón.">
+
+  <!-- Tipografías: Jost (textos) y Pinyon Script (cursiva) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/estilos.css">
+
+  <!-- Aplica el tema guardado (claro/oscuro) antes de pintar la página, para que no parpadee -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('sof-theme');
+        if (t) document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Dibujos reutilizables (estrella de 4 puntas) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="estrella" viewBox="0 0 24 24">
+      <path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z"/>
+    </symbol>
+  </svg>
+
+  <!-- ============ BARRA SUPERIOR ============ -->
+  <header class="barra">
+    <a class="logo" href="#inicio" aria-label="Trazo, ir al inicio">Trazo</a>
+
+    <button class="tema" id="btnTema" type="button" aria-label="Cambiar tema">
+      <!-- Sol: se ve en modo oscuro -->
+      <svg class="ico-sol" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"/>
+        <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/>
+      </svg>
+      <!-- Luna: se ve en modo claro -->
+      <svg class="ico-luna" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/>
+      </svg>
+    </button>
+  </header>
+
+  <main>
+
+    <!-- ============ ENTRADA (INTRO) ============ -->
+    <section class="vista intro" data-vista="intro" aria-labelledby="intro-titulo">
+
+      <!-- Fondo decorativo con baja opacidad -->
+      <div class="deco" aria-hidden="true">
+        <svg class="deco-estrella e1"><use href="#estrella"/></svg>
+        <svg class="deco-estrella e2"><use href="#estrella"/></svg>
+        <svg class="deco-estrella e3"><use href="#estrella"/></svg>
+        <svg class="deco-estrella e4"><use href="#estrella"/></svg>
+        <span class="deco-circulo c1"></span>
+        <span class="deco-circulo c2"></span>
+      </div>
+
+      <!-- Premisa -->
+      <div class="premisa contenedor">
+        <p class="etiqueta aparece">Archivo n.º 01 · Pereira, Colombia</p>
+
+        <h1 id="intro-titulo" class="premisa-titulo aparece">
+          <span class="linea-1">Bienvenidx al</span>
+          <span class="linea-2 script">archivo</span>
+          <span class="linea-3">de <strong>SOF</strong></span>
+        </h1>
+
+        <p class="premisa-texto aparece">
+          Aquí guardo lo que hago desde el alma y el corazón: marcas, redes y dirección de arte.
+          Elige un libro del estante y te llevo a ese mundo.
+        </p>
+
+        <a class="bajar aparece" href="#estante" data-scroll>
+          Baja al estante
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15M5 12l7 7 7-7"/></svg>
+        </a>
+      </div>
+
+      <!-- Tres tarjetas -->
+      <div class="tarjetas contenedor">
+        <article class="tarjeta aparece">
+          <span class="tarjeta-num script">uno</span>
+          <h2>Quién</h2>
+          <p>Soy Sofía Moncada, diseñadora crossmedia de Pereira. Hago arte desde el alma y el corazón.</p>
+        </article>
+        <article class="tarjeta aparece">
+          <span class="tarjeta-num script">dos</span>
+          <h2>Qué guardo</h2>
+          <p>Marcas, contenido para redes y dirección de arte: piezas gráficas, análogas, digitales, en cámara y en set.</p>
+        </article>
+        <article class="tarjeta aparece">
+          <span class="tarjeta-num script">tres</span>
+          <h2>Cómo se lee</h2>
+          <p>Cada libro del estante abre un mundo. Elige el que buscas o míralo todo desde el inicio.</p>
+        </article>
+      </div>
+
+      <!-- Estante de libros -->
+      <div class="estante-zona contenedor" id="estante">
+        <h2 class="estante-titulo aparece">¿Qué <em class="script">buscas</em>?</h2>
+
+        <div class="estante-mueble">
+          <span class="nota script" aria-hidden="true">¡toca uno!</span>
+
+          <nav class="estante" aria-label="Elige un mundo">
+            <a class="libro" href="#marca" style="--i:0; --h:280; --c:var(--vino); --t:var(--crema)"
+               data-pista="Marca · logos, identidad y todo lo que hace reconocible a una marca.">
+              <span class="libro-num">01</span>
+              <span class="libro-titulo">Marca</span>
+              <svg class="libro-icono" aria-hidden="true"><use href="#estrella"/></svg>
+            </a>
+
+            <a class="libro" href="#redes" style="--i:1; --h:245; --c:var(--rosa); --t:var(--vino-oscuro)"
+               data-pista="Redes · contenido, piezas y estilo visual para redes sociales.">
+              <span class="libro-num">02</span>
+              <span class="libro-titulo">Redes</span>
+              <svg class="libro-icono" aria-hidden="true"><use href="#estrella"/></svg>
+            </a>
+
+            <a class="libro" href="#direccion-arte" style="--i:2; --h:305; --c:var(--terracota); --t:var(--crema)"
+               data-pista="Dirección de arte · conceptos, sets, fotografía y video.">
+              <span class="libro-num">03</span>
+              <span class="libro-titulo">Dirección de arte</span>
+              <svg class="libro-icono" aria-hidden="true"><use href="#estrella"/></svg>
+            </a>
+
+            <a class="libro libro-inclinado" href="#inicio" style="--i:3; --h:230; --c:var(--arena); --t:var(--vino)"
+               data-pista="Conocer a Sof · empieza por el principio y míralo todo.">
+              <span class="libro-num">04</span>
+              <span class="libro-titulo">Conocer a Sof</span>
+              <svg class="libro-icono" aria-hidden="true"><use href="#estrella"/></svg>
+            </a>
+          </nav>
+
+          <div class="tabla" aria-hidden="true"></div>
+        </div>
+
+        <p class="pista" id="pista" aria-live="polite">Pasa el cursor por un libro para ver qué guarda.</p>
+      </div>
+
+      <p class="firma script">Sof</p>
+    </section>
+
+    <!-- ============ PÁGINA TEMPORAL ("Muy pronto") ============ -->
+    <!-- Se muestra para las páginas que todavía no están construidas -->
+    <section class="vista pronto" data-vista="pronto" hidden aria-labelledby="pronto-titulo">
+      <div class="deco" aria-hidden="true">
+        <svg class="deco-estrella e1"><use href="#estrella"/></svg>
+        <svg class="deco-estrella e3"><use href="#estrella"/></svg>
+      </div>
+      <div class="contenedor pronto-caja">
+        <p class="script pronto-script">Muy pronto</p>
+        <h1 id="pronto-titulo" data-nombre>Página</h1>
+        <p>Esta página todavía la estamos construyendo.</p>
+        <a class="boton" href="#intro">Volver al estante</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Transición entre páginas: 4 franjas de color -->
+  <div class="franjas" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
