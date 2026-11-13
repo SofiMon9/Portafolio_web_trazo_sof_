@@ -400,43 +400,65 @@
 
       <hr class="separador">
 
-      <!-- 4. Cómo trabajo: cuatro pasos como muestras de color, en escalera -->
+      <!-- 4. Cómo trabajo: cuatro pasos en zigzag, cada uno con su ilustración animada -->
       <div class="como contenedor">
         <h2 class="seccion-titulo aparece">Cómo <span class="script">trabajo</span></h2>
-        <p class="seccion-sub aparece">Cuatro pasos, y en cada uno ves algo concreto para revisar y aprobar.</p>
+        <p class="seccion-sub aparece">Cuatro pasos y en cada uno ves algo concreto para revisar y aprobar.</p>
 
         <ol class="pasos">
-          <li class="paso paso-1 aparece">
-            <span class="paso-color" aria-hidden="true"></span>
-            <div class="paso-info">
-              <small>Paso 01</small>
-              <h3>Conocernos</h3>
-              <p>Una charla para entender tu marca, tu público y lo que necesitas.</p>
+          <!-- Paso 01: las preguntas aparecen una a una -->
+          <li class="paso aparece">
+            <div class="paso-ilus ilus-preguntas" aria-hidden="true">
+              <span>¿quién eres?</span>
+              <span>¿a quién le hablas?</span>
+              <span>¿qué te hace distinto?</span>
             </div>
+            <small class="paso-num">Paso 01</small>
+            <h3>Conocernos</h3>
+            <p>Una reunión para entender tu marca, tu público y lo que necesitas.</p>
+            <p class="paso-recibes">Recibes · Resumen de la reunión</p>
           </li>
-          <li class="paso paso-2 aparece">
-            <span class="paso-color" aria-hidden="true"></span>
-            <div class="paso-info">
-              <small>Paso 02</small>
-              <h3>Propuesta</h3>
-              <p>Te presento el concepto, las referencias y un plan con tiempos.</p>
-            </div>
+
+          <!-- Paso 02: se van marcando los chulitos -->
+          <li class="paso aparece">
+            <ul class="paso-ilus ilus-lista" aria-hidden="true">
+              <li>Público <span>✓</span></li>
+              <li>Tono <span>✓</span></li>
+              <li>Concepto <span>✓</span></li>
+              <li>Alcance <span>✓</span></li>
+            </ul>
+            <small class="paso-num">Paso 02</small>
+            <h3>Propuesta</h3>
+            <p>Defino el concepto, el alcance y el plan que mejor te sirve.</p>
+            <p class="paso-recibes">Recibes · Propuesta y tiempos</p>
           </li>
-          <li class="paso paso-3 aparece">
-            <span class="paso-color" aria-hidden="true"></span>
-            <div class="paso-info">
-              <small>Paso 03</small>
-              <h3>Diseño</h3>
-              <p>Creamos las piezas y las ajustamos juntos con tus comentarios.</p>
+
+          <!-- Paso 03: las barras de color crecen -->
+          <li class="paso aparece">
+            <div class="paso-ilus ilus-barras" aria-hidden="true">
+              <i style="--alto: 68%; --color: var(--vino)"></i>
+              <i style="--alto: 54%; --color: var(--terracota)"></i>
+              <i style="--alto: 88%; --color: var(--rosa)"></i>
+              <i style="--alto: 40%; --color: var(--blanco)"></i>
+              <i style="--alto: 68%; --color: var(--vino-oscuro)"></i>
             </div>
+            <small class="paso-num">Paso 03</small>
+            <h3>Diseño</h3>
+            <p>Trabajo por etapas y te muestro avances para que opines a tiempo.</p>
+            <p class="paso-recibes">Recibes · Piezas para aprobar</p>
           </li>
-          <li class="paso paso-4 aparece">
-            <span class="paso-color" aria-hidden="true"></span>
-            <div class="paso-info">
-              <small>Paso 04</small>
-              <h3>Entrega</h3>
-              <p>Recibes los archivos finales listos para usar y una guía de uso.</p>
-            </div>
+
+          <!-- Paso 04: los archivos llegan uno a uno -->
+          <li class="paso aparece">
+            <ul class="paso-ilus ilus-archivos" aria-hidden="true">
+              <li>logo.svg <span>✓</span></li>
+              <li>manual.pdf <span>✓</span></li>
+              <li>piezas.zip <span>✓</span></li>
+            </ul>
+            <small class="paso-num">Paso 04</small>
+            <h3>Entrega</h3>
+            <p>Te entrego los archivos finales, listos para usar donde los necesites.</p>
+            <p class="paso-recibes">Recibes · Archivos finales</p>
           </li>
         </ol>
       </div>
