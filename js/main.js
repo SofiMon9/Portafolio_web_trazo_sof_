@@ -95,11 +95,33 @@
     });
   }
 
+  /* ---------- 4. INICIO · Cintas cruzadas ---------- */
+  // Repite el texto de cada cinta hasta llenarla y luego lo duplica,
+  // así el movimiento da la vuelta sin que se note el corte.
+  const pistasCinta = document.querySelectorAll('.cinta-pista');
+  if (pistasCinta.length) {
+    const llenarCintas = () => {
+      pistasCinta.forEach((pista) => {
+        if (!pista.dataset.original) pista.dataset.original = pista.innerHTML;
+        const set = pista.dataset.original;
+        const ancho = pista.parentElement.offsetWidth;
+        pista.innerHTML = set;
+        let veces = 1;
+        while (pista.scrollWidth < ancho && veces < 30) {
+          pista.innerHTML += set;
+          veces++;
+        }
+        pista.innerHTML += pista.innerHTML;
+      });
+    };
+    (document.fonts ? document.fonts.ready : Promise.resolve()).then(llenarCintas);
+  }
+
   // Si ya pasaste por una página distinta a la entrada, la entrada no vuelve a salir sola
   if (pagina !== 'entrada') guardar('sof-intro-visto', '1');
 
 
-  /* ---------- 4. Transición entre páginas (4 franjas) ---------- */
+  /* ---------- 5. Transición entre páginas (4 franjas) ---------- */
   const franjas = document.querySelector('.franjas');
   let saliendo = false;
 

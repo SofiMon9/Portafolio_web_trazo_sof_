@@ -746,6 +746,119 @@ img, svg { display: block; }
 .portada-estrella.pe3 { width: clamp(14px, 2vw, 20px); height: clamp(14px, 2vw, 20px); top: 22%; right: -9%; fill: var(--accent); animation-duration: 6s; }
 
 
+/* ---------- 9b. INICIO · Cintas cruzadas + "¿Quieres conocerme?" ---------- */
+.conocerme-zona {
+  position: relative;
+  padding-bottom: 110px;
+}
+
+/* Zona de las cintas: las dos se cruzan en el centro */
+.cintas {
+  position: relative;
+  height: clamp(200px, 30vw, 300px);
+}
+.cinta {
+  position: absolute;
+  top: 50%;
+  left: -10vw;
+  width: 120vw;
+  padding-block: clamp(.7rem, 1.6vw, 1.1rem);
+  overflow: hidden;
+  box-shadow: var(--sombra);
+}
+.cinta-1 {
+  background: var(--vino);
+  color: var(--crema);
+  transform: translateY(-50%) rotate(-5deg);
+  z-index: 2;
+}
+.cinta-2 {
+  background: var(--rosa);
+  color: var(--vino-oscuro);
+  transform: translateY(-50%) rotate(4deg);
+}
+:root[data-theme="dark"] .cinta-1 { box-shadow: 0 0 0 1px rgba(247, 239, 233, .14), var(--sombra); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cinta-1 { box-shadow: 0 0 0 1px rgba(247, 239, 233, .14), var(--sombra); }
+}
+
+/* El texto se desliza sin parar (una cinta hacia cada lado) */
+.cinta-pista {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: deslizar 26s linear infinite;
+}
+.cinta-2 .cinta-pista {
+  animation-direction: reverse;
+  animation-duration: 32s;
+}
+/* Espacio a la derecha de cada elemento (no "gap", para que el bucle quede exacto) */
+.cinta-pista > * { margin-right: 1.4rem; }
+.cinta-pista span {
+  font-size: clamp(1.1rem, 2.6vw, 1.7rem);
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.cinta-pista span.script {
+  font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.1;
+}
+.cinta-pista svg {
+  flex: none;
+  width: clamp(14px, 2vw, 20px);
+  height: clamp(14px, 2vw, 20px);
+  fill: currentColor;
+}
+@keyframes deslizar { to { transform: translateX(-50%); } }
+
+/* Pregunta y botones */
+.conocerme {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  padding-top: 60px;
+  text-align: center;
+}
+.conocerme-titulo {
+  font-size: clamp(2.4rem, 7vw, 4.4rem);
+  font-weight: 800;
+  line-height: 1.05;
+}
+.conocerme-titulo em {
+  font-size: 1.3em;
+  color: var(--accent);
+}
+.conocerme-texto {
+  max-width: 34rem;
+  font-weight: 300;
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  color: var(--suave);
+}
+.conocerme-botones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem 1.6rem;
+  margin-top: .6rem;
+}
+.enlace-suave {
+  font-weight: 500;
+  color: var(--accent-2);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+}
+.enlace-suave:hover { color: var(--accent); }
+
+
 /* ---------- 10. Página temporal "Muy pronto" ---------- */
 .pronto-caja {
   min-height: 100svh;
