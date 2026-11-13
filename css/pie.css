@@ -30,3 +30,53 @@
 .cbase{justify-content:center;gap:2rem}
 
 .contact .lbl b{color:var(--rosa)}
+
+/* ===== Pie "Trabajemos Juntos" organizado según el Figma de Sofía ===== */
+:root { --contact-bg: #3D0C15; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --contact-bg: #5C1A30; } }
+:root[data-theme="dark"] { --contact-bg: #5C1A30; }
+
+.contact {
+  margin: 3rem clamp(0px, 2.4vw, 32px) 0;
+  padding: clamp(3rem, 6vw, 4rem) 0 calc(2rem + env(safe-area-inset-bottom, 0px));
+  border-radius: 40px 40px 0 0;
+  background: var(--contact-bg);
+  color: var(--crema);
+  text-align: center;
+}
+.contact .wrap { width: min(1000px, 100% - 2.5rem); }
+/* Título: "Trabajemos" + "Juntos" en cursiva, con una línea debajo */
+.contact .st {
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid rgba(232, 180, 176, .55);
+  font-size: clamp(2.2rem, 4.6vw, 3.2rem);
+  font-weight: 700;
+}
+.contact .st .script { font-size: 1.05em; color: var(--rosa); }
+/* Tres columnas: Escríbeme · Redes · Estudio */
+.cgrid {
+  margin-top: 2.6rem;
+  padding-top: 0;
+  border-top: 0;
+  gap: 1.6rem;
+}
+.cgrid > div { display: flex; flex-direction: column; align-items: center; gap: .9rem; }
+.cgrid h4 { margin: 0; font-size: 1.05rem; font-weight: 600; opacity: 1; }
+.cgrid a,
+.cgrid button,
+.cgrid p {
+  margin: 0;
+  font-size: .88rem;
+  opacity: .85;
+}
+.cgrid a:hover, .cgrid button:hover { color: var(--rosa); opacity: 1; }
+/* Derechos en terracota */
+.cbase {
+  justify-content: center;
+  margin-top: 3rem;
+  font-size: .95rem;
+  font-weight: 500;
+  color: var(--terra);
+  opacity: 1;
+}
+@media (max-width: 760px) { .cgrid { grid-template-columns: 1fr; } }
