@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&family=Pinyon+Script&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/sobre-mi.css">
 
   <!-- Antes de pintar: tema guardado y cortina de llegada -->
   <script>
@@ -197,18 +198,55 @@
 
   <main>
 
-    <!-- ============ SOBRE Mí (temporal: "Muy pronto") ============ -->
-    <section class="vista pronto" aria-labelledby="pronto-titulo">
-      <div class="deco" aria-hidden="true">
-        <svg class="deco-estrella e1"><use href="#estrella"/></svg>
-        <svg class="deco-estrella e3"><use href="#estrella"/></svg>
+    <!-- ============ SOBRE MÍ ============ -->
+    <section class="vista sobre" aria-labelledby="sobre-titulo">
+
+      <!-- 1. ¡Hola! soy Sof + carnet colgante -->
+      <div class="hola contenedor">
+
+        <!-- Carnet: se mece solo y se puede arrastrar -->
+        <div class="carnet-zona">
+          <div class="carnet" id="carnet">
+            <span class="carnet-cinta" aria-hidden="true"></span>
+            <span class="carnet-gancho" aria-hidden="true"></span>
+            <div class="carnet-tarjeta">
+              <span class="carnet-ranura" aria-hidden="true"></span>
+              <!-- Pendiente: reemplazar por tu foto, ej. <img src="img/sofia.jpg" alt="Sofía Moncada"> -->
+              <div class="carnet-foto" role="img" aria-label="Espacio para la foto de Sofía">
+                <span class="script">Sof</span>
+              </div>
+              <p class="carnet-nombre">Sofía Moncada Jaramillo</p>
+              <p class="carnet-cargo script">Diseñadora crossmedia</p>
+              <p class="carnet-dato">Pereira · Colombia · 2026</p>
+            </div>
+          </div>
+          <p class="carnet-pista" aria-hidden="true">¡arrástrame!</p>
+        </div>
+
+        <div class="hola-texto">
+          <h1 id="sobre-titulo" class="hola-titulo">¡HOLA! <span class="script">soy Sof</span></h1>
+          <p class="hola-parrafo">
+            Diseñadora crossmedia con experiencia en diseño gráfico y dirección de arte.
+            Uno piezas e identidades para contar el alma de las marcas: genero espacios,
+            creo conceptos y doy vida a ideas que conectan y narran, también en contenidos audiovisuales.
+            Disfruto aprender y colaborar con otras áreas para enfocar cada proyecto,
+            y cuido la organización y la buena experiencia en todo lo que hago.
+          </p>
+          <div class="hola-botones">
+            <a class="btn-rosa" href="proyectos.html">Mi trabajo</a>
+            <a class="btn-borde" href="#contacto">Escríbeme</a>
+          </div>
+        </div>
       </div>
-      <div class="contenedor pronto-caja">
-        <p class="script pronto-script">Muy pronto</p>
-        <h1 id="pronto-titulo">Sobre mí</h1>
-        <p>Esta página todavía la estamos construyendo.</p>
-        <a class="boton" href="index.html">Volver al estante</a>
-      </div>
+
+      <hr class="separador">
+
+      <!-- 2. Herramientas (próximo paso) -->
+
+      <!-- 3. Más sobre mí (próximo paso) -->
+
+      <!-- 4. Cómo trabajo (próximo paso) -->
+
     </section>
 
   </main>
@@ -244,5 +282,6 @@
   </div>
 
   <script src="js/main.js"></script>
+  <script src="js/sobre-mi.js"></script>
 </body>
 </html>

@@ -1,0 +1,197 @@
+/* =========================================================
+   TRAZO · Sobre mí
+   sobre-mi.css · solo para sobre-mi.html
+   (los colores, la barra, el menú y el pie vienen de estilos.css)
+   ========================================================= */
+
+
+/* ---------- Comunes de esta página ---------- */
+.sobre { padding-top: 90px; }
+
+/* Línea delgada entre secciones */
+.separador {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+  border: none;
+  border-top: 1px solid color-mix(in srgb, var(--accent-2) 70%, transparent);
+}
+
+.seccion-titulo {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  text-align: center;
+}
+.seccion-titulo .script {
+  font-size: 1.15em;
+  font-weight: 400;
+  color: var(--accent);
+}
+.seccion-sub {
+  margin-top: .4rem;
+  text-align: center;
+  color: var(--suave);
+}
+.seccion-sub.script {
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  color: var(--accent);
+}
+
+
+/* ---------- 1. ¡Hola! soy Sof + carnet ---------- */
+.hola {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) 1.6fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+  padding-block: 20px 90px;
+}
+
+.carnet-zona {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* la cinta sale de arriba de la pantalla */
+  margin-top: -110px;
+}
+
+.carnet {
+  --angulo: 0deg;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: top center;
+  rotate: var(--angulo);
+  animation: mecerse 4.5s ease-in-out infinite;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.carnet.arrastrando { animation-play-state: paused; cursor: grabbing; }
+.carnet.soltando { transition: rotate 1.1s cubic-bezier(.25, 1.8, .4, 1); }
+@keyframes mecerse {
+  0%, 100% { transform: rotate(-3deg); }
+  50%      { transform: rotate(3deg); }
+}
+
+/* Cinta (lanyard) */
+.carnet-cinta {
+  width: 30px;
+  height: 190px;
+  background:
+    repeating-linear-gradient(180deg, transparent 0 14px, rgba(0, 0, 0, .08) 14px 16px),
+    var(--terracota);
+  box-shadow: inset 4px 0 0 rgba(255, 255, 255, .12);
+}
+.carnet-gancho {
+  width: 22px;
+  height: 26px;
+  margin-top: -2px;
+  border: 4px solid var(--arena);
+  border-radius: 6px 6px 10px 10px;
+}
+
+/* Tarjeta */
+.carnet-tarjeta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: clamp(210px, 22vw, 250px);
+  margin-top: -6px;
+  padding: 26px 18px 20px;
+  border-radius: 16px;
+  background: var(--rosa);
+  color: var(--vino-oscuro);
+  text-align: center;
+  box-shadow: 0 24px 40px -18px rgba(0, 0, 0, .55);
+}
+.carnet-ranura {
+  position: absolute;
+  top: 10px;
+  width: 46px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(61, 12, 21, .35);
+}
+.carnet-foto {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 4 / 4.4;
+  margin-top: 6px;
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(232, 180, 176, .22) 0 22%, transparent 23%),
+    linear-gradient(160deg, var(--vino) 0%, var(--vino-oscuro) 100%);
+  color: var(--rosa);
+  overflow: hidden;
+}
+.carnet-foto img { width: 100%; height: 100%; object-fit: cover; }
+.carnet-foto .script { font-size: 3.4rem; opacity: .6; }
+.carnet-nombre {
+  margin-top: .9rem;
+  font-size: .98rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.carnet-cargo { font-size: 1.5rem; line-height: 1.1; }
+.carnet-dato {
+  margin-top: .4rem;
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  opacity: .75;
+}
+
+.carnet-pista {
+  margin-top: 1rem;
+  font-family: var(--script);
+  font-size: 1.5rem;
+  color: var(--accent-2);
+  rotate: -6deg;
+}
+
+/* Texto */
+.hola-titulo {
+  font-size: clamp(3rem, 8vw, 5.6rem);
+  font-weight: 800;
+  line-height: 1;
+}
+.hola-titulo .script {
+  font-size: .85em;
+  font-weight: 400;
+  color: var(--accent);
+}
+.hola-parrafo {
+  max-width: 40rem;
+  margin-top: 1.4rem;
+  font-size: clamp(1.02rem, 1.8vw, 1.15rem);
+  font-weight: 300;
+  line-height: 1.65;
+}
+.hola-botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem;
+  margin-top: 1.8rem;
+}
+
+@media (max-width: 760px) {
+  .hola {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .carnet-zona { margin-top: -90px; }
+  .carnet-cinta { height: 130px; }
+  .hola-parrafo { margin-inline: auto; }
+  .hola-botones { justify-content: center; }
+}
+
+
+/* ---------- Movimiento reducido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .carnet { animation: none; }
+}
