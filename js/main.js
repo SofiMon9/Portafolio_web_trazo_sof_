@@ -42,6 +42,20 @@
   window.addEventListener('scroll', revisarBarra, { passive: true });
   revisarBarra();
 
+  // Menú en celular: abrir y cerrar
+  const btnMenu = document.getElementById('btnMenu');
+  if (btnMenu) {
+    const cambiarMenu = (abrir) => {
+      barra.classList.toggle('menu-abierto', abrir);
+      btnMenu.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+      btnMenu.setAttribute('aria-label', abrir ? 'Cerrar menú' : 'Abrir menú');
+      document.body.style.overflow = abrir ? 'hidden' : '';
+    };
+    btnMenu.addEventListener('click', () => cambiarMenu(!barra.classList.contains('menu-abierto')));
+    document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') cambiarMenu(false); });
+    matchMedia('(min-width: 861px)').addEventListener('change', (ev) => { if (ev.matches) cambiarMenu(false); });
+  }
+
 
   /* ---------- 2. Aparición de bloques al hacer scroll ---------- */
   const observadorAparece = new IntersectionObserver((entradas) => {

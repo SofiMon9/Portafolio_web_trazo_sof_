@@ -39,20 +39,35 @@
 
   <!-- ============ BARRA SUPERIOR ============ -->
   <header class="barra">
-    <a class="marca-nombre" href="inicio.html">Sofía Moncada - Portafolio 2026</a>
+    <a class="marca-nombre" href="inicio.html">Sofía Moncada<span class="nombre-extra"> - Portafolio 2026</span></a>
 
-    <!-- Interruptor tipo píldora: sol a la izquierda (claro), luna a la derecha (oscuro) -->
-    <button class="tema" id="btnTema" type="button" role="switch" aria-label="Modo oscuro">
-      <span class="perilla">
-        <svg class="ico-sol" viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="12" r="4.5"/>
-          <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/>
-        </svg>
-        <svg class="ico-luna" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/>
-        </svg>
-      </span>
-    </button>
+    <!-- Enlaces principales (en celular se abren con el botón de menú) -->
+    <nav class="nav" id="nav" aria-label="Principal">
+      <a class="nav-enlace" href="inicio.html">Inicio</a>
+      <a class="nav-enlace" href="sobre-mi.html">Sobre mí</a>
+      <a class="nav-enlace" href="proyectos.html">Proyectos</a>
+      <a class="nav-cta" href="planes.html" aria-current="page">¡Trabajemos!</a>
+    </nav>
+
+    <div class="barra-acciones">
+      <!-- Interruptor tipo píldora: sol a la izquierda (claro), luna a la derecha (oscuro) -->
+      <button class="tema" id="btnTema" type="button" role="switch" aria-label="Modo oscuro">
+        <span class="perilla">
+          <svg class="ico-sol" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5"/>
+            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/>
+          </svg>
+          <svg class="ico-luna" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/>
+          </svg>
+        </span>
+      </button>
+
+      <!-- Botón de menú (solo en celular) -->
+      <button class="menu-btn" id="btnMenu" type="button" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú">
+        <span></span><span></span>
+      </button>
+    </div>
   </header>
 
   <main>

@@ -167,6 +167,139 @@ img, svg { display: block; }
   font-weight: 300;
   color: var(--fg);
   text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Enlaces de navegación (páginas internas) */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.4vw, 2.2rem);
+  margin-left: auto;
+  margin-right: clamp(1rem, 2.4vw, 2rem);
+}
+.nav-enlace {
+  position: relative;
+  padding-block: .3rem;
+  font-size: .95rem;
+  font-weight: 400;
+  letter-spacing: .04em;
+  text-decoration: none;
+  color: var(--fg);
+}
+/* Línea que se dibuja debajo al pasar el cursor */
+.nav-enlace::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: var(--accent-2);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .35s ease;
+}
+.nav-enlace:hover::after,
+.nav-enlace[aria-current="page"]::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.nav-enlace[aria-current="page"] { font-weight: 600; }
+
+/* Botón "¡Trabajemos!" */
+.nav-cta {
+  padding: .55em 1.3em;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: .92rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-decoration: none;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.nav-cta:hover {
+  transform: translateY(-2px) rotate(-2deg);
+  box-shadow: 0 8px 18px -8px var(--accent);
+}
+
+.barra-acciones {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Botón de menú (dos rayitas que se vuelven X) */
+.menu-btn {
+  display: none;
+  position: relative;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid var(--linea);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+.menu-btn span {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  height: 1.8px;
+  border-radius: 2px;
+  background: var(--fg);
+  transition: transform .3s ease, top .3s ease;
+}
+.menu-btn span:nth-child(1) { top: 16px; }
+.menu-btn span:nth-child(2) { top: 24px; }
+.menu-btn[aria-expanded="true"] span:nth-child(1) { top: 20px; transform: rotate(45deg); }
+.menu-btn[aria-expanded="true"] span:nth-child(2) { top: 20px; transform: rotate(-45deg); }
+
+/* Celular y tablet: los enlaces se esconden en un panel */
+@media (max-width: 860px) {
+  .menu-btn { display: block; }
+
+  .nav {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.4rem;
+    margin: 0;
+    padding: 90px 16px 40px;
+    background: var(--fondo-vista);
+    background-color: var(--bg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-16px);
+    transition: opacity .35s ease, transform .35s ease, visibility 0s linear .35s;
+  }
+  /* Sin desenfoque mientras el menú está abierto, para que el panel cubra toda la pantalla */
+  .barra.menu-abierto {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .barra.menu-abierto .nav {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity .35s ease, transform .35s ease;
+  }
+  .nav-enlace {
+    font-size: clamp(1.8rem, 8vw, 2.6rem);
+    font-weight: 800;
+  }
+  .nav-cta {
+    margin-top: .6rem;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .nombre-extra { display: none; }
 }
 
 /* Interruptor tipo píldora */
