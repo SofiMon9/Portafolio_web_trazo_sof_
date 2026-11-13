@@ -129,7 +129,7 @@
   color: var(--rosa);
   overflow: hidden;
 }
-.carnet-foto img { width: 100%; height: 100%; object-fit: cover; }
+.carnet-foto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; pointer-events: none; }
 .carnet-foto .script { font-size: 3.4rem; opacity: .6; }
 .carnet-nombre {
   margin-top: .9rem;
