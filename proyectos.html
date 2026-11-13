@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/barra-menu.css">
   <link rel="stylesheet" href="css/pie.css">
-  <link rel="stylesheet" href="css/pronto.css">
+  <link rel="stylesheet" href="css/proyectos.css">
 
   <!-- Antes de pintar: tema guardado y cortina de llegada -->
   <script>
@@ -201,17 +201,243 @@
 
   <main>
 
-    <!-- ============ PROYECTOS (temporal: "Muy pronto") ============ -->
-    <section class="vista pronto" aria-labelledby="pronto-titulo">
-      <div class="deco" aria-hidden="true">
-        <svg class="deco-estrella e1"><use href="#estrella"/></svg>
-        <svg class="deco-estrella e3"><use href="#estrella"/></svg>
+    <!-- ============ PROYECTOS ============ -->
+    <!-- Cada proyecto lleva a su sala de espera: sala-de-espera.html?p=<nombre-del-proyecto>
+         (los nombres y datos de cada proyecto están en js/proyectos-datos.js) -->
+    <section class="vista proyectos" aria-labelledby="proy-titulo">
+
+      <header class="proy-cabeza contenedor">
+        <p class="proy-etiqueta"><svg aria-hidden="true"><use href="#estrella"/></svg> El archivo</p>
+        <h1 id="proy-titulo" class="proy-titulo">Proyectos <span class="script">por salas</span></h1>
+        <p class="proy-sub">Cinco salas, cinco formas de trabajar. Elige una pestaña y entra.</p>
+      </header>
+
+      <!-- Pestañas fijas -->
+      <div class="pestanas-zona">
+        <div class="pestanas" role="tablist" aria-label="Salas del archivo">
+          <button class="pestana" role="tab" id="tab-lo-grafico" aria-controls="sala-lo-grafico" aria-selected="true" data-sala="lo-grafico"><span>01</span>Lo gráfico</button>
+          <button class="pestana" role="tab" id="tab-analogo" aria-controls="sala-analogo" aria-selected="false" tabindex="-1" data-sala="analogo"><span>02</span>Análogo</button>
+          <button class="pestana" role="tab" id="tab-digital" aria-controls="sala-digital" aria-selected="false" tabindex="-1" data-sala="digital"><span>03</span>Digital</button>
+          <button class="pestana" role="tab" id="tab-en-camara" aria-controls="sala-en-camara" aria-selected="false" tabindex="-1" data-sala="en-camara"><span>04</span>En cámara</button>
+          <button class="pestana" role="tab" id="tab-en-set" aria-controls="sala-en-set" aria-selected="false" tabindex="-1" data-sala="en-set"><span>05</span>En set</button>
+        </div>
       </div>
-      <div class="contenedor pronto-caja">
-        <p class="script pronto-script">Muy pronto</p>
-        <h1 id="pronto-titulo">Proyectos</h1>
-        <p>Esta página todavía la estamos construyendo.</p>
-        <a class="boton" href="index.html">Volver al estante</a>
+
+      <div class="salas">
+
+        <!-- ===== 01 · LO GRÁFICO: mesa de trabajo tipo Illustrator (selección y capas) ===== -->
+        <section class="sala" id="sala-lo-grafico" role="tabpanel" aria-labelledby="tab-lo-grafico">
+          <p class="sala-intro">Marcas, identidades e ilustración. <span class="script">Toca una capa o una pieza.</span></p>
+
+          <div class="ai-ventana">
+            <div class="ai-barra" aria-hidden="true">
+              <span class="ai-puntos"><i></i><i></i><i></i></span>
+              <span class="ai-archivo">lo-grafico.ai @ 100 % (RGB / Vista previa)</span>
+            </div>
+
+            <div class="ai-cuerpo">
+              <!-- Herramientas (decorativas) -->
+              <div class="ai-herramientas" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M6 3l12 9-6 1-3 6z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 3l5 9-5 9-5-9z M12 12v9"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M5 5h14M12 5v14"/></svg>
+                <svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="1"/></svg>
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M8 13V6a1.5 1.5 0 013 0v5V4.5a1.5 1.5 0 013 0V11V6a1.5 1.5 0 013 0v8a6 6 0 01-6 6h-1a6 6 0 01-5-3l-2-4a1.5 1.5 0 012.5-1.5z"/></svg>
+              </div>
+
+              <!-- Mesa de trabajo con las piezas -->
+              <div class="ai-mesa">
+                <div class="ai-artboard">
+                  <span class="ai-artboard-nombre" aria-hidden="true">Mesa de trabajo 1</span>
+
+                  <a class="pieza" data-proyecto="provet" href="sala-de-espera.html?p=provet" style="--x: 6%; --y: 9%; --w: 40%; --r: -4deg; --c: var(--rosa); --t: var(--vino); --i: 0">
+                    <span class="pieza-arte"><b>PROVET</b><small>identidad visual</small></span>
+                    <span class="pieza-nombre">Provet · Marca</span>
+                    <span class="manijas" aria-hidden="true"></span>
+                  </a>
+                  <a class="pieza" data-proyecto="boticaria" href="sala-de-espera.html?p=boticaria" style="--x: 54%; --y: 6%; --w: 38%; --r: 3deg; --c: var(--vino); --t: var(--rosa); --i: 1">
+                    <span class="pieza-arte"><b class="script">Boticaria</b><small>marca y etiquetas</small></span>
+                    <span class="pieza-nombre">Boticaria</span>
+                    <span class="manijas" aria-hidden="true"></span>
+                  </a>
+                  <a class="pieza" data-proyecto="museos" href="sala-de-espera.html?p=museos" style="--x: 10%; --y: 55%; --w: 36%; --r: 2deg; --c: var(--arena); --t: var(--vino-oscuro); --i: 2">
+                    <span class="pieza-arte"><b>MUSEOS</b><small>y galerías</small></span>
+                    <span class="pieza-nombre">Museos y galerías</span>
+                    <span class="manijas" aria-hidden="true"></span>
+                  </a>
+                  <a class="pieza" data-proyecto="lo-grotesco" href="sala-de-espera.html?p=lo-grotesco" style="--x: 52%; --y: 52%; --w: 40%; --r: -3deg; --c: var(--terracota); --t: var(--crema); --i: 3">
+                    <span class="pieza-arte"><b>Lo grotesco</b><small>la estética de</small></span>
+                    <span class="pieza-nombre">La estética de lo grotesco</span>
+                    <span class="manijas" aria-hidden="true"></span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Panel de capas -->
+              <aside class="ai-capas" aria-label="Capas">
+                <p class="ai-capas-titulo">Capas</p>
+                <ul class="ai-lista">
+                  <li><button type="button" data-capa="provet" aria-pressed="true"><i style="--c: var(--rosa)"></i>Provet · Marca</button></li>
+                  <li><button type="button" data-capa="boticaria" aria-pressed="false"><i style="--c: var(--vino)"></i>Boticaria</button></li>
+                  <li><button type="button" data-capa="museos" aria-pressed="false"><i style="--c: var(--arena)"></i>Museos y galerías</button></li>
+                  <li><button type="button" data-capa="lo-grotesco" aria-pressed="false"><i style="--c: var(--terracota)"></i>La estética de lo grotesco</button></li>
+                </ul>
+                <a class="ai-abrir" href="sala-de-espera.html?p=provet">Abrir <b>Provet · Marca</b> →</a>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 02 · ANÁLOGO: pruebas de impresión ===== -->
+        <section class="sala" id="sala-analogo" role="tabpanel" aria-labelledby="tab-analogo" hidden>
+          <p class="sala-intro">Papel, tinta y textura. <span class="script">Recién salidas de la imprenta.</span></p>
+
+          <div class="imprenta">
+            <div class="imprenta-boca" aria-hidden="true"><span></span></div>
+            <div class="pruebas">
+              <a class="prueba" data-proyecto="magazine" href="sala-de-espera.html?p=magazine" style="--r: -3deg; --c: var(--vino); --t: var(--rosa); --i: 0">
+                <span class="prueba-arte"><b>Nos fui<br>pues mijo</b><small>magazine</small></span>
+                <span class="prueba-barra" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                <span class="prueba-pie">Prueba 01 · Magazine “Nos fui pues mijo”</span>
+                <span class="sello" aria-hidden="true">Aprobado</span>
+              </a>
+              <a class="prueba" data-proyecto="lo-grotesco" href="sala-de-espera.html?p=lo-grotesco" style="--r: 2deg; --c: var(--terracota); --t: var(--crema); --i: 1">
+                <span class="prueba-arte"><b>Lo<br>grotesco</b><small>ilustración</small></span>
+                <span class="prueba-barra" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                <span class="prueba-pie">Prueba 02 · La estética de lo grotesco</span>
+                <span class="sello" aria-hidden="true">Aprobado</span>
+              </a>
+              <a class="prueba" data-proyecto="boticaria" href="sala-de-espera.html?p=boticaria" style="--r: -1.5deg; --c: var(--rosa); --t: var(--vino); --i: 2">
+                <span class="prueba-arte"><b class="script">Boticaria</b><small>etiquetas</small></span>
+                <span class="prueba-barra" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                <span class="prueba-pie">Prueba 03 · Boticaria</span>
+                <span class="sello" aria-hidden="true">Aprobado</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 03 · DIGITAL: piezas verticales ===== -->
+        <section class="sala" id="sala-digital" role="tabpanel" aria-labelledby="tab-digital" hidden>
+          <p class="sala-intro">Redes, pantallas y web. <span class="script">Piezas para ver en vertical.</span></p>
+
+          <div class="verticales">
+            <a class="vertical" data-proyecto="provet-redes" href="sala-de-espera.html?p=provet-redes" style="--c1: var(--rosa); --c2: var(--terracota); --t: var(--vino-oscuro); --i: 0">
+              <span class="historias" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="vertical-perfil" aria-hidden="true"><i></i><b>provet</b> · hace 2 h</span>
+              <span class="vertical-arte"><b>Posts,<br>historias<br>y reels</b></span>
+              <span class="vertical-pie">Provet · Redes<small>Contenido para redes</small></span>
+            </a>
+            <a class="vertical" data-proyecto="trazo" href="sala-de-espera.html?p=trazo" style="--c1: var(--vino); --c2: var(--vino-oscuro); --t: var(--crema); --i: 1">
+              <span class="historias" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="vertical-perfil" aria-hidden="true"><i></i><b>trazo</b> · en vivo</span>
+              <span class="vertical-arte"><b class="script">Trazo</b><small>portafolio web</small></span>
+              <span class="vertical-pie">Trazo · Portafolio web<small>Figma + VS Code</small></span>
+            </a>
+            <div class="vertical vertical-pronto" style="--i: 2">
+              <span class="vertical-arte"><b class="script">pronto</b><small>nueva pieza en camino</small></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 04 · EN CÁMARA: cuarto oscuro (fotos que se mecen + panel tipo Lightroom) ===== -->
+        <!-- Pendiente: fotos reales y sus ajustes de revelado (los ajustes están en js/proyectos.js) -->
+        <section class="sala" id="sala-en-camara" role="tabpanel" aria-labelledby="tab-en-camara" hidden>
+          <p class="sala-intro">Retrato, producto y calle. <span class="script">Revelando con luz roja.</span></p>
+
+          <div class="cuarto">
+            <div class="cuarto-fotos">
+              <span class="cuerda" aria-hidden="true"></span>
+              <div class="tendedero">
+                <button class="foto" type="button" data-foto="retrato" data-proyecto="retrato" aria-pressed="true" style="--r: -4deg; --dur: 4.2s; --c1: #6A2440; --c2: #2E0911">
+                  <span class="pinza" aria-hidden="true"></span>
+                  <span class="foto-imagen"><small>foto pendiente</small></span>
+                  <span class="foto-nombre">Retrato</span>
+                </button>
+                <button class="foto" type="button" data-foto="producto" data-proyecto="producto" aria-pressed="false" style="--r: 3deg; --dur: 5s; --c1: #B96B52; --c2: #5C1A30">
+                  <span class="pinza" aria-hidden="true"></span>
+                  <span class="foto-imagen"><small>foto pendiente</small></span>
+                  <span class="foto-nombre">Producto</span>
+                </button>
+                <button class="foto" type="button" data-foto="ciudad" data-proyecto="ciudad" aria-pressed="false" style="--r: -2deg; --dur: 4.6s; --c1: #D9C4B8; --c2: #6A2440">
+                  <span class="pinza" aria-hidden="true"></span>
+                  <span class="foto-imagen"><small>foto pendiente</small></span>
+                  <span class="foto-nombre">Ciudad</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Panel de revelado tipo Lightroom -->
+            <aside class="lr" aria-live="polite">
+              <p class="lr-titulo">Revelado <span data-lr="nombre">Retrato</span></p>
+              <svg class="lr-histograma" viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true">
+                <path data-lr="histograma" d="M0 60 C20 50 30 20 50 30 S80 10 100 25 S140 50 160 35 S190 45 200 60 Z"/>
+              </svg>
+              <div class="lr-ajustes">
+                <div class="lr-ajuste" data-ajuste="exposicion"><span>Exposición</span><span class="lr-riel"><i></i></span><output>0</output></div>
+                <div class="lr-ajuste" data-ajuste="contraste"><span>Contraste</span><span class="lr-riel"><i></i></span><output>0</output></div>
+                <div class="lr-ajuste" data-ajuste="temperatura"><span>Temperatura</span><span class="lr-riel lr-riel-temp"><i></i></span><output>0</output></div>
+                <div class="lr-ajuste" data-ajuste="saturacion"><span>Saturación</span><span class="lr-riel"><i></i></span><output>0</output></div>
+                <div class="lr-ajuste" data-ajuste="grano"><span>Grano</span><span class="lr-riel"><i></i></span><output>0</output></div>
+              </div>
+              <a class="lr-abrir" href="sala-de-espera.html?p=retrato">Ver la serie →</a>
+            </aside>
+          </div>
+        </section>
+
+        <!-- ===== 05 · EN SET: monitor con REC y código de tiempo + claqueta ===== -->
+        <section class="sala" id="sala-en-set" role="tabpanel" aria-labelledby="tab-en-set" hidden>
+          <p class="sala-intro">Videoclips, comerciales y cortos. <span class="script">¡Silencio, se graba!</span></p>
+
+          <div class="set">
+            <div class="monitor">
+              <div class="monitor-pantalla">
+                <div class="monitor-imagen" data-m="imagen" style="--c1: #6A2440; --c2: #B96B52">
+                  <b data-m="titulo">Casualidad</b>
+                  <small data-m="tipo">Videoclip</small>
+                </div>
+                <!-- Se muestra cuando el proyecto aún no tiene imagen -->
+                <div class="monitor-sin-senal" hidden><b>Sin señal</b><small>imagen pendiente</small></div>
+                <span class="monitor-guias" aria-hidden="true"></span>
+                <span class="rec" aria-hidden="true"><i></i>REC</span>
+                <span class="timecode" aria-hidden="true">00:00:00:00</span>
+                <span class="monitor-datos" aria-hidden="true">4K · 24 fps · ISO 800</span>
+              </div>
+              <span class="monitor-base" aria-hidden="true"></span>
+            </div>
+
+            <div class="set-lado">
+              <div class="claqueta">
+                <span class="claqueta-palo" aria-hidden="true"></span>
+                <div class="claqueta-cuerpo">
+                  <div class="cl-fila"><span>Producción</span><b data-c="titulo">Casualidad</b></div>
+                  <div class="cl-fila cl-tres">
+                    <div><span>Escena</span><b data-c="escena">01</b></div>
+                    <div><span>Toma</span><b data-c="toma">01</b></div>
+                    <div><span>Año</span><b data-c="anio">2025</b></div>
+                  </div>
+                  <div class="cl-fila"><span>Rol de Sof</span><b data-c="rol">Dirección de arte</b></div>
+                </div>
+              </div>
+
+              <ol class="tomas" aria-label="Proyectos en set">
+                <li><button type="button" data-toma="casualidad" data-proyecto="casualidad" aria-pressed="true"
+                  data-titulo="Casualidad" data-tipo="Videoclip" data-anio="2025" data-rol="Dirección de arte" data-c1="#6A2440" data-c2="#B96B52">
+                  <span>Escena 01</span>Casualidad</button></li>
+                <li><button type="button" data-toma="servicarga" data-proyecto="servicarga" aria-pressed="false"
+                  data-titulo="Servicarga" data-tipo="Comercial" data-anio="2025" data-rol="Dirección de arte" data-c1="#B96B52" data-c2="#3D0C15">
+                  <span>Escena 02</span>Servicarga</button></li>
+                <li><button type="button" data-toma="donde-la-musica-muere" data-proyecto="donde-la-musica-muere" aria-pressed="false"
+                  data-titulo="Donde la música muere" data-tipo="Cortometraje" data-anio="2024" data-rol="Producción y asistente de arte" data-sin-senal>
+                  <span>Escena 03</span>Donde la música muere</button></li>
+              </ol>
+
+              <a class="btn-rosa set-ver" href="sala-de-espera.html?p=casualidad">Ver proyecto</a>
+            </div>
+          </div>
+        </section>
+
       </div>
     </section>
 
@@ -248,5 +474,6 @@
   </div>
 
   <script src="js/main.js"></script>
+  <script src="js/proyectos.js"></script>
 </body>
 </html>
