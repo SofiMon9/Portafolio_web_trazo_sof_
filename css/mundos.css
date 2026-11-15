@@ -1,10 +1,3 @@
-/* =========================================================
-   TRAZO · Portafolio de Sofía Moncada
-   mundos.css · marca.html, redes.html y direccion-arte.html: páginas de cada mundo y tarjetas de proyecto
-   (estilos tomados del portafolio original: trazo-portafolio/css/estilos.css)
-   ========================================================= */
-
-/* enfoque */
 .worlds{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
 .wcard{border-radius:28px;padding:1.8rem;min-height:420px;display:flex;flex-direction:column;gap:.8rem;text-decoration:none;position:relative;overflow:hidden;transition:transform .5s cubic-bezier(.3,1.5,.5,1)}
 .wcard:hover{transform:translateY(-10px) rotate(-1deg)}
@@ -21,7 +14,6 @@
 .pillars small{opacity:.6;font-weight:400;font-size:.85rem}
 @media (max-width:700px){.pillars{grid-template-columns:1fr 1fr}}
 
-/* tarjetas de proyecto */
 .pgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(1.2rem,2.5vw,2rem)}
 .pcard{grid-column:span 2;display:block;text-decoration:none;transition:transform .5s cubic-bezier(.3,1.5,.5,1)}
 .pcard.w{grid-column:span 4}
@@ -55,7 +47,6 @@
 .filters button{border:1.5px solid var(--fg);border-radius:999px;padding:.45rem 1rem;font-size:.95rem;transition:background .25s,color .25s}
 .filters button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
 
-/* páginas de mundo */
 .wp-head{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:end}
 .wp-head h1{font-weight:800;text-transform:uppercase;font-size:clamp(3.2rem,9vw,8rem);line-height:.92;letter-spacing:.01em}
 .wp-head h1 .script{display:block;text-transform:none;font-weight:400;color:var(--accent);font-size:.62em;margin-top:.08em}
@@ -74,7 +65,6 @@
 .film .reel{display:flex;width:max-content;animation:slide 60s linear infinite}
 .film img{height:clamp(150px,20vw,220px);width:auto;max-width:none}
 
-/* detalle */
 .back{display:inline-flex;gap:.5rem;align-items:center;text-decoration:none;border:1.5px solid var(--line);border-radius:999px;padding:.45rem 1rem;font-size:.95rem;margin-bottom:2rem}
 .back:hover{background:var(--fg);color:var(--bg)}
 .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:1.2rem;margin-top:1rem}
@@ -106,7 +96,6 @@
 .d-next a.next b{font-size:clamp(1.6rem,4vw,2.6rem);text-transform:uppercase;font-weight:800;line-height:1}
 .d-next a.next:hover b{color:var(--accent)}
 
-/* mundos en abanico */
 .worlds.fan{margin-top:3.6rem;gap:1.4rem;align-items:start;text-align:left}
 .worlds.fan .wcard:nth-child(1){transform:rotate(-3.5deg) translateY(34px)}
 .worlds.fan .wcard:nth-child(2){transform:translateY(-6px)}

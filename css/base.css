@@ -1,12 +1,3 @@
-/* =========================================================
-   TRAZO · Portafolio de Sofía Moncada
-   base.css · TODAS las páginas: colores, letras, botones, secciones, interruptor de tema, formas de fondo y movimiento reducido
-   (estilos tomados del portafolio original: trazo-portafolio/css/estilos.css)
-   ========================================================= */
-
-/* Trazo · Sofía Moncada — estilos del portafolio
-   Colores y tipografías en :root (tema claro) y en los bloques de modo oscuro.
-   Las secciones se fueron agregando por versiones (v5…v12); cada bloque está marcado con un comentario. */
 :root{
   --vino:#5C1A30;--vino-osc:#3D0C15;--crema:#F7EFE9;--blanco:#FFFBF7;--rosa:#E8B4B0;--terra:#B96B52;--arena:#D9C4B8;
   --bg:#FFFBF7;--fg:#3D0C15;--fg-soft:#6d3a44;--accent:#B96B52;--nav-bg:rgba(255,251,247,.84);--panel:#F7EFE9;
@@ -35,7 +26,6 @@ main{overflow-x:clip;min-height:70vh}
 .skip{position:absolute;left:-999px;top:0}
 .skip:focus{left:1rem;top:1rem;z-index:100;background:var(--rosa);color:var(--vino-osc);padding:.6rem 1rem;border-radius:999px}
 
-/* tipo y etiquetas */
 .display{font-weight:800;text-transform:uppercase;line-height:.92;letter-spacing:.01em}
 .script{font-family:var(--script);font-weight:400;line-height:1;letter-spacing:0;text-transform:none}
 .h-xl{font-size:clamp(3rem,9vw,8rem)}
@@ -54,7 +44,6 @@ main{overflow-x:clip;min-height:70vh}
 .hr{border:0;border-top:1px solid var(--line)}
 .paper .hr{border-color:var(--line-p)}
 
-/* botones / chips */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:.95rem 1.6rem;border-radius:999px;font-weight:600;font-size:1rem;text-decoration:none;letter-spacing:.02em;transition:transform .35s cubic-bezier(.3,1.6,.5,1),background .25s,color .25s;white-space:nowrap}
 .btn:hover{transform:translateY(-3px) rotate(-1.5deg)}
 .b-rosa{background:var(--rosa);color:var(--vino-osc)}
@@ -64,7 +53,6 @@ main{overflow-x:clip;min-height:70vh}
 .chips{display:flex;flex-wrap:wrap;gap:.45rem}
 .chip{border:1.5px solid currentColor;border-radius:999px;padding:.28rem .9rem;font-size:.93rem;white-space:nowrap}
 
-/* vistas */
 [data-view]{display:none}
 [data-view].on{display:block;animation:viewin .7s cubic-bezier(.2,.8,.2,1)}
 @keyframes viewin{from{opacity:0;transform:translateY(24px)}}
@@ -72,7 +60,6 @@ main{overflow-x:clip;min-height:70vh}
 .top{padding-top:calc(env(safe-area-inset-top,0px) + 8.5rem)}
 .paper{background:var(--paper);color:var(--on-paper)}
 
-/* cinta */
 .ribbon{background:var(--rosa);color:var(--vino-osc);overflow:hidden;transform:rotate(-1.6deg);margin:0 -1rem;box-shadow:0 10px 24px rgba(0,0,0,.25)}
 .ribbon .track{display:flex;width:max-content;animation:slide 30s linear infinite;padding:.8rem 0}
 .ribbon span{font-weight:600;font-size:clamp(1.05rem,2vw,1.4rem);white-space:nowrap;padding-inline:1.2rem;display:flex;gap:2.4rem;align-items:center;letter-spacing:.02em}
@@ -83,7 +70,6 @@ main{overflow-x:clip;min-height:70vh}
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
   .hero h1 .w>span{transform:none}.rv{opacity:1;translate:0 0}.manif .w{opacity:1}
 }
-/* ===== v5: tema, intro con premisa, inicio centrado ===== */
 @keyframes spin{to{transform:rotate(360deg)}}
 .theme{width:62px;height:34px;border-radius:999px;background:var(--line);position:relative;flex:none}
 .theme .knob{position:absolute;top:4px;left:4px;width:26px;height:26px;border-radius:50%;background:var(--terra);color:var(--blanco);display:grid;place-items:center;transition:transform .45s cubic-bezier(.3,1.6,.4,1),background .4s}
@@ -93,7 +79,6 @@ main{overflow-x:clip;min-height:70vh}
 .theme[aria-checked="true"] .sun{opacity:0;transform:rotate(90deg)}
 .theme[aria-checked="true"] .moon{opacity:1;transform:none}
 
-/* tarjetas claras con borde en ambos temas */
 .wcard.w2,.bk2,.c-exp,.b-desc,.b-pal,.pk2,.expect li{box-shadow:inset 0 0 0 1.5px var(--line)}
 .form{background:var(--bg);color:var(--fg);box-shadow:inset 0 0 0 1.5px var(--line)}
 .opts button{border-color:var(--fg)!important}
@@ -112,7 +97,6 @@ main{overflow-x:clip;min-height:70vh}
 .pk .buy-btn{background:var(--vino-osc);color:var(--crema)}
 .pk3 .buy-btn,.pk4 .buy-btn{background:var(--blanco);color:var(--vino-osc)}
 main .lbl,.contact .lbl{display:none}
-/* formas y estrellas de fondo */
 main section,main .stn{position:relative}
 .deco{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
 .deco svg{position:absolute;width:var(--s);color:var(--dc);opacity:var(--o);animation:dfl var(--dur) ease-in-out infinite alternate;animation-delay:var(--dl)}

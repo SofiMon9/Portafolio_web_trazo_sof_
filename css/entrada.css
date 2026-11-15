@@ -1,10 +1,3 @@
-/* =========================================================
-   TRAZO · Portafolio de Sofía Moncada
-   entrada.css · solo index.html: premisa, tarjetas y estante de libros
-   (estilos tomados del portafolio original: trazo-portafolio/css/estilos.css)
-   ========================================================= */
-
-/* intro */
 .intro{position:fixed;inset:0;z-index:90;background:var(--bg);color:var(--fg);overflow-y:auto;overscroll-behavior:contain}
 .intro[hidden]{display:none}
 .intro .top-meta{position:sticky;top:0;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:calc(env(safe-area-inset-top,0px) + .9rem) 1.5rem .9rem;font-size:.85rem;background:var(--bg)}

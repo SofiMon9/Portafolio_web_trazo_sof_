@@ -1,15 +1,8 @@
-/* =========================================================
-   TRAZO · Planes
-   planes.js · solo planes.html
-   Muestrario de color en abanico + brief en portapapeles
-   ========================================================= */
 (function () {
   'use strict';
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const say = window.TRAZO_say || (() => {});
 
-
-  /* ---------- Muestrario de color (planes) ---------- */
   const PL = [
     { n: 'Identidad simple', t: 'Básicos', code: 'SOF 01-A', c: '#E8B4B0', tx: '#3D0C15', hex: '#E8B4B0', inc: ['Logo principal', 'Paleta de color', 'Tipografías'], m: '3 entregables', w: 'Marca' },
     { n: 'Manual de marca', t: 'Marca', code: 'SOF 02-B', c: '#B96B52', tx: '#FFFBF7', hex: '#B96B52', inc: ['Uso y versiones del logo', 'Color y tipografía', 'Aplicaciones', 'Tono de voz'], m: '8 entregables', w: 'Marca' },
@@ -47,12 +40,9 @@
     document.getElementById('fNext').onclick = () => fanTo(fOn + 1);
     fanTo(2);
 
-    // Llegar desde "Ver asesoría": planes.html#asesoria
     if (location.hash === '#asesoria') fanTo(3);
   }
 
-
-  /* ---------- Brief / pedido ---------- */
   const O = ['Identidad simple', 'Manual de marca', 'Identidad completa', 'Asesoría', 'Contenido para redes', 'Fotografía', 'Dirección de arte', 'Edición de video', 'Piezas gráficas'];
   const opts = document.getElementById('opts');
   if (!opts) return;
@@ -73,7 +63,6 @@
     syncOrder();
   };
   opts.addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) setOpt(b.dataset.o, b.getAttribute('aria-pressed') !== 'true'); });
-  // "Agregar al pedido" marca la opción en el brief
   document.addEventListener('click', (e) => {
     const b = e.target.closest('[data-add]');
     if (!b) return;
@@ -86,7 +75,6 @@
     const b = e.target.closest('button');
     if (b) whenEl.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', x === b));
   });
-  // Enviar: sello "¡Enviado!" y abre WhatsApp con el mensaje armado
   document.getElementById('order').addEventListener('submit', (e) => {
     e.preventDefault();
     const sel = selected();

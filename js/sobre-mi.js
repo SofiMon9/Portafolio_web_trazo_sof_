@@ -1,14 +1,8 @@
-/* =========================================================
-   TRAZO · Sobre mí
-   sobre-mi.js · solo sobre-mi.html
-   ========================================================= */
 (function () {
   'use strict';
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const { P, rutaProyecto } = window.TRAZO;
 
-
-  /* ---------- Carnet: se mece al llegar y se puede arrastrar ---------- */
   const lyd = document.getElementById('lanyard');
   if (lyd) {
     if (!reduce) lyd.classList.add('swing-in');
@@ -34,9 +28,6 @@
     lyd.addEventListener('pointercancel', rel);
   }
 
-
-  /* ---------- Teclado de herramientas ---------- */
-  // [sigla, programa, color, frase, descripción, proyectos donde aparece, otros enlaces]
   const KB = [
     ['Ai', 'Illustrator', 'k-ro', 'todos los días', 'Logos, isotipos e ilustración. Aquí nacen los sistemas de marca, de la primera línea al manual.', ['provet-marca', 'boticaria', 'grotesco']],
     ['Ps', 'Photoshop', 'k-bl', 'retoque y composición', 'Retoque, composición y mockups. Aquí las piezas se ven reales antes de imprimirse o publicarse.', ['provet-redes', 'museos']],
@@ -64,7 +55,6 @@
       if (!reduce) kp.classList.add('swap');
     };
     keysEl.addEventListener('click', (e) => { const b = e.target.closest('.key'); if (b) showKey(+b.dataset.k); });
-    // Números del 1 al 7
     addEventListener('keydown', (e) => {
       if (e.target.closest('input,textarea')) return;
       const n = parseInt(e.key, 10);

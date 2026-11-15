@@ -1,10 +1,3 @@
-/* =========================================================
-   TRAZO · Portafolio de Sofía Moncada
-   barra-menu.css · TODAS las páginas: barra de arriba, menú grande "Lo que hago" y transición de franjas
-   (estilos tomados del portafolio original: trazo-portafolio/css/estilos.css)
-   ========================================================= */
-
-/* nav */
 .nav{position:fixed;z-index:60;top:calc(env(safe-area-inset-top,0px) + 14px);left:50%;transform:translateX(-50%);width:min(1240px,100% - 1.5rem);display:flex;align-items:center;gap:1rem;padding:.45rem .45rem .45rem 1.2rem;border-radius:999px;background:var(--nav-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
 .nav.hide{transform:translate(-50%,-150%)}
 .logo{display:flex;align-items:baseline;gap:.35rem;text-decoration:none;white-space:nowrap;margin-right:auto}
@@ -24,7 +17,6 @@
 @media (max-width:1060px){.nav .links,.clock{display:none}}
 @media (max-width:520px){.nav .cta{display:none}}
 
-/* mega menú */
 .mega{position:fixed;inset:0;z-index:55;background:var(--bg);overflow:auto;padding:calc(env(safe-area-inset-top,0px) + 6.5rem) 0 calc(2.5rem + env(safe-area-inset-bottom,0px));clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .65s cubic-bezier(.7,0,.2,1),visibility .65s}
 .mega.open{clip-path:inset(0);visibility:visible}
 .mega-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
@@ -45,13 +37,10 @@
 .mega-more nav a:hover{color:var(--accent)}
 @media (max-width:900px){.mega-grid{grid-template-columns:1fr}}
 
-
-/* cinta de transición */
 .wipe{position:fixed;inset:0;z-index:80;pointer-events:none;display:grid;grid-template-rows:repeat(4,1fr)}
 .wipe span{transform:scaleX(0);transform-origin:left}
 .wipe span:nth-child(1){background:var(--rosa)}.wipe span:nth-child(2){background:var(--terra)}.wipe span:nth-child(3){background:var(--arena)}.wipe span:nth-child(4){background:var(--vino)}
 
-/* ===== v6: menú y archivo collage ===== */
 .mega-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.4rem 1rem;margin-bottom:1.2rem}
 .mega-head .lbl{margin:0}
 .mega-head .script{font-size:clamp(1.8rem,3.4vw,2.6rem);color:var(--accent)}
@@ -72,7 +61,6 @@
 .mega-help .script{font-size:2rem;color:var(--accent);margin-bottom:.3rem}
 @media (max-width:700px){.mega-help{rotate:0deg;max-width:none}}
 
-/* adquirir planes */
 .world li{display:grid;grid-template-columns:1fr auto;align-items:center;gap:.6rem;border-top:1px solid currentColor}
 .world li a{border-top:0!important}
 .buy{border:1.5px solid currentColor;border-radius:999px;padding:.32rem .8rem;font-size:.82rem;font-weight:600;white-space:nowrap;transition:transform .3s cubic-bezier(.3,1.6,.4,1)}
@@ -89,5 +77,4 @@
 @media (max-width:1060px){.nav .links,.nav .whatido{display:none}.menu-btn{display:inline-flex}}
 @media (max-width:560px){.nav .cta{display:none}}
 
-/* Al llegar desde otra página, la pantalla empieza tapada por las franjas (main.js las abre) */
 .llegando .wipe span{transform:scaleX(1)}

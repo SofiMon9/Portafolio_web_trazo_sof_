@@ -1,7 +1,3 @@
-/* =========================================================
-   TRAZO · Portafolio de Sofía Moncada
-   main.js · lo usan TODAS las páginas (adaptado del main.js original)
-   ========================================================= */
 (function () {
   'use strict';
 
@@ -9,8 +5,6 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const pagina = document.body.dataset.pagina || '';
 
-
-  /* ---------- Interruptor de tema (claro / oscuro) ---------- */
   const sysDark = () => matchMedia('(prefers-color-scheme: dark)').matches;
   const isDark = () => (root.dataset.theme ? root.dataset.theme === 'dark' : sysDark());
   function syncSwitch() {
@@ -28,8 +22,6 @@
   }));
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncSwitch);
 
-
-  /* ---------- Aviso pequeño abajo (toast) ---------- */
   const toast = document.getElementById('toast');
   let tt;
   function say(m) {
@@ -52,8 +44,6 @@
   const skip = document.getElementById('skip');
   if (skip) skip.onclick = (e) => { e.preventDefault(); document.getElementById('main').focus(); };
 
-
-  /* ---------- Menú grande "Lo que hago" ---------- */
   const nav = document.getElementById('nav');
   const mb = document.querySelector('.menu-btn');
   const mega = document.getElementById('mega');
@@ -70,7 +60,6 @@
   document.addEventListener('click', (e) => { if (e.target.closest('[data-menu]')) { e.preventDefault(); toggleMenu(true); } });
   addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleMenu(false); });
 
-  // La barra se esconde al bajar y aparece al subir
   let ly = scrollY;
   addEventListener('scroll', () => {
     const y = scrollY;
@@ -78,8 +67,6 @@
     ly = y;
   }, { passive: true });
 
-
-  /* ---------- Reloj de Pereira ---------- */
   function tick() {
     try {
       const t = new Intl.DateTimeFormat('es-CO', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Bogota' }).format(new Date());
@@ -89,8 +76,6 @@
   tick();
   setInterval(tick, 30000);
 
-
-  /* ---------- Adquirir: abre WhatsApp con el plan elegido ---------- */
   document.addEventListener('click', (e) => {
     const b = e.target.closest('[data-buy]');
     if (!b) return;
@@ -101,16 +86,12 @@
     window.open('https://wa.me/573225374248?text=' + encodeURIComponent(t), '_blank', 'noopener');
   });
 
-
-  /* ---------- Bajar a una parte de la página (ej. Contacto) ---------- */
   const scrollToAnchor = (k) => {
     if (k === 'top') { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); return; }
     const t = document.querySelector(`[data-anchor="${k}"]`);
     if (t) t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
   };
 
-
-  /* ---------- Transición entre páginas: 4 franjas de color ---------- */
   const wipe = [...document.querySelectorAll('.wipe span')];
   let busy = false;
   function go(href) {
@@ -122,14 +103,12 @@
       { duration: 360, delay: i * 55, easing: 'cubic-bezier(.7,0,.3,1)', fill: 'forwards' }));
     ins[ins.length - 1].finished.then(() => { location.href = href; });
   }
-  // Al llegar desde otra página, las franjas se abren
   if (root.classList.contains('llegando')) {
     wipe.forEach((s, i) => s.animate(
       [{ transform: 'scaleX(1)', transformOrigin: 'right' }, { transform: 'scaleX(0)', transformOrigin: 'right' }],
       { duration: 420, delay: 80 + i * 55, easing: 'cubic-bezier(.7,0,.3,1)', fill: 'forwards' }));
     setTimeout(() => root.classList.remove('llegando'), 60);
   }
-  // Si vuelves con "atrás", la página no se queda tapada
   addEventListener('pageshow', (e) => {
     if (e.persisted) { wipe.forEach((s) => s.getAnimations().forEach((a) => a.cancel())); busy = false; }
   });
@@ -144,15 +123,12 @@
     go(a.getAttribute('href'));
   });
 
-
-  /* ---------- Aparición de bloques al bajar (.rv) ---------- */
   const io = new IntersectionObserver((es) => es.forEach((en) => {
     if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
   }), { threshold: 0.12 });
   const observarRv = () => document.querySelectorAll('.rv:not(.in)').forEach((el) => io.observe(el));
   observarRv();
   window.TRAZO_observarRv = observarRv;
-  // Respaldo: al bajar, muestra los bloques que ya están en pantalla aunque el navegador no avise
   let revisando = false;
   const revisar = () => {
     revisando = false;
@@ -167,16 +143,12 @@
   addEventListener('load', pedir);
   setTimeout(pedir, 600);
 
-
-  /* ---------- Espacios para imagen: si el archivo existe, aparece solo ---------- */
   document.querySelectorAll('.espacio-img[data-src]').forEach((espacio) => {
     const img = new Image();
     img.onload = () => { img.alt = espacio.dataset.alt || ''; espacio.replaceChildren(img); espacio.classList.add('con-imagen'); };
     img.src = espacio.dataset.src;
   });
 
-
-  /* ---------- Formas y estrellas de fondo con baja opacidad ---------- */
   (function () {
     const SH = [
       '<path fill="currentColor" d="M50 0C54 36 64 46 100 50 64 54 54 64 50 100 46 64 36 54 0 50 36 46 46 36 50 0z"/>',
@@ -206,6 +178,5 @@
     });
   })();
 
-  // Ya pasaste por una página interna: la entrada no vuelve a salir sola en esta visita
   if (pagina !== 'entrada') { try { sessionStorage.setItem('sof-intro', '1'); } catch (_) {} }
 })();

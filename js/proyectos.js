@@ -1,13 +1,7 @@
-/* =========================================================
-   TRAZO · Proyectos ("Todo el archivo")
-   proyectos.js · solo proyectos.html
-   ========================================================= */
 (function () {
   'use strict';
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-
-  /* ---------- Mesa de trabajo: capas que resaltan cada parte ---------- */
   const wsEl = document.getElementById('ws');
   if (wsEl) {
     document.querySelectorAll('.layers li').forEach((li) => {
@@ -21,8 +15,6 @@
     });
   }
 
-
-  /* ---------- Pestañas fijas: saltan a cada estación y se marcan al bajar ---------- */
   const tabs = document.getElementById('ptabs');
   if (tabs) {
     const btns = [...tabs.querySelectorAll('button')];
@@ -46,14 +38,11 @@
     addEventListener('scroll', mark, { passive: true });
     mark();
 
-    // Llegar señalando una estación: proyectos.html#en-camara
     const id = decodeURIComponent(location.hash.slice(1));
     const destino = id && document.getElementById(id);
     if (destino && destino.classList.contains('stn')) setTimeout(() => irA(destino), 500);
   }
 
-
-  /* ---------- Monitores de set: código de tiempo que corre ---------- */
   const tcs = [...document.querySelectorAll('.tc')];
   if (tcs.length) {
     const t0 = performance.now();
@@ -66,9 +55,6 @@
     else (function loop(t) { tcs.forEach((e) => { e.textContent = fmt(t - t0, +e.dataset.tc); }); requestAnimationFrame(loop); })(t0);
   }
 
-
-  /* ---------- Cuarto oscuro: fotos colgadas + panel de revelado ---------- */
-  // Fotos de ejemplo (pendiente: fotos reales y sus ajustes reales)
   const pr = document.getElementById('prints');
   if (pr) {
     const PH = [

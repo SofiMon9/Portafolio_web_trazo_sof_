@@ -8,12 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&family=Pinyon+Script&display=swap" rel="stylesheet">
-<!-- Estilos: generales (todas las páginas) + los propios de esta página -->
 <link rel="stylesheet" href="css/base.css?v=20261113d">
 <link rel="stylesheet" href="css/barra-menu.css?v=20261113d">
 <link rel="stylesheet" href="css/pie.css?v=20261113d">
 <link rel="stylesheet" href="css/proyectos.css?v=20261113d">
-<!-- Antes de pintar: tema guardado y franjas de llegada desde otra página -->
 <script>
 (function(){var r=document.documentElement;try{var t=localStorage.getItem('sof-theme');if(t==='dark'||t==='light')r.dataset.theme=t;if(sessionStorage.getItem('sof-wipe')){r.classList.add('llegando');sessionStorage.removeItem('sof-wipe')}}catch(e){}})();
 </script>
@@ -21,7 +19,6 @@
 <body data-pagina="proyectos">
 <a class="skip" href="#" id="skip">Saltar al contenido</a>
 
-<!-- ============ BARRA PRINCIPAL ============ -->
 <header class="nav" id="nav">
   <a class="logo" href="inicio.html" data-go aria-label="Trazo, inicio"><span class="script">Trazo</span></a>
   <nav class="links" aria-label="Principal">
@@ -35,7 +32,6 @@
   <button class="menu-btn" aria-expanded="false" aria-controls="mega"><i></i>Menú</button>
 </header>
 
-<!-- ============ MENÚ GRANDE: LO QUE HAGO ============ -->
 <div class="mega" id="mega">
   <div class="wrap">
     <div class="mega-head"><div class="lbl"><b>000</b><span>Lo que hago</span></div><p class="script">elige tu plan y escríbeme</p></div>
@@ -47,7 +43,7 @@
           <li><a href="marca.html" data-go><span>02</span>Manual de marca<small>Reglas de uso de tu marca · 8 entregables</small></a><button class="buy" data-buy="Manual de marca" data-w="Marca">Adquirir</button></li>
           <li><a href="marca.html" data-go><span>03</span>Identidad completa<small>Todo lo anterior + papelería y lanzamiento</small></a><button class="buy" data-buy="Identidad completa" data-w="Marca">Adquirir</button></li>
         </ul>
-        <div class="seen"><small>Míralo en</small><div class="mini"><a href="sala-de-espera.html?p=provet-marca" data-go>Provet</a><a href="sala-de-espera.html?p=boticaria" data-go>Boticaria</a><a href="sala-de-espera.html?p=museos" data-go>Museos y galerías</a><a href="sala-de-espera.html?p=grotesco" data-go>Lo grotesco</a></div></div>
+        <div class="seen"><small>Míralo en</small><div class="mini"><a href="proyecto.html?p=provet-marca" data-go>Provet</a><a href="proyecto.html?p=boticaria" data-go>Boticaria</a><a href="proyecto.html?p=museos" data-go>Museos y galerías</a><a href="proyecto.html?p=grotesco" data-go>Lo grotesco</a></div></div>
         <a class="go-plan" href="marca.html" data-go>Ver el mundo de marca</a>
       </div>
       <div class="world w2">
@@ -57,7 +53,7 @@
           <li><a href="redes.html" data-go><span>02</span>Reels y video<small>Edición con ritmo y con tu estética</small></a><button class="buy" data-buy="Reels y video" data-w="Redes">Adquirir</button></li>
           <li><a href="redes.html" data-go><span>03</span>Fotografía<small>Producto y retrato, con edición de color</small></a><button class="buy" data-buy="Fotografía" data-w="Redes">Adquirir</button></li>
         </ul>
-        <div class="seen"><small>Míralo en</small><div class="mini"><a href="sala-de-espera.html?p=provet-redes" data-go>Provet · redes</a></div></div>
+        <div class="seen"><small>Míralo en</small><div class="mini"><a href="proyecto.html?p=provet-redes" data-go>Provet · redes</a></div></div>
         <a class="go-plan" href="redes.html" data-go>Ver el mundo de redes</a>
       </div>
       <div class="world w3">
@@ -67,7 +63,7 @@
           <li><a href="direccion-arte.html" data-go><span>02</span>Ambientación<small>Escenografía y utilería para cada escena</small></a><button class="buy" data-buy="Ambientación" data-w="Dirección de arte">Adquirir</button></li>
           <li><a href="direccion-arte.html" data-go><span>03</span>Arte en el set<small>Asistencia de arte y producción en rodaje</small></a><button class="buy" data-buy="Arte en el set" data-w="Dirección de arte">Adquirir</button></li>
         </ul>
-        <div class="seen"><small>Míralo en</small><div class="mini"><a href="sala-de-espera.html?p=casualidad" data-go>Casualidad</a><a href="sala-de-espera.html?p=servicarga" data-go>Servicarga</a></div></div>
+        <div class="seen"><small>Míralo en</small><div class="mini"><a href="proyecto.html?p=casualidad" data-go>Casualidad</a><a href="proyecto.html?p=servicarga" data-go>Servicarga</a></div></div>
         <a class="go-plan" href="direccion-arte.html" data-go>Ver el mundo de arte</a>
       </div>
     </div>
@@ -85,8 +81,6 @@
 
 <main id="main" tabindex="-1">
 
-  <!-- ============ TODO EL ARCHIVO ============ -->
-  <!-- Cada proyecto lleva a su sala de espera mientras se hacen las páginas finales -->
   <section class="pad top board-sec">
     <div class="wrap center">
       <h1 class="st" style="font-size:clamp(3rem,9vw,7.6rem)">Todo el <span class="script">archivo</span></h1>
@@ -94,12 +88,10 @@
     </div>
   </section>
 
-  <!-- Pestañas fijas: saltan a cada estación y se marcan al bajar -->
   <nav class="ptabs" id="ptabs" aria-label="Secciones de proyectos"><button data-t="Marca" aria-current="true">Lo gráfico</button><button data-t="Editorial">Análogo</button><button data-t="Redes">Digital</button><button data-t="Fotografía">En cámara</button><button data-t="Dirección de arte">En set</button></nav>
 
   <div class="stations" id="stations">
 
-    <!-- ===== LO GRÁFICO: mesa de trabajo tipo Illustrator (selección y capas) ===== -->
     <section class="stn" id="lo-grafico" data-cat="Marca">
       <div class="wrap">
         <div class="stn-head split"><div><span class="brk">[Identidades · Marca]</span><h2 class="sth">En lo <span class="script">gráfico.</span></h2></div><div class="tagbox"><p>Identidades construidas desde el primer trazo hasta los manuales: llevar la marca de la idea a la realidad. Pasa el cursor por las capas para ver de qué está hecha cada marca.</p></div></div>
@@ -111,8 +103,8 @@
             <div class="ws-canvas">
               <div class="ws-ruler" aria-hidden="true"></div>
               <div class="abs">
-                <a class="ab" href="sala-de-espera.html?p=provet-marca" data-go><span class="ab-n">01 · Identidad</span><span class="ab-sheet"><span class="ab-logo" data-l="logo" style="background:#f0efeb"><img src="img/logo_provet.jpg" alt="Logo de Provet"></span><span class="ab-pal" data-l="paleta"><i style="background:#f2f1ed"></i><i style="background:#d2cfc0"></i><i style="background:#223f61"></i><i style="background:#15263a"></i></span><span class="ab-t" data-l="tipo">Provet</span><span class="ab-m" data-l="apps">Concepto · Manual · Uniformes</span></span><span class="sel" aria-hidden="true"><b></b><b></b><b></b><b></b></span></a>
-                <a class="ab" href="sala-de-espera.html?p=boticaria" data-go><span class="ab-n">02 · Identidad</span><span class="ab-sheet"><span class="ab-logo" data-l="logo" style="background:#6b2c59"><img src="img/logo_boticaria.jpg" alt="Logo de Boticaria" style="scale:1.22"></span><span class="ab-pal" data-l="paleta"><i style="background:#ecb503"></i><i style="background:#6b2c59"></i><i style="background:#f2ecdd"></i></span><span class="ab-t" data-l="tipo">Boticaria</span><span class="ab-m" data-l="apps">Concepto · Isotipo · Paleta</span></span><span class="sel" aria-hidden="true"><b></b><b></b><b></b><b></b></span></a>
+                <a class="ab" href="proyecto.html?p=provet-marca" data-go><span class="ab-n">01 · Identidad</span><span class="ab-sheet"><span class="ab-logo" data-l="logo" style="background:#f0efeb"><img src="img/logo_provet.jpg" alt="Logo de Provet"></span><span class="ab-pal" data-l="paleta"><i style="background:#f2f1ed"></i><i style="background:#d2cfc0"></i><i style="background:#223f61"></i><i style="background:#15263a"></i></span><span class="ab-t" data-l="tipo">Provet</span><span class="ab-m" data-l="apps">Concepto · Manual · Uniformes</span></span><span class="sel" aria-hidden="true"><b></b><b></b><b></b><b></b></span></a>
+                <a class="ab" href="proyecto.html?p=boticaria" data-go><span class="ab-n">02 · Identidad</span><span class="ab-sheet"><span class="ab-logo" data-l="logo" style="background:#6b2c59"><img src="img/logo_boticaria.jpg" alt="Logo de Boticaria" style="scale:1.22"></span><span class="ab-pal" data-l="paleta"><i style="background:#ecb503"></i><i style="background:#6b2c59"></i><i style="background:#f2ecdd"></i></span><span class="ab-t" data-l="tipo">Boticaria</span><span class="ab-m" data-l="apps">Concepto · Isotipo · Paleta</span></span><span class="sel" aria-hidden="true"><b></b><b></b><b></b><b></b></span></a>
                 <a class="ab ghost" href="planes.html" data-go><span class="ab-n">03 · En maquetación</span><span class="ab-sheet"><span class="ab-logo x"></span><span class="ab-pal"><i></i><i></i><i></i><i></i></span><span class="ab-t">Tu marca</span><span class="ab-m">Emprendimiento · Café · Moda</span></span><span class="sel" aria-hidden="true"><b></b><b></b><b></b><b></b></span></a>
                 <a class="ab ghost" href="planes.html" data-go><span class="ab-n">04 · En maquetación</span><span class="ab-sheet"><span class="ab-logo x"></span><span class="ab-pal"><i></i><i></i><i></i><i></i></span><span class="ab-t">Próxima marca</span><span class="ab-m">Salud · Belleza · Cultura</span></span><span class="sel" aria-hidden="true"><b></b><b></b><b></b><b></b></span></a>
               </div>
@@ -131,37 +123,33 @@
       </div>
     </section>
 
-    <!-- ===== LO ANÁLOGO: pruebas de impresión sobre el tapete ===== -->
     <section class="stn" id="analogo" data-cat="Editorial">
       <div class="wrap stn-split">
         <div class="stn-head left"><span class="brk">[Impresos · Editorial]</span><h2 class="sth">Lo <span class="script">análogo.</span></h2><p>Diseños pensados para el impreso: márgenes, tamaños y colores listos para salir de la pantalla.</p>
-          <ol class="plist"><li><a href="sala-de-espera.html?p=museos" data-go><span>01</span>Museos y galerías de Pereira<em>Folleto interactivo</em></a></li><li><a href="sala-de-espera.html?p=grotesco" data-go><span>02</span>La estética de lo grotesco<em>Portada de libro</em></a></li></ol>
+          <ol class="plist"><li><a href="proyecto.html?p=museos" data-go><span>01</span>Museos y galerías de Pereira<em>Folleto interactivo</em></a></li><li><a href="proyecto.html?p=grotesco" data-go><span>02</span>La estética de lo grotesco<em>Portada de libro</em></a></li></ol>
           <div class="chips"><span class="chip">InDesign</span><span class="chip">Illustrator</span><span class="chip">Photoshop</span></div>
         </div>
         <div class="mat" aria-label="Pruebas de impresión">
           <span class="mat-ruler" aria-hidden="true"></span>
-          <a class="proof p1" href="sala-de-espera.html?p=museos" data-go><span class="slug">museos_pereira.indd · pliego 01 · CMYK</span><span class="crop" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="reg" aria-hidden="true"></span><img src="img/museos.jpg" alt="Folleto Museos y galerías"><span class="cbar" aria-hidden="true"><i style="background:#00a3e0"></i><i style="background:#e6007e"></i><i style="background:#ffed00"></i><i style="background:#1d1d1b"></i><i style="background:#5C1A30"></i><i style="background:#E8B4B0"></i></span></a>
-          <a class="proof p2" href="sala-de-espera.html?p=grotesco" data-go><span class="slug">grotesco_portada.ai · prueba 02</span><span class="crop" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="reg" aria-hidden="true"></span><img src="img/grotesco.jpg" alt="Portada La estética de lo grotesco"><span class="cbar" aria-hidden="true"><i style="background:#00a3e0"></i><i style="background:#e6007e"></i><i style="background:#ffed00"></i><i style="background:#1d1d1b"></i></span></a>
+          <a class="proof p1" href="proyecto.html?p=museos" data-go><span class="slug">museos_pereira.indd · pliego 01 · CMYK</span><span class="crop" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="reg" aria-hidden="true"></span><img src="img/museos.jpg" alt="Folleto Museos y galerías"><span class="cbar" aria-hidden="true"><i style="background:#00a3e0"></i><i style="background:#e6007e"></i><i style="background:#ffed00"></i><i style="background:#1d1d1b"></i><i style="background:#5C1A30"></i><i style="background:#E8B4B0"></i></span></a>
+          <a class="proof p2" href="proyecto.html?p=grotesco" data-go><span class="slug">grotesco_portada.ai · prueba 02</span><span class="crop" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="reg" aria-hidden="true"></span><img src="img/grotesco.jpg" alt="Portada La estética de lo grotesco"><span class="cbar" aria-hidden="true"><i style="background:#00a3e0"></i><i style="background:#e6007e"></i><i style="background:#ffed00"></i><i style="background:#1d1d1b"></i></span></a>
         </div>
       </div>
     </section>
 
-    <!-- ===== EN DIGITAL: piezas verticales ===== -->
     <section class="stn" id="digital" data-cat="Redes">
       <div class="wrap stn-split rev">
         <div class="stn-head left"><span class="brk">[Redes · Contenido]</span><h2 class="sth">En <span class="script">digital.</span></h2><p>Contenido que enseña y conecta: diseño de posts, historias y edición de reels para marcas que navegan en las plataformas y quieren crear vínculos reales con su público.</p>
           <a class="ulink" href="redes.html" data-go>Ver el mundo en redes</a>
         </div>
         <div class="vert">
-          <a class="vc" href="sala-de-espera.html?p=provet-redes" data-go style="--sh:var(--rosa)"><img src="img/reel1.jpg" alt="Historia de Provet sobre el congreso veterinario"><span class="vc-i" aria-hidden="true">◉</span><span class="vc-c"><b>Provet</b><small>Veterinaria · Historia 01</small></span></a>
-          <a class="vc" href="sala-de-espera.html?p=provet-redes" data-go style="--sh:var(--terra)"><img src="img/reel2.jpg" alt="Reel de Provet: tu gato no solo quiere jugar"><span class="vc-i" aria-hidden="true">◉</span><span class="vc-c"><b>Provet</b><small>Veterinaria · Reel 02</small></span></a>
-          <a class="vc" href="sala-de-espera.html?p=provet-redes" data-go style="--sh:var(--arena)"><img src="img/reel3.jpg" alt="Historia de Provet con el número de contacto"><span class="vc-i" aria-hidden="true">◉</span><span class="vc-c"><b>Provet</b><small>Veterinaria · Historia 03</small></span></a>
+          <a class="vc" href="proyecto.html?p=provet-redes" data-go style="--sh:var(--rosa)"><img src="img/reel1.jpg" alt="Historia de Provet sobre el congreso veterinario"><span class="vc-i" aria-hidden="true">◉</span><span class="vc-c"><b>Provet</b><small>Veterinaria · Historia 01</small></span></a>
+          <a class="vc" href="proyecto.html?p=provet-redes" data-go style="--sh:var(--terra)"><img src="img/reel2.jpg" alt="Reel de Provet: tu gato no solo quiere jugar"><span class="vc-i" aria-hidden="true">◉</span><span class="vc-c"><b>Provet</b><small>Veterinaria · Reel 02</small></span></a>
+          <a class="vc" href="proyecto.html?p=provet-redes" data-go style="--sh:var(--arena)"><img src="img/reel3.jpg" alt="Historia de Provet con el número de contacto"><span class="vc-i" aria-hidden="true">◉</span><span class="vc-c"><b>Provet</b><small>Veterinaria · Historia 03</small></span></a>
         </div>
       </div>
     </section>
 
-    <!-- ===== EN CÁMARA: cuarto oscuro (fotos que se mecen + panel tipo Lightroom) ===== -->
-    <!-- Pendiente: fotos reales y sus ajustes reales (están en js/proyectos.js) -->
     <section class="stn darkroom" id="en-camara" data-cat="Fotografía">
       <div class="wrap">
         <div class="stn-head"><span class="brk">[Fotografía · Revelado]</span><h2 class="sth">En <span class="script">cámara.</span></h2><p>Producto, retrato y fotos de set, reveladas y editadas en Lightroom. Pasa el cursor por una foto para ver cómo se ajustó.</p></div>
@@ -179,14 +167,12 @@
       </div>
     </section>
 
-    <!-- ===== EN EL SET: monitor con REC y código de tiempo + claqueta ===== -->
     <section class="stn" id="en-set" data-cat="Dirección de arte">
       <div class="wrap">
         <div class="stn-head"><span class="brk">[Dirección de arte · Set]</span><h2 class="sth">En el <span class="script">set.</span></h2><p>Espacios que cuentan la historia frente a la cámara: concepto, ambientación y utilería para videoclips, comerciales y cortos.</p></div>
         <div class="set-rows">
-          <a class="srow" href="sala-de-espera.html?p=casualidad" data-go><span class="monitor"><span class="screen"><img src="img/cas_wide.jpg" alt="Fotograma del videoclip Casualidad"><span class="lbx" aria-hidden="true"></span><span class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="cross"></span><span class="t1"><em class="rec">● REC</em><em>A-CAM</em><em class="tc" data-tc="1">00:00:00:00</em></span><span class="t2"><em>24 FPS · 1/48 · ISO 800</em><em>2.39:1</em><em class="bat"><i></i></em></span></span></span><span class="mon-foot"><i></i><i></i><span>Monitor de set · 7″</span></span></span><span class="sinfo"><span class="slate"><span class="clap" aria-hidden="true"></span><span class="chalk"><span class="f w"><small>Prod.</small><b>Casualidad</b></span><span class="f"><small>Escena</small><b>01</b></span><span class="f"><small>Toma</small><b>03</b></span><span class="f"><small>Director</small><b>Felipe Argüello</b></span><span class="f"><small>Dir. de arte</small><b>Sofía Moncada</b></span><span class="f"><small>Productora</small><b>InSign Visualmedia</b></span><span class="f"><small>Fecha</small><b>2025</b></span></span></span><span class="brk">[Videoclip · Leo Méndez]</span><span class="d">Escenarios distintos para cada momento de la canción y la emoción que se vive.</span><span class="cr">Ambientación · Escenografía · Utilería</span><span class="ulink">Ver proyecto</span></span></a>
-          <a class="srow" href="sala-de-espera.html?p=servicarga" data-go><span class="monitor"><span class="screen"><img src="img/serv_wide.jpg" alt="Fotograma del comercial de Servicarga"><span class="lbx" aria-hidden="true"></span><span class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="cross"></span><span class="t1"><em class="rec">● REC</em><em>A-CAM</em><em class="tc" data-tc="2">00:00:00:00</em></span><span class="t2"><em>24 FPS · 1/48 · ISO 800</em><em>2.39:1</em><em class="bat"><i></i></em></span></span></span><span class="mon-foot"><i></i><i></i><span>Monitor de set · 7″</span></span></span><span class="sinfo"><span class="slate"><span class="clap" aria-hidden="true"></span><span class="chalk"><span class="f w"><small>Prod.</small><b>Servicarga</b></span><span class="f"><small>Escena</small><b>02</b></span><span class="f"><small>Toma</small><b>01</b></span><span class="f"><small>Formato</small><b>Comercial</b></span><span class="f"><small>Dir. de arte</small><b>Sofía Moncada</b></span><span class="f"><small>Productora</small><b>InSign Visualmedia</b></span><span class="f"><small>Fecha</small><b>2026</b></span></span></span><span class="brk">[Comercial · Servicarga]</span><span class="d">Una casa cercana y familiar para contar cómo acortar las distancias con los pequeños detalles.</span><span class="cr">Dirección de arte · Ambientación</span><span class="ulink">Ver proyecto</span></span></a>
-          <!-- Pendiente: imagen real de Donde la música muere (por ahora "Sin señal") -->
+          <a class="srow" href="proyecto.html?p=casualidad" data-go><span class="monitor"><span class="screen"><img src="img/cas_wide.jpg" alt="Fotograma del videoclip Casualidad"><span class="lbx" aria-hidden="true"></span><span class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="cross"></span><span class="t1"><em class="rec">● REC</em><em>A-CAM</em><em class="tc" data-tc="1">00:00:00:00</em></span><span class="t2"><em>24 FPS · 1/48 · ISO 800</em><em>2.39:1</em><em class="bat"><i></i></em></span></span></span><span class="mon-foot"><i></i><i></i><span>Monitor de set · 7″</span></span></span><span class="sinfo"><span class="slate"><span class="clap" aria-hidden="true"></span><span class="chalk"><span class="f w"><small>Prod.</small><b>Casualidad</b></span><span class="f"><small>Escena</small><b>01</b></span><span class="f"><small>Toma</small><b>03</b></span><span class="f"><small>Director</small><b>Felipe Argüello</b></span><span class="f"><small>Dir. de arte</small><b>Sofía Moncada</b></span><span class="f"><small>Productora</small><b>InSign Visualmedia</b></span><span class="f"><small>Fecha</small><b>2025</b></span></span></span><span class="brk">[Videoclip · Leo Méndez]</span><span class="d">Escenarios distintos para cada momento de la canción y la emoción que se vive.</span><span class="cr">Ambientación · Escenografía · Utilería</span><span class="ulink">Ver proyecto</span></span></a>
+          <a class="srow" href="proyecto.html?p=servicarga" data-go><span class="monitor"><span class="screen"><img src="img/serv_wide.jpg" alt="Fotograma del comercial de Servicarga"><span class="lbx" aria-hidden="true"></span><span class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="cross"></span><span class="t1"><em class="rec">● REC</em><em>A-CAM</em><em class="tc" data-tc="2">00:00:00:00</em></span><span class="t2"><em>24 FPS · 1/48 · ISO 800</em><em>2.39:1</em><em class="bat"><i></i></em></span></span></span><span class="mon-foot"><i></i><i></i><span>Monitor de set · 7″</span></span></span><span class="sinfo"><span class="slate"><span class="clap" aria-hidden="true"></span><span class="chalk"><span class="f w"><small>Prod.</small><b>Servicarga</b></span><span class="f"><small>Escena</small><b>02</b></span><span class="f"><small>Toma</small><b>01</b></span><span class="f"><small>Formato</small><b>Comercial</b></span><span class="f"><small>Dir. de arte</small><b>Sofía Moncada</b></span><span class="f"><small>Productora</small><b>InSign Visualmedia</b></span><span class="f"><small>Fecha</small><b>2026</b></span></span></span><span class="brk">[Comercial · Servicarga]</span><span class="d">Una casa cercana y familiar para contar cómo acortar las distancias con los pequeños detalles.</span><span class="cr">Dirección de arte · Ambientación</span><span class="ulink">Ver proyecto</span></span></a>
           <div class="srow"><span class="monitor"><span class="screen"><span class="sbars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="nosig"><b>Sin señal</b><small>espacio para un fotograma del corto</small></span><span class="lbx" aria-hidden="true"></span><span class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="cross"></span><span class="t1"><em class="rec">● REC</em><em>A-CAM</em><em class="tc" data-tc="3">00:00:00:00</em></span><span class="t2"><em>24 FPS · 1/48 · ISO 800</em><em>2.39:1</em><em class="bat"><i></i></em></span></span></span><span class="mon-foot"><i></i><i></i><span>Monitor de set · 7″</span></span></span><span class="sinfo"><span class="slate"><span class="clap" aria-hidden="true"></span><span class="chalk"><span class="f w"><small>Prod.</small><b>Donde la música muere</b></span><span class="f"><small>Escena</small><b>03</b></span><span class="f"><small>Toma</small><b>—</b></span><span class="f"><small>Formato</small><b>Cortometraje</b></span><span class="f"><small>Dep. arte</small><b>Sofía Moncada</b></span><span class="f"><small>Fecha</small><b>2024</b></span></span></span><span class="brk">[Cortometraje]</span><span class="d">Volviendo a una historia de Andrés Caicedo en la Cali salsera.</span><span class="cr">Producción · Asistencia de arte</span></span></div>
         </div>
       </div>
@@ -199,7 +185,6 @@
 
 </main>
 
-<!-- ============ CONTACTO (en todas las páginas) ============ -->
 <footer class="contact" id="contacto" data-anchor="contacto">
   <div class="wrap">
     <h2 class="st">Trabajemos <span class="script">Juntos</span></h2>
@@ -212,7 +197,6 @@
   </div>
 </footer>
 
-<!-- Transición entre páginas: 4 franjas de color -->
 <div class="wipe" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 

@@ -8,14 +8,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&family=Pinyon+Script&display=swap" rel="stylesheet">
-<!-- Estilos: generales (todas las páginas) + los propios de esta página -->
 <link rel="stylesheet" href="css/base.css?v=20261113d">
 <link rel="stylesheet" href="css/barra-menu.css?v=20261113d">
 <link rel="stylesheet" href="css/pie.css?v=20261113d">
 <link rel="stylesheet" href="css/entrada.css?v=20261113d">
-<!-- La entrada sale una vez por visita; para verla otra vez: index.html?entrada -->
 <script>(function(){try{if(sessionStorage.getItem('sof-intro')==='1'&&location.search.indexOf('entrada')<0)location.replace('inicio.html')}catch(e){}})();</script>
-<!-- Antes de pintar: tema guardado y franjas de llegada desde otra página -->
 <script>
 (function(){var r=document.documentElement;try{var t=localStorage.getItem('sof-theme');if(t==='dark'||t==='light')r.dataset.theme=t;if(sessionStorage.getItem('sof-wipe')){r.classList.add('llegando');sessionStorage.removeItem('sof-wipe')}}catch(e){}})();
 </script>
@@ -23,8 +20,6 @@
 <body data-pagina="entrada">
 <a class="skip" href="#" id="skip">Saltar al contenido</a>
 
-<!-- ============ ENTRADA (INTRO) ============ -->
-<!-- Sale la primera vez de cada visita. Para verla de nuevo: index.html?entrada -->
 <div class="intro ready" id="intro">
   <div class="top-meta"><span class="m">Sofía Moncada · Portafolio 2026</span><span class="m hide-s">4.8143° N · 75.6946° W</span><button class="theme" role="switch" aria-checked="false" aria-label="Modo oscuro"><span class="knob" aria-hidden="true"><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></g></svg><svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></span></button></div>
   <div class="choose">

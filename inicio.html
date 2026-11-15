@@ -8,12 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&family=Pinyon+Script&display=swap" rel="stylesheet">
-<!-- Estilos: generales (todas las páginas) + los propios de esta página -->
 <link rel="stylesheet" href="css/base.css?v=20261113d">
 <link rel="stylesheet" href="css/barra-menu.css?v=20261113d">
 <link rel="stylesheet" href="css/pie.css?v=20261113d">
 <link rel="stylesheet" href="css/inicio.css?v=20261113d">
-<!-- Antes de pintar: tema guardado y franjas de llegada desde otra página -->
 <script>
 (function(){var r=document.documentElement;try{var t=localStorage.getItem('sof-theme');if(t==='dark'||t==='light')r.dataset.theme=t;if(sessionStorage.getItem('sof-wipe')){r.classList.add('llegando');sessionStorage.removeItem('sof-wipe')}}catch(e){}})();
 </script>
@@ -21,7 +19,6 @@
 <body data-pagina="inicio">
 <a class="skip" href="#" id="skip">Saltar al contenido</a>
 
-<!-- ============ BARRA PRINCIPAL ============ -->
 <header class="nav" id="nav">
   <a class="logo" href="inicio.html" data-go aria-label="Trazo, inicio"><span class="script">Trazo</span></a>
   <nav class="links" aria-label="Principal">
@@ -35,7 +32,6 @@
   <button class="menu-btn" aria-expanded="false" aria-controls="mega"><i></i>Menú</button>
 </header>
 
-<!-- ============ MENÚ GRANDE: LO QUE HAGO ============ -->
 <div class="mega" id="mega">
   <div class="wrap">
     <div class="mega-head"><div class="lbl"><b>000</b><span>Lo que hago</span></div><p class="script">elige tu plan y escríbeme</p></div>
@@ -47,7 +43,7 @@
           <li><a href="marca.html" data-go><span>02</span>Manual de marca<small>Reglas de uso de tu marca · 8 entregables</small></a><button class="buy" data-buy="Manual de marca" data-w="Marca">Adquirir</button></li>
           <li><a href="marca.html" data-go><span>03</span>Identidad completa<small>Todo lo anterior + papelería y lanzamiento</small></a><button class="buy" data-buy="Identidad completa" data-w="Marca">Adquirir</button></li>
         </ul>
-        <div class="seen"><small>Míralo en</small><div class="mini"><a href="sala-de-espera.html?p=provet-marca" data-go>Provet</a><a href="sala-de-espera.html?p=boticaria" data-go>Boticaria</a><a href="sala-de-espera.html?p=museos" data-go>Museos y galerías</a><a href="sala-de-espera.html?p=grotesco" data-go>Lo grotesco</a></div></div>
+        <div class="seen"><small>Míralo en</small><div class="mini"><a href="proyecto.html?p=provet-marca" data-go>Provet</a><a href="proyecto.html?p=boticaria" data-go>Boticaria</a><a href="proyecto.html?p=museos" data-go>Museos y galerías</a><a href="proyecto.html?p=grotesco" data-go>Lo grotesco</a></div></div>
         <a class="go-plan" href="marca.html" data-go>Ver el mundo de marca</a>
       </div>
       <div class="world w2">
@@ -57,7 +53,7 @@
           <li><a href="redes.html" data-go><span>02</span>Reels y video<small>Edición con ritmo y con tu estética</small></a><button class="buy" data-buy="Reels y video" data-w="Redes">Adquirir</button></li>
           <li><a href="redes.html" data-go><span>03</span>Fotografía<small>Producto y retrato, con edición de color</small></a><button class="buy" data-buy="Fotografía" data-w="Redes">Adquirir</button></li>
         </ul>
-        <div class="seen"><small>Míralo en</small><div class="mini"><a href="sala-de-espera.html?p=provet-redes" data-go>Provet · redes</a></div></div>
+        <div class="seen"><small>Míralo en</small><div class="mini"><a href="proyecto.html?p=provet-redes" data-go>Provet · redes</a></div></div>
         <a class="go-plan" href="redes.html" data-go>Ver el mundo de redes</a>
       </div>
       <div class="world w3">
@@ -67,7 +63,7 @@
           <li><a href="direccion-arte.html" data-go><span>02</span>Ambientación<small>Escenografía y utilería para cada escena</small></a><button class="buy" data-buy="Ambientación" data-w="Dirección de arte">Adquirir</button></li>
           <li><a href="direccion-arte.html" data-go><span>03</span>Arte en el set<small>Asistencia de arte y producción en rodaje</small></a><button class="buy" data-buy="Arte en el set" data-w="Dirección de arte">Adquirir</button></li>
         </ul>
-        <div class="seen"><small>Míralo en</small><div class="mini"><a href="sala-de-espera.html?p=casualidad" data-go>Casualidad</a><a href="sala-de-espera.html?p=servicarga" data-go>Servicarga</a></div></div>
+        <div class="seen"><small>Míralo en</small><div class="mini"><a href="proyecto.html?p=casualidad" data-go>Casualidad</a><a href="proyecto.html?p=servicarga" data-go>Servicarga</a></div></div>
         <a class="go-plan" href="direccion-arte.html" data-go>Ver el mundo de arte</a>
       </div>
     </div>
@@ -85,7 +81,6 @@
 
 <main id="main" tabindex="-1">
 
-  <!-- ============ 1. PORTADA "Sof en TRAZO" (rayas, estrellas, letras que suben) ============ -->
   <section class="hero">
     <svg class="star8" viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M50 0l7 30 25-18-15 27 31 1-29 11 20 24-28-13-3 31-8-30-8 30-3-31-28 13 20-24L2 40l31-1L18 12l25 18z"/></svg>
     <svg class="star8 s2" viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M50 0C54 36 64 46 100 50 64 54 54 64 50 100 46 64 36 54 0 50 36 46 46 36 50 0z"/></svg>
@@ -95,14 +90,12 @@
     <div class="row-btns"><a class="btn b-vino" href="proyectos.html" data-go>Ver mi trabajo</a><button class="btn b-line" data-menu>¿Qué necesitas?</button></div>
   </section>
 
-  <!-- ============ 2. CINTAS CRUZADAS + "¿Quieres conocerme?" ============ -->
   <div class="xr" aria-label="Diseño, arte, dirección y creación">
     <div class="xr-band a" aria-hidden="true"><div class="track"></div></div>
     <div class="xr-band b" aria-hidden="true"><div class="track"></div></div>
     <a class="xr-pill" href="sobre-mi.html" data-go>¿Quieres <span class="script">conocerme?</span></a>
   </div>
 
-  <!-- ============ 3. BIENVENIDX + MANIFIESTO (se ilumina palabra por palabra) ============ -->
   <section class="pad center welcome">
     <div class="wrap">
       <h2 class="wtitle">Bienvenidx a mi portafolio</h2>
@@ -111,7 +104,6 @@
     </div>
   </section>
 
-  <!-- ============ 4. ¿POR QUÉ SOF? (stickers redondos + espacio para testimonios) ============ -->
   <section class="pad center paper">
     <div class="wrap">
       <h2 class="st">¿Por qué <span class="script">Sof?</span></h2>
@@ -122,12 +114,10 @@
         <div class="rv" style="--r:-3deg"><b>5</b><span>Formas de mostrar mi trabajo</span></div>
         <div class="rv" style="--r:6deg"><b>4</b><span>Producciones audiovisuales</span></div>
       </div>
-      <!-- Pendiente: testimonios de clientes -->
       <div class="quote-slot"><span class="script">“</span><p><b>Espacio para testimonios.</b> Agrega aquí lo que dicen tus clientes, con su nombre y su marca.</p></div>
     </div>
   </section>
 
-  <!-- ============ 5. ¿LISTX? ============ -->
   <section class="pad cta-plan">
     <div class="wrap">
       <h2 class="st">¿Listx para que tu marca <span class="script">sea vista?</span></h2>
@@ -137,7 +127,6 @@
 
 </main>
 
-<!-- ============ CONTACTO (en todas las páginas) ============ -->
 <footer class="contact" id="contacto" data-anchor="contacto">
   <div class="wrap">
     <h2 class="st">Trabajemos <span class="script">Juntos</span></h2>
@@ -150,7 +139,6 @@
   </div>
 </footer>
 
-<!-- Transición entre páginas: 4 franjas de color -->
 <div class="wipe" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 

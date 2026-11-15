@@ -1,9 +1,3 @@
-/* =========================================================
-   TRAZO · Sala de espera
-   sala-de-espera.css · solo sala-de-espera.html
-   (usa los colores y estilos generales de base.css)
-   ========================================================= */
-
 .espera-caja { min-height: 70vh; }
 .espera-grid {
   display: grid;
@@ -13,7 +7,6 @@
   margin-top: 1rem;
 }
 
-/* Vista previa colgada como una foto que se mece */
 .espera-foto {
   position: relative;
   margin: 0;
@@ -46,7 +39,6 @@
   box-shadow: 0 2px 3px rgba(0, 0, 0, .4);
 }
 
-/* Reloj de pared con manecillas que giran */
 .reloj {
   position: relative;
   width: 84px;
@@ -78,7 +70,6 @@
   background: var(--fg);
 }
 
-/* Ficha de turno (como un tiquete con perforación) */
 .ficha {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -113,7 +104,6 @@
 }
 .espera-mensaje .script { display: block; font-size: 2.4rem; color: var(--accent); }
 
-/* Barra de carga que va y viene */
 .espera-carga {
   position: relative;
   width: min(340px, 80%);
@@ -134,7 +124,6 @@
 }
 @keyframes cargando { 0% { left: -35%; } 100% { left: 100%; } }
 
-/* Sillas: una ocupada por una estrella impaciente */
 .sillas { display: flex; gap: 14px; margin-top: 2.4rem; }
 .silla {
   position: relative;

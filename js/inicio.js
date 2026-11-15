@@ -1,12 +1,7 @@
-/* =========================================================
-   TRAZO · Inicio
-   inicio.js · solo inicio.html
-   ========================================================= */
 (function () {
   'use strict';
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Letras de TRAZO que suben una a una
   let ci = 0;
   document.querySelectorAll('[data-chars]').forEach((el) => {
     const t = el.textContent;
@@ -20,12 +15,10 @@
     });
   });
 
-  // Cintas cruzadas: palabras en movimiento
   document.querySelectorAll('.xr .track').forEach((t) => {
     t.innerHTML = Array(6).fill(['Diseño', 'Arte', 'Dirección', 'Creación']).flat().map((x) => `<span>${x}</span>`).join('');
   });
 
-  // Manifiesto que se ilumina palabra por palabra
   const mf = document.getElementById('manif');
   if (mf) {
     const nodes = [...mf.childNodes];

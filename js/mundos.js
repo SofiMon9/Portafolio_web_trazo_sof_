@@ -1,8 +1,3 @@
-/* =========================================================
-   TRAZO · Páginas de mundo
-   mundos.js · marca.html, redes.html y direccion-arte.html
-   Arma la página con los datos de js/datos.js (W y P).
-   ========================================================= */
 (function () {
   'use strict';
   const { W, P, IMG, card } = window.TRAZO;

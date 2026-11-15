@@ -1,10 +1,3 @@
-/* =========================================================
-   TRAZO · Portafolio de Sofía Moncada
-   inicio.css · solo inicio.html: portada, cintas, manifiesto, ¿Por qué Sof? y ¿Listx?
-   (estilos tomados del portafolio original: trazo-portafolio/css/estilos.css)
-   ========================================================= */
-
-/* manifiesto */
 .manif{font-weight:700;font-size:clamp(2.2rem,5.6vw,5rem);line-height:1.04;letter-spacing:-.01em;max-width:18ch}
 .manif .w{opacity:.16;transition:opacity .25s}
 .manif .w.lit{opacity:1}
@@ -12,7 +5,6 @@
 .sign{margin-top:2rem;display:flex;align-items:center;gap:1rem}
 .sign .script{font-size:2.6rem;color:var(--accent)}
 
-/* por qué */
 .why{display:grid;grid-template-columns:1fr 1.3fr;gap:clamp(2rem,5vw,4rem);align-items:start}
 .facts4{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .facts4 div{border-radius:22px;border:1px solid var(--line);padding:1.3rem}
@@ -23,12 +15,9 @@
 .quote-slot .script{font-size:3rem;color:var(--accent);line-height:.6}
 .quote-slot p{opacity:.85}
 
-
-/* cta planes */
 .cta-plan{text-align:center}
 .cta-plan .st{font-size:clamp(2.8rem,8vw,6.6rem)}
 
-/* HERO centrado con rayas y borde festoneado */
 .hero{position:relative;overflow:hidden;text-align:center;padding:calc(env(safe-area-inset-top,0px) + 8.5rem) 1.25rem 7.5rem;background:repeating-linear-gradient(90deg,var(--stripe-a) 0 64px,var(--stripe-b) 64px 128px);animation:drift 50s linear infinite;
   -webkit-mask:linear-gradient(#000 0 0) top/100% calc(100% - 28px) no-repeat,radial-gradient(circle 28px at 50% 0,#000 97%,transparent 100%) bottom/56px 28px repeat-x;
   mask:linear-gradient(#000 0 0) top/100% calc(100% - 28px) no-repeat,radial-gradient(circle 28px at 50% 0,#000 97%,transparent 100%) bottom/56px 28px repeat-x}
@@ -45,11 +34,9 @@
 .hero .row-btns{justify-content:center}
 @media (max-width:600px){.hero h1 .k{transform:rotate(-5deg) translateX(-12%)}.star8{right:4%;top:12%}}
 
-/* manifiesto centrado */
 .manif{margin-inline:auto;text-align:center;max-width:19ch}
 .center .sign{justify-content:center}
 
-/* por qué: stickers redondos */
 .facts4.round{display:flex;flex-wrap:wrap;justify-content:center;gap:1.2rem;margin-top:2.6rem}
 .facts4.round div{width:clamp(150px,18vw,200px);aspect-ratio:1;border-radius:50%;display:grid;place-content:center;text-align:center;padding:1.2rem;background:var(--bg);border:1.5px solid var(--line-p);rotate:var(--r)}
 .facts4.round div:nth-child(2){background:var(--rosa);color:var(--vino-osc);border:0}
@@ -62,7 +49,6 @@
 @media (prefers-reduced-motion:reduce){.hero h1 .ch{transform:none}.hero{animation:none}}
 
 .hero + .ribbon{margin-top:1.4rem}
-/* cintas cruzadas */
 .xr{position:relative;height:clamp(200px,22vw,250px);overflow:hidden;margin-top:-1rem}
 .xr-band{position:absolute;left:-5%;width:110%;top:50%;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.18)}
 .xr-band.a{background:var(--rosa);color:var(--vino-osc);rotate:-4deg;translate:0 -70%}
@@ -75,6 +61,5 @@
 .xr-pill .script{font-size:1.6em;font-weight:400;color:var(--terra)}
 .xr-pill:hover{rotate:3deg;scale:1.08}
 .welcome .wtitle{font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(2rem,5.4vw,4.2rem);line-height:1;margin-bottom:2rem;color:var(--accent)}
-/* cintas más cerca del título de bienvenida */
 .welcome{padding-top:1rem}
 .xr{margin-bottom:-1.5rem}
