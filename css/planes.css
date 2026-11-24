@@ -24,11 +24,11 @@
 
 .plans-sec{padding-bottom:3rem}
 .fan-wrap{position:relative;margin:2.4rem auto 0;width:min(1100px,100%)}
-.fan{position:relative;height:clamp(560px,52vw,640px)}
-.swc{position:absolute;left:50%;bottom:40px;width:clamp(240px,24vw,290px);height:clamp(440px,40vw,500px);margin-left:calc(clamp(240px,24vw,290px) / -2);transform-origin:50% calc(100% - 26px);rotate:var(--rot);translate:0 0;background:var(--blanco);color:#3D0C15;border-radius:14px 14px 10px 10px;box-shadow:0 22px 40px -22px rgba(61,12,21,.6),0 0 0 1.5px rgba(61,12,21,.08);display:flex;flex-direction:column;text-align:left;cursor:pointer;transition:rotate .7s cubic-bezier(.3,1.3,.4,1),translate .7s cubic-bezier(.3,1.3,.4,1);overflow:hidden}
+.fan{position:relative;height:clamp(650px,56vw,710px)}
+.swc{position:absolute;left:50%;bottom:40px;width:clamp(240px,24vw,290px);height:auto;min-height:clamp(530px,44vw,570px);margin-left:calc(clamp(240px,24vw,290px) / -2);transform-origin:50% calc(100% - 26px);rotate:var(--rot);translate:0 0;background:var(--blanco);color:#3D0C15;border-radius:14px 14px 10px 10px;box-shadow:0 22px 40px -22px rgba(61,12,21,.6),0 0 0 1.5px rgba(61,12,21,.08);display:flex;flex-direction:column;text-align:left;cursor:pointer;transition:rotate .7s cubic-bezier(.3,1.3,.4,1),translate .7s cubic-bezier(.3,1.3,.4,1);overflow:hidden}
 .swc.on{rotate:0deg;translate:0 -36px;z-index:20!important;cursor:default}
 .swc:not(.on):hover{translate:0 -14px}
-.swc .swtop{flex:0 0 38%;background:var(--c);position:relative;padding:1rem 1.1rem;color:var(--t)}
+.swc .swtop{flex:0 0 clamp(110px,10vw,150px);background:var(--c);position:relative;padding:1rem 1.1rem;color:var(--t)}
 .swc .swtop .tier{position:absolute;left:1.1rem;bottom:.4rem;font-family:var(--script);font-size:2.6rem;line-height:1}
 .swc .info{flex:1;display:flex;flex-direction:column;gap:.5rem;padding:1rem 1.1rem 2.6rem}
 .swc h3{font-weight:800;text-transform:uppercase;font-size:1.45rem;line-height:1}
@@ -55,8 +55,9 @@
 .xt[aria-pressed="true"] i::after{content:"✓"}
 @media (max-width:760px){
   .fan{height:auto;display:flex;gap:1.2rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:2.4rem 1.5rem 2rem;scrollbar-width:none}
-  .swc,.swc.on{position:relative;left:auto;bottom:auto;margin:0;flex:0 0 78%;height:460px;rotate:var(--mrot);translate:0 0;scroll-snap-align:center}
+  .swc,.swc.on{position:relative;left:auto;bottom:auto;margin:0;flex:0 0 78%;height:auto;min-height:460px;rotate:var(--mrot);translate:0 0;scroll-snap-align:center}
   .swc .acts{opacity:1}
+  .swc .swtop{flex:0 0 170px}
   .fan-ctrl{display:none}
 }
 

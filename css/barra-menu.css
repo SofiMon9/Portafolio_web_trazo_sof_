@@ -78,3 +78,4 @@
 @media (max-width:560px){.nav .cta{display:none}}
 
 .llegando .wipe span{transform:scaleX(1)}
+@media (max-width:400px){.nav{gap:.35rem;padding-left:.8rem}.menu-btn{font-size:0;gap:0;width:42px;height:42px;padding:0;justify-content:center}}
