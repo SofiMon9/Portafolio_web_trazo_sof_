@@ -4,15 +4,15 @@
   const say = window.TRAZO_say || (() => {});
 
   const PL = [
-    { n: 'Identidad simple', t: 'Básicos', code: 'SOF 01-A', c: '#E8B4B0', tx: '#3D0C15', hex: '#E8B4B0', inc: ['Logo principal', 'Paleta de color', 'Tipografías'], m: '3 entregables', w: 'Marca' },
-    { n: 'Manual de marca', t: 'Marca', code: 'SOF 02-B', c: '#B96B52', tx: '#FFFBF7', hex: '#B96B52', inc: ['Uso y versiones del logo', 'Color y tipografía', 'Aplicaciones', 'Tono de voz'], m: '8 entregables', w: 'Marca' },
-    { n: 'Identidad completa', t: 'Total', code: 'SOF 03-C', c: '#5C1A30', tx: '#F7EFE9', hex: '#5C1A30', inc: ['Todo lo de los planes anteriores', 'Papelería', 'Redes sociales', 'Piezas de lanzamiento'], m: 'El más completo', w: 'Marca' },
-    { n: 'Asesoría', t: 'Guía', code: 'SOF 04-D', c: '#D9C4B8', tx: '#3D0C15', hex: '#D9C4B8', inc: ['Sesión de acompañamiento', 'Revisión de tu marca o idea', 'Siguiente paso claro'], m: 'Sesión de 2 horas', w: 'Planes' },
+    { n: 'Identidad simple', precio: '$800.000', t: 'Básicos', c: '#E8B4B0', tx: '#3D0C15', inc: ['Logo principal', 'Paleta de color', 'Tipografías'], m: 'Incluye 3 entregables', w: 'Marca' },
+    { n: 'Manual de marca', precio: '$1.800.000', t: 'Marca', c: '#B96B52', tx: '#FFFBF7', inc: ['Uso y versiones del logo', 'Color y tipografía', 'Aplicaciones', 'Tono de voz'], m: 'Incluye 8 entregables', w: 'Marca' },
+    { n: 'Identidad completa', precio: '$3.500.000', t: 'Total', c: '#5C1A30', tx: '#F7EFE9', inc: ['Todo lo de los planes anteriores', 'Papelería', 'Redes sociales', 'Piezas de lanzamiento'], m: 'Incluye 15 entregables', w: 'Marca' },
+    { n: 'Asesoría', precio: '$250.000', t: 'Guía', c: '#D9C4B8', tx: '#3D0C15', inc: ['Sesión de acompañamiento', 'Revisión de tu marca o idea', 'Siguiente paso claro'], m: 'Sesión de 2 horas', w: 'Planes' },
   ];
   const fan = document.getElementById('fan');
   const fName = document.getElementById('fName');
   if (fan) {
-    fan.innerHTML = PL.map((p, i) => `<div class="swc" role="option" tabindex="0" data-i="${i}" style="--c:${p.c};--t:${p.tx};--mrot:${[-2, 1.5, -1, 2][i]}deg"><div class="swtop"><span class="code">${p.code}</span><span class="tier">${p.t}</span><span class="hex">${p.hex}</span></div><div class="info"><h3>${p.n}</h3><ul>${p.inc.map((x) => `<li>${x}</li>`).join('')}</ul><span class="meta">${p.m}</span><div class="acts"><button type="button" class="buy-now" data-buy="${p.n}" data-w="${p.w}">Adquirir</button><button type="button" class="add" aria-pressed="false" data-add="${p.n}">Agregar al pedido</button></div></div><span class="rivet" aria-hidden="true"></span></div>`).join('');
+    fan.innerHTML = PL.map((p, i) => `<div class="swc" role="option" tabindex="0" data-i="${i}" style="--c:${p.c};--t:${p.tx};--mrot:${[-2, 1.5, -1, 2][i]}deg"><div class="swtop"><span class="tier">${p.t}</span></div><div class="info"><h3>${p.n}</h3><ul>${p.inc.map((x) => `<li>${x}</li>`).join('')}</ul><p class="precio">Precio estimado: <b>${p.precio}</b></p><span class="meta">${p.m}</span><div class="acts"><button type="button" class="buy-now" data-buy="${p.n}" data-w="${p.w}">Adquirir</button><button type="button" class="add" aria-pressed="false" data-add="${p.n}">Agregar al pedido</button></div></div><span class="rivet" aria-hidden="true"></span></div>`).join('');
     const sws = [...fan.children];
     let fOn = 2;
     const fanTo = (i) => {
@@ -48,7 +48,7 @@
   if (!opts) return;
   opts.innerHTML = O.map((o, i) => `<button type="button" aria-pressed="false" data-o="${o}" style="--r:${[-2, 1.5, -1, 2, -1.5, 1, -2, 1.5, -1][i]}deg">${o}</button>`).join('');
   try {
-    document.getElementById('bDate').textContent = new Intl.DateTimeFormat('es-CO', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'America/Bogota' }).format(new Date());
+    document.getElementById('bDate').textContent = new Intl.DateTimeFormat(window.TRAZO_lang === 'en' ? 'en-US' : 'es-CO', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'America/Bogota' }).format(new Date());
   } catch (_) {}
   const bSum = document.getElementById('bSum');
   const selected = () => [...opts.querySelectorAll('[aria-pressed="true"]')].map((b) => b.dataset.o);
@@ -86,8 +86,13 @@
     const name = document.getElementById('o-name').value.trim();
     const msg = document.getElementById('o-msg').value.trim();
     const wh = whenEl.querySelector('[aria-pressed="true"]');
-    let t = `Hola Sof${name ? ', soy ' + name : ''}. Me interesa: ${sel.join(', ')}.`;
-    if (wh) t += ` Lo necesito ${wh.dataset.v}.`;
+    const T = window.TRAZO_t || ((s) => s);
+    const en = window.TRAZO_lang === 'en';
+    const CUANDO = { 'lo antes posible': 'as soon as possible', 'este mes': 'this month', 'sin afán': 'whenever works, no rush' };
+    let t = en
+      ? `Hi Sof${name ? ", I'm " + name : ''}. I'm interested in: ${sel.map(T).join(', ')}.`
+      : `Hola Sof${name ? ', soy ' + name : ''}. Me interesa: ${sel.join(', ')}.`;
+    if (wh) t += en ? ` I need it ${CUANDO[wh.dataset.v] || wh.dataset.v}.` : ` Lo necesito ${wh.dataset.v}.`;
     if (msg) t += `\n\n${msg}`;
     const paper = document.querySelector('.bsheet');
     paper.classList.remove('stamped');

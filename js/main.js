@@ -69,7 +69,7 @@
 
   function tick() {
     try {
-      const t = new Intl.DateTimeFormat('es-CO', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Bogota' }).format(new Date());
+      const t = new Intl.DateTimeFormat(window.TRAZO_lang === 'en' ? 'en-US' : 'es-CO', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Bogota' }).format(new Date());
       document.querySelectorAll('[data-clock]').forEach((c) => { c.textContent = 'Pereira · ' + t; });
     } catch (_) {}
   }
@@ -81,7 +81,11 @@
     if (!b) return;
     e.preventDefault();
     const plan = b.dataset.buy, w = b.dataset.w;
-    const t = `Hola Sof, quiero adquirir el plan “${plan}”${w && w !== 'Planes' ? ' (' + w + ')' : ''}. ¿Me cuentas cómo empezamos?`;
+    const T = window.TRAZO_t || ((s) => s);
+    const extra = w && w !== 'Planes' ? ' (' + T(w) + ')' : '';
+    const t = window.TRAZO_lang === 'en'
+      ? `Hi Sof, I'd like to get the “${T(plan)}” plan${extra}. Can you tell me how we get started?`
+      : `Hola Sof, quiero adquirir el plan “${plan}”${extra}. ¿Me cuentas cómo empezamos?`;
     say('Abriendo WhatsApp…');
     window.open('https://wa.me/573225374248?text=' + encodeURIComponent(t), '_blank', 'noopener');
   });

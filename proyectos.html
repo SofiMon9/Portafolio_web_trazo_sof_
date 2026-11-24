@@ -8,12 +8,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&family=Pinyon+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/base.css?v=20261113d">
-<link rel="stylesheet" href="css/barra-menu.css?v=20261113d">
-<link rel="stylesheet" href="css/pie.css?v=20261113d">
-<link rel="stylesheet" href="css/proyectos.css?v=20261113d">
+<link rel="stylesheet" href="css/base.css?v=20261124b">
+<link rel="stylesheet" href="css/barra-menu.css?v=20261123t">
+<link rel="stylesheet" href="css/pie.css?v=20261124a">
+<link rel="stylesheet" href="css/proyectos.css?v=20261123s">
 <script>
-(function(){var r=document.documentElement;try{var t=localStorage.getItem('sof-theme');if(t==='dark'||t==='light')r.dataset.theme=t;if(sessionStorage.getItem('sof-wipe')){r.classList.add('llegando');sessionStorage.removeItem('sof-wipe')}}catch(e){}})();
+(function(){var r=document.documentElement;try{var t=localStorage.getItem('sof-theme');if(t==='dark'||t==='light')r.dataset.theme=t;if(localStorage.getItem('sof-lang')==='en'){r.lang='en';r.classList.add('i18n');setTimeout(function(){r.classList.remove('i18n')},2500)}if(sessionStorage.getItem('sof-wipe')){r.classList.add('llegando');sessionStorage.removeItem('sof-wipe')}}catch(e){}})();
 </script>
 </head>
 <body data-pagina="proyectos">
@@ -28,42 +28,43 @@
   </nav>
   <a class="btn b-vino cta" href="planes.html" data-go>¡Trabajemos!</a>
   <button class="whatido" aria-controls="mega">Lo que hago</button>
+  <button class="lang" type="button" translate="no"><span>ES</span><span>EN</span></button>
   <button class="theme" role="switch" aria-checked="false" aria-label="Modo oscuro" title="Cambiar a modo claro u oscuro"><span class="knob" aria-hidden="true"><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></g></svg><svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></span></button>
   <button class="menu-btn" aria-expanded="false" aria-controls="mega"><i></i>Menú</button>
 </header>
 
 <div class="mega" id="mega">
   <div class="wrap">
-    <div class="mega-head"><div class="lbl"><b>000</b><span>Lo que hago</span></div><p class="script">elige tu plan y escríbeme</p></div>
+    <div class="mega-head"><div class="lbl"><span>Lo que hago</span></div><p class="script">elige tu plan y escríbeme</p></div>
     <div class="mega-grid">
       <div class="world w1">
-        <a class="wh" href="marca.html" data-go><span class="wn">Mundo 01 · Para marcas nuevas y emprendimientos</span><h3>Marca <span class="script">y piezas</span></h3></a>
+        <a class="wh" href="marca.html" data-go><span class="wn">Para marcas nuevas y emprendimientos</span><h3>Marca <span class="script">y piezas</span></h3></a>
         <ul>
-          <li><a href="marca.html" data-go><span>01</span>Identidad simple<small>Logo, paleta y tipografías · 3 entregables</small></a><button class="buy" data-buy="Identidad simple" data-w="Marca">Adquirir</button></li>
-          <li><a href="marca.html" data-go><span>02</span>Manual de marca<small>Reglas de uso de tu marca · 8 entregables</small></a><button class="buy" data-buy="Manual de marca" data-w="Marca">Adquirir</button></li>
-          <li><a href="marca.html" data-go><span>03</span>Identidad completa<small>Todo lo anterior + papelería y lanzamiento</small></a><button class="buy" data-buy="Identidad completa" data-w="Marca">Adquirir</button></li>
+          <li><a href="marca.html" data-go>Identidad simple<small>Logo, paleta y tipografías · 3 entregables</small></a><button class="buy" data-buy="Identidad simple" data-w="Marca">Adquirir</button></li>
+          <li><a href="marca.html" data-go>Manual de marca<small>Reglas de uso de tu marca · 8 entregables</small></a><button class="buy" data-buy="Manual de marca" data-w="Marca">Adquirir</button></li>
+          <li><a href="marca.html" data-go>Identidad completa<small>Todo lo anterior + papelería y lanzamiento</small></a><button class="buy" data-buy="Identidad completa" data-w="Marca">Adquirir</button></li>
         </ul>
-        <div class="seen"><small>Míralo en</small><div class="mini"><a href="proyecto.html?p=provet-marca" data-go>Provet</a><a href="proyecto.html?p=boticaria" data-go>Boticaria</a><a href="proyecto.html?p=museos" data-go>Museos y galerías</a><a href="proyecto.html?p=grotesco" data-go>Lo grotesco</a></div></div>
+        <div class="seen"><small>Míralo en</small><div class="mini"><a href="proyecto.html?p=provet-marca" data-go>Provet</a><a href="proyecto.html?p=boticaria" data-go>Boticaria</a><a href="proyecto.html?p=tradicion-canasta" data-go>Tradición en canasta</a><a href="proyecto.html?p=museos" data-go>Museos y galerías</a><a href="proyecto.html?p=grotesco" data-go>Lo grotesco</a></div></div>
         <a class="go-plan" href="marca.html" data-go>Ver el mundo de marca</a>
       </div>
       <div class="world w2">
-        <a class="wh" href="redes.html" data-go><span class="wn">Mundo 02 · Para negocios, servicios y creadores</span><h3>Redes <span class="script">sociales</span></h3></a>
+        <a class="wh" href="redes.html" data-go><span class="wn">Para negocios, servicios y creadores</span><h3>Redes <span class="script">sociales</span></h3></a>
         <ul>
-          <li><a href="redes.html" data-go><span>01</span>Posts e historias<small>Piezas que enseñan, conectan y venden</small></a><button class="buy" data-buy="Posts e historias" data-w="Redes">Adquirir</button></li>
-          <li><a href="redes.html" data-go><span>02</span>Reels y video<small>Edición con ritmo y con tu estética</small></a><button class="buy" data-buy="Reels y video" data-w="Redes">Adquirir</button></li>
-          <li><a href="redes.html" data-go><span>03</span>Fotografía<small>Producto y retrato, con edición de color</small></a><button class="buy" data-buy="Fotografía" data-w="Redes">Adquirir</button></li>
+          <li><a href="redes.html" data-go>Posts e historias<small>Piezas que enseñan, conectan y venden</small></a><button class="buy" data-buy="Posts e historias" data-w="Redes">Adquirir</button></li>
+          <li><a href="redes.html" data-go>Reels y video<small>Edición con ritmo y con tu estética</small></a><button class="buy" data-buy="Reels y video" data-w="Redes">Adquirir</button></li>
+          <li><a href="redes.html" data-go>Fotografía<small>Producto y retrato, con edición de color</small></a><button class="buy" data-buy="Fotografía" data-w="Redes">Adquirir</button></li>
         </ul>
-        <div class="seen"><small>Míralo en</small><div class="mini"><a href="proyecto.html?p=provet-redes" data-go>Provet · redes</a></div></div>
+        <div class="seen"><small>Míralo en</small><div class="mini"><a href="https://www.instagram.com/provet_co/" target="_blank" rel="noopener">Provet · redes</a></div></div>
         <a class="go-plan" href="redes.html" data-go>Ver el mundo de redes</a>
       </div>
       <div class="world w3">
-        <a class="wh" href="direccion-arte.html" data-go><span class="wn">Mundo 03 · Para videoclips, comerciales y cortos</span><h3>Dirección <span class="script">de arte</span></h3></a>
+        <a class="wh" href="direccion-arte.html" data-go><span class="wn">Para videoclips, comerciales y cortos</span><h3>Dirección <span class="script">de arte</span></h3></a>
         <ul>
-          <li><a href="direccion-arte.html" data-go><span>01</span>Concepto visual<small>Referencias, paleta y propuesta para tu pieza</small></a><button class="buy" data-buy="Concepto visual" data-w="Dirección de arte">Adquirir</button></li>
-          <li><a href="direccion-arte.html" data-go><span>02</span>Ambientación<small>Escenografía y utilería para cada escena</small></a><button class="buy" data-buy="Ambientación" data-w="Dirección de arte">Adquirir</button></li>
-          <li><a href="direccion-arte.html" data-go><span>03</span>Arte en el set<small>Asistencia de arte y producción en rodaje</small></a><button class="buy" data-buy="Arte en el set" data-w="Dirección de arte">Adquirir</button></li>
+          <li><a href="direccion-arte.html" data-go>Concepto visual<small>Referencias, paleta y propuesta para tu pieza</small></a><button class="buy" data-buy="Concepto visual" data-w="Dirección de arte">Adquirir</button></li>
+          <li><a href="direccion-arte.html" data-go>Ambientación<small>Escenografía y utilería para cada escena</small></a><button class="buy" data-buy="Ambientación" data-w="Dirección de arte">Adquirir</button></li>
+          <li><a href="direccion-arte.html" data-go>Arte en el set<small>Asistencia de arte y producción en rodaje</small></a><button class="buy" data-buy="Arte en el set" data-w="Dirección de arte">Adquirir</button></li>
         </ul>
-        <div class="seen"><small>Míralo en</small><div class="mini"><a href="proyecto.html?p=casualidad" data-go>Casualidad</a><a href="proyecto.html?p=servicarga" data-go>Servicarga</a></div></div>
+        <div class="seen"><small>Míralo en</small><div class="mini"><a href="https://youtu.be/zzhdbEWIKj8" target="_blank" rel="noopener">Casualidad</a><a href="https://www.instagram.com/reel/DbKAtlABSrf/" target="_blank" rel="noopener">Servicarga</a><a href="https://youtu.be/2KBNRGW3v3w" target="_blank" rel="noopener">Noche de Sábado</a><a href="https://youtu.be/dAaUGrENSRQ" target="_blank" rel="noopener">Donde la música muere</a></div></div>
         <a class="go-plan" href="direccion-arte.html" data-go>Ver el mundo de arte</a>
       </div>
     </div>
@@ -88,13 +89,13 @@
     </div>
   </section>
 
-  <nav class="ptabs" id="ptabs" aria-label="Secciones de proyectos"><button data-t="Marca" aria-current="true">Lo gráfico</button><button data-t="Editorial">Análogo</button><button data-t="Redes">Digital</button><button data-t="Fotografía">En cámara</button><button data-t="Dirección de arte">En set</button></nav>
+  <nav class="ptabs" id="ptabs" aria-label="Secciones de proyectos"><button data-t="Marca" aria-current="true"><i aria-hidden="true"></i><span>Lo gráfico</span></button><button data-t="Editorial"><i aria-hidden="true"></i><span>Análogo</span></button><button data-t="Redes"><i aria-hidden="true"></i><span>Digital</span></button><button data-t="Fotografía"><i aria-hidden="true"></i><span>En cámara</span></button><button data-t="Dirección de arte"><i aria-hidden="true"></i><span>En set</span></button></nav>
 
   <div class="stations" id="stations">
 
     <section class="stn" id="lo-grafico" data-cat="Marca">
       <div class="wrap">
-        <div class="stn-head split"><div><span class="brk">[Identidades · Marca]</span><h2 class="sth">En lo <span class="script">gráfico.</span></h2></div><div class="tagbox"><p>Identidades construidas desde el primer trazo hasta los manuales: llevar la marca de la idea a la realidad. Pasa el cursor por las capas para ver de qué está hecha cada marca.</p></div></div>
+        <div class="stn-head split"><div><h2 class="sth" data-i18n>En lo <span class="script">gráfico.</span></h2></div><div class="tagbox"><p>Identidades construidas desde el primer trazo hasta los manuales: llevar la marca de la idea a la realidad. Pasa el cursor por las capas para ver de qué está hecha cada marca.</p></div></div>
         <div class="ws" id="ws">
           <div class="ws-menu"><b>● Sof</b><span>Archivo</span><span>Edición</span><span>Objeto</span><span>Texto</span><span>Seleccionar</span><span>Efecto</span><span>Ver</span><em>Espacio de trabajo: identidades</em></div>
           <div class="ws-tab">identidades_sof.ai @ 66%</div>
@@ -103,14 +104,14 @@
             <div class="ws-canvas">
               <div class="ws-ruler" aria-hidden="true"></div>
               <div class="abs">
-                <a class="ab" href="proyecto.html?p=provet-marca" data-go><span class="ab-n">01 · Identidad</span><span class="ab-sheet"><span class="ab-logo" data-l="logo" style="background:#f0efeb"><img src="img/logo_provet.jpg" alt="Logo de Provet"></span><span class="ab-pal" data-l="paleta"><i style="background:#f2f1ed"></i><i style="background:#d2cfc0"></i><i style="background:#223f61"></i><i style="background:#15263a"></i></span><span class="ab-t" data-l="tipo">Provet</span><span class="ab-m" data-l="apps">Concepto · Manual · Uniformes</span></span><span class="sel" aria-hidden="true"><b></b><b></b><b></b><b></b></span></a>
-                <a class="ab" href="proyecto.html?p=boticaria" data-go><span class="ab-n">02 · Identidad</span><span class="ab-sheet"><span class="ab-logo" data-l="logo" style="background:#6b2c59"><img src="img/logo_boticaria.jpg" alt="Logo de Boticaria" style="scale:1.22"></span><span class="ab-pal" data-l="paleta"><i style="background:#ecb503"></i><i style="background:#6b2c59"></i><i style="background:#f2ecdd"></i></span><span class="ab-t" data-l="tipo">Boticaria</span><span class="ab-m" data-l="apps">Concepto · Isotipo · Paleta</span></span><span class="sel" aria-hidden="true"><b></b><b></b><b></b><b></b></span></a>
-                <a class="ab ghost" href="planes.html" data-go><span class="ab-n">03 · En maquetación</span><span class="ab-sheet"><span class="ab-logo x"></span><span class="ab-pal"><i></i><i></i><i></i><i></i></span><span class="ab-t">Tu marca</span><span class="ab-m">Emprendimiento · Café · Moda</span></span><span class="sel" aria-hidden="true"><b></b><b></b><b></b><b></b></span></a>
-                <a class="ab ghost" href="planes.html" data-go><span class="ab-n">04 · En maquetación</span><span class="ab-sheet"><span class="ab-logo x"></span><span class="ab-pal"><i></i><i></i><i></i><i></i></span><span class="ab-t">Próxima marca</span><span class="ab-m">Salud · Belleza · Cultura</span></span><span class="sel" aria-hidden="true"><b></b><b></b><b></b><b></b></span></a>
+                <a class="ab" href="proyecto.html?p=provet-marca" data-go><span class="ab-n">Identidad</span><span class="ab-sheet"><span class="ab-logo" data-l="logo" style="background:#f0efeb"><img src="img/logo_provet.jpg" alt="Logo de Provet"></span><span class="ab-pal" data-l="paleta"><i style="background:#f2f1ed"></i><i style="background:#d2cfc0"></i><i style="background:#223f61"></i><i style="background:#15263a"></i></span><span class="ab-t" data-l="tipo">Provet</span><span class="ab-m" data-l="apps">Concepto · Manual · Uniformes</span></span><span class="sel" aria-hidden="true"><b></b><b></b><b></b><b></b></span></a>
+                <a class="ab" href="proyecto.html?p=boticaria" data-go><span class="ab-n">Identidad</span><span class="ab-sheet"><span class="ab-logo" data-l="logo" style="background:#6b2c59"><img src="img/logo_boticaria.jpg" alt="Logo de Boticaria" style="scale:1.22"></span><span class="ab-pal" data-l="paleta"><i style="background:#ecb503"></i><i style="background:#6b2c59"></i><i style="background:#f2ecdd"></i></span><span class="ab-t" data-l="tipo">Boticaria</span><span class="ab-m" data-l="apps">Concepto · Isotipo · Paleta</span></span><span class="sel" aria-hidden="true"><b></b><b></b><b></b><b></b></span></a>
+                <a class="ab" href="proyecto.html?p=tradicion-canasta" data-go><span class="ab-n">Universo gráfico</span><span class="ab-sheet"><span class="ab-logo" data-l="logo" style="background:#58111a"><img src="img/canasta_portada.jpg?v=3" alt="Logo de Tradición en canasta"></span><span class="ab-pal" data-l="paleta"><i style="background:#eba43d"></i><i style="background:#8f9e26"></i><i style="background:#58111a"></i><i style="background:#6c3d20"></i></span><span class="ab-t" data-l="tipo">Tradición en canasta</span><span class="ab-m" data-l="apps">Ilustración · Posts · Web</span></span><span class="sel" aria-hidden="true"><b></b><b></b><b></b><b></b></span></a>
+                <a class="ab ghost" href="planes.html" data-go><span class="ab-n">En maquetación</span><span class="ab-sheet"><span class="ab-logo x"></span><span class="ab-pal"><i></i><i></i><i></i><i></i></span><span class="ab-t">Próxima marca</span><span class="ab-m">Salud · Belleza · Cultura</span></span><span class="sel" aria-hidden="true"><b></b><b></b><b></b><b></b></span></a>
               </div>
             </div>
             <div class="ws-panels">
-              <div class="ws-p"><h4>Mesas de trabajo</h4><div class="thumbs"><span style="background:#223f61">01</span><span style="background:#6b2c59">02</span><span class="e">03</span><span class="e">04</span></div></div>
+              <div class="ws-p"><h4>Mesas de trabajo</h4><div class="thumbs"><span style="background:#223f61"></span><span style="background:#6b2c59"></span><span style="background:#eba43d"></span><span class="e"></span></div></div>
               <div class="ws-p"><h4>Capas</h4><ul class="layers">
                 <li data-hl="logo"><i style="background:var(--rosa)"></i>Logotipo</li>
                 <li data-hl="paleta"><i style="background:var(--terra)"></i>Paleta de color</li>
@@ -118,50 +119,63 @@
                 <li data-hl="apps"><i style="background:var(--vino)"></i>Aplicaciones</li></ul></div>
             </div>
           </div>
-          <div class="ws-status"><span>2 marcas · 2 mesas libres</span><span>66%</span></div>
+          <div class="ws-status"><span>3 marcas · 1 mesa libre</span><span>66%</span></div>
         </div>
       </div>
     </section>
 
     <section class="stn" id="analogo" data-cat="Editorial">
       <div class="wrap stn-split">
-        <div class="stn-head left"><span class="brk">[Impresos · Editorial]</span><h2 class="sth">Lo <span class="script">análogo.</span></h2><p>Diseños pensados para el impreso: márgenes, tamaños y colores listos para salir de la pantalla.</p>
-          <ol class="plist"><li><a href="proyecto.html?p=museos" data-go><span>01</span>Museos y galerías de Pereira<em>Folleto interactivo</em></a></li><li><a href="proyecto.html?p=grotesco" data-go><span>02</span>La estética de lo grotesco<em>Portada de libro</em></a></li></ol>
+        <div class="stn-head left"><h2 class="sth" data-i18n>Lo <span class="script">análogo.</span></h2><p>Diseños pensados para el impreso: márgenes, tamaños y colores listos para salir de la pantalla.</p>
+          <ol class="plist"><li><a href="proyecto.html?p=museos" data-go>Museos y galerías de Pereira<em>Folleto interactivo</em></a></li><li><a href="proyecto.html?p=grotesco" data-go>La estética de lo grotesco<em>Portada de libro</em></a></li></ol>
           <div class="chips"><span class="chip">InDesign</span><span class="chip">Illustrator</span><span class="chip">Photoshop</span></div>
         </div>
         <div class="mat" aria-label="Pruebas de impresión">
           <span class="mat-ruler" aria-hidden="true"></span>
-          <a class="proof p1" href="proyecto.html?p=museos" data-go><span class="slug">museos_pereira.indd · pliego 01 · CMYK</span><span class="crop" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="reg" aria-hidden="true"></span><img src="img/museos.jpg" alt="Folleto Museos y galerías"><span class="cbar" aria-hidden="true"><i style="background:#00a3e0"></i><i style="background:#e6007e"></i><i style="background:#ffed00"></i><i style="background:#1d1d1b"></i><i style="background:#5C1A30"></i><i style="background:#E8B4B0"></i></span></a>
-          <a class="proof p2" href="proyecto.html?p=grotesco" data-go><span class="slug">grotesco_portada.ai · prueba 02</span><span class="crop" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="reg" aria-hidden="true"></span><img src="img/grotesco.jpg" alt="Portada La estética de lo grotesco"><span class="cbar" aria-hidden="true"><i style="background:#00a3e0"></i><i style="background:#e6007e"></i><i style="background:#ffed00"></i><i style="background:#1d1d1b"></i></span></a>
+          <a class="proof p1" href="proyecto.html?p=museos" data-go><span class="crop" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="reg" aria-hidden="true"></span><img src="img/museos.jpg?v=2" alt="Folleto Museos y galerías"><span class="cbar" aria-hidden="true"><i style="background:#00a3e0"></i><i style="background:#e6007e"></i><i style="background:#ffed00"></i><i style="background:#1d1d1b"></i><i style="background:#5C1A30"></i><i style="background:#E8B4B0"></i></span></a>
+          <a class="proof p2" href="proyecto.html?p=grotesco" data-go><span class="crop" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="reg" aria-hidden="true"></span><img src="img/grotesco.jpg" alt="Portada La estética de lo grotesco"><span class="cbar" aria-hidden="true"><i style="background:#00a3e0"></i><i style="background:#e6007e"></i><i style="background:#ffed00"></i><i style="background:#1d1d1b"></i></span></a>
         </div>
       </div>
     </section>
 
     <section class="stn" id="digital" data-cat="Redes">
       <div class="wrap stn-split rev">
-        <div class="stn-head left"><span class="brk">[Redes · Contenido]</span><h2 class="sth">En <span class="script">digital.</span></h2><p>Contenido que enseña y conecta: diseño de posts, historias y edición de reels para marcas que navegan en las plataformas y quieren crear vínculos reales con su público.</p>
-          <a class="ulink" href="redes.html" data-go>Ver el mundo en redes</a>
+        <div class="stn-head left"><h2 class="sth" data-i18n>En <span class="script">digital.</span></h2><p>Contenido que enseña y conecta: diseño de posts, historias y edición de reels para marcas que navegan en las plataformas y quieren crear vínculos reales con su público.</p>
+          <a class="ulink" href="https://www.instagram.com/provet_co/" target="_blank" rel="noopener">Ver el contenido en Instagram ↗</a>
         </div>
         <div class="vert">
-          <a class="vc" href="proyecto.html?p=provet-redes" data-go style="--sh:var(--rosa)"><img src="img/reel1.jpg" alt="Historia de Provet sobre el congreso veterinario"><span class="vc-i" aria-hidden="true">◉</span><span class="vc-c"><b>Provet</b><small>Veterinaria · Historia 01</small></span></a>
-          <a class="vc" href="proyecto.html?p=provet-redes" data-go style="--sh:var(--terra)"><img src="img/reel2.jpg" alt="Reel de Provet: tu gato no solo quiere jugar"><span class="vc-i" aria-hidden="true">◉</span><span class="vc-c"><b>Provet</b><small>Veterinaria · Reel 02</small></span></a>
-          <a class="vc" href="proyecto.html?p=provet-redes" data-go style="--sh:var(--arena)"><img src="img/reel3.jpg" alt="Historia de Provet con el número de contacto"><span class="vc-i" aria-hidden="true">◉</span><span class="vc-c"><b>Provet</b><small>Veterinaria · Historia 03</small></span></a>
+          <a class="vc" href="https://www.instagram.com/provet_co/" target="_blank" rel="noopener" style="--sh:var(--rosa)"><img src="img/reel1.jpg" alt="Historia de Provet sobre el congreso veterinario"><span class="vc-i" aria-hidden="true">◉</span><span class="vc-c"><b>Provet</b><small>Veterinaria · Historia</small></span></a>
+          <a class="vc" href="https://www.instagram.com/provet_co/" target="_blank" rel="noopener" style="--sh:var(--terra)"><img src="img/reel2.jpg" alt="Reel de Provet: tu gato no solo quiere jugar"><span class="vc-i" aria-hidden="true">◉</span><span class="vc-c"><b>Provet</b><small>Veterinaria · Reel</small></span></a>
+          <a class="vc" href="https://www.instagram.com/provet_co/" target="_blank" rel="noopener" style="--sh:var(--arena)"><img src="img/reel3.jpg" alt="Historia de Provet con el número de contacto"><span class="vc-i" aria-hidden="true">◉</span><span class="vc-c"><b>Provet</b><small>Veterinaria · Historia</small></span></a>
         </div>
       </div>
     </section>
 
     <section class="stn darkroom" id="en-camara" data-cat="Fotografía">
       <div class="wrap">
-        <div class="stn-head"><span class="brk">[Fotografía · Revelado]</span><h2 class="sth">En <span class="script">cámara.</span></h2><p>Producto, retrato y fotos de set, reveladas y editadas en Lightroom. Pasa el cursor por una foto para ver cómo se ajustó.</p></div>
+        <div class="stn-head"><h2 class="sth" data-i18n>En <span class="script">cámara.</span></h2><p>Producto, retrato y fotos de evento, reveladas y editadas en Lightroom. Pasa el cursor por una foto para ver un ejemplo de revelado.</p></div>
         <div class="line-wrap">
           <svg class="line" viewBox="0 0 1000 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 10 Q500 70 1000 10" fill="none" stroke="#D9C4B8" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
           <div class="prints" id="prints"></div>
         </div>
-        <div class="lr" aria-live="polite">
-          <div class="lr-top"><b>Revelar</b><span id="lrName">Producto 01</span><em>Lightroom</em></div>
+        <div class="ph-proy"><span class="brk">Cubrimiento de evento · Rap y freestyle</span><h3>Somos la Perla Fest</h3><p>Cubrimiento de evento de rap y freestyle en pro de la reconstrucción de SHUFFLE (establecimiento de la ciudad).</p><a class="ulink" href="https://www.instagram.com/p/Dfk4MAPoPm_/" target="_blank" rel="noopener">Ver en Instagram</a></div>
+        <div class="lr" data-g="prints" aria-live="polite">
+          <div class="lr-top"><b>Revelar</b><span class="lr-name">Producto 01</span><em>Lightroom</em></div>
           <div class="lr-body">
-            <div class="histo" id="histo" aria-hidden="true"></div>
-            <div class="sliders" id="sliders"></div>
+            <div class="histo" aria-hidden="true"></div>
+            <div class="sliders"></div>
+          </div>
+        </div>
+        <div class="line-wrap tend2">
+          <svg class="line" viewBox="0 0 1000 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 10 Q500 70 1000 10" fill="none" stroke="#D9C4B8" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
+          <div class="prints" id="prints2"></div>
+        </div>
+        <div class="ph-proy"><span class="brk">Retrato · Tiendas de barrio</span><h3>Tradición en canasta</h3><p>Aquí se compra con confianza.</p><a class="ulink" href="https://tradicionencanasta.netlify.app/" target="_blank" rel="noopener">Ver el proyecto</a></div>
+        <div class="lr" data-g="prints2" aria-live="polite">
+          <div class="lr-top"><b>Revelar</b><span class="lr-name">Producto 01</span><em>Lightroom</em></div>
+          <div class="lr-body">
+            <div class="histo" aria-hidden="true"></div>
+            <div class="sliders"></div>
           </div>
         </div>
       </div>
@@ -169,19 +183,17 @@
 
     <section class="stn" id="en-set" data-cat="Dirección de arte">
       <div class="wrap">
-        <div class="stn-head"><span class="brk">[Dirección de arte · Set]</span><h2 class="sth">En el <span class="script">set.</span></h2><p>Espacios que cuentan la historia frente a la cámara: concepto, ambientación y utilería para videoclips, comerciales y cortos.</p></div>
+        <div class="stn-head"><h2 class="sth" data-i18n>En el <span class="script">set.</span></h2><p>Espacios que cuentan la historia frente a la cámara: concepto, ambientación y utilería para videoclips, comerciales y cortos.</p></div>
         <div class="set-rows">
-          <a class="srow" href="proyecto.html?p=casualidad" data-go><span class="monitor"><span class="screen"><img src="img/cas_wide.jpg" alt="Fotograma del videoclip Casualidad"><span class="lbx" aria-hidden="true"></span><span class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="cross"></span><span class="t1"><em class="rec">● REC</em><em>A-CAM</em><em class="tc" data-tc="1">00:00:00:00</em></span><span class="t2"><em>24 FPS · 1/48 · ISO 800</em><em>2.39:1</em><em class="bat"><i></i></em></span></span></span><span class="mon-foot"><i></i><i></i><span>Monitor de set · 7″</span></span></span><span class="sinfo"><span class="slate"><span class="clap" aria-hidden="true"></span><span class="chalk"><span class="f w"><small>Prod.</small><b>Casualidad</b></span><span class="f"><small>Escena</small><b>01</b></span><span class="f"><small>Toma</small><b>03</b></span><span class="f"><small>Director</small><b>Felipe Argüello</b></span><span class="f"><small>Dir. de arte</small><b>Sofía Moncada</b></span><span class="f"><small>Productora</small><b>InSign Visualmedia</b></span><span class="f"><small>Fecha</small><b>2025</b></span></span></span><span class="brk">[Videoclip · Leo Méndez]</span><span class="d">Escenarios distintos para cada momento de la canción y la emoción que se vive.</span><span class="cr">Ambientación · Escenografía · Utilería</span><span class="ulink">Ver proyecto</span></span></a>
-          <a class="srow" href="proyecto.html?p=servicarga" data-go><span class="monitor"><span class="screen"><img src="img/serv_wide.jpg" alt="Fotograma del comercial de Servicarga"><span class="lbx" aria-hidden="true"></span><span class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="cross"></span><span class="t1"><em class="rec">● REC</em><em>A-CAM</em><em class="tc" data-tc="2">00:00:00:00</em></span><span class="t2"><em>24 FPS · 1/48 · ISO 800</em><em>2.39:1</em><em class="bat"><i></i></em></span></span></span><span class="mon-foot"><i></i><i></i><span>Monitor de set · 7″</span></span></span><span class="sinfo"><span class="slate"><span class="clap" aria-hidden="true"></span><span class="chalk"><span class="f w"><small>Prod.</small><b>Servicarga</b></span><span class="f"><small>Escena</small><b>02</b></span><span class="f"><small>Toma</small><b>01</b></span><span class="f"><small>Formato</small><b>Comercial</b></span><span class="f"><small>Dir. de arte</small><b>Sofía Moncada</b></span><span class="f"><small>Productora</small><b>InSign Visualmedia</b></span><span class="f"><small>Fecha</small><b>2026</b></span></span></span><span class="brk">[Comercial · Servicarga]</span><span class="d">Una casa cercana y familiar para contar cómo acortar las distancias con los pequeños detalles.</span><span class="cr">Dirección de arte · Ambientación</span><span class="ulink">Ver proyecto</span></span></a>
-          <div class="srow"><span class="monitor"><span class="screen"><span class="sbars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="nosig"><b>Sin señal</b><small>espacio para un fotograma del corto</small></span><span class="lbx" aria-hidden="true"></span><span class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="cross"></span><span class="t1"><em class="rec">● REC</em><em>A-CAM</em><em class="tc" data-tc="3">00:00:00:00</em></span><span class="t2"><em>24 FPS · 1/48 · ISO 800</em><em>2.39:1</em><em class="bat"><i></i></em></span></span></span><span class="mon-foot"><i></i><i></i><span>Monitor de set · 7″</span></span></span><span class="sinfo"><span class="slate"><span class="clap" aria-hidden="true"></span><span class="chalk"><span class="f w"><small>Prod.</small><b>Donde la música muere</b></span><span class="f"><small>Escena</small><b>03</b></span><span class="f"><small>Toma</small><b>—</b></span><span class="f"><small>Formato</small><b>Cortometraje</b></span><span class="f"><small>Dep. arte</small><b>Sofía Moncada</b></span><span class="f"><small>Fecha</small><b>2024</b></span></span></span><span class="brk">[Cortometraje]</span><span class="d">Volviendo a una historia de Andrés Caicedo en la Cali salsera.</span><span class="cr">Producción · Asistencia de arte</span></span></div>
+          <a class="srow" href="https://youtu.be/zzhdbEWIKj8" target="_blank" rel="noopener"><span class="monitor"><span class="screen"><img src="img/cas_wide.jpg" alt="Fotograma del videoclip Casualidad"><span class="lbx" aria-hidden="true"></span><span class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="cross"></span><span class="t1"><em class="rec">● REC</em><em class="tc" data-tc="1">00:00:00:00</em></span></span></span><span class="mon-foot"><i></i><i></i></span></span><span class="sinfo"><span class="slate"><span class="clap" aria-hidden="true"></span><span class="chalk"><span class="f w"><small>Prod.</small><b>Casualidad</b></span><span class="f"><small>Director</small><b>Felipe Argüello</b></span><span class="f"><small>Dir. de arte</small><b>Sofía Moncada</b></span><span class="f"><small>Productora</small><b>InSign Visualmedia</b></span><span class="f"><small>Fecha</small><b>2025</b></span></span></span><span class="brk">Videoclip · Leo Méndez</span><span class="d">Escenarios distintos para cada momento de la canción y la emoción que se vive.</span><span class="cr">Ambientación · Escenografía · Utilería</span><span class="ulink">Ver en YouTube</span></span></a>
+          <a class="srow" href="https://www.instagram.com/reel/DbKAtlABSrf/" target="_blank" rel="noopener"><span class="monitor"><span class="screen"><img src="img/serv_wide.jpg" alt="Fotograma del comercial de Servicarga"><span class="lbx" aria-hidden="true"></span><span class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="cross"></span><span class="t1"><em class="rec">● REC</em><em class="tc" data-tc="2">00:00:00:00</em></span></span></span><span class="mon-foot"><i></i><i></i></span></span><span class="sinfo"><span class="slate"><span class="clap" aria-hidden="true"></span><span class="chalk"><span class="f w"><small>Prod.</small><b>Servicarga</b></span><span class="f"><small>Formato</small><b>Comercial</b></span><span class="f"><small>Dir. de arte</small><b>Sofía Moncada</b></span><span class="f"><small>Productora</small><b>InSign Visualmedia</b></span><span class="f"><small>Fecha</small><b>2026</b></span></span></span><span class="brk">Comercial · Servicarga</span><span class="d">Una casa cercana y familiar para contar cómo acortar las distancias con los pequeños detalles.</span><span class="cr">Dirección de arte · Ambientación</span><span class="ulink">Ver en Instagram</span></span></a>
+          <a class="srow" href="https://youtu.be/dAaUGrENSRQ" target="_blank" rel="noopener"><span class="monitor"><span class="screen"><img src="img/donde_musica.jpg" alt="Portada del cortometraje Donde la música muere"><span class="lbx" aria-hidden="true"></span><span class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="cross"></span><span class="t1"><em class="rec">● REC</em><em class="tc" data-tc="3">00:00:00:00</em></span></span></span><span class="mon-foot"><i></i><i></i></span></span><span class="sinfo"><span class="slate"><span class="clap" aria-hidden="true"></span><span class="chalk"><span class="f w"><small>Prod.</small><b>Donde la música muere</b></span><span class="f"><small>Formato</small><b>Cortometraje</b></span><span class="f"><small>Dep. arte</small><b>Sofía Moncada</b></span><span class="f"><small>Fecha</small><b>2024</b></span></span></span><span class="brk">Cortometraje</span><span class="d">Volviendo a una historia de Andrés Caicedo en la Cali salsera.</span><span class="cr">Producción · Asistencia de arte</span><span class="ulink">Ver en YouTube</span></span></a>
+          <a class="srow" href="https://youtu.be/2KBNRGW3v3w" target="_blank" rel="noopener"><span class="monitor"><span class="screen"><img src="img/noche_sabado.jpg" alt="Portada del videoclip Noche de Sábado"><span class="lbx" aria-hidden="true"></span><span class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="cross"></span><span class="t1"><em class="rec">● REC</em><em class="tc" data-tc="4">00:00:00:00</em></span></span></span><span class="mon-foot"><i></i><i></i></span></span><span class="sinfo"><span class="slate"><span class="clap" aria-hidden="true"></span><span class="chalk"><span class="f w"><small>Prod.</small><b>Noche de Sábado</b></span><span class="f"><small>Formato</small><b>Videoclip</b></span><span class="f"><small>Dir. de arte</small><b>Sofía Moncada</b></span><span class="f"><small>Productora</small><b>InSign Visualmedia</b></span><span class="f"><small>Fecha</small><b>—</b></span></span></span><span class="brk">Videoclip · Danny Road</span><span class="d">Una bodega industrial con humo y luz azul para que la banda suene a sábado en la noche.</span><span class="cr">Dirección de arte · Ambientación</span><span class="ulink">Ver en YouTube</span></span></a>
         </div>
       </div>
     </section>
   </div>
 
-  <section class="pad" style="padding-top:0">
-    <div class="wrap"><p class="fig" style="text-align:center;margin-top:2.4rem"><b>lám. 03</b> — archivo completo · 2024 a 2026</p></div>
-  </section>
 
 </main>
 
@@ -190,8 +202,9 @@
     <h2 class="st">Trabajemos <span class="script">Juntos</span></h2>
     <div class="cgrid">
       <div><h4>Escríbeme</h4><button id="copy">somonjara2005@gmail.com</button><a href="https://wa.me/573225374248" target="_blank" rel="noopener">WhatsApp · 322 537 4248</a></div>
-      <div><h4>Redes</h4><a href="https://instagram.com/_nthlky_" target="_blank" rel="noopener">Instagram · @_nthlky_</a></div>
+      <div><h4>Redes</h4><a href="https://instagram.com/_nthlky_" target="_blank" rel="noopener">Instagram · @_nthlky_</a><a href="https://www.behance.net/gallery/258978207/Portafolio-Diseno-Crossmedia-Sof" target="_blank" rel="noopener">Behance · Portafolio crossmedia</a></div>
       <div><h4>Estudio</h4><p>Pereira, Colombia</p></div>
+      <div><h4>App</h4><a href="apk/Trazo_app.apk" download>Descargar para Android</a><p>APK · 56 MB</p></div>
     </div>
     <div class="cbase"><span>© 2026 Sofía Moncada - Arte desde el alma y corazón</span></div>
   </div>
@@ -200,7 +213,9 @@
 <div class="wipe" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="js/main.js?v=20261113d"></script>
-<script src="js/proyectos.js?v=20261113d"></script>
+<script src="js/en.js?v=20261124g"></script>
+<script src="js/idioma.js?v=20261124b"></script>
+<script src="js/main.js?v=20261124b"></script>
+<script src="js/proyectos.js?v=20261124g"></script>
 </body>
 </html>

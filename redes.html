@@ -8,12 +8,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&family=Pinyon+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/base.css?v=20261113d">
-<link rel="stylesheet" href="css/barra-menu.css?v=20261113d">
-<link rel="stylesheet" href="css/pie.css?v=20261113d">
-<link rel="stylesheet" href="css/mundos.css?v=20261113d">
+<link rel="stylesheet" href="css/base.css?v=20261124b">
+<link rel="stylesheet" href="css/barra-menu.css?v=20261123t">
+<link rel="stylesheet" href="css/pie.css?v=20261124a">
+<link rel="stylesheet" href="css/mundos.css?v=20261123u">
 <script>
-(function(){var r=document.documentElement;try{var t=localStorage.getItem('sof-theme');if(t==='dark'||t==='light')r.dataset.theme=t;if(sessionStorage.getItem('sof-wipe')){r.classList.add('llegando');sessionStorage.removeItem('sof-wipe')}}catch(e){}})();
+(function(){var r=document.documentElement;try{var t=localStorage.getItem('sof-theme');if(t==='dark'||t==='light')r.dataset.theme=t;if(localStorage.getItem('sof-lang')==='en'){r.lang='en';r.classList.add('i18n');setTimeout(function(){r.classList.remove('i18n')},2500)}if(sessionStorage.getItem('sof-wipe')){r.classList.add('llegando');sessionStorage.removeItem('sof-wipe')}}catch(e){}})();
 </script>
 </head>
 <body data-pagina="redes" data-world="redes">
@@ -28,42 +28,43 @@
   </nav>
   <a class="btn b-vino cta" href="planes.html" data-go>¡Trabajemos!</a>
   <button class="whatido" aria-controls="mega">Lo que hago</button>
+  <button class="lang" type="button" translate="no"><span>ES</span><span>EN</span></button>
   <button class="theme" role="switch" aria-checked="false" aria-label="Modo oscuro" title="Cambiar a modo claro u oscuro"><span class="knob" aria-hidden="true"><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></g></svg><svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></span></button>
   <button class="menu-btn" aria-expanded="false" aria-controls="mega"><i></i>Menú</button>
 </header>
 
 <div class="mega" id="mega">
   <div class="wrap">
-    <div class="mega-head"><div class="lbl"><b>000</b><span>Lo que hago</span></div><p class="script">elige tu plan y escríbeme</p></div>
+    <div class="mega-head"><div class="lbl"><span>Lo que hago</span></div><p class="script">elige tu plan y escríbeme</p></div>
     <div class="mega-grid">
       <div class="world w1">
-        <a class="wh" href="marca.html" data-go><span class="wn">Mundo 01 · Para marcas nuevas y emprendimientos</span><h3>Marca <span class="script">y piezas</span></h3></a>
+        <a class="wh" href="marca.html" data-go><span class="wn">Para marcas nuevas y emprendimientos</span><h3>Marca <span class="script">y piezas</span></h3></a>
         <ul>
-          <li><a href="marca.html" data-go><span>01</span>Identidad simple<small>Logo, paleta y tipografías · 3 entregables</small></a><button class="buy" data-buy="Identidad simple" data-w="Marca">Adquirir</button></li>
-          <li><a href="marca.html" data-go><span>02</span>Manual de marca<small>Reglas de uso de tu marca · 8 entregables</small></a><button class="buy" data-buy="Manual de marca" data-w="Marca">Adquirir</button></li>
-          <li><a href="marca.html" data-go><span>03</span>Identidad completa<small>Todo lo anterior + papelería y lanzamiento</small></a><button class="buy" data-buy="Identidad completa" data-w="Marca">Adquirir</button></li>
+          <li><a href="marca.html" data-go>Identidad simple<small>Logo, paleta y tipografías · 3 entregables</small></a><button class="buy" data-buy="Identidad simple" data-w="Marca">Adquirir</button></li>
+          <li><a href="marca.html" data-go>Manual de marca<small>Reglas de uso de tu marca · 8 entregables</small></a><button class="buy" data-buy="Manual de marca" data-w="Marca">Adquirir</button></li>
+          <li><a href="marca.html" data-go>Identidad completa<small>Todo lo anterior + papelería y lanzamiento</small></a><button class="buy" data-buy="Identidad completa" data-w="Marca">Adquirir</button></li>
         </ul>
-        <div class="seen"><small>Míralo en</small><div class="mini"><a href="proyecto.html?p=provet-marca" data-go>Provet</a><a href="proyecto.html?p=boticaria" data-go>Boticaria</a><a href="proyecto.html?p=museos" data-go>Museos y galerías</a><a href="proyecto.html?p=grotesco" data-go>Lo grotesco</a></div></div>
+        <div class="seen"><small>Míralo en</small><div class="mini"><a href="proyecto.html?p=provet-marca" data-go>Provet</a><a href="proyecto.html?p=boticaria" data-go>Boticaria</a><a href="proyecto.html?p=tradicion-canasta" data-go>Tradición en canasta</a><a href="proyecto.html?p=museos" data-go>Museos y galerías</a><a href="proyecto.html?p=grotesco" data-go>Lo grotesco</a></div></div>
         <a class="go-plan" href="marca.html" data-go>Ver el mundo de marca</a>
       </div>
       <div class="world w2">
-        <a class="wh" href="redes.html" data-go><span class="wn">Mundo 02 · Para negocios, servicios y creadores</span><h3>Redes <span class="script">sociales</span></h3></a>
+        <a class="wh" href="redes.html" data-go><span class="wn">Para negocios, servicios y creadores</span><h3>Redes <span class="script">sociales</span></h3></a>
         <ul>
-          <li><a href="redes.html" data-go><span>01</span>Posts e historias<small>Piezas que enseñan, conectan y venden</small></a><button class="buy" data-buy="Posts e historias" data-w="Redes">Adquirir</button></li>
-          <li><a href="redes.html" data-go><span>02</span>Reels y video<small>Edición con ritmo y con tu estética</small></a><button class="buy" data-buy="Reels y video" data-w="Redes">Adquirir</button></li>
-          <li><a href="redes.html" data-go><span>03</span>Fotografía<small>Producto y retrato, con edición de color</small></a><button class="buy" data-buy="Fotografía" data-w="Redes">Adquirir</button></li>
+          <li><a href="redes.html" data-go>Posts e historias<small>Piezas que enseñan, conectan y venden</small></a><button class="buy" data-buy="Posts e historias" data-w="Redes">Adquirir</button></li>
+          <li><a href="redes.html" data-go>Reels y video<small>Edición con ritmo y con tu estética</small></a><button class="buy" data-buy="Reels y video" data-w="Redes">Adquirir</button></li>
+          <li><a href="redes.html" data-go>Fotografía<small>Producto y retrato, con edición de color</small></a><button class="buy" data-buy="Fotografía" data-w="Redes">Adquirir</button></li>
         </ul>
-        <div class="seen"><small>Míralo en</small><div class="mini"><a href="proyecto.html?p=provet-redes" data-go>Provet · redes</a></div></div>
+        <div class="seen"><small>Míralo en</small><div class="mini"><a href="https://www.instagram.com/provet_co/" target="_blank" rel="noopener">Provet · redes</a></div></div>
         <a class="go-plan" href="redes.html" data-go>Ver el mundo de redes</a>
       </div>
       <div class="world w3">
-        <a class="wh" href="direccion-arte.html" data-go><span class="wn">Mundo 03 · Para videoclips, comerciales y cortos</span><h3>Dirección <span class="script">de arte</span></h3></a>
+        <a class="wh" href="direccion-arte.html" data-go><span class="wn">Para videoclips, comerciales y cortos</span><h3>Dirección <span class="script">de arte</span></h3></a>
         <ul>
-          <li><a href="direccion-arte.html" data-go><span>01</span>Concepto visual<small>Referencias, paleta y propuesta para tu pieza</small></a><button class="buy" data-buy="Concepto visual" data-w="Dirección de arte">Adquirir</button></li>
-          <li><a href="direccion-arte.html" data-go><span>02</span>Ambientación<small>Escenografía y utilería para cada escena</small></a><button class="buy" data-buy="Ambientación" data-w="Dirección de arte">Adquirir</button></li>
-          <li><a href="direccion-arte.html" data-go><span>03</span>Arte en el set<small>Asistencia de arte y producción en rodaje</small></a><button class="buy" data-buy="Arte en el set" data-w="Dirección de arte">Adquirir</button></li>
+          <li><a href="direccion-arte.html" data-go>Concepto visual<small>Referencias, paleta y propuesta para tu pieza</small></a><button class="buy" data-buy="Concepto visual" data-w="Dirección de arte">Adquirir</button></li>
+          <li><a href="direccion-arte.html" data-go>Ambientación<small>Escenografía y utilería para cada escena</small></a><button class="buy" data-buy="Ambientación" data-w="Dirección de arte">Adquirir</button></li>
+          <li><a href="direccion-arte.html" data-go>Arte en el set<small>Asistencia de arte y producción en rodaje</small></a><button class="buy" data-buy="Arte en el set" data-w="Dirección de arte">Adquirir</button></li>
         </ul>
-        <div class="seen"><small>Míralo en</small><div class="mini"><a href="proyecto.html?p=casualidad" data-go>Casualidad</a><a href="proyecto.html?p=servicarga" data-go>Servicarga</a></div></div>
+        <div class="seen"><small>Míralo en</small><div class="mini"><a href="https://youtu.be/zzhdbEWIKj8" target="_blank" rel="noopener">Casualidad</a><a href="https://www.instagram.com/reel/DbKAtlABSrf/" target="_blank" rel="noopener">Servicarga</a><a href="https://youtu.be/2KBNRGW3v3w" target="_blank" rel="noopener">Noche de Sábado</a><a href="https://youtu.be/dAaUGrENSRQ" target="_blank" rel="noopener">Donde la música muere</a></div></div>
         <a class="go-plan" href="direccion-arte.html" data-go>Ver el mundo de arte</a>
       </div>
     </div>
@@ -88,8 +89,9 @@
     <h2 class="st">Trabajemos <span class="script">Juntos</span></h2>
     <div class="cgrid">
       <div><h4>Escríbeme</h4><button id="copy">somonjara2005@gmail.com</button><a href="https://wa.me/573225374248" target="_blank" rel="noopener">WhatsApp · 322 537 4248</a></div>
-      <div><h4>Redes</h4><a href="https://instagram.com/_nthlky_" target="_blank" rel="noopener">Instagram · @_nthlky_</a></div>
+      <div><h4>Redes</h4><a href="https://instagram.com/_nthlky_" target="_blank" rel="noopener">Instagram · @_nthlky_</a><a href="https://www.behance.net/gallery/258978207/Portafolio-Diseno-Crossmedia-Sof" target="_blank" rel="noopener">Behance · Portafolio crossmedia</a></div>
       <div><h4>Estudio</h4><p>Pereira, Colombia</p></div>
+      <div><h4>App</h4><a href="apk/Trazo_app.apk" download>Descargar para Android</a><p>APK · 56 MB</p></div>
     </div>
     <div class="cbase"><span>© 2026 Sofía Moncada - Arte desde el alma y corazón</span></div>
   </div>
@@ -98,8 +100,10 @@
 <div class="wipe" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="js/main.js?v=20261113d"></script>
-<script src="js/datos.js?v=20261115a"></script>
-<script src="js/mundos.js?v=20261113d"></script>
+<script src="js/en.js?v=20261124g"></script>
+<script src="js/idioma.js?v=20261124b"></script>
+<script src="js/main.js?v=20261124b"></script>
+<script src="js/datos.js?v=20261124e"></script>
+<script src="js/mundos.js?v=20261123u"></script>
 </body>
 </html>

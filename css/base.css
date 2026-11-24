@@ -108,3 +108,9 @@ main section>.wrap,main .stn>.wrap,main section>*:not(.deco){position:relative;z
 .xr>*{z-index:auto}
 @media (prefers-reduced-motion:reduce){.deco svg{animation:none}}
 @media (max-width:860px){.mas-title .script{margin-left:0}}
+.lang{width:68px;height:34px;border-radius:999px;background:var(--line);position:relative;flex:none;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 4px;font-size:.72rem;font-weight:700;letter-spacing:.05em;color:inherit}
+.lang::before{content:"";position:absolute;top:4px;left:4px;width:calc(50% - 4px);height:26px;border-radius:999px;background:var(--terra);transition:transform .45s cubic-bezier(.3,1.6,.4,1)}
+html[lang="en"] .lang::before{transform:translateX(100%)}
+.lang span{position:relative;text-align:center;transition:color .3s}
+html:not([lang="en"]) .lang span:first-child,html[lang="en"] .lang span:last-child{color:var(--blanco)}
+html.i18n body{visibility:hidden}

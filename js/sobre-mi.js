@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const { P, rutaProyecto } = window.TRAZO;
+  const { P, enlace } = window.TRAZO;
 
   const lyd = document.getElementById('lanyard');
   if (lyd) {
@@ -29,7 +29,7 @@
   }
 
   const KB = [
-    ['Ai', 'Illustrator', 'k-ro', 'todos los días', 'Logos, isotipos e ilustración. Aquí nacen los sistemas de marca, de la primera línea al manual.', ['provet-marca', 'boticaria', 'grotesco']],
+    ['Ai', 'Illustrator', 'k-ro', 'todos los días', 'Logos, isotipos e ilustración. Aquí nacen los sistemas de marca, de la primera línea al manual.', ['provet-marca', 'tradicion-canasta', 'boticaria', 'grotesco']],
     ['Ps', 'Photoshop', 'k-bl', 'retoque y composición', 'Retoque, composición y mockups. Aquí las piezas se ven reales antes de imprimirse o publicarse.', ['provet-redes', 'museos']],
     ['Lr', 'Lightroom', 'k-vi', 'color y luz', 'Revelado y edición de color para fotografía de producto, retrato y set.', [], [['En cámara', 'proyectos.html#en-camara']]],
     ['VS', 'VS Code', 'k-te', 'de la idea al código', 'Maquetación de páginas web con HTML, CSS y JavaScript, como este portafolio.', [], [['Este portafolio', 'inicio.html']]],
@@ -46,7 +46,7 @@
       keysEl.querySelectorAll('.key').forEach((b, j) => b.setAttribute('aria-pressed', j === i));
       let ap = k[5].map((id) => {
         const p = P.find((x) => x.id === id);
-        return p ? `<a href="${rutaProyecto(p.id)}" data-go class="chip">${p.title}${P.filter((x) => x.title === p.title).length > 1 ? ' · ' + p.cat : ''}</a>` : '';
+        return p ? `<a ${enlace(p)} class="chip">${p.title}${P.filter((x) => x.title === p.title).length > 1 ? ' · ' + p.cat : ''}</a>` : '';
       }).join('');
       ap += (k[6] || []).map(([t, h]) => (h ? `<a href="${h}" data-go class="chip">${t}</a>` : `<span class="chip">${t}</span>`)).join('');
       kp.innerHTML = `<h3>${k[1]} <span class="script">${k[3]}</span></h3><p>${k[4]}</p><h4>Aparece en</h4><div class="chips">${ap}</div>`;

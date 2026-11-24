@@ -44,6 +44,7 @@
 }
 .contact .st .script { font-size: 1.05em; color: var(--rosa); }
 .cgrid {
+  grid-template-columns: repeat(4, 1fr);
   margin-top: 2.6rem;
   padding-top: 0;
   border-top: 0;
@@ -67,4 +68,5 @@
   color: var(--terra);
   opacity: 1;
 }
-@media (max-width: 760px) { .cgrid { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .cgrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .cgrid { grid-template-columns: 1fr; } }

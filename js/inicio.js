@@ -16,7 +16,7 @@
   });
 
   document.querySelectorAll('.xr .track').forEach((t) => {
-    t.innerHTML = Array(6).fill(['Diseño', 'Arte', 'Dirección', 'Creación']).flat().map((x) => `<span>${x}</span>`).join('');
+    t.innerHTML = Array(6).fill(window.TRAZO_lang === 'en' ? ['Design', 'Art', 'Direction', 'Creation'] : ['Diseño', 'Arte', 'Dirección', 'Creación']).flat().map((x) => `<span>${x}</span>`).join('');
   });
 
   const mf = document.getElementById('manif');

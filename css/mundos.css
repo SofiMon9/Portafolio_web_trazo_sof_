@@ -103,3 +103,4 @@
 .worlds.fan .wcard:hover{transform:rotate(0) translateY(-12px)}
 @media (max-width:900px){.worlds.fan .wcard:nth-child(n){transform:rotate(calc(var(--i,0) * 1deg))}.worlds.fan .wcard:nth-child(1){--i:-1.5}.worlds.fan .wcard:nth-child(3){--i:1.5}}
 
+.inc .precio{margin:auto 0 0;font-weight:600;font-size:1rem}.inc .precio b{font-weight:800}.inc .precio + .foot{margin-top:0}

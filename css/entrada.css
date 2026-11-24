@@ -2,6 +2,7 @@
 .intro[hidden]{display:none}
 .intro .top-meta{position:sticky;top:0;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:calc(env(safe-area-inset-top,0px) + .9rem) 1.5rem .9rem;font-size:.85rem;background:var(--bg)}
 .intro .top-meta .m{opacity:.75}
+.intro .top-meta .ctrls{display:flex;align-items:center;gap:.6rem}
 .intro .skipi{position:fixed;right:1.2rem;bottom:calc(env(safe-area-inset-bottom,0px) + 1rem);z-index:4;font-size:.9rem;text-decoration:underline;text-underline-offset:4px;background:var(--bg);padding:.35rem .8rem;border-radius:999px}
 @media (max-width:600px){.hide-s{display:none}}
 .loader{min-height:calc(100svh - 80px);display:grid;place-content:center;text-align:center}
