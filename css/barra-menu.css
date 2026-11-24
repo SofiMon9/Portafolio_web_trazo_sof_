@@ -25,8 +25,8 @@
 .world h3{font-weight:800;text-transform:uppercase;font-size:clamp(1.8rem,3vw,2.6rem);line-height:.95;letter-spacing:.01em}
 .world h3 .script{text-transform:none;font-weight:400;font-size:1.15em}
 .world ul{list-style:none;display:grid;gap:.1rem}
-.world li a{display:grid;grid-template-columns:2rem 1fr;gap:.4rem;padding:.55rem 0;border-top:1px solid currentColor;text-decoration:none;font-size:.98rem;opacity:.95}
-.world li a small{grid-column:2;font-size:.85rem;opacity:.75;margin-top:-.25rem}
+.world li a{display:flex;flex-direction:column;gap:.15rem;min-width:0;padding:.55rem 0;border-top:1px solid currentColor;text-decoration:none;font-size:.98rem;opacity:.95}
+.world li a small{font-size:.85rem;opacity:.75}
 .world li a:hover{opacity:.7}
 .w1{background:var(--rosa);color:var(--vino-osc)}
 .w2{background:var(--crema);color:var(--vino-osc)}
