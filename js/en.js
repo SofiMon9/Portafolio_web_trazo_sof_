@@ -114,7 +114,9 @@ window.TRAZO_EN = {
   'Estudio': 'Studio',
   'App': 'App',
   'Descargar para Android': 'Download for Android',
-  '© 2026 Sofía Moncada - Arte desde el alma y corazón': '© 2026 Sofía Moncada - Art from the heart and soul',
+  '© 2026 Sofía Moncada Jaramillo · Trazo. Todos los derechos reservados.': '© 2026 Sofía Moncada Jaramillo · Trazo. All rights reserved.',
+  'Arte desde el alma y corazón': 'Art from the heart and soul',
+  'Los diseños, ilustraciones, fotografías y textos de este portafolio están protegidos por derechos de autor. No está permitido copiarlos, reproducirlos ni usarlos sin autorización. Las marcas y logotipos de clientes pertenecen a sus respectivos dueños y se muestran como parte del trabajo realizado.': 'The designs, illustrations, photographs and texts in this portfolio are protected by copyright. They may not be copied, reproduced or used without permission. Client brands and logos belong to their respective owners and are shown as part of the work done.',
   'Correo copiado': 'Email copied',
   'Abriendo WhatsApp…': 'Opening WhatsApp…',
 

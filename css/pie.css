@@ -70,3 +70,6 @@
 }
 @media (max-width: 900px) { .cgrid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px) { .cgrid { grid-template-columns: 1fr; } }
+.cbase{flex-direction:column;align-items:center;gap:.35rem;text-align:center}
+.cbase .clema{font-family:var(--script);font-size:1.5rem;font-weight:400;line-height:1.2}
+.cbase .cder{max-width:62ch;margin:.6rem 0 0;font-size:.78rem;font-weight:400;line-height:1.55;color:var(--fg);opacity:.6}
