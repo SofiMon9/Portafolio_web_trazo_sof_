@@ -102,8 +102,6 @@ window.TRAZO_EN = {
   'Proyectos en el archivo': 'Projects in the archive',
   'Formas de mostrar mi trabajo': 'Ways to show my work',
   'Producciones audiovisuales': 'Audiovisual productions',
-  'Espacio para testimonios.': 'Space for testimonials.',
-  'Agrega aquí lo que dicen tus clientes, con su nombre y su marca.': 'Add what your clients say here, with their name and brand.',
   '¿Listx para que tu marca': 'Ready for your brand',
   'sea vista?': 'to be seen?',
   'Ver planes': 'See plans',
